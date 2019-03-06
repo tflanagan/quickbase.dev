@@ -123,13 +123,6 @@ errorOnConnectionLimit | false | false | <i>(JavaScript Only)</i> Throw an error
 
 The Quick Base librarys are built in such a way as to be as future-proof as possible. 9/10 times, a new API endpoint will automatically be supported if you're using these libraries.
 
-<aside class="notice">
-<i>(JavaScript Only)</i><br />
-This library makes API calls asychronously. As Quick Base cannot support n number of requests at a given time, the default limit is 10. This throttles the requests sent to Quick Base in order to preserve the Quick Base applications integrity and performance.<br />
-<br />
-If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
-</aside>
-
 The way we accomplish this is by exposing a single method `api()`.
 
 #### `.api(action[, options])`
@@ -181,6 +174,13 @@ options | false | | An object containing data pertaining to your API Action
 In JavaScript, the `api()` method returns a Promise, powered by <a href='http://bluebirdjs.com/docs/getting-started.html' target='_blank'>bluebirdjs</a>. If an error occurs during the request, you can handle the error by using `catch()`. Otherwise, you can continue processing with the results passed into a `then()`.
 
 In PHP, the `api()` method returns the resulting JSON object from the API call. If an error occurs, it will be thrown and needs to be caught with a `try/catch` statement.
+
+<aside class="notice">
+<i>(JavaScript Only)</i><br />
+This library makes API calls asychronously. As Quick Base cannot support n number of requests at a given time, the default limit is 10. This throttles the requests sent to Quick Base in order to preserve the Quick Base applications integrity and performance.<br />
+<br />
+If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
+</aside>
 
 ### Formatting Data for Quick Base
 
@@ -238,7 +238,8 @@ quickbase.api('API_AddField', {
   // Handle error
 });
 ```
-node```javascript--browser
+
+```javascript--browser
 quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
   add_to_forms: true,
@@ -251,7 +252,8 @@ quickbase.api('API_AddField', {
   // Handle error
 });
 ```
-node```php
+
+```php
 <?php
 
 try {
@@ -268,7 +270,8 @@ try {
   // Handle error
 }
 
-?>node```
+?>
+```
 
 > The above returns JSON structured like this:
 
@@ -395,7 +398,8 @@ quickbase.api('API_AddRecord', {
   disprec: false,
   fform: false,
   ignoreError: false,
-  msInUTC: false
+  msInUTC: false,
+  msAsDurationDefault: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -405,7 +409,15 @@ quickbase.api('API_AddRecord', {
 
 ```javascript--browser
 quickbase.api('API_AddRecord', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fields: [
+    { fid: 6, value: 'Hello World!' }
+  ],
+  disprec: false,
+  fform: false,
+  ignoreError: false,
+  msInUTC: false,
+  msAsDurationDefault: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -418,7 +430,15 @@ quickbase.api('API_AddRecord', {
 
 try {
   $results = $quickbase->api('API_AddRecord', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'fields' => array(
+      array( 'fid' => 6, 'value' => 'Hello World!' )
+    ),
+    'disprec' => false,
+    'fform' => false,
+    'ignoreError' => false,
+    'msInUTC' => false,
+    'msAsDurationDefault' => false
   ));
 
   // Handle results
@@ -435,7 +455,9 @@ try {
 {
   "action": "API_AddRecord",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "rid": 21,
+  "update_id": 1206177014451
 }
 ```
 
@@ -443,7 +465,13 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+fields | true | | Array of objects with fid/value parameters
+disprec | false | false | Set this parameter to true to specify that the new record should be displayed within the Quick Base application. An application login required before the record can be displayed. If you use this parameter, Quick Base, returns the normal Quick Base HTML page that displays the record.<br /><br />Omit this property if you don't want the new record to display within the Quick Base application.
+fform | false | false | Set this parameter to true if you are invoking API_AddRecord from within an HTML form that has checkboxes and want those checkboxes to set Quick Base Checkbox fields.<br /><br />Omit this property if you don't need Quick Base to set Checkbox fields based on your HTML page.
+ignoreError | false | false | Set this parameter to true to specify that no error should be returned when a built-in field (for example, Record ID#) is written-to in an API_AddRecord call.<br /><br />If you do not set this parameter, Quick Base returns an error when API_AddRecord writes to a built-in field.
+msInUTC | false | global instance setting | Allows you to specify that Quick Base should interpret all date/time stamps passed in as milliseconds using Coordinated Universal Time (UTC) rather than using the local application time.<br /><br />Set this parameter to true if you want to use Coordinated Universal Time.
+msAsDurationDefault | false | false | Set this parameter to true to specify milliseconds, instead of days, as the default units for a duration field value sent without any units.<br /><br />If you set this parameter to false or omit it, then any duration field values sent without a unit will default to being interpreted as days.
 
 ### API_AddReplaceDBPage
 
