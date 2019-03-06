@@ -2,15 +2,15 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
   - php
   - javascript--node
   - javascript--browser
 
 toc_footers:
-  - <a href='https://www.quickbase.com/'>Quick Base</a>
-  - <a href='https://www.datacollaborative.com/'>Data Collaborative</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a>
+  - <a href='https://www.datacollaborative.com/' target='_blank'>Data Collaborative</a>
+  - <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub Repo</a>
+  - <a href='https://github.com/lord/slate' target='_blank'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -28,16 +28,25 @@ We are continually trying to improve the information available! Please feel free
 
 # QuickBase
 
+This is the low level Quick Base class, giving you direct access to Quick Base's API.
+
+This class is utilized in the abstraction layers QBRecord and QBTable.
+
+## Repository Links
+
+* PHP: <a href='https://github.com/tflanagan/php-quickbase'>https://github.com/tflanagan/php-quickbase</a>
+* JavaScript: <a href='https://github.com/tflanagan/node-quickbase'>https://github.com/tflanagan/node-quickbase</a>
+
 ## Installation & Loading
 
-Installing the Quick Base library for your desired platform requires either including the browserified version of the library in your HTML page or install it via a package manager (npm or composer).
-
-Including the library for use in your code depends on your platform.
-
 ```php
+<?php
+
 // $ composer require tflanagan/quickbase
 
 require_once(__DIR__.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php');
+
+?>
 ```
 
 ```javascript--node
@@ -50,24 +59,21 @@ const QuickBase = require('quickbase');
 // <script type="text/javascript" src="quickbase.browserify.min.js"></script>
 ```
 
-## Initialization
+Installing the Quick Base library for your desired platform requires either including the browserified version of the library in your HTML page or install it via a package manager (npm or composer).
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
-realm | true | 'www' | Quick Base Realm (or subdomain)
-useSSL | false | true | Use HTTPS or HTTP when communicating with Quick Base
-appToken | false | '' | Quick Base Application Token
-userToken | false | '' | Quick Base User Token
-flags | false | | Object containing a collection of API parameters
-  - useXML | false | true | Send API requests via `POST` or `GET`
-  - msInUTC | false | true | Interpret all timestamps as milliseconds in UTC rather than using the local application time
-  - encoding | false | 'ISO-8859-1' | The encoding used to make requests to and parse responses from Quick Base
+Including the library for use in your code depends on your platform.
+
+## Initialization
 
 ```php
 $qb = new \QuickBase\QuickBase(array(
   'realm' => 'subdomain/realm',
   'userToken' => 'user token',
-  'appToken' => 'application token'
+  'appToken' => 'application token',
+  'flags' => array(
+    'msInUTC' => true,
+    'encoding' => 'ISO-8859-1'
+  )
 ));
 ```
 
@@ -75,7 +81,11 @@ $qb = new \QuickBase\QuickBase(array(
 const quickbase = new QuickBase({
   realm: 'subdomain/realm',
   userToken: 'user token',
-  appToken: 'application token'
+  appToken: 'application token',
+  flags: {
+    msInUTC: true,
+    encoding: 'ISO-8859-1'
+  }
 });
 ```
 
@@ -83,15 +93,70 @@ const quickbase = new QuickBase({
 var quickbase = new QuickBase({
   realm: 'subdomain/realm',
   userToken: 'user token',
-  appToken: 'application token'
+  appToken: 'application token',
+  flags: {
+    msInUTC: true,
+    encoding: 'ISO-8859-1'
+  }
 });
 ```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+realm | true | 'www' | Quick Base Realm (or subdomain)
+appToken | false | '' | Quick Base Application Token
+userToken | false | '' | Quick Base User Token
+flags | false | | Object containing a collection of API parameters
+  - msInUTC | false | true | Interpret all timestamps as milliseconds in UTC rather than using the local application time
+  - encoding | false | 'ISO-8859-1' | The encoding used to make requests to and parse responses from Quick Base
 
 ## Making an API Call
 
 ## Quick Base API Endpoints
 
 ### API_AddField
+
+```javascript--node
+quickbase.api('API_AddField', {
+  dbid: 'bddnn3uz9',
+  add_to_forms: true,
+  label: 'Label',
+  mode: 'virtual',
+  type: 'formula'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_AddField', {
+  dbid: 'bddnn3uz9',
+  add_to_forms: true,
+  label: 'Label',
+  mode: 'virtual',
+  type: 'formula'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  action: 'API_AddField',
+  errcode: 0,
+  errtext: 'No error',
+  fid: 8,
+  label: 'Label'
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/add_field.html'>Quick Base Documentation</a>
 
 ### API_AddGroupToRole
 
