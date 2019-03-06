@@ -7,9 +7,9 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php
 
 toc_footers:
-  - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a>
+  - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a>
   - <a href='https://github.com/lord/slate' target='_blank'>Documentation Powered by Slate</a>
-  - Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a>
+  - Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a>
 
 includes:
   - errors
