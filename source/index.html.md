@@ -476,8 +476,25 @@ msAsDurationDefault | false | false | Set this parameter to true to specify mill
 ### API_AddReplaceDBPage
 
 ```javascript--node
+// Adding a new DB Page
 quickbase.api('API_AddReplaceDBPage', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  pagename: 'newpage.html',
+  pagetype: 1,
+  pagebody: '<html></html>'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+
+// Updating an existing DB Page
+quickbase.api('API_AddReplaceDBPage', {
+  dbid: 'bddnn3uz9',
+  pagename: 'newpage.html',
+  pageid: 12,
+  pagetype: 1,
+  pagebody: '<html></html>'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -486,8 +503,25 @@ quickbase.api('API_AddReplaceDBPage', {
 ```
 
 ```javascript--browser
+// Adding a new DB Page
 quickbase.api('API_AddReplaceDBPage', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  pagename: 'newpage.html',
+  pagetype: 1,
+  pagebody: '<html></html>'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+
+// Updating an existing DB Page
+quickbase.api('API_AddReplaceDBPage', {
+  dbid: 'bddnn3uz9',
+  pagename: 'newpage.html',
+  pageid: 12,
+  pagetype: 1,
+  pagebody: '<html></html>'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -498,9 +532,28 @@ quickbase.api('API_AddReplaceDBPage', {
 ```php
 <?php
 
+// Adding a new DB Page
 try {
-  $results = $quickbase->api('API_AddReplaceDBPage array(
-    'dbid' => 'bddnn3uz9'
+  $results = $quickbase->api('API_AddReplaceDBPage', array(
+    'dbid' => 'bddnn3uz9',
+    'pagename' => 'newpage.html',
+    'pagetype' => 1,
+    'pagebody' => '<html></html>'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+// Updating an existing DB Page
+try {
+  $results = $quickbase->api('API_AddReplaceDBPage', array(
+    'dbid' => 'bddnn3uz9',
+    'pagename' => 'newpage.html',
+    'pageid' => 12,
+    'pagetype' => 1,
+    'pagebody' => '<html></html>'
   ));
 
   // Handle results
@@ -517,15 +570,24 @@ try {
 {
   "action": "API_AddReplaceDBPage",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "pageID": 12
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/add_replace_dbpage.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_AddReplaceDBPage to add a new database page or replace an existing page with a new page. You invoke this call on an application (dbid).
+
+Quick Base allows you to store various types of pages at the application level. These pages can be various text or rich text or HTML page that you store and link to buttons in the Quick Base UI. They can also be XSL templates used for customizing the Quick Base application. They can also be Exact Forms, which are forms (form letters, invoices, etc.) created in Microsoft Word using the Quick Base Exact Form template that gets data from Quick Base tables.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+pagename | true | | The name of the DB Page
+pageid | true, if updating | | The id of the DB Page you wish to update
+pagetype | true | | Page type value, possible values are 1 for XSL stylesheets or HTML Pages and 3 for Exact Forms
+pagebody | true | | Contains the contents of the page you are adding.
 
 ### API_AddSubGroup
 
@@ -769,7 +831,7 @@ quickbase.api('API_ChangeGroupInfo', {
 <?php
 
 try {
-  $results = $quickbase->api('API_ChangeGroupInfo, array(
+  $results = $quickbase->api('API_ChangeGroupInfo', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -877,7 +939,7 @@ quickbase.api('API_ChangeRecordOwner', {
 <?php
 
 try {
-  $results = $quickbase->api('API_', API_ChangeRecordOwner(
+  $results = $quickbase->api('API_ChangeRecordOwner', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -1093,7 +1155,7 @@ quickbase.api('API_CopyMasterDetail', {
 <?php
 
 try {
-  $results = $quickbase->api('API_CopyMasterDetail array(
+  $results = $quickbase->api('API_CopyMasterDetail', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -1687,7 +1749,7 @@ quickbase.api('API_FieldAddChoices', {
 <?php
 
 try {
-  $results = $quickbase->api('API_FieldAddChoices, array(
+  $results = $quickbase->api('API_FieldAddChoices', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -1741,7 +1803,7 @@ quickbase.api('API_FieldRemoveChoices', {
 <?php
 
 try {
-  $results = $quickbase->api('API_', API_FieldRemoveChoices(
+  $results = $quickbase->api('API_FieldRemoveChoices', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -1849,7 +1911,7 @@ quickbase.api('API_GenAddRecordForm', {
 <?php
 
 try {
-  $results = $quickbase->api('API_GenAddRecordForm array(
+  $results = $quickbase->api('API_GenAddRecordForm', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -1903,7 +1965,7 @@ quickbase.api('API_GenResultsTable', {
 <?php
 
 try {
-  $results = $quickbase->api('API_GenResultsTable, array(
+  $results = $quickbase->api('API_GenResultsTable', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -1957,7 +2019,7 @@ quickbase.api('API_GetAncestorInfo', {
 <?php
 
 try {
-  $results = $quickbase->api('API_GetAncestorInfo, array(
+  $results = $quickbase->api('API_GetAncestorInfo', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -2443,7 +2505,7 @@ quickbase.api('API_GetRecordAsHTML', {
 <?php
 
 try {
-  $results = $quickbase->api('API_GetRecordAsHTML, array(
+  $results = $quickbase->api('API_GetRecordAsHTML', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -2713,7 +2775,7 @@ quickbase.api('API_GetUsersInGroup', {
 <?php
 
 try {
-  $results = $quickbase->api('API_GetUsersInGroup, array(
+  $results = $quickbase->api('API_GetUsersInGroup', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -2821,7 +2883,7 @@ quickbase.api('API_GrantedDBsForGroup', {
 <?php
 
 try {
-  $results = $quickbase->api('API_', API_GrantedDBsForGroup(
+  $results = $quickbase->api('API_GrantedDBsForGroup', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -3091,7 +3153,7 @@ quickbase.api('API_RemoveGroupFromRole', {
 <?php
 
 try {
-  $results = $quickbase->api('API_', API_RemoveGroupFromRole(
+  $results = $quickbase->api('API_RemoveGroupFromRole', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -3199,7 +3261,7 @@ quickbase.api('API_RemoveUserFromGroup', {
 <?php
 
 try {
-  $results = $quickbase->api('API_', API_RemoveUserFromGroup(
+  $results = $quickbase->api('API_RemoveUserFromGroup', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -3253,7 +3315,7 @@ quickbase.api('API_RemoveUserFromRole', {
 <?php
 
 try {
-  $results = $quickbase->api('API_', API_RemoveUserFromRole(
+  $results = $quickbase->api('API_RemoveUserFromRole', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -3523,7 +3585,7 @@ quickbase.api('API_SetFieldProperties', {
 <?php
 
 try {
-  $results = $quickbase->api('API_', API_SetFieldProperties(
+  $results = $quickbase->api('API_SetFieldProperties', array(
     'dbid' => 'bddnn3uz9'
   ));
 
