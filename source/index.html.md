@@ -14,12 +14,14 @@ toc_footers:
 includes:
   - errors
 
+seo: 
+
 search: true
 ---
 
 # Introduction
 
-Welcome to quickbase.dev! This site is dedicated to providing information on how to navigate Quick Base's API.
+Welcome to quickbase.dev! This site is dedicated to providing information and help on how to navigate Quick Base's API.
 
 The featured libraries are all designed to be flexible, portable, easy, and fun to use. We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
