@@ -721,7 +721,17 @@
 <p>The featured libraries are open-source projects open and welcome to all submissions.</p>
 
 <p>Please keep all support requests to their respective GitHub repositories. For example, for a PHP issue please do not open an issue in the node repository, open it in the PHP repository.</p>
-<h2 id='faq'>FAQ</h2><h3 id='how-do-i-debug'>How do I debug?</h3>
+<h2 id='faq'>FAQ</h2><h3 id='how-do-i-debug'>How do I debug?</h3><pre class="highlight javascript tab-javascript--node"><code><span class="c1">// Windows</span>
+<span class="c1">// $ SET DEBUG=* &amp;&amp; node path/to/script.js</span>
+
+<span class="c1">// Unix</span>
+<span class="c1">// $ DEBUG=* node path/to/script.js</span>
+</code></pre><pre class="highlight plaintext"><code>window.localStorage.debug = '*';
+window.reload(); // You have to refresh for the changes to take hold
+</code></pre><pre class="highlight php tab-php"><code>$quickbase = new \QuickBase\QuickBase(array( ... ));
+
+$quickbase-&gt;debug = true;
+</code></pre>
 <p>In JavaScript, the libraries make good use of the <code>debug</code> library.</p>
 
 <p>If you are in the browser, to engage the debug functionality, open your developer tools console and enter <code>window.localStorage.debug = &#39;*&#39;;</code>. Then refresh the page. Any API calls will now be logged directly to the console so you know exactly what is being sent to Quick Base and what is being sent back.</p>
