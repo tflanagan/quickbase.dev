@@ -66,7 +66,7 @@ Including the library for use in your code depends on your platform.
 ## Initialization
 
 ```php
-$qb = new \QuickBase\QuickBase(array(
+$quickbase = new \QuickBase\QuickBase(array(
   'realm' => 'subdomain/realm',
   'userToken' => 'user token',
   'appToken' => 'application token',
@@ -103,18 +103,80 @@ var quickbase = new QuickBase({
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-realm | true | 'www' | Quick Base Realm (or subdomain)
-appToken | false | '' | Quick Base Application Token
-userToken | false | '' | Quick Base User Token
-flags | false | | Object containing a collection of API parameters
+realm | true | | Quick Base Realm (or subdomain)
+appToken | false | | Quick Base Application Token
+userToken | false | | Quick Base User Token
+flags | | | Object containing a collection of API parameters
   - msInUTC | false | true | Interpret all timestamps as milliseconds in UTC rather than using the local application time
-  - encoding | false | 'ISO-8859-1' | The encoding used to make requests to and parse responses from Quick Base
+  - encoding | false | ISO-8859-1 | The encoding used to make requests to and parse responses from Quick Base
 
 ## Making an API Call
+
+The Quick Base librarys are built in such a way as to be as future-proof as possible. 9/10 times, a new API endpoint will automatically be supported if you're using these libraries.
+
+The way we accomplish this is by exposing a single method `.api()`.
+
+#### `.api(action[, options])`
+
+```php
+try {
+  $results = $quickbase->api('SomeAPI_Action', array(
+    'dbid' => 'bddnn3uz9',
+    'someFutureProperty' => 'lorem ipsum'
+  ));
+
+  // Handle results
+}catch(\Exception $err){
+  // Handle error
+}
+```
+
+```javascript--node
+quickbase.api('SomeAPI_Action', {
+  dbid: 'bddnn3uz9',
+  someFutureProperty: 'lorem ipsum'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('SomeAPI_Action', {
+  dbid: 'bddnn3uz9',
+  someFutureProperty: 'lorem ipsum'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+action | true | | The Quick Base API Action you wish to execute (ie: API_DoQuery)
+options | | | An object containing data pertaining to your API Action
 
 ## Quick Base API Endpoints
 
 ### API_AddField
+
+```php
+try {
+  $results = $quickbase->api('API_AddField', array(
+    'dbid' => 'bddnn3uz9',
+    'add_to_forms' => true,
+    'label' => 'Label',
+    'mode' => 'virtual',
+    'type' => 'formula'
+  ));
+
+  // Handle results
+}catch(\Exception $err){
+  // Handle error
+}
+```
 
 ```javascript--node
 quickbase.api('API_AddField', {
@@ -148,11 +210,11 @@ quickbase.api('API_AddField', {
 
 ```json
 {
-  action: 'API_AddField',
-  errcode: 0,
-  errtext: 'No error',
-  fid: 8,
-  label: 'Label'
+  "action": "API_AddField",
+  "errcode": 0,
+  "errtext": "No error",
+  "fid": 8,
+  "label": "Label"
 }
 ```
 
