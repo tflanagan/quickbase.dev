@@ -224,6 +224,25 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#requirements" class="toc-h1 toc-link" data-title="Requirements">Requirements</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#browser" class="toc-h2 toc-link" data-title="Browser">Browser</a>
+                  </li>
+                  <li>
+                    <a href="#server" class="toc-h2 toc-link" data-title="Server">Server</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#nodejs" class="toc-h3 toc-link" data-title="Nodejs">Nodejs</a>
+                          </li>
+                          <li>
+                            <a href="#php" class="toc-h3 toc-link" data-title="PHP">PHP</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#quickbase" class="toc-h1 toc-link" data-title="QuickBase">QuickBase</a>
               <ul class="toc-list-h2">
                   <li>
@@ -240,9 +259,6 @@
                       <ul class="toc-list-h3">
                           <li>
                             <a href="#api-action-options" class="toc-h3 toc-link" data-title="<code>.api(action[, options])</code>"><code>.api(action[, options])</code></a>
-                          </li>
-                          <li>
-                            <a href="#formatting-data-for-quick-base" class="toc-h3 toc-link" data-title="Formatting Data for Quick Base">Formatting Data for Quick Base</a>
                           </li>
                       </ul>
                   </li>
@@ -663,7 +679,10 @@
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#formatting-data-for-quick-base" class="toc-h1 toc-link" data-title="Formatting Data for Quick Base">Formatting Data for Quick Base</a>
+          </li>
+          <li>
+            <a href="#error-handling" class="toc-h1 toc-link" data-title="Error Handling">Error Handling</a>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -681,6 +700,32 @@
 <p>We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
 <p>We are continually trying to improve the information available! Please feel free to submit an issue or a pull request to help us improve!</p>
+<h1 id='requirements'>Requirements</h1>
+<p>Below are the requirements for various platforms.</p>
+
+<p>Also, while not a requirement, if you are working on a Windows machine, I highly recommend using <code>cmder</code> to interact with Nodejs or PHP via the command line.</p>
+
+<p>You can find <code>cmder</code> here: <a href='https://cmder.net/' target='_blank'>https://cmder.net/</a></p>
+<h2 id='browser'>Browser</h2>
+<p>The libraries detailed in this document are transpiled to and made available in ECMAScript2015 (&quot;ES 5&quot;), thus any browser that supports ES 5 or greater, supports these libraries.</p>
+
+<p>You can find out what browsers support ES 5 here: <a href='https://kangax.github.io/compat-table/es5/' target='_blank'>https://kangax.github.io/compat-table/es5/</a></p>
+
+<p><i>(Hint: All modern browsers support ES 5.)</i></p>
+<h2 id='server'>Server</h2><h3 id='nodejs'>Nodejs</h3>
+<p>Version 4.0.0 or greater</p>
+
+<p>To install Nodejs, please visit their website here: <a href='https://nodejs.org/en/' target='_blank'>https://nodejs.org/en/</a></p>
+
+<p>You will also require <code>npm</code>, which is Nodejs&#39;s package manager. Depending on how you install Nodejs, <code>npm</code> is most likely included. If it wasn&#39;t, you can find help here: <a href='https://www.npmjs.com/get-npm' target='_blank'>https://www.npmjs.com/get-npm</a></p>
+<h3 id='php'>PHP</h3>
+<p>Version 5.4.0 or greater</p>
+
+<p>PHP extensions CURL and XML are also required</p>
+
+<p>To install PHP, please find help here: <a href='https://secure.php.net/manual/en/install.php' target='_blank'>https://secure.php.net/manual/en/install.php</a></p>
+
+<p>You will also require <code>composer</code>, which is a PHP package manager. To install <code>composer</code>, please visit here: <a href='https://getcomposer.org/download/' target='_blank'>https://getcomposer.org/download/</a></p>
 <h1 id='quickbase'>QuickBase</h1>
 <p>This is the low level Quick Base class, giving you direct access to Quick Base&#39;s API.</p>
 
@@ -865,114 +910,6 @@ This library makes API calls asychronously. As Quick Base cannot support n numbe
 <br />
 If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
 </aside>
-<h3 id='formatting-data-for-quick-base'>Formatting Data for Quick Base</h3>
-<p>Quick Base has very specific patterns and formats for various field types that you will need to pay attention to.</p>
-
-<p>Below is a table of Quick Base field types and their acceptable values.</p>
-
-<table><thead>
-<tr>
-<th>UI: Field Type</th>
-<th>Acceptable Values</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Text</td>
-<td>Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.</td>
-</tr>
-<tr>
-<td>Text - Multi-line</td>
-<td>Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.</td>
-</tr>
-<tr>
-<td>Text - Multiple Choice</td>
-<td>A valid choice that has been set up for the multiple choice field. Note that Quick Base does not validate case here; if you enter &quot;ford&quot; and, in your application, the choice is &quot;Ford,&quot; the choice will be accepted.<br /><br />If you enter an invalid choice, Quick Base generates an error.</td>
-</tr>
-<tr>
-<td>Multi-select Text</td>
-<td>Up to 20 valid choices from the list set up for the field, separated by semi-colons. The set of choices provided must not contain duplicates.<br /><br />Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.</td>
-</tr>
-<tr>
-<td>Numeric</td>
-<td>Positive or negative numbers. Quick Base ignores any non-numeric characters you enter here, but will not generate an error.<br /><br />If you&#39;ve specified decimal places using API_SetFieldProperties, the value will be truncated  or lengthened accordingly.</td>
-</tr>
-<tr>
-<td>Numeric - Currency</td>
-<td>Positive and negative numbers, with or without decimals. The decimal character should match the decimal character set in the field&#39;s properties.</td>
-</tr>
-<tr>
-<td>Numeric - Percent</td>
-<td>A number that represents the percentage. Note that, if you want to indicate 80%, you should enter 80 in this field.</td>
-</tr>
-<tr>
-<td>Numeric - Rating</td>
-<td>A numeric rating, from 1 - 5. Quick Base displays ratings as stars; if you enter 3 in a Numeric-Rating field, Quick Base displays 3 out of 5 stars selected.</td>
-</tr>
-<tr>
-<td>Date</td>
-<td>A date in the format specified in the app&#39;s properties.<br /><br />Alternatively, a date in milliseconds since January 1, 1970 00:00:00 UTC.  Note that the Quick Base HTTP API returns dates in this format, which is the same internal representation used by JavaScript.</td>
-</tr>
-<tr>
-<td>Date/Time</td>
-<td>A date and time. Dates should be in the format specified in the app&#39;s properties.<br /><br />This field is an extended date field that can also contain the time, in the format HH:MM AM/PM. If you don&#39;t specify AM or PM, Quick Base defaults to AM. If you don&#39;t specify a time, Quick Base defaults to 12:00 AM.</td>
-</tr>
-<tr>
-<td>Time of Day</td>
-<td>A time in this format: HH:MM AM/PM.<br /><br />If you do not specify AM or PM, Quick Base defaults to AM.</td>
-</tr>
-<tr>
-<td>Duration</td>
-<td>A number that indicates a period of time. Note that you must use API_SetFieldProperties to set the unit of measure.<br /><br />If you enter a non-numeric value here, Quick Base ignores the value (no error is generated.)</td>
-</tr>
-<tr>
-<td>Checkbox</td>
-<td>A string that indicates whether the checkbox is checked or not.<br /><br />To specify that a checkbox is checked, enter any of these values:<ul><li>1</li><li>yes</li><li>true</li><li>on</li></ul>To specify that a checkbox is not checked, enter any string other than those listed above, or leave the parameter blank. If a Checkbox field is required, and does not default to &quot;checked,&quot; you must enter some value to be able to save the record.</td>
-</tr>
-<tr>
-<td>Phone Number</td>
-<td>A phone number, with or without an extension. Enter a 10-digit string of numbers. You are not required to enter special characters (parentheses or dashes).<br /><br />Example: For this phone number: (123) 456-7890<br /><br />...enter  1234567890<br /><br />If you want to include an extension, you can enter x after the last digit of the phone number, followed by the numeric characters that make up the extension. There is no minimum or maximum character limit on extensions.<br /><br />Example: For this phone number:(123) 456-7890 x9876<br /><br />...enter  1234567890x9876<br /><br />Quick Base ignores any non-numeric character you enter here (except for the x used for extensions).</td>
-</tr>
-<tr>
-<td>Email Address</td>
-<td>An email address (joeuser@example.com).<br /><br />Note that if you enter an invalid email address, Quick Base does not generate an error.</td>
-</tr>
-<tr>
-<td>User</td>
-<td>A Quick Base user&#39;s email address or Quick Base user name.</td>
-</tr>
-<tr>
-<td>List-User</td>
-<td>Quick Base users&#39; email addresses, Quick Base user names, or hashed user IDs, separated by semi-colons.<br /><br />Example: joe@example.com;sue@example.com</td>
-</tr>
-<tr>
-<td>File Attachment</td>
-<td>A base64-encoded file.<br /><br />Note that you must not use MIME encoding and must not include MIME headers. Note that many base64 encoders or base64 encoding methods are for MIME type encoding and will not work with Quick Base.</td>
-</tr>
-<tr>
-<td>URL</td>
-<td>A Web address. If you don&#39;t enter &quot;http://&quot;, Quick Base adds it for you.<br /><br />Note that if you enter an invalid Web address, Quick Base does not generate an error.</td>
-</tr>
-<tr>
-<td>Report Link</td>
-<td>Report links are derived from other fields. You can update which report is linked to by updating the field that the report link refers to. You can&#39;t write to this type of field directly. If your API writes to a Report Link field, Quick Base ignores the call.</td>
-</tr>
-<tr>
-<td>iCalendar</td>
-<td>iCalendar fields are derived from other fields. You can update this type of field only by updating the fields to which it refers. You can&#39;t write to this type of field directly. If your API writes to an iCalendar field, Quick Base returns an error.</td>
-</tr>
-<tr>
-<td>vCard</td>
-<td>vCard fields are derived from other fields. You can update this type of field only by updating the fields to which it refers.  You can&#39;t write to this type of field directly If your API writes to a vCard field, Quick Base returns an error.</td>
-</tr>
-<tr>
-<td>Predecessor</td>
-<td>The Record ID of the predecessor record. Note that if you enter an invalid Record ID here, Quick Base returns an error.</td>
-</tr>
-<tr>
-<td>Formula</td>
-<td>Formula fields are derived from other fields. You cannot write to this type of field directly. If your API writes to a formula field, Quick Base returns an error.</td>
-</tr>
-</tbody></table>
 <h2 id='quick-base-api-endpoints'>Quick Base API Endpoints</h2>
 <p>The following is a list of Quick Base API Endpoints mostly compiled from Quick Base&#39;s own help section.</p>
 
@@ -5051,62 +4988,491 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>Application DBID</td>
 </tr>
 </tbody></table>
-<h1 id='qbrecord'>QBRecord</h1><h2 id='initialization-2'>Initialization</h2><h2 id='instance-methods'>Instance Methods</h2><h3 id='clear'>clear</h3><h3 id='delete'>delete</h3><h3 id='get'>get</h3><h3 id='getdbid'>getDBID</h3><h3 id='getfid'>getFid</h3><h3 id='getfids'>getFids</h3><h3 id='getfield'>getField</h3><h3 id='getfields'>getFields</h3><h3 id='gettablename'>getTableName</h3><h3 id='load'>load</h3><h3 id='loadschema'>loadSchema</h3><h3 id='save'>save</h3><h3 id='set'>set</h3><h3 id='setdbid'>setDBID</h3><h3 id='setfid'>setFid</h3><h3 id='setfids'>setFids</h3><h3 id='tojson'>toJson</h3><h1 id='qbtable'>QBTable</h1><h2 id='initialization-3'>Initialization</h2><h2 id='instance-methods-2'>Instance Methods</h2><h3 id='clear-2'>clear</h3><h3 id='deleterecord'>deleteRecord</h3><h3 id='deleterecords'>deleteRecords</h3><h3 id='getappid'>getAppID</h3><h3 id='getdateformat'>getDateFormat</h3><h3 id='getdbid-2'>getDBID</h3><h3 id='getchildtables'>getChildTables</h3><h3 id='getfid-2'>getFid</h3><h3 id='getfids-2'>getFids</h3><h3 id='getfield-2'>getField</h3><h3 id='getfields-2'>getFields</h3><h3 id='getnrecords'>getNRecords</h3><h3 id='getoptions'>getOptions</h3><h3 id='getplural'>getPlural</h3><h3 id='getqueries'>getQueries</h3><h3 id='getquery'>getQuery</h3><h3 id='getrecord'>getRecord</h3><h3 id='getrecords'>getRecords</h3><h3 id='getsingular'>getSingular</h3><h3 id='getslist'>getSList</h3><h3 id='gettablename-2'>getTableName</h3><h3 id='gettimezone'>getTimezone</h3><h3 id='getvariable'>getVariable</h3><h3 id='getvariables'>getVariables</h3><h3 id='load-2'>load</h3><h3 id='loadnrecords'>loadNRecords</h3><h3 id='loadschema-2'>loadSchema</h3><h3 id='save-2'>save</h3><h3 id='setdbid-2'>setDBID</h3><h3 id='setfid-2'>setFid</h3><h3 id='setfids-2'>setFids</h3><h3 id='setoptions'>setOptions</h3><h3 id='setquery'>setQuery</h3><h3 id='setslist'>setSList</h3><h3 id='tojson-2'>toJson</h3><h3 id='upsertrecord'>upsertRecord</h3><h3 id='upsertrecords'>upsertRecords</h3><h2 id='static-methods'>Static Methods</h2><h3 id='newrecord'>NewRecord</h3><h3 id='newrecords'>NewRecords</h3><h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
+<h1 id='qbrecord'>QBRecord</h1><h2 id='initialization-2'>Initialization</h2><h2 id='instance-methods'>Instance Methods</h2><h3 id='clear'>clear</h3><h3 id='delete'>delete</h3><h3 id='get'>get</h3><h3 id='getdbid'>getDBID</h3><h3 id='getfid'>getFid</h3><h3 id='getfids'>getFids</h3><h3 id='getfield'>getField</h3><h3 id='getfields'>getFields</h3><h3 id='gettablename'>getTableName</h3><h3 id='load'>load</h3><h3 id='loadschema'>loadSchema</h3><h3 id='save'>save</h3><h3 id='set'>set</h3><h3 id='setdbid'>setDBID</h3><h3 id='setfid'>setFid</h3><h3 id='setfids'>setFids</h3><h3 id='tojson'>toJson</h3><h1 id='qbtable'>QBTable</h1><h2 id='initialization-3'>Initialization</h2><h2 id='instance-methods-2'>Instance Methods</h2><h3 id='clear-2'>clear</h3><h3 id='deleterecord'>deleteRecord</h3><h3 id='deleterecords'>deleteRecords</h3><h3 id='getappid'>getAppID</h3><h3 id='getdateformat'>getDateFormat</h3><h3 id='getdbid-2'>getDBID</h3><h3 id='getchildtables'>getChildTables</h3><h3 id='getfid-2'>getFid</h3><h3 id='getfids-2'>getFids</h3><h3 id='getfield-2'>getField</h3><h3 id='getfields-2'>getFields</h3><h3 id='getnrecords'>getNRecords</h3><h3 id='getoptions'>getOptions</h3><h3 id='getplural'>getPlural</h3><h3 id='getqueries'>getQueries</h3><h3 id='getquery'>getQuery</h3><h3 id='getrecord'>getRecord</h3><h3 id='getrecords'>getRecords</h3><h3 id='getsingular'>getSingular</h3><h3 id='getslist'>getSList</h3><h3 id='gettablename-2'>getTableName</h3><h3 id='gettimezone'>getTimezone</h3><h3 id='getvariable'>getVariable</h3><h3 id='getvariables'>getVariables</h3><h3 id='load-2'>load</h3><h3 id='loadnrecords'>loadNRecords</h3><h3 id='loadschema-2'>loadSchema</h3><h3 id='save-2'>save</h3><h3 id='setdbid-2'>setDBID</h3><h3 id='setfid-2'>setFid</h3><h3 id='setfids-2'>setFids</h3><h3 id='setoptions'>setOptions</h3><h3 id='setquery'>setQuery</h3><h3 id='setslist'>setSList</h3><h3 id='tojson-2'>toJson</h3><h3 id='upsertrecord'>upsertRecord</h3><h3 id='upsertrecords'>upsertRecords</h3><h2 id='static-methods'>Static Methods</h2><h3 id='newrecord'>NewRecord</h3><h3 id='newrecords'>NewRecords</h3><h1 id='formatting-data-for-quick-base'>Formatting Data for Quick Base</h1>
+<p>Quick Base has very specific patterns and formats for various field types that you will need to pay attention to.</p>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>Below is a table of Quick Base field types and their acceptable values.</p>
+
+<table><thead>
+<tr>
+<th>UI: Field Type</th>
+<th>Acceptable Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Text</td>
+<td>Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.</td>
+</tr>
+<tr>
+<td>Text - Multi-line</td>
+<td>Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.</td>
+</tr>
+<tr>
+<td>Text - Multiple Choice</td>
+<td>A valid choice that has been set up for the multiple choice field. Note that Quick Base does not validate case here; if you enter &quot;ford&quot; and, in your application, the choice is &quot;Ford,&quot; the choice will be accepted.<br /><br />If you enter an invalid choice, Quick Base generates an error.</td>
+</tr>
+<tr>
+<td>Multi-select Text</td>
+<td>Up to 20 valid choices from the list set up for the field, separated by semi-colons. The set of choices provided must not contain duplicates.<br /><br />Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.</td>
+</tr>
+<tr>
+<td>Numeric</td>
+<td>Positive or negative numbers. Quick Base ignores any non-numeric characters you enter here, but will not generate an error.<br /><br />If you&#39;ve specified decimal places using API_SetFieldProperties, the value will be truncated  or lengthened accordingly.</td>
+</tr>
+<tr>
+<td>Numeric - Currency</td>
+<td>Positive and negative numbers, with or without decimals. The decimal character should match the decimal character set in the field&#39;s properties.</td>
+</tr>
+<tr>
+<td>Numeric - Percent</td>
+<td>A number that represents the percentage. Note that, if you want to indicate 80%, you should enter 80 in this field.</td>
+</tr>
+<tr>
+<td>Numeric - Rating</td>
+<td>A numeric rating, from 1 - 5. Quick Base displays ratings as stars; if you enter 3 in a Numeric-Rating field, Quick Base displays 3 out of 5 stars selected.</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>A date in the format specified in the app&#39;s properties.<br /><br />Alternatively, a date in milliseconds since January 1, 1970 00:00:00 UTC.  Note that the Quick Base HTTP API returns dates in this format, which is the same internal representation used by JavaScript.</td>
+</tr>
+<tr>
+<td>Date/Time</td>
+<td>A date and time. Dates should be in the format specified in the app&#39;s properties.<br /><br />This field is an extended date field that can also contain the time, in the format HH:MM AM/PM. If you don&#39;t specify AM or PM, Quick Base defaults to AM. If you don&#39;t specify a time, Quick Base defaults to 12:00 AM.</td>
+</tr>
+<tr>
+<td>Time of Day</td>
+<td>A time in this format: HH:MM AM/PM.<br /><br />If you do not specify AM or PM, Quick Base defaults to AM.</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>A number that indicates a period of time. Note that you must use API_SetFieldProperties to set the unit of measure.<br /><br />If you enter a non-numeric value here, Quick Base ignores the value (no error is generated.)</td>
+</tr>
+<tr>
+<td>Checkbox</td>
+<td>A string that indicates whether the checkbox is checked or not.<br /><br />To specify that a checkbox is checked, enter any of these values:<ul><li>1</li><li>yes</li><li>true</li><li>on</li></ul>To specify that a checkbox is not checked, enter any string other than those listed above, or leave the parameter blank. If a Checkbox field is required, and does not default to &quot;checked,&quot; you must enter some value to be able to save the record.</td>
+</tr>
+<tr>
+<td>Phone Number</td>
+<td>A phone number, with or without an extension. Enter a 10-digit string of numbers. You are not required to enter special characters (parentheses or dashes).<br /><br />Example: For this phone number: (123) 456-7890<br /><br />...enter  1234567890<br /><br />If you want to include an extension, you can enter x after the last digit of the phone number, followed by the numeric characters that make up the extension. There is no minimum or maximum character limit on extensions.<br /><br />Example: For this phone number:(123) 456-7890 x9876<br /><br />...enter  1234567890x9876<br /><br />Quick Base ignores any non-numeric character you enter here (except for the x used for extensions).</td>
+</tr>
+<tr>
+<td>Email Address</td>
+<td>An email address (joeuser@example.com).<br /><br />Note that if you enter an invalid email address, Quick Base does not generate an error.</td>
+</tr>
+<tr>
+<td>User</td>
+<td>A Quick Base user&#39;s email address or Quick Base user name.</td>
+</tr>
+<tr>
+<td>List-User</td>
+<td>Quick Base users&#39; email addresses, Quick Base user names, or hashed user IDs, separated by semi-colons.<br /><br />Example: joe@example.com;sue@example.com</td>
+</tr>
+<tr>
+<td>File Attachment</td>
+<td>A base64-encoded file.<br /><br />Note that you must not use MIME encoding and must not include MIME headers. Note that many base64 encoders or base64 encoding methods are for MIME type encoding and will not work with Quick Base.</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>A Web address. If you don&#39;t enter &quot;http://&quot;, Quick Base adds it for you.<br /><br />Note that if you enter an invalid Web address, Quick Base does not generate an error.</td>
+</tr>
+<tr>
+<td>Report Link</td>
+<td>Report links are derived from other fields. You can update which report is linked to by updating the field that the report link refers to. You can&#39;t write to this type of field directly. If your API writes to a Report Link field, Quick Base ignores the call.</td>
+</tr>
+<tr>
+<td>iCalendar</td>
+<td>iCalendar fields are derived from other fields. You can update this type of field only by updating the fields to which it refers. You can&#39;t write to this type of field directly. If your API writes to an iCalendar field, Quick Base returns an error.</td>
+</tr>
+<tr>
+<td>vCard</td>
+<td>vCard fields are derived from other fields. You can update this type of field only by updating the fields to which it refers.  You can&#39;t write to this type of field directly If your API writes to a vCard field, Quick Base returns an error.</td>
+</tr>
+<tr>
+<td>Predecessor</td>
+<td>The Record ID of the predecessor record. Note that if you enter an invalid Record ID here, Quick Base returns an error.</td>
+</tr>
+<tr>
+<td>Formula</td>
+<td>Formula fields are derived from other fields. You cannot write to this type of field directly. If your API writes to a formula field, Quick Base returns an error.</td>
+</tr>
+</tbody></table>
+<h1 id='error-handling'>Error Handling</h1>
+<p>When making an API call to Quick Base, Quick Base responds with at least three values, <code>errcode</code>, <code>errtext</code>, and <code>errdetail</code>.</p>
+
+<p>After receiving a response, the libraries detailed automatically check and verify that the response does not contain an error. You do not have to explicity check if <code>errcode</code> is equal to 0.</p>
+
+<p>In JavaScript, an <code>Error</code> is thrown and needs to be caught in a <code>catch()</code> along the <code>Promise</code> chain.</p>
+
+<p>In PHP, an <code>Exception</code> is thrown and needs to be caught in a <code>try/catch</code> statement.</p>
+
+<p>Here is a list of possible Quick Base errors.</p>
 
 <table><thead>
 <tr>
 <th>Error Code</th>
-<th>Meaning</th>
+<th>Error Text</th>
+<th>Probable Cause</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>0</td>
+<td>No error</td>
+<td>No error</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>1</td>
+<td>Unknown error</td>
+<td></td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>2</td>
+<td>Invalid input</td>
+<td>You did not specify a name for the new application.<br /><br />To grant Group Record permissions, you must specify the Target Group name.<br /><br />This option is available to corporate workgroup users only.<br /><br />You cannot place more than .5 MB in this field.<br /><br />You do not have permission to access this table.<br /><br />You did not specify the field name.<br /><br />The field identifier (fid) does not refer to an existing field. Please provide a valid field identifier.</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>3</td>
+<td>Insufficient permissions</td>
+<td>You do not have permission to perform the current operation.<br /><br />You do not have permission to clone (copy) an application. At a minimum, you must have View permission to copy an application.<br /><br />You do not have permission to query this table. At a minimum, you must have View permission to perform this operation.<br /><br />You do not have sufficient permission to delete the records you specified from this table.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>4</td>
+<td>Bad ticket</td>
+<td>No user account was found that matches the e-mail address (or user name) and password you entered.<br /><br />Your ticket has expired or is invalid. By default tickets expire after 12 hours of use. One-time use tickets expire after one use or after 5 minutes. Please try signing in again.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>5</td>
+<td>Unimplemented operation</td>
+<td></td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>6</td>
+<td>Syntax error</td>
+<td>Your Quick Base API call does not have the correct syntax.</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>7</td>
+<td>API not allowed on this application table</td>
+<td></td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>8</td>
+<td>SSL required for this application table</td>
+<td></td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>9</td>
+<td>Invalid choice</td>
+<td>You cannot set the specified field to &quot;(choice)&quot;.</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>10</td>
+<td>Invalid field type</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Could not parse XML input</td>
+<td>Your XML request contains invalid XML.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Invalid source DBID</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Invalid account ID</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>Missing DBID or DBID of wrong type</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>Invalid hostname</td>
+<td></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Unauthorized IP address</td>
+<td>Realm IP filtering is in place, and the user is not logged in from an authorized location.</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Unknown username/password</td>
+<td>No user account was found that matches the e-mail address (or user name) and password you entered.</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Unknown user</td>
+<td>No user account was found that matches the e-mail address or user name you entered.<br /><br />No group was found that matches the group name you entered.</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Sign-in required</td>
+<td></td>
+</tr>
+<tr>
+<td>23</td>
+<td>Feature not supported</td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td>Invalid application token</td>
+<td></td>
+</tr>
+<tr>
+<td>25</td>
+<td>Duplicate application token</td>
+<td></td>
+</tr>
+<tr>
+<td>26</td>
+<td>Max count</td>
+<td></td>
+</tr>
+<tr>
+<td>27</td>
+<td>Registration required</td>
+<td>The user specified is someone who has been invited to join an application, but who has never used Quick Base before.</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Managed by LDAP</td>
+<td></td>
+</tr>
+<tr>
+<td>29</td>
+<td>User on Deny list</td>
+<td></td>
+</tr>
+<tr>
+<td>30</td>
+<td>No such record</td>
+<td>There is no record in the table that matches the specified record identifier (rid).</td>
+</tr>
+<tr>
+<td>31</td>
+<td>No such field</td>
+<td>There is no field in this table that matches the specified field identifier (fid).</td>
+</tr>
+<tr>
+<td>32</td>
+<td>The application does not exist or was deleted</td>
+<td></td>
+</tr>
+<tr>
+<td>33</td>
+<td>No such query</td>
+<td>There is no query in this table that matches the specified query identifier (qid).<br /><br />There is no query in this table that matches the specified query name (qname).</td>
+</tr>
+<tr>
+<td>34</td>
+<td>You cannot change the value of this field</td>
+<td></td>
+</tr>
+<tr>
+<td>35</td>
+<td>No data returned</td>
+<td></td>
+</tr>
+<tr>
+<td>36</td>
+<td>Cloning error</td>
+<td></td>
+</tr>
+<tr>
+<td>37</td>
+<td>No such report</td>
+<td></td>
+</tr>
+<tr>
+<td>38</td>
+<td>Periodic report contains a restricted field</td>
+<td></td>
+</tr>
+<tr>
+<td>50</td>
+<td>Missing required field</td>
+<td>The default value property for the specified field is blank. Please supply a non-blank value for this field.<br /><br />You have either provided a blank value for one or more required fields, or you haven&#39;t supplied any value for one or more required fields whose default property is blank.</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Attempting to add a non-unique value to a field marked &quot;unique&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>52</td>
+<td>Duplicate field</td>
+<td></td>
+</tr>
+<tr>
+<td>53</td>
+<td>The following required fields are missing from your import data: <field_1> [[<field_2>]...]</td>
+<td></td>
+</tr>
+<tr>
+<td>54</td>
+<td>Cached list of records not found</td>
+<td></td>
+</tr>
+<tr>
+<td>60</td>
+<td>Update conflict detected</td>
+<td></td>
+</tr>
+<tr>
+<td>61</td>
+<td>Schema is locked</td>
+<td>You cannot make development changes to an application because it is locked. Quick Base locks an application when you create a sandbox copy of the application.</td>
+</tr>
+<tr>
+<td>70</td>
+<td>Account size limit exceeded</td>
+<td></td>
+</tr>
+<tr>
+<td>71</td>
+<td>Database size limit exceeded</td>
+<td></td>
+</tr>
+<tr>
+<td>73</td>
+<td>Your account has been suspended</td>
+<td></td>
+</tr>
+<tr>
+<td>74</td>
+<td>You are not allowed to create applications</td>
+<td>You do not have Create permissions on the billing account.</td>
+</tr>
+<tr>
+<td>75</td>
+<td>View too large</td>
+<td></td>
+</tr>
+<tr>
+<td>76</td>
+<td>Too many criteria</td>
+<td>The limit on the number of criteria is currently set to 100 and you have exceeded this limit.</td>
+</tr>
+<tr>
+<td>77</td>
+<td>API request limit exceeded</td>
+<td>This can be returned if an API is called too frequently. The same API can&#39;t be called again before the time specified in the error message.</td>
+</tr>
+<tr>
+<td>78</td>
+<td>Data limit exceeded</td>
+<td></td>
+</tr>
+<tr>
+<td>80</td>
+<td>Overflow</td>
+<td></td>
+</tr>
+<tr>
+<td>81</td>
+<td>Item not found</td>
+<td></td>
+</tr>
+<tr>
+<td>82</td>
+<td>Operation took too long</td>
+<td></td>
+</tr>
+<tr>
+<td>83</td>
+<td>Access denied</td>
+<td></td>
+</tr>
+<tr>
+<td>84</td>
+<td>Database error</td>
+<td></td>
+</tr>
+<tr>
+<td>85</td>
+<td>Schema update error</td>
+<td></td>
+</tr>
+<tr>
+<td>87</td>
+<td>Invalid group</td>
+<td>No group matched the group ID you provided.</td>
+</tr>
+<tr>
+<td>100</td>
+<td>Technical Difficulties -- try again later</td>
+<td></td>
+</tr>
+<tr>
+<td>101</td>
+<td>Quick Base is temporarily unavailable due to technical difficulties</td>
+<td></td>
+</tr>
+<tr>
+<td>102</td>
+<td>Invalid request - we cannot understand the URL you specified</td>
+<td></td>
+</tr>
+<tr>
+<td>103</td>
+<td>The Quick Base URL you specified contained an invalid srvr parameter</td>
+<td></td>
+</tr>
+<tr>
+<td>104</td>
+<td>Your Quick Base app is experiencing unusually heavy traffic. Please wait a few minutes and re-try this command.</td>
+<td></td>
+</tr>
+<tr>
+<td>105</td>
+<td>Quick Base is experiencing technical difficulties</td>
+<td></td>
+</tr>
+<tr>
+<td>110</td>
+<td>Invalid role</td>
+<td>The specified role does not exist in the Quick Base.</td>
+</tr>
+<tr>
+<td>111</td>
+<td>User exists</td>
+<td>The specified user already exists.</td>
+</tr>
+<tr>
+<td>112</td>
+<td>No user in role</td>
+<td>If you try to change a user’s role and no user is in the role you specify as the user’s current role, you’ll get this error.</td>
+</tr>
+<tr>
+<td>113</td>
+<td>User already in role</td>
+<td>The user has already been assigned the role you are trying to assign.</td>
+</tr>
+<tr>
+<td>114</td>
+<td>Must be admin user</td>
+<td></td>
+</tr>
+<tr>
+<td>150</td>
+<td>Upgrade plan</td>
+<td></td>
+</tr>
+<tr>
+<td>151</td>
+<td>Expired plan</td>
+<td></td>
+</tr>
+<tr>
+<td>152</td>
+<td>App suspended</td>
+<td>The application is suspended, possibly due to nonpayment.</td>
 </tr>
 </tbody></table>
 
