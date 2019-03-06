@@ -55,9 +55,13 @@ window.reload(); // You have to refresh for the changes to take hold
 ```
 
 ```php
+<?php
+
 $quickbase = new \QuickBase\QuickBase(array( ... ));
 
 $quickbase->debug = true;
+
+?>
 ```
 
 In JavaScript, the libraries make good use of the `debug` library.
