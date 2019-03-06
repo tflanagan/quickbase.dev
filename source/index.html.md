@@ -296,7 +296,7 @@ User | userid
 ```javascript--node
 quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
-  gid: '345889.ksld,
+  gid: '345889.ksld',
   roleid: 12
 }).then((results) => {
   // Handle results
@@ -308,7 +308,7 @@ quickbase.api('API_AddField', {
 ```javascript--browser
 quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
-  gid: '345889.ksld,
+  gid: '345889.ksld',
   roleid: 12
 }).then(function(results){
   // Handle results
@@ -323,7 +323,7 @@ quickbase.api('API_AddField', {
 try {
   $results = $quickbase->api('API_AddField', array(
     'dbid' => 'bddnn3uz9',
-    'gid' => '345889.ksld,
+    'gid' => '345889.ksld',
     'roleid' => 12
   ));
 
