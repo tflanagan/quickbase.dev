@@ -1351,15 +1351,49 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>Set this parameter to true to specify milliseconds, instead of days, as the default units for a duration field value sent without any units.<br /><br />If you set this parameter to false or omit it, then any duration field values sent without a unit will default to being interpreted as days.</td>
 </tr>
 </tbody></table>
-<h3 id='api_addreplacedbpage'>API_AddReplaceDBPage</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+<h3 id='api_addreplacedbpage'>API_AddReplaceDBPage</h3><pre class="highlight javascript tab-javascript--node"><code><span class="c1">// Adding a new DB Page</span>
+<span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">pagename</span><span class="p">:</span> <span class="s1">'newpage.html'</span><span class="p">,</span>
+  <span class="na">pagetype</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">pagebody</span><span class="p">:</span> <span class="s1">'&lt;html&gt;&lt;/html&gt;'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
-</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+
+<span class="c1">// Updating an existing DB Page</span>
+<span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">pagename</span><span class="p">:</span> <span class="s1">'newpage.html'</span><span class="p">,</span>
+  <span class="na">pageid</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="na">pagetype</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">pagebody</span><span class="p">:</span> <span class="s1">'&lt;html&gt;&lt;/html&gt;'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle results</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="c1">// Adding a new DB Page</span>
+<span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">pagename</span><span class="p">:</span> <span class="s1">'newpage.html'</span><span class="p">,</span>
+  <span class="na">pagetype</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">pagebody</span><span class="p">:</span> <span class="s1">'&lt;html&gt;&lt;/html&gt;'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
+  <span class="c1">// Handle results</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+
+<span class="c1">// Updating an existing DB Page</span>
+<span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">pagename</span><span class="p">:</span> <span class="s1">'newpage.html'</span><span class="p">,</span>
+  <span class="na">pageid</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="na">pagetype</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">pagebody</span><span class="p">:</span> <span class="s1">'&lt;html&gt;&lt;/html&gt;'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -1367,9 +1401,28 @@ If your application experiences a normal traffic rate that is higher than averag
 <span class="p">});</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
-<span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+<span class="c1">// Adding a new DB Page
+</span><span class="k">try</span> <span class="p">{</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+    <span class="s1">'pagename'</span> <span class="o">=&gt;</span> <span class="s1">'newpage.html'</span><span class="p">,</span>
+    <span class="s1">'pagetype'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'pagebody'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;html&gt;&lt;/html&gt;'</span>
+  <span class="p">));</span>
+
+  <span class="c1">// Handle results
+</span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$error</span><span class="p">){</span>
+  <span class="c1">// Handle error
+</span><span class="p">}</span>
+
+<span class="c1">// Updating an existing DB Page
+</span><span class="k">try</span> <span class="p">{</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+    <span class="s1">'pagename'</span> <span class="o">=&gt;</span> <span class="s1">'newpage.html'</span><span class="p">,</span>
+    <span class="s1">'pageid'</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="s1">'pagetype'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">'pagebody'</span> <span class="o">=&gt;</span> <span class="s1">'&lt;html&gt;&lt;/html&gt;'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -1385,10 +1438,15 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_AddReplaceDBPage"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pageID"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/add_replace_dbpage.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_AddReplaceDBPage to add a new database page or replace an existing page with a new page. You invoke this call on an application (dbid).</p>
+
+<p>Quick Base allows you to store various types of pages at the application level. These pages can be various text or rich text or HTML page that you store and link to buttons in the Quick Base UI. They can also be XSL templates used for customizing the Quick Base application. They can also be Exact Forms, which are forms (form letters, invoices, etc.) created in Microsoft Word using the Quick Base Exact Form template that gets data from Quick Base tables.</p>
 
 <table><thead>
 <tr>
@@ -1403,6 +1461,30 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>true</td>
 <td></td>
 <td>Application DBID</td>
+</tr>
+<tr>
+<td>pagename</td>
+<td>true</td>
+<td></td>
+<td>The name of the DB Page</td>
+</tr>
+<tr>
+<td>pageid</td>
+<td>true, if updating</td>
+<td></td>
+<td>The id of the DB Page you wish to update</td>
+</tr>
+<tr>
+<td>pagetype</td>
+<td>true</td>
+<td></td>
+<td>Page type value, possible values are 1 for XSL stylesheets or HTML Pages and 3 for Exact Forms</td>
+</tr>
+<tr>
+<td>pagebody</td>
+<td>true</td>
+<td></td>
+<td>Contains the contents of the page you are adding.</td>
 </tr>
 </tbody></table>
 <h3 id='api_addsubgroup'>API_AddSubGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddSubGroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -1638,8 +1720,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_ChangeGroupInfo, array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_ChangeGroupInfo'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -1746,7 +1828,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_'</span><span class="p">,</span> <span class="nx">API_ChangeRecordOwner</span><span class="p">(</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_ChangeRecordOwner'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
@@ -1962,8 +2044,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_CopyMasterDetail array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_CopyMasterDetail'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -2556,8 +2638,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_FieldAddChoices, array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_FieldAddChoices'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -2610,7 +2692,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_'</span><span class="p">,</span> <span class="nx">API_FieldRemoveChoices</span><span class="p">(</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_FieldRemoveChoices'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
@@ -2718,8 +2800,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GenAddRecordForm array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GenAddRecordForm'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -2772,8 +2854,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GenResultsTable, array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GenResultsTable'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -2826,8 +2908,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GetAncestorInfo, array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GetAncestorInfo'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -3312,8 +3394,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GetRecordAsHTML, array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GetRecordAsHTML'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -3582,8 +3664,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GetUsersInGroup, array(
-    '</span><span class="nx">dbid</span><span class="s1">' =&gt; '</span><span class="nx">bddnn3uz9</span><span class="err">'</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GetUsersInGroup'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -3690,7 +3772,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_'</span><span class="p">,</span> <span class="nx">API_GrantedDBsForGroup</span><span class="p">(</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_GrantedDBsForGroup'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
@@ -3960,7 +4042,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_'</span><span class="p">,</span> <span class="nx">API_RemoveGroupFromRole</span><span class="p">(</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RemoveGroupFromRole'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
@@ -4068,7 +4150,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_'</span><span class="p">,</span> <span class="nx">API_RemoveUserFromGroup</span><span class="p">(</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromGroup'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
@@ -4122,7 +4204,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_'</span><span class="p">,</span> <span class="nx">API_RemoveUserFromRole</span><span class="p">(</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromRole'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
@@ -4392,7 +4474,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_'</span><span class="p">,</span> <span class="nx">API_SetFieldProperties</span><span class="p">(</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_SetFieldProperties'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
     <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
   <span class="p">));</span>
 
