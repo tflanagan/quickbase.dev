@@ -130,7 +130,7 @@ This library makes API calls asychronously. As Quick Base cannot support n numbe
 If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
 </aside>
 
-The way we accomplish this is by exposing a single method `.api()`.
+The way we accomplish this is by exposing a single method `api()`.
 
 #### `.api(action[, options])`
 
@@ -166,7 +166,7 @@ try {
   ));
 
   // Handle results
-}catch(\Exception $err){
+}catch(\Exception $error){
   // Handle error
 }
 
@@ -177,6 +177,10 @@ Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 action | true | | The Quick Base API Action you wish to execute (ie: API_DoQuery)
 options | false | | An object containing data pertaining to your API Action
+
+In JavaScript, the `api()` method returns a Promise, powered by <a href='http://bluebirdjs.com/docs/getting-started.html' target='_blank'>bluebirdjs</a>. If an error occurs during the request, you can handle the error by using `catch()`. Otherwise, you can continue processing with the results passed into a `then()`.
+
+In PHP, the `api()` method returns the resulting JSON object from the API call. If an error occurs, it will be thrown and needs to be caught with a `try/catch` statement.
 
 ## Quick Base API Endpoints
 
@@ -229,7 +233,7 @@ try {
   ));
 
   // Handle results
-}catch(\Exception $err){
+}catch(\Exception $error){
   // Handle error
 }
 
