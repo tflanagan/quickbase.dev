@@ -293,6 +293,67 @@ User | userid
 
 ### API_AddGroupToRole
 
+```javascript--node
+quickbase.api('API_AddField', {
+  dbid: 'bddnn3uz9',
+  gid: '345889.ksld,
+  roleid: 12
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_AddField', {
+  dbid: 'bddnn3uz9',
+  gid: '345889.ksld,
+  roleid: 12
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_AddField', array(
+    'dbid' => 'bddnn3uz9',
+    'gid' => '345889.ksld,
+    'roleid' => 12
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_AddGroupToRole",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/api_addgrouptorole.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_AddGroupToRole to add a group to a role in an app.
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+gid | true | | The id of the group
+roleid | true | | The id of the role
+
 ### API_AddRecord
 
 ### API_AddReplaceDBPage
