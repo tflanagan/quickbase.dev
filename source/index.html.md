@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Quick Base Developers
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - php
@@ -8,9 +8,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a>
-  - <a href='https://www.datacollaborative.com/' target='_blank'>Data Collaborative</a>
-  - <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub Repo</a>
   - <a href='https://github.com/lord/slate' target='_blank'>Documentation Powered by Slate</a>
+  - Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a>
 
 includes:
   - errors
@@ -66,6 +65,8 @@ Including the library for use in your code depends on your platform.
 ## Initialization
 
 ```php
+<?php
+
 $quickbase = new \QuickBase\QuickBase(array(
   'realm' => 'subdomain/realm',
   'userToken' => 'user token',
@@ -75,6 +76,8 @@ $quickbase = new \QuickBase\QuickBase(array(
     'encoding' => 'ISO-8859-1'
   )
 ));
+
+?>
 ```
 
 ```javascript--node
@@ -85,7 +88,9 @@ const quickbase = new QuickBase({
   flags: {
     msInUTC: true,
     encoding: 'ISO-8859-1'
-  }
+  },
+  connectionLimit: 10,
+  errorOnConnectionLimit: false
 });
 ```
 
@@ -97,7 +102,9 @@ var quickbase = new QuickBase({
   flags: {
     msInUTC: true,
     encoding: 'ISO-8859-1'
-  }
+  },
+  connectionLimit: 10,
+  errorOnConnectionLimit: false
 });
 ```
 
@@ -106,19 +113,29 @@ Parameter | Required | Default | Description
 realm | true | | Quick Base Realm (or subdomain)
 appToken | false | | Quick Base Application Token
 userToken | false | | Quick Base User Token
-flags | | | Object containing a collection of API parameters
+flags | false | | Object containing a collection of API parameters
   - msInUTC | false | true | Interpret all timestamps as milliseconds in UTC rather than using the local application time
   - encoding | false | ISO-8859-1 | The encoding used to make requests to and parse responses from Quick Base
+connectionLimit | true | 10 | <i>(JavaScript Only)</i> Maximum number of simultaneous API requests
+errorOnConnectionLimit | false | false | <i>(JavaScript Only)</i> Throw an error if the connectionLimit is exceeded
 
 ## Making an API Call
 
 The Quick Base librarys are built in such a way as to be as future-proof as possible. 9/10 times, a new API endpoint will automatically be supported if you're using these libraries.
+
+<aside class="notice">
+<i>(JavaScript Only)</i> This library makes API calls asychronously. As Quick Base cannot support `n` number of requests at a given time, the default limit is `10`. This throttles the requests sent to Quick Base in order to preserve the Quick Base applications integrity and performance.
+
+If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
+</aside>
 
 The way we accomplish this is by exposing a single method `.api()`.
 
 #### `.api(action[, options])`
 
 ```php
+<?php
+
 try {
   $results = $quickbase->api('SomeAPI_Action', array(
     'dbid' => 'bddnn3uz9',
@@ -129,6 +146,8 @@ try {
 }catch(\Exception $err){
   // Handle error
 }
+
+?>
 ```
 
 ```javascript--node
@@ -156,13 +175,15 @@ quickbase.api('SomeAPI_Action', {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 action | true | | The Quick Base API Action you wish to execute (ie: API_DoQuery)
-options | | | An object containing data pertaining to your API Action
+options | false | | An object containing data pertaining to your API Action
 
 ## Quick Base API Endpoints
 
 ### API_AddField
 
 ```php
+<?php
+
 try {
   $results = $quickbase->api('API_AddField', array(
     'dbid' => 'bddnn3uz9',
@@ -176,6 +197,8 @@ try {
 }catch(\Exception $err){
   // Handle error
 }
+
+?>
 ```
 
 ```javascript--node
@@ -219,6 +242,42 @@ quickbase.api('API_AddField', {
 ```
 
 <a href='https://help.quickbase.com/api-guide/add_field.html'>Quick Base Documentation</a>
+
+Use API_AddField to add a new field to a table. You invoke this call on a table-level dbid.
+
+When you add a field using API_AddField, you specify the field type, but no other field properties. After you've added the field, you can use API_SetFieldProperties to set the properties of the new field and any default values. (You can't set field type using API_SetFieldProperties; if you want to change the field type after adding the field, you must use the Quick Base UI.)
+
+The amount of data space consumed by a field depends on the field type.
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+add_to_forms | false | false | Specifies whether the field you are adding should appear at the end of any form with form properties set to "Auto-Add new fields."
+label | true | | Name of the new field
+mode | Lookup/Formula only | | Specifies whether the field is a formula field or a lookup field
+type | true | | The Quick Base field type.
+
+Possible `type` values:
+
+UI: TYPE | API: TYPE
+Checkbox | checkbox
+Date | date
+Duration | duration
+Email | Address email
+File | Attachment file
+Formula | (see the 'mode' param)
+Lookup | (see the 'mode' param)
+List - User | multiuserid
+Multi-Select Text | multitext
+Numeric | float
+Numeric - Currency | currency
+Numeric - Percent | percent
+Numeric - Rating | rating
+Phone Number | phone
+Report  Link | dblink
+Text | text
+Time Of Day | timeofday
+URL | url
+User | userid
 
 ### API_AddGroupToRole
 
