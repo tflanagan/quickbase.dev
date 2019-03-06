@@ -25,6 +25,42 @@ We have examples in PHP and JavaScript! You can view code examples in the dark a
 
 We are continually trying to improve the information available! Please feel free to submit an issue or a pull request to help us improve!
 
+# Requirements
+
+Below are the requirements for various platforms.
+
+Also, while not a requirement, if you are working on a Windows machine, I highly recommend using `cmder` to interact with Nodejs or PHP via the command line.
+
+You can find `cmder` here: <a href='https://cmder.net/' target='_blank'>https://cmder.net/</a>
+
+## Browser
+
+The libraries detailed in this document are transpiled to and made available in ECMAScript2015 ("ES 5"), thus any browser that supports ES 5 or greater, supports these libraries.
+
+You can find out what browsers support ES 5 here: <a href='https://kangax.github.io/compat-table/es5/' target='_blank'>https://kangax.github.io/compat-table/es5/</a>
+
+<i>(Hint: All modern browsers support ES 5.)</i>
+
+## Server
+
+### Nodejs
+
+Version 4.0.0 or greater
+
+To install Nodejs, please visit their website here: <a href='https://nodejs.org/en/' target='_blank'>https://nodejs.org/en/</a>
+
+You will also require `npm`, which is Nodejs's package manager. Depending on how you install Nodejs, `npm` is most likely included. If it wasn't, you can find help here: <a href='https://www.npmjs.com/get-npm' target='_blank'>https://www.npmjs.com/get-npm</a>
+
+### PHP
+
+Version 5.4.0 or greater
+
+PHP extensions CURL and XML are also required
+
+To install PHP, please find help here: <a href='https://secure.php.net/manual/en/install.php' target='_blank'>https://secure.php.net/manual/en/install.php</a>
+
+You will also require `composer`, which is a PHP package manager. To install `composer`, please visit here: <a href='https://getcomposer.org/download/' target='_blank'>https://getcomposer.org/download/</a>
+
 # QuickBase
 
 This is the low level Quick Base class, giving you direct access to Quick Base's API.
@@ -181,39 +217,6 @@ This library makes API calls asychronously. As Quick Base cannot support n numbe
 <br />
 If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
 </aside>
-
-### Formatting Data for Quick Base
-
-Quick Base has very specific patterns and formats for various field types that you will need to pay attention to.
-
-Below is a table of Quick Base field types and their acceptable values.
-
-UI: Field Type | Acceptable Values
----------------|------------------
-Text | Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.
-Text - Multi-line | Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.
-Text - Multiple Choice | A valid choice that has been set up for the multiple choice field. Note that Quick Base does not validate case here; if you enter "ford" and, in your application, the choice is "Ford," the choice will be accepted.<br /><br />If you enter an invalid choice, Quick Base generates an error.
-Multi-select Text | Up to 20 valid choices from the list set up for the field, separated by semi-colons. The set of choices provided must not contain duplicates.<br /><br />Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.
-Numeric | Positive or negative numbers. Quick Base ignores any non-numeric characters you enter here, but will not generate an error.<br /><br />If you've specified decimal places using API_SetFieldProperties, the value will be truncated  or lengthened accordingly.
-Numeric - Currency | Positive and negative numbers, with or without decimals. The decimal character should match the decimal character set in the field's properties.
-Numeric - Percent | A number that represents the percentage. Note that, if you want to indicate 80%, you should enter 80 in this field.
-Numeric - Rating | A numeric rating, from 1 - 5. Quick Base displays ratings as stars; if you enter 3 in a Numeric-Rating field, Quick Base displays 3 out of 5 stars selected.
-Date | A date in the format specified in the app's properties.<br /><br />Alternatively, a date in milliseconds since January 1, 1970 00:00:00 UTC.  Note that the Quick Base HTTP API returns dates in this format, which is the same internal representation used by JavaScript.
-Date/Time | A date and time. Dates should be in the format specified in the app's properties.<br /><br />This field is an extended date field that can also contain the time, in the format HH:MM AM/PM. If you don't specify AM or PM, Quick Base defaults to AM. If you don't specify a time, Quick Base defaults to 12:00 AM.
-Time of Day | A time in this format: HH:MM AM/PM.<br /><br />If you do not specify AM or PM, Quick Base defaults to AM.
-Duration | A number that indicates a period of time. Note that you must use API_SetFieldProperties to set the unit of measure.<br /><br />If you enter a non-numeric value here, Quick Base ignores the value (no error is generated.)
-Checkbox | A string that indicates whether the checkbox is checked or not.<br /><br />To specify that a checkbox is checked, enter any of these values:<ul><li>1</li><li>yes</li><li>true</li><li>on</li></ul>To specify that a checkbox is not checked, enter any string other than those listed above, or leave the parameter blank. If a Checkbox field is required, and does not default to "checked," you must enter some value to be able to save the record.
-Phone Number | A phone number, with or without an extension. Enter a 10-digit string of numbers. You are not required to enter special characters (parentheses or dashes).<br /><br />Example: For this phone number: (123) 456-7890<br /><br />...enter  1234567890<br /><br />If you want to include an extension, you can enter x after the last digit of the phone number, followed by the numeric characters that make up the extension. There is no minimum or maximum character limit on extensions.<br /><br />Example: For this phone number:(123) 456-7890 x9876<br /><br />...enter  1234567890x9876<br /><br />Quick Base ignores any non-numeric character you enter here (except for the x used for extensions).
-Email Address | An email address (joeuser@example.com).<br /><br />Note that if you enter an invalid email address, Quick Base does not generate an error.
-User | A Quick Base user's email address or Quick Base user name.
-List-User | Quick Base users' email addresses, Quick Base user names, or hashed user IDs, separated by semi-colons.<br /><br />Example: joe@example.com;sue@example.com
-File Attachment | A base64-encoded file.<br /><br />Note that you must not use MIME encoding and must not include MIME headers. Note that many base64 encoders or base64 encoding methods are for MIME type encoding and will not work with Quick Base.
-URL | A Web address. If you don't enter "http://", Quick Base adds it for you.<br /><br />Note that if you enter an invalid Web address, Quick Base does not generate an error.
-Report Link | Report links are derived from other fields. You can update which report is linked to by updating the field that the report link refers to. You can't write to this type of field directly. If your API writes to a Report Link field, Quick Base ignores the call.
-iCalendar | iCalendar fields are derived from other fields. You can update this type of field only by updating the fields to which it refers. You can't write to this type of field directly. If your API writes to an iCalendar field, Quick Base returns an error.
-vCard | vCard fields are derived from other fields. You can update this type of field only by updating the fields to which it refers.  You can't write to this type of field directly If your API writes to a vCard field, Quick Base returns an error.
-Predecessor | The Record ID of the predecessor record. Note that if you enter an invalid Record ID here, Quick Base returns an error.
-Formula | Formula fields are derived from other fields. You cannot write to this type of field directly. If your API writes to a formula field, Quick Base returns an error.
 
 ## Quick Base API Endpoints
 
@@ -4278,3 +4281,36 @@ dbid | true | | Application DBID
 ### NewRecord
 
 ### NewRecords
+
+# Formatting Data for Quick Base
+
+Quick Base has very specific patterns and formats for various field types that you will need to pay attention to.
+
+Below is a table of Quick Base field types and their acceptable values.
+
+UI: Field Type | Acceptable Values
+---------------|------------------
+Text | Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.
+Text - Multi-line | Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.
+Text - Multiple Choice | A valid choice that has been set up for the multiple choice field. Note that Quick Base does not validate case here; if you enter "ford" and, in your application, the choice is "Ford," the choice will be accepted.<br /><br />If you enter an invalid choice, Quick Base generates an error.
+Multi-select Text | Up to 20 valid choices from the list set up for the field, separated by semi-colons. The set of choices provided must not contain duplicates.<br /><br />Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.
+Numeric | Positive or negative numbers. Quick Base ignores any non-numeric characters you enter here, but will not generate an error.<br /><br />If you've specified decimal places using API_SetFieldProperties, the value will be truncated  or lengthened accordingly.
+Numeric - Currency | Positive and negative numbers, with or without decimals. The decimal character should match the decimal character set in the field's properties.
+Numeric - Percent | A number that represents the percentage. Note that, if you want to indicate 80%, you should enter 80 in this field.
+Numeric - Rating | A numeric rating, from 1 - 5. Quick Base displays ratings as stars; if you enter 3 in a Numeric-Rating field, Quick Base displays 3 out of 5 stars selected.
+Date | A date in the format specified in the app's properties.<br /><br />Alternatively, a date in milliseconds since January 1, 1970 00:00:00 UTC.  Note that the Quick Base HTTP API returns dates in this format, which is the same internal representation used by JavaScript.
+Date/Time | A date and time. Dates should be in the format specified in the app's properties.<br /><br />This field is an extended date field that can also contain the time, in the format HH:MM AM/PM. If you don't specify AM or PM, Quick Base defaults to AM. If you don't specify a time, Quick Base defaults to 12:00 AM.
+Time of Day | A time in this format: HH:MM AM/PM.<br /><br />If you do not specify AM or PM, Quick Base defaults to AM.
+Duration | A number that indicates a period of time. Note that you must use API_SetFieldProperties to set the unit of measure.<br /><br />If you enter a non-numeric value here, Quick Base ignores the value (no error is generated.)
+Checkbox | A string that indicates whether the checkbox is checked or not.<br /><br />To specify that a checkbox is checked, enter any of these values:<ul><li>1</li><li>yes</li><li>true</li><li>on</li></ul>To specify that a checkbox is not checked, enter any string other than those listed above, or leave the parameter blank. If a Checkbox field is required, and does not default to "checked," you must enter some value to be able to save the record.
+Phone Number | A phone number, with or without an extension. Enter a 10-digit string of numbers. You are not required to enter special characters (parentheses or dashes).<br /><br />Example: For this phone number: (123) 456-7890<br /><br />...enter  1234567890<br /><br />If you want to include an extension, you can enter x after the last digit of the phone number, followed by the numeric characters that make up the extension. There is no minimum or maximum character limit on extensions.<br /><br />Example: For this phone number:(123) 456-7890 x9876<br /><br />...enter  1234567890x9876<br /><br />Quick Base ignores any non-numeric character you enter here (except for the x used for extensions).
+Email Address | An email address (joeuser@example.com).<br /><br />Note that if you enter an invalid email address, Quick Base does not generate an error.
+User | A Quick Base user's email address or Quick Base user name.
+List-User | Quick Base users' email addresses, Quick Base user names, or hashed user IDs, separated by semi-colons.<br /><br />Example: joe@example.com;sue@example.com
+File Attachment | A base64-encoded file.<br /><br />Note that you must not use MIME encoding and must not include MIME headers. Note that many base64 encoders or base64 encoding methods are for MIME type encoding and will not work with Quick Base.
+URL | A Web address. If you don't enter "http://", Quick Base adds it for you.<br /><br />Note that if you enter an invalid Web address, Quick Base does not generate an error.
+Report Link | Report links are derived from other fields. You can update which report is linked to by updating the field that the report link refers to. You can't write to this type of field directly. If your API writes to a Report Link field, Quick Base ignores the call.
+iCalendar | iCalendar fields are derived from other fields. You can update this type of field only by updating the fields to which it refers. You can't write to this type of field directly. If your API writes to an iCalendar field, Quick Base returns an error.
+vCard | vCard fields are derived from other fields. You can update this type of field only by updating the fields to which it refers.  You can't write to this type of field directly If your API writes to a vCard field, Quick Base returns an error.
+Predecessor | The Record ID of the predecessor record. Note that if you enter an invalid Record ID here, Quick Base returns an error.
+Formula | Formula fields are derived from other fields. You cannot write to this type of field directly. If your API writes to a formula field, Quick Base returns an error.
