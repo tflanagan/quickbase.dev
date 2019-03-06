@@ -2438,7 +2438,22 @@ try {
 {
   "action": "API_GetAppDTMInfo",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "RequestTime": 1227657049750,
+  "RequestNextAllowedTime": 1227657049750,
+  "app": {
+    "id": "bdzk2ecg5",
+    "lastModifiedTime": 1227657049750,
+    "lastRecModTime": 1227647748330
+  },
+  "tables": [
+    {
+      "id": "bdzk2ecg6",
+      "lastModifiedTime": 1227647748440,
+      "lastRecModTime": 1227647748330
+    },
+    ...
+  ]
 }
 ```
 
@@ -2452,7 +2467,8 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_GetDBPage', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  pageID: 3
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -2462,7 +2478,8 @@ quickbase.api('API_GetDBPage', {
 
 ```javascript--browser
 quickbase.api('API_GetDBPage', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  pageID: 3
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -2475,7 +2492,8 @@ quickbase.api('API_GetDBPage', {
 
 try {
   $results = $quickbase->api('API_GetDBPage', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'pageID' => 3
   ));
 
   // Handle results
@@ -2492,7 +2510,8 @@ try {
 {
   "action": "API_GetDBPage",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "pagebody": "<html></html>"
 }
 ```
 
@@ -2546,7 +2565,16 @@ try {
 {
   "action": "API_GetDBInfo",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "dbname" => "test",
+  "lastRecModTime" => 1205806751959,
+  "lastModifiedTime" => 1205877093679,
+  "createdTime" => 1204745351407,
+  "numRecords" => 3,
+  "mgrID" => "112149.bhsv",
+  "mgrName" => "AppBoss",
+  "version" => "2.0",
+  "time_zone" => "(UTC-08:00) Pacific Time (US & Canada)"
 }
 ```
 
@@ -2554,13 +2582,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_GetDBVar
 
 ```javascript--node
 quickbase.api('API_GetDBVar', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  varname: 'usercode'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -2570,7 +2599,8 @@ quickbase.api('API_GetDBVar', {
 
 ```javascript--browser
 quickbase.api('API_GetDBVar', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  varname: 'usercode'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -2583,7 +2613,8 @@ quickbase.api('API_GetDBVar', {
 
 try {
   $results = $quickbase->api('API_GetDBVar', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'varname' => 'usercode'
   ));
 
   // Handle results
@@ -2600,7 +2631,8 @@ try {
 {
   "action": "API_GetDBVar",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "value": 12
 }
 ```
 
@@ -2614,7 +2646,8 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_GetFieldProperties', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fid: 3
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -2624,7 +2657,8 @@ quickbase.api('API_GetFieldProperties', {
 
 ```javascript--browser
 quickbase.api('API_GetFieldProperties', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fid: 3
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -2637,7 +2671,8 @@ quickbase.api('API_GetFieldProperties', {
 
 try {
   $results = $quickbase->api('API_GetFieldProperties', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'fid' => 3
   ));
 
   // Handle results
@@ -2654,7 +2689,32 @@ try {
 {
   "action": "API_GetFieldProperties",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "field": {
+    "id": 3,
+    "field_type": "recordid",
+    "base_type": "int32",
+    "role": "recordid",
+    "mode": "virtual",
+    "label": "Record ID#",
+    "nowrap": 1,
+    "bold": 1,
+    "required": 0,
+    "appears_by_default": 0,
+    "find_enabled": 1,
+    "allow_new_choices": 0,
+    "sort_as_given": 0,
+    "default_value": 10,
+    "carrychoices": 1,
+    "foreignkey": 0,
+    "unique": 1,
+    "doesdatacopy": 0,
+    "fieldhelp": "",
+    "comma_start": 0,
+    "does_average": 0,
+    "does_total": 0,
+    "blank_is_zero": 0
+  }
 }
 ```
 
@@ -2662,13 +2722,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_GetGroupRole
 
 ```javascript--node
 quickbase.api('API_GetGroupRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  gid: '345889.klsd'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -2678,7 +2739,8 @@ quickbase.api('API_GetGroupRole', {
 
 ```javascript--browser
 quickbase.api('API_GetGroupRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  gid: '345889.klsd'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -2691,7 +2753,8 @@ quickbase.api('API_GetGroupRole', {
 
 try {
   $results = $quickbase->api('API_GetGroupRole', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'gid' => '345889.klsd'
   ));
 
   // Handle results
@@ -2708,7 +2771,14 @@ try {
 {
   "action": "API_GetGroupRole",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "roles": [
+    {
+      "id": 23528,
+      "name": "Human Resources"
+    },
+    ...
+  ]
 }
 ```
 
@@ -2762,7 +2832,8 @@ try {
 {
   "action": "API_GetNumRecords",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "num_records": 17
 }
 ```
 
@@ -2816,7 +2887,54 @@ try {
 {
   "action": "API_GetSchema",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "time_zone": "(UTC-05:00) Eastern Time (US & Canada)",
+  "date_format": "MM-DD-YYYY",
+  "table": {
+    "name": "Pages",
+    "original": {
+      table_id: "biy2j7bme",
+      app_id: "biy2ikx6n",
+      cre_date: 1398827549677,
+      mod_date: 1440184904503,
+      next_record_id: 172,
+      next_field_id: 41,
+      next_query_id: 7,
+      def_sort_fid: 25,
+      "def_sort_order": 1
+    },
+    "variables": {
+      "varName": "varValue",
+      ...
+    },
+    "chdbids": [
+      {
+        "name": "_dbid_doug_s_api_created_sample",
+        "dbid": "bdb5rjd6g"
+      },
+      ...
+    ],
+    "queries": [
+      {
+        "id": 1,
+        "qyname": "List All",
+        "qytype": "table",
+        "qycalst": "0.0",
+        ...
+      },
+      ...
+    ],
+    "fields": [
+      {
+        "id": 6,
+        "field_type": "text",
+        "base_type": "text"
+        "label": "Additional Information",
+        ...
+      },
+      ...
+    ]
+  }
 }
 ```
 
@@ -2830,7 +2948,9 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_GetRecordAsHTML', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  rid: 2,
+  dfid: 10
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -2840,7 +2960,9 @@ quickbase.api('API_GetRecordAsHTML', {
 
 ```javascript--browser
 quickbase.api('API_GetRecordAsHTML', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  rid: 2,
+  dfid: 10
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -2853,7 +2975,9 @@ quickbase.api('API_GetRecordAsHTML', {
 
 try {
   $results = $quickbase->api('API_GetRecordAsHTML', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'rid' => 2,
+    'dfid' => 10
   ));
 
   // Handle results
@@ -2864,27 +2988,20 @@ try {
 ?>
 ```
 
-> The above returns JSON structured like this:
-
-```json
-{
-  "action": "API_GetRecordAsHTML",
-  "errcode": 0,
-  "errtext": "No error"
-}
-```
+> Unlike most API calls, the above returns a string of the desired forms HTML rather than an object with properties.
 
 <a href='https://help.quickbase.com/api-guide/getrecordashtml.html' target='_blank'>Quick Base Documentation</a>
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_GetRecordInfo
 
 ```javascript--node
 quickbase.api('API_GetRecordInfo', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  rid: 2
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -2894,7 +3011,8 @@ quickbase.api('API_GetRecordInfo', {
 
 ```javascript--browser
 quickbase.api('API_GetRecordInfo', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  rid: 2
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -2907,7 +3025,8 @@ quickbase.api('API_GetRecordInfo', {
 
 try {
   $results = $quickbase->api('API_GetRecordInfo', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'rid' => 2
   ));
 
   // Handle results
@@ -2924,7 +3043,19 @@ try {
 {
   "action": "API_GetRecordInfo",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "rid": 2,
+  "num_fields": 28,
+  "update_id": 1205780029699,
+  "field": [
+    {
+      "fid": 26,
+      "name": "Parent Page",
+      "type": "Numeric",
+      "value": 166
+    },
+    ...
+  ]
 }
 ```
 
@@ -2932,7 +3063,7 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_GetRoleInfo
 
@@ -2978,7 +3109,18 @@ try {
 {
   "action": "API_GetRoleInfo",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "roles": [
+    {
+      "id": 11,
+      "name": "Participant",
+      "access": {
+        "id": 3,
+        "name": "Basic Access"
+      }
+    },
+    ...
+  ]
 }
 ```
 
@@ -2991,9 +3133,7 @@ dbid | true | | Application DBID
 ### API_GetUserInfo
 
 ```javascript--node
-quickbase.api('API_GetUserInfo', {
-  dbid: 'bddnn3uz9'
-}).then((results) => {
+quickbase.api('API_GetUserInfo').then((results) => {
   // Handle results
 }).catch((error) => {
   // Handle error
@@ -3001,9 +3141,7 @@ quickbase.api('API_GetUserInfo', {
 ```
 
 ```javascript--browser
-quickbase.api('API_GetUserInfo', {
-  dbid: 'bddnn3uz9'
-}).then(function(results){
+quickbase.api('API_GetUserInfo').then(function(results){
   // Handle results
 }).catch(function(error){
   // Handle error
@@ -3014,9 +3152,7 @@ quickbase.api('API_GetUserInfo', {
 <?php
 
 try {
-  $results = $quickbase->api('API_GetUserInfo', array(
-    'dbid' => 'bddnn3uz9'
-  ));
+  $results = $quickbase->api('API_GetUserInfo');
 
   // Handle results
 }catch(\Exception $error){
@@ -3032,21 +3168,29 @@ try {
 {
   "action": "API_GetUserInfo",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "user": {
+    "id": "112149.bhsv",
+    "firstName": "Ragnar",
+    "lastName": "Lodbrok",
+    "login": "Ragnar",
+    "email": "Ragnar-Lodbrok@paris.net",
+    "screenName": "Ragnar",
+    "externalAuth": 0,
+    "isVerified": 1
+  }
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/getuserinfo.html' target='_blank'>Quick Base Documentation</a>
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
-dbid | true | | Application DBID
-
 ### API_GetUserRole
 
 ```javascript--node
 quickbase.api('API_GetUserRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  userid: '112245.efy7',
+  inclgrps: 1
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3056,7 +3200,9 @@ quickbase.api('API_GetUserRole', {
 
 ```javascript--browser
 quickbase.api('API_GetUserRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  userid: '112245.efy7',
+  inclgrps: 1
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3069,7 +3215,9 @@ quickbase.api('API_GetUserRole', {
 
 try {
   $results = $quickbase->api('API_GetUserRole', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'userid' => '112245.efy7',
+    'inclgrps' => 1
   ));
 
   // Handle results
@@ -3086,7 +3234,26 @@ try {
 {
   "action": "API_GetUserRole",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "user": {
+    "id": "112245.efy7",
+    "name": "John Doe",
+    "roles": [
+      {
+        "id": 11,
+        "name": "Participant",
+        "access": {
+          "id": 3,
+          "name": "Basic Access"
+        },
+        "member": {
+          "type": "user",
+          "name": "John Doe'
+        }
+      },
+      ...
+    ]
+  }
 }
 ```
 
@@ -3100,7 +3267,8 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_GetUsersInGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '2345.skdj',
+  includeAllMgrs: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3110,7 +3278,8 @@ quickbase.api('API_GetUsersInGroup', {
 
 ```javascript--browser
 quickbase.api('API_GetUsersInGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '2345.skdj',
+  includeAllMgrs: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3123,7 +3292,8 @@ quickbase.api('API_GetUsersInGroup', {
 
 try {
   $results = $quickbase->api('API_GetUsersInGroup', array(
-    'dbid' => 'bddnn3uz9'
+    'gid' => '2345.skdj',
+    'includeAllMgrs' => false
   ));
 
   // Handle results
@@ -3140,7 +3310,38 @@ try {
 {
   "action": "API_GetUsersInGroup",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "group": {
+    "id": "2345.sdfk",
+    "name": "GroupInfoTestGroup",
+    "description": "My Group description",
+    "users": [
+      {
+        "id": "112149.bhsv",
+        "firstName": "john",
+        "lastName": "doe",
+        "email": "jdoe.qb@gmail.com",
+        "screenName": ",
+        "isAdmin": "false"
+      },
+      ...
+    ],
+    "managers": [
+      {
+        "id": "52731770.b82h",
+        "firstName": "Angela",
+        "lastName": "Leon",
+        "email": "angela_leon@aleon.com",
+        "screenName": "aqleon",
+        "isMember": "true"
+      },
+      ...
+    ],
+    "subgroups": [
+      { "id": "3450.aefs" }
+      ...
+    ]
+  }
 }
 ```
 
@@ -3148,13 +3349,15 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_GrantedDBs
 
 ```javascript--node
 quickbase.api('API_GrantedDBs', {
-  dbid: 'bddnn3uz9'
+  adminOnly: false,
+  excludeparents: 0,
+  includeancestors: 0,
+  withembeddedtables: 0
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3164,7 +3367,10 @@ quickbase.api('API_GrantedDBs', {
 
 ```javascript--browser
 quickbase.api('API_GrantedDBs', {
-  dbid: 'bddnn3uz9'
+  adminOnly: false,
+  excludeparents: 0,
+  includeancestors: 0,
+  withembeddedtables: 0
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3177,7 +3383,10 @@ quickbase.api('API_GrantedDBs', {
 
 try {
   $results = $quickbase->api('API_GrantedDBs', array(
-    'dbid' => 'bddnn3uz9'
+    'adminOnly' => false,
+    'excludeparents' => 0,
+    'includeancestors' => 0,
+    'withembeddedtables' => 0
   ));
 
   // Handle results
@@ -3194,7 +3403,14 @@ try {
 {
   "action": "API_GrantedDBs",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "databases": [
+    {
+      "dbname": "Projects",
+      "dbid": "bhgnyxp3v"
+    },
+    ...
+  ]
 }
 ```
 
@@ -3202,13 +3418,12 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_GrantedDBsForGroup
 
 ```javascript--node
 quickbase.api('API_GrantedDBsForGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '1217.dgpt'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3218,7 +3433,7 @@ quickbase.api('API_GrantedDBsForGroup', {
 
 ```javascript--browser
 quickbase.api('API_GrantedDBsForGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '1217.dgpt'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3231,7 +3446,7 @@ quickbase.api('API_GrantedDBsForGroup', {
 
 try {
   $results = $quickbase->api('API_GrantedDBsForGroup', array(
-    'dbid' => 'bddnn3uz9'
+    'gid' => '1217.dgpt'
   ));
 
   // Handle results
@@ -3248,7 +3463,14 @@ try {
 {
   "action": "API_GrantedDBsForGroup",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "databases": [
+    {
+      "dbname": "Projects",
+      "dbid": "bhgnyxp3v"
+    },
+    ...
+  ]
 }
 ```
 
@@ -3256,13 +3478,13 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_GrantedGroups
 
 ```javascript--node
 quickbase.api('API_GrantedGroups', {
-  dbid: 'bddnn3uz9'
+  userid: '930245.jlpw',
+  adminonly: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3272,7 +3494,8 @@ quickbase.api('API_GrantedGroups', {
 
 ```javascript--browser
 quickbase.api('API_GrantedGroups', {
-  dbid: 'bddnn3uz9'
+  userid: '930245.jlpw',
+  adminonly: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3285,7 +3508,8 @@ quickbase.api('API_GrantedGroups', {
 
 try {
   $results = $quickbase->api('API_GrantedGroups', array(
-    'dbid' => 'bddnn3uz9'
+    'userid' => '930245.jlpw',
+    'adminonly' => false
   ));
 
   // Handle results
@@ -3302,7 +3526,16 @@ try {
 {
   "action": "API_GrantedGroups",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "groups": [
+    {
+      "id": "1217.dgpt",
+      "name": "GroupInfoTestGroup",
+      "description": "Demo Test Group",
+      "managedByUser": false
+    },
+    ...
+  ]
 }
 ```
 
@@ -3310,13 +3543,22 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_ImportFromCSV
 
 ```javascript--node
 quickbase.api('API_ImportFromCSV', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  records_csv: [
+    '"First Name","Last Name","Company","Phone","Cell Phone","Zip"',
+    '"Bruce","Anderson","Reyes Inc","(474) 555-0514","(390) 555-8927",<-80145>',
+    '"Judy","Atwell","Conner Supplies","(499) 555-1072","(763) 555-1325",<-50737>',
+    '"Kris","Babs,"Willis Orchards","(428) 555-6791","(481) 555-1335",<-81504>',
+  ],
+  clist: '7.8.6.5.4',
+  clist_output: '',
+  skipfirst: false,
+  msInUTC: true
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3326,7 +3568,17 @@ quickbase.api('API_ImportFromCSV', {
 
 ```javascript--browser
 quickbase.api('API_ImportFromCSV', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  records_csv: [
+    '"First Name","Last Name","Company","Phone","Cell Phone","Zip"',
+    '"Bruce","Anderson","Reyes Inc","(474) 555-0514","(390) 555-8927",<-80145>',
+    '"Judy","Atwell","Conner Supplies","(499) 555-1072","(763) 555-1325",<-50737>',
+    '"Kris","Babs,"Willis Orchards","(428) 555-6791","(481) 555-1335",<-81504>',
+  ],
+  clist: '7.8.6.5.4',
+  clist_output: '',
+  skipfirst: false,
+  msInUTC: true
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3339,7 +3591,17 @@ quickbase.api('API_ImportFromCSV', {
 
 try {
   $results = $quickbase->api('API_ImportFromCSV', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'records_csv' => implode("\n", array(
+      '"First Name","Last Name","Company","Phone","Cell Phone","Zip"',
+      '"Bruce","Anderson","Reyes Inc","(474) 555-0514","(390) 555-8927",<-80145>',
+      '"Judy","Atwell","Conner Supplies","(499) 555-1072","(763) 555-1325",<-50737>',
+      '"Kris","Babs,"Willis Orchards","(428) 555-6791","(481) 555-1335",<-81504>',
+    )),
+    'clist' => '7.8.6.5.4',
+    'clist_output' => '',
+    'skipfirst' => false,
+    'msInUTC' => true
   ));
 
   // Handle results
@@ -3356,7 +3618,19 @@ try {
 {
   "action": "API_ImportFromCSV",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "num_recs_input": 8,
+  "num_recs_added": 4,
+  "rids": [
+    { // Edit Record
+      "update_id": 1057961999003,
+      "rid": 1
+    },
+    { // Add Record
+      "rid": 2
+    },
+    ...
+  ]
 }
 ```
 
@@ -3370,7 +3644,11 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_ProvisionUser', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  email: 'sanskor@sbcglobal.com',
+  roleid: 11,
+  fname: 'Margi',
+  lname: 'Rita'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3380,7 +3658,11 @@ quickbase.api('API_ProvisionUser', {
 
 ```javascript--browser
 quickbase.api('API_ProvisionUser', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  email: 'sanskor@sbcglobal.com',
+  roleid: 11,
+  fname: 'Margi',
+  lname: 'Rita'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3393,7 +3675,11 @@ quickbase.api('API_ProvisionUser', {
 
 try {
   $results = $quickbase->api('API_ProvisionUser', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'email' => 'sanskor@sbcglobal.com',
+    'roleid' => 11,
+    'fname' => 'Margi',
+    'lname' => 'Rita' 
   ));
 
   // Handle results
@@ -3410,7 +3696,8 @@ try {
 {
   "action": "API_ProvisionUser",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "userid": "112248.5nzg"
 }
 ```
 
