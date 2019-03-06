@@ -1375,9 +1375,9 @@ try {
   "action": "API_CreateDatabase",
   "errcode": 0,
   "errtext": "No error"
-  'dbid' => 'bddnn3uz9',
-  'appdbid' => 'bddnn3ub7',
-  'apptoken' => 'cmzaaz3dgdmmwwksdb7zcd7a9wg'
+  "dbid": 'bddnn3uz9',
+  "appdbid": 'bddnn3ub7',
+  "apptoken": 'cmzaaz3dgdmmwwksdb7zcd7a9wg'
 }
 ```
 
@@ -2082,7 +2082,7 @@ try {
   "errcode": 0,
   "errtext": "No error",
   "fid": 11,
-  "fname": 'Fumables',
+  "fname": "Fumables",
   "numadded": 1
 }
 ```
@@ -2145,7 +2145,7 @@ try {
   "errcode": 0,
   "errtext": "No error",
   "fid": 11,
-  "fname": 'Color Choice',
+  "fname": "Color Choice",
   "numremoved": 1
 }
 ```
