@@ -33,8 +33,8 @@ This class is utilized in the abstraction layers QBRecord and QBTable.
 
 ## Repository Links
 
-* PHP: <a href='https://github.com/tflanagan/php-quickbase'>https://github.com/tflanagan/php-quickbase</a>
-* JavaScript: <a href='https://github.com/tflanagan/node-quickbase'>https://github.com/tflanagan/node-quickbase</a>
+* PHP: <a href='https://github.com/tflanagan/php-quickbase' target='_blank'>https://github.com/tflanagan/php-quickbase</a>
+* JavaScript: <a href='https://github.com/tflanagan/node-quickbase' target='_blank'>https://github.com/tflanagan/node-quickbase</a>
 
 ## Installation & Loading
 
@@ -124,8 +124,9 @@ errorOnConnectionLimit | false | false | <i>(JavaScript Only)</i> Throw an error
 The Quick Base librarys are built in such a way as to be as future-proof as possible. 9/10 times, a new API endpoint will automatically be supported if you're using these libraries.
 
 <aside class="notice">
-<i>(JavaScript Only)</i> This library makes API calls asychronously. As Quick Base cannot support `n` number of requests at a given time, the default limit is `10`. This throttles the requests sent to Quick Base in order to preserve the Quick Base applications integrity and performance.
-
+<i>(JavaScript Only)</i><br />
+This library makes API calls asychronously. As Quick Base cannot support n number of requests at a given time, the default limit is 10. This throttles the requests sent to Quick Base in order to preserve the Quick Base applications integrity and performance.<br />
+<br />
 If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
 </aside>
 
@@ -178,6 +179,12 @@ action | true | | The Quick Base API Action you wish to execute (ie: API_DoQuery
 options | false | | An object containing data pertaining to your API Action
 
 ## Quick Base API Endpoints
+
+The following is a list of Quick Base API Endpoints mostly compiled from Quick Base's own help section.
+
+Each endpoint has an overview of the endpoint and what it supports, an example of using it in code, what the response from Quick Base looks like in JSON, and a link to Quick Base's help section for that specific endpoint.
+
+This list may not contain everything that is supported. As these libraries are future-proof, if Quick Base comes out with a new endpoint, it will be automatically supported - so long as Quick Base hasn't changed too much. We will try to keep this update to date, time allowing. To that note, Quick Base's documentation is the ultimate authority in regards to what is supported.
 
 ### API_AddField
 
@@ -241,7 +248,7 @@ quickbase.api('API_AddField', {
 }
 ```
 
-<a href='https://help.quickbase.com/api-guide/add_field.html'>Quick Base Documentation</a>
+<a href='https://help.quickbase.com/api-guide/add_field.html' target='_blank'>Quick Base Documentation</a>
 
 Use API_AddField to add a new field to a table. You invoke this call on a table-level dbid.
 
@@ -259,6 +266,7 @@ type | true | | The Quick Base field type.
 Possible `type` values:
 
 UI: TYPE | API: TYPE
+-------- | ---------
 Checkbox | checkbox
 Date | date
 Duration | duration
@@ -498,8 +506,6 @@ User | userid
 ### getVariables
 
 ### load
-
-### _load
 
 ### loadNRecords
 
