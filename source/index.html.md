@@ -4,7 +4,8 @@ title: API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - php
-  - javascript
+  - javascript--node
+  - javascript--browser
 
 toc_footers:
   - <a href='https://www.quickbase.com/'>Quick Base</a>
@@ -27,9 +28,68 @@ We are continually trying to improve the information available! Please feel free
 
 # QuickBase
 
-## Initiation
+## Installation & Loading
 
-## api
+Installing the Quick Base library for your desired platform requires either including the browserified version of the library in your HTML page or install it via a package manager (npm or composer).
+
+Including the library for use in your code depends on your platform.
+
+```php
+// $ composer require tflanagan/quickbase
+
+require_once(__DIR__.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php');
+```
+
+```javascript--node
+// $ npm install --save quickbase
+
+const QuickBase = require('quickbase');
+```
+
+```javascript--browser
+// <script type="text/javascript" src="quickbase.browserify.min.js"></script>
+```
+
+## Initialization
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+realm | true | 'www' | Quick Base Realm (or subdomain)
+useSSL | false | true | Use HTTPS or HTTP when communicating with Quick Base
+appToken | false | '' | Quick Base Application Token
+userToken | false | '' | Quick Base User Token
+flags | false | | Object containing a collection of API parameters
+  - useXML | false | true | Send API requests via `POST` or `GET`
+  - msInUTC | false | true | Interpret all timestamps as milliseconds in UTC rather than using the local application time
+  - encoding | false | 'ISO-8859-1' | The encoding used to make requests to and parse responses from Quick Base
+
+```php
+$qb = new \QuickBase\QuickBase(array(
+  'realm' => 'subdomain/realm',
+  'userToken' => 'user token',
+  'appToken' => 'application token'
+));
+```
+
+```javascript--node
+const quickbase = new QuickBase({
+  realm: 'subdomain/realm',
+  userToken: 'user token',
+  appToken: 'application token'
+});
+```
+
+```javascript--browser
+var quickbase = new QuickBase({
+  realm: 'subdomain/realm',
+  userToken: 'user token',
+  appToken: 'application token'
+});
+```
+
+## Making an API Call
+
+## Quick Base API Endpoints
 
 ### API_AddField
 
@@ -159,333 +219,128 @@ We are continually trying to improve the information available! Please feel free
 
 # QBRecord
 
-## Initiation
+## Initialization
 
-## clear
+## Instance Methods
 
-## delete
+### clear
 
-## get
+### delete
 
-## getDBID
+### get
 
-## getFid
+### getDBID
 
-## getFids
+### getFid
 
-## getField
+### getFids
 
-## getFields
+### getField
 
-## getTableName
+### getFields
 
-## load
+### getTableName
 
-## loadSchema
+### load
 
-## save
+### loadSchema
 
-## set
+### save
 
-## setDBID
+### set
 
-## setFid
+### setDBID
 
-## setFids
+### setFid
 
-## toJson
+### setFids
+
+### toJson
 
 # QBTable
 
-## clear
+## Initialization
 
-## deleteRecord
+## Instance Methods
 
-## deleteRecords
+### clear
 
-## getAppID
+### deleteRecord
 
-## getDateFormat
+### deleteRecords
 
-## getDBID
+### getAppID
 
-## getChildTables
+### getDateFormat
 
-## getFid
+### getDBID
 
-## getFids
+### getChildTables
 
-## getField
+### getFid
 
-## getFields
+### getFids
 
-## getNRecords
+### getField
 
-## getOptions
+### getFields
 
-## getPlural
+### getNRecords
 
-## getQueries
+### getOptions
 
-## getQuery
+### getPlural
 
-## getRecord
+### getQueries
 
-## getRecords
+### getQuery
 
-## getSingular
+### getRecord
 
-## getSList
+### getRecords
 
-## getTableName
+### getSingular
 
-## getTimezone
+### getSList
 
-## getVariable
+### getTableName
 
-## getVariables
+### getTimezone
 
-## load
+### getVariable
 
-## _load
+### getVariables
 
-## loadNRecords
+### load
 
-## loadSchema
+### _load
 
-## save
+### loadNRecords
 
-## setDBID
+### loadSchema
 
-## setFid
+### save
 
-## setFids
+### setDBID
 
-## setOptions
+### setFid
 
-## setQuery
+### setFids
 
-## setSList
+### setOptions
 
-## toJson
+### setQuery
 
-## upsertRecord
+### setSList
 
-## upsertRecords
+### toJson
 
-## NewRecord
+### upsertRecord
 
-## NewRecords
+### upsertRecords
 
-# Authentication
+## Static Methods
 
-> To authorize, use this code:
+### NewRecord
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+### NewRecords
