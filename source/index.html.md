@@ -7,14 +7,12 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php
 
 toc_footers:
-  - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a>
+  - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a>
   - <a href='https://github.com/lord/slate' target='_blank'>Documentation Powered by Slate</a>
-  - Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a>
+  - Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a>
 
 includes:
   - errors
-
-seo: 
 
 search: true
 ---
@@ -403,7 +401,7 @@ quickbase.api('API_AddField', {
 
 ```php
 <?php
-nodetry {
+try {
   $results = $quickbase->api('API_AddField', array(
     'dbid' => 'bddnn3uz9',
     'gid' => '345889.ksld',
@@ -420,7 +418,8 @@ nodetry {
 
 > The above returns JSON structured like this:
 
-```jsonnode{
+```json
+{
   "action": "API_AddGroupToRole",
   "errcode": 0,
   "errtext": "No error"
