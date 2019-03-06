@@ -228,7 +228,7 @@ This list may not contain everything that is supported. As these libraries are f
 ```javascript--node
 quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
-  node: true,
+  add_to_forms: true,
   label: 'Label',
   mode: 'virtual',
   type: 'formula'
@@ -278,7 +278,7 @@ try {
 ```json
 {
   "action": "API_AddField",
-  "errcode": node,
+  "errcode": 0,
   "errtext": "No error",
   "fid": 8,
   "label": "Label"
@@ -330,7 +330,7 @@ User | userid
 ```javascript--node
 quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
-  gid: 'node.ksld',
+  gid: '345889.ksld',
   roleid: 12
 }).then((results) => {
   // Handle results
@@ -340,7 +340,7 @@ quickbase.api('API_AddField', {
 ```
 
 ```javascript--browser
-quickbase.api('node', {
+quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
   gid: '345889.ksld',
   roleid: 12
