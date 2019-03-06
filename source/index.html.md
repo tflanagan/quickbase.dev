@@ -182,6 +182,39 @@ In JavaScript, the `api()` method returns a Promise, powered by <a href='http://
 
 In PHP, the `api()` method returns the resulting JSON object from the API call. If an error occurs, it will be thrown and needs to be caught with a `try/catch` statement.
 
+### Formatting Data for Quick Base
+
+Quick Base has very specific patterns and formats for various field types that you will need to pay attention to.
+
+Below is a table of Quick Base field types and their acceptable values.
+
+UI: Field Type | Acceptable Values
+---------------|------------------
+Text | Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.
+Text - Multi-line | Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.
+Text - Multiple Choice | A valid choice that has been set up for the multiple choice field. Note that Quick Base does not validate case here; if you enter "ford" and, in your application, the choice is "Ford," the choice will be accepted.<br /><br />If you enter an invalid choice, Quick Base generates an error.
+Multi-select Text | Up to 20 valid choices from the list set up for the field, separated by semi-colons. The set of choices provided must not contain duplicates.<br /><br />Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.
+Numeric | Positive or negative numbers. Quick Base ignores any non-numeric characters you enter here, but will not generate an error.<br /><br />If you've specified decimal places using API_SetFieldProperties, the value will be truncated  or lengthened accordingly.
+Numeric - Currency | Positive and negative numbers, with or without decimals. The decimal character should match the decimal character set in the field's properties.
+Numeric - Percent | A number that represents the percentage. Note that, if you want to indicate 80%, you should enter 80 in this field.
+Numeric - Rating | A numeric rating, from 1 - 5. Quick Base displays ratings as stars; if you enter 3 in a Numeric-Rating field, Quick Base displays 3 out of 5 stars selected.
+Date | A date in the format specified in the app's properties.<br /><br />Alternatively, a date in milliseconds since January 1, 1970 00:00:00 UTC.  Note that the Quick Base HTTP API returns dates in this format, which is the same internal representation used by JavaScript.
+Date/Time | A date and time. Dates should be in the format specified in the app's properties.<br /><br />This field is an extended date field that can also contain the time, in the format HH:MM AM/PM. If you don't specify AM or PM, Quick Base defaults to AM. If you don't specify a time, Quick Base defaults to 12:00 AM.
+Time of Day | A time in this format: HH:MM AM/PM.<br /><br />If you do not specify AM or PM, Quick Base defaults to AM.
+Duration | A number that indicates a period of time. Note that you must use API_SetFieldProperties to set the unit of measure.<br /><br />If you enter a non-numeric value here, Quick Base ignores the value (no error is generated.)
+Checkbox | A string that indicates whether the checkbox is checked or not.<br /><br />To specify that a checkbox is checked, enter any of these values:<ul><li>1</li><li>yes</li><li>true</li><li>on</li></ul>To specify that a checkbox is not checked, enter any string other than those listed above, or leave the parameter blank. If a Checkbox field is required, and does not default to "checked," you must enter some value to be able to save the record.
+Phone Number | A phone number, with or without an extension. Enter a 10-digit string of numbers. You are not required to enter special characters (parentheses or dashes).<br /><br />Example: For this phone number: (123) 456-7890<br /><br />...enter  1234567890<br /><br />If you want to include an extension, you can enter x after the last digit of the phone number, followed by the numeric characters that make up the extension. There is no minimum or maximum character limit on extensions.<br /><br />Example: For this phone number:(123) 456-7890 x9876<br /><br />...enter  1234567890x9876<br /><br />Quick Base ignores any non-numeric character you enter here (except for the x used for extensions).
+Email Address | An email address (joeuser@example.com).<br /><br />Note that if you enter an invalid email address, Quick Base does not generate an error.
+User | A Quick Base user's email address or Quick Base user name.
+List-User | Quick Base users' email addresses, Quick Base user names, or hashed user IDs, separated by semi-colons.<br /><br />Example: joe@example.com;sue@example.com
+File Attachment | A base64-encoded file.<br /><br />Note that you must not use MIME encoding and must not include MIME headers. Note that many base64 encoders or base64 encoding methods are for MIME type encoding and will not work with Quick Base.
+URL | A Web address. If you don't enter "http://", Quick Base adds it for you.<br /><br />Note that if you enter an invalid Web address, Quick Base does not generate an error.
+Report Link | Report links are derived from other fields. You can update which report is linked to by updating the field that the report link refers to. You can't write to this type of field directly. If your API writes to a Report Link field, Quick Base ignores the call.
+iCalendar | iCalendar fields are derived from other fields. You can update this type of field only by updating the fields to which it refers. You can't write to this type of field directly. If your API writes to an iCalendar field, Quick Base returns an error.
+vCard | vCard fields are derived from other fields. You can update this type of field only by updating the fields to which it refers.  You can't write to this type of field directly If your API writes to a vCard field, Quick Base returns an error.
+Predecessor | The Record ID of the predecessor record. Note that if you enter an invalid Record ID here, Quick Base returns an error.
+Formula | Formula fields are derived from other fields. You cannot write to this type of field directly. If your API writes to a formula field, Quick Base returns an error.
+
 ## Quick Base API Endpoints
 
 The following is a list of Quick Base API Endpoints mostly compiled from Quick Base's own help section.
@@ -195,7 +228,7 @@ This list may not contain everything that is supported. As these libraries are f
 ```javascript--node
 quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
-  add_to_forms: true,
+  node: true,
   label: 'Label',
   mode: 'virtual',
   type: 'formula'
@@ -205,8 +238,7 @@ quickbase.api('API_AddField', {
   // Handle error
 });
 ```
-
-```javascript--browser
+node```javascript--browser
 quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
   add_to_forms: true,
@@ -219,8 +251,7 @@ quickbase.api('API_AddField', {
   // Handle error
 });
 ```
-
-```php
+node```php
 <?php
 
 try {
@@ -237,15 +268,14 @@ try {
   // Handle error
 }
 
-?>
-```
+?>node```
 
 > The above returns JSON structured like this:
 
 ```json
 {
   "action": "API_AddField",
-  "errcode": 0,
+  "errcode": node,
   "errtext": "No error",
   "fid": 8,
   "label": "Label"
@@ -262,6 +292,7 @@ The amount of data space consumed by a field depends on the field type.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+dbid | true | | Table DBID that you want to add a field to
 add_to_forms | false | false | Specifies whether the field you are adding should appear at the end of any form with form properties set to "Auto-Add new fields."
 label | true | | Name of the new field
 mode | Lookup/Formula only | | Specifies whether the field is a formula field or a lookup field (possible values for formula: 'virtual', and lookup: 'lookup')
@@ -296,7 +327,7 @@ User | userid
 ```javascript--node
 quickbase.api('API_AddField', {
   dbid: 'bddnn3uz9',
-  gid: '345889.ksld',
+  gid: 'node.ksld',
   roleid: 12
 }).then((results) => {
   // Handle results
@@ -306,7 +337,7 @@ quickbase.api('API_AddField', {
 ```
 
 ```javascript--browser
-quickbase.api('API_AddField', {
+quickbase.api('node', {
   dbid: 'bddnn3uz9',
   gid: '345889.ksld',
   roleid: 12
@@ -319,8 +350,7 @@ quickbase.api('API_AddField', {
 
 ```php
 <?php
-
-try {
+nodetry {
   $results = $quickbase->api('API_AddField', array(
     'dbid' => 'bddnn3uz9',
     'gid' => '345889.ksld',
@@ -337,144 +367,3701 @@ try {
 
 > The above returns JSON structured like this:
 
-```json
-{
+```jsonnode{
   "action": "API_AddGroupToRole",
   "errcode": 0,
   "errtext": "No error"
 }
 ```
 
-<a href='https://help.quickbase.com/api-guide/api_addgrouptorole.html' target='_blank'>Quick Base Documentation</a>
+<a href='https://help.quickbase.com/api-node/api_addgrouptorole.html' target='_blank'>Quick Base Documentation</a>
 
 Use API_AddGroupToRole to add a group to a role in an app.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 gid | true | | The id of the group
 roleid | true | | The id of the role
 
 ### API_AddRecord
 
+```javascript--node
+quickbase.api('API_AddRecord', {
+  dbid: 'bddnn3uz9',
+  fields: [
+    { fid: 6, value: 'Hello World!' }
+  ],
+  disprec: false,
+  fform: false,
+  ignoreError: false,
+  msInUTC: false
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_AddRecord', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_AddRecord', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_AddRecord",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/add_record.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_AddReplaceDBPage
+
+```javascript--node
+quickbase.api('API_AddReplaceDBPage', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_AddReplaceDBPage', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_AddReplaceDBPage array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_AddReplaceDBPage",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/add_replace_dbpage.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_AddSubGroup
 
+```javascript--node
+quickbase.api('API_AddSubGroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_AddSubGroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_AddSubGroup', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_AddSubGroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_AddSubGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_AddUserToGroup
+
+```javascript--node
+quickbase.api('API_AddUserToGroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_AddUserToGroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_AddUserToGroup', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_AddUserToGroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_AddUserToGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_AddUserToRole
 
+```javascript--node
+quickbase.api('API_AddUserToRole', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_AddUserToRole', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_AddUserToRole', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_AddUserToRole",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/add_user_to_role.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_Authenticate
+
+```javascript--node
+quickbase.api('API_Authenticate', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_Authenticate', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_Authenticate', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_Authenticate",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/authenticate.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_ChangeGroupInfo
 
+```javascript--node
+quickbase.api('API_ChangeGroupInfo', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_ChangeGroupInfo', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_ChangeGroupInfo, array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_ChangeGroupInfo",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_ChangeGroupInfo.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_ChangeManager
+
+```javascript--node
+quickbase.api('API_ChangeManager', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_ChangeManager', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_ChangeManager', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_ChangeManager",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_ChangeManager.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_ChangeRecordOwner
 
+```javascript--node
+quickbase.api('API_ChangeRecordOwner', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_ChangeRecordOwner', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_', API_ChangeRecordOwner(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_ChangeRecordOwner",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/change_record_owner.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_ChangeUserRole
+
+```javascript--node
+quickbase.api('API_ChangeUserRole', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_ChangeUserRole', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_ChangeUserRole', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_ChangeUserRole",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/change_user_role.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_CloneDatabase
 
+```javascript--node
+quickbase.api('API_CloneDatabase', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_CloneDatabase', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_CloneDatabase', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_CloneDatabase",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/clone_database.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_CopyGroup
+
+```javascript--node
+quickbase.api('API_CopyGroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_CopyGroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_CopyGroup', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_CopyGroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_CopyGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_CopyMasterDetail
 
+```javascript--node
+quickbase.api('API_CopyMasterDetail', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_CopyMasterDetail', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_CopyMasterDetail array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_CopyMasterDetail",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_CopyMasterDetail.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_CreateDatabase
+
+```javascript--node
+quickbase.api('API_CreateDatabase', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_CreateDatabase', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_CreateDatabase', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_CreateDatabase",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/create_database.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_CreateGroup
 
+```javascript--node
+quickbase.api('API_CreateGroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_CreateGroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_CreateGroup', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_CreateGroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_CreateGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_CreateTable
+
+```javascript--node
+quickbase.api('API_CreateTable', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_CreateTable', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_CreateTable', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_CreateTable",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/create_table.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_DeleteDatabase
 
+```javascript--node
+quickbase.api('API_DeleteDatabase', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_DeleteDatabase', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_DeleteDatabase', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_DeleteDatabase",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/delete_database.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_DeleteField
+
+```javascript--node
+quickbase.api('API_DeleteField', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_DeleteField', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_DeleteField', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_DeleteField",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/delete_field.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_DeleteGroup
 
+```javascript--node
+quickbase.api('API_DeleteGroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_DeleteGroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_DeleteGroup', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_DeleteGroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_DeleteGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_DeleteRecord
+
+```javascript--node
+quickbase.api('API_DeleteRecord', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_DeleteRecord', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_DeleteRecord', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_DeleteRecord",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/delete_record.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_DoQuery
 
+```javascript--node
+quickbase.api('API_DoQuery', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_DoQuery', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->API_DoQuery('API_', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_DoQuery",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/do_query.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_DoQueryCount
+
+```javascript--node
+quickbase.api('API_DoQueryCount', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_DoQueryCount', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_DoQueryCount', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_DoQueryCount",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/do_query_count.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_EditRecord
 
+```javascript--node
+quickbase.api('API_EditRecord', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_EditRecord', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_EditRecord', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_EditRecord",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/edit_record.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_FieldAddChoices
+
+```javascript--node
+quickbase.api('API_FieldAddChoices', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_FieldAddChoices', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_FieldAddChoices, array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_FieldAddChoices",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/field_add_choices.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_FieldRemoveChoices
 
+```javascript--node
+quickbase.api('API_FieldRemoveChoices', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_FieldRemoveChoices', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_', API_FieldRemoveChoices(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_FieldRemoveChoices",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/field_remove_choices.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_FindDBByName
+
+```javascript--node
+quickbase.api('API_FindDBByName', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_FindDBByName', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_FindDBByName', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_FindDBByName",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/find_db_by_name.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GenAddRecordForm
 
+```javascript--node
+quickbase.api('API_GenAddRecordForm', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GenAddRecordForm', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GenAddRecordForm array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GenAddRecordForm",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/gen_add_record_form.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GenResultsTable
+
+```javascript--node
+quickbase.api('API_GenResultsTable', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GenResultsTable', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GenResultsTable, array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GenResultsTable",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/gen_results_table.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GetAncestorInfo
 
+```javascript--node
+quickbase.api('API_GetAncestorInfo', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetAncestorInfo', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetAncestorInfo, array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetAncestorInfo",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getancestorinfo.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GetAppDTMInfo
+
+```javascript--node
+quickbase.api('API_GetAppDTMInfo', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetAppDTMInfo', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetAppDTMInfo', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetAppDTMInfo",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/get_app_dtm_info.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GetDBPage
 
+```javascript--node
+quickbase.api('API_GetDBPage', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetDBPage', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetDBPage', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetDBPage",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/get_db_info.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GetDBInfo
+
+```javascript--node
+quickbase.api('API_GetDBInfo', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetDBInfo', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetDBInfo', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetDBInfo",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/get_db_page.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GetDBVar
 
+```javascript--node
+quickbase.api('API_GetDBVar', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetDBVar', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->API_GetDBVar('API_', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetDBVar",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getdbvar.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
+### API_GetFieldProperties
+
+```javascript--node
+quickbase.api('API_GetFieldProperties', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetFieldProperties', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->API_GetFieldProperties('API_', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetFieldProperties",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_GetFieldProperties.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GetGroupRole
+
+```javascript--node
+quickbase.api('API_GetGroupRole', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetGroupRole', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetGroupRole', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetGroupRole",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_GetGroupRole.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GetNumRecords
 
+```javascript--node
+quickbase.api('API_GetNumRecords', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetNumRecords', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetNumRecords', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetNumRecords",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getnumrecords.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GetSchema
+
+```javascript--node
+quickbase.api('API_GetSchema', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetSchema', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetSchema', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetSchema",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getschema.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GetRecordAsHTML
 
+```javascript--node
+quickbase.api('API_GetRecordAsHTML', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetRecordAsHTML', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetRecordAsHTML, array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetRecordAsHTML",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getrecordashtml.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GetRecordInfo
+
+```javascript--node
+quickbase.api('API_GetRecordInfo', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetRecordInfo', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetRecordInfo', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetRecordInfo",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getrecordinfo.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GetRoleInfo
 
+```javascript--node
+quickbase.api('API_GetRoleInfo', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetRoleInfo', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetRoleInfo', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetRoleInfo",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getroleinfo.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GetUserInfo
+
+```javascript--node
+quickbase.api('API_GetUserInfo', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetUserInfo', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetUserInfo', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetUserInfo",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getuserinfo.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GetUserRole
 
+```javascript--node
+quickbase.api('API_GetUserRole', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetUserRole', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetUserRole', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetUserRole",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getuserrole.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GetUsersInGroup
+
+```javascript--node
+quickbase.api('API_GetUsersInGroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetUsersInGroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetUsersInGroup, array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetUsersInGroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_GetUsersInGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GrantedDBs
 
+```javascript--node
+quickbase.api('API_GrantedDBs', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GrantedDBs', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GrantedDBs', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GrantedDBs",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/granteddbs.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_GrantedDBsForGroup
+
+```javascript--node
+quickbase.api('API_GrantedDBsForGroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GrantedDBsForGroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_', API_GrantedDBsForGroup(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GrantedDBsForGroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_GrantedDBsForGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_GrantedGroups
 
+```javascript--node
+quickbase.api('API_GrantedGroups', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GrantedGroups', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GrantedGroups', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GrantedGroups",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_GrantedGroups.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_ImportFromCSV
+
+```javascript--node
+quickbase.api('API_ImportFromCSV', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_ImportFromCSV', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_ImportFromCSV', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_ImportFromCSV",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/importfromcsv.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_ProvisionUser
 
+```javascript--node
+quickbase.api('API_ProvisionUser', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_ProvisionUser', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_ProvisionUser', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_ProvisionUser",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/provisionuser.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_PurgeRecords
+
+```javascript--node
+quickbase.api('API_PurgeRecords', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_PurgeRecords', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_PurgeRecords', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_PurgeRecords",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/purgerecords.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_RemoveGroupFromRole
 
+```javascript--node
+quickbase.api('API_RemoveGroupFromRole', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_RemoveGroupFromRole', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_', API_RemoveGroupFromRole(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_RemoveGroupFromRole",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_RemoveGroupFromRole.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_RemoveSubgroup
+
+```javascript--node
+quickbase.api('API_RemoveSubgroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_RemoveSubgroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_RemoveSubgroup', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_RemoveSubgroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_RemoveSubgroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_RemoveUserFromGroup
 
+```javascript--node
+quickbase.api('API_RemoveUserFromGroup', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_RemoveUserFromGroup', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_', API_RemoveUserFromGroup(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_RemoveUserFromGroup",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_RemoveUserFromGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_RemoveUserFromRole
+
+```javascript--node
+quickbase.api('API_RemoveUserFromRole', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_RemoveUserFromRole', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_', API_RemoveUserFromRole(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_RemoveUserFromRole",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/removeuserfromrole.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_RenameApp
 
+```javascript--node
+quickbase.api('API_RenameApp', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_RenameApp', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_RenameApp', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_RenameApp",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/renameapp.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_RunImport
+
+```javascript--node
+quickbase.api('API_RunImport', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_RunImport', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_RunImport', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_RunImport",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/runimport.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_SendInvitation
 
+```javascript--node
+quickbase.api('API_SendInvitation', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_SendInvitation', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_SendInvitation', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_SendInvitation",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/sendinvitation.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_SetDBVar
+
+```javascript--node
+quickbase.api('API_SetDBVar', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_SetDBVar', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->API_SetDBVar('API_', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_SetDBVar",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/setdbvar.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_SetFieldProperties
 
+```javascript--node
+quickbase.api('API_SetFieldProperties', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_SetFieldProperties', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_', API_SetFieldProperties(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_SetFieldProperties",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/setfieldproperties.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_SetKeyField
+
+```javascript--node
+quickbase.api('API_SetKeyField', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_SetKeyField', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_SetKeyField', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_SetKeyField",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/setkeyfield.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 ### API_SignOut
 
+```javascript--node
+quickbase.api('API_SignOut', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_SignOut', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->API_SignOut('API_', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_SignOut",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/signout.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_UploadFile
 
+```javascript--node
+quickbase.api('API_UploadFile', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_UploadFile', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_UploadFile', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_UploadFile",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/uploadfile.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
 ### API_UserRoles
+
+```javascript--node
+quickbase.api('API_UserRoles', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_UserRoles', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_UserRoles', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_UserRoles",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/userroles.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
+### API_Webhooks_Activate
+
+```javascript--node
+quickbase.api('API_Webhooks_Activate', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_Webhooks_Activate', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_Webhooks_Activate', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_Webhooks_Activate",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_Webhooks_Activate.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
+### API_Webhooks_Copy
+
+```javascript--node
+quickbase.api('API_Webhooks_Copy', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_Webhooks_Copy', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_Webhooks_Copy', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_Webhooks_Copy",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_Webhooks_Copy.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
+### API_Webhooks_Create
+
+```javascript--node
+quickbase.api('API_Webhooks_Create', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_Webhooks_Create', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_Webhooks_Create', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_Webhooks_Create",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_Webhooks_Create.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
+### API_Webhooks_Delete
+
+```javascript--node
+quickbase.api('API_Webhooks_Delete', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_Webhooks_Delete', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_Webhooks_Delete', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_Webhooks_Delete",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_Webhooks_Delete.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
+### API_Webhooks_Deactivate
+
+```javascript--node
+quickbase.api('API_Webhooks_Deactivate', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_Webhooks_Deactivate', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_Webhooks_Deactivate', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_Webhooks_Deactivate",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_Webhooks_Deactivate.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
+### API_Webhooks_Edit
+
+```javascript--node
+quickbase.api('API_Webhooks_Edit', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_Webhooks_Edit', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_Webhooks_Edit', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_Webhooks_Edit",
+  "errcode": 0,
+  "errtext": "No error"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/API_Webhooks_Edit.html' target='_blank'>Quick Base Documentation</a>
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
 
 # QBRecord
 
