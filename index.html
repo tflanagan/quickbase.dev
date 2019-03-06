@@ -222,6 +222,19 @@
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#support" class="toc-h2 toc-link" data-title="Support">Support</a>
+                  </li>
+                  <li>
+                    <a href="#faq" class="toc-h2 toc-link" data-title="FAQ">FAQ</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#how-do-i-debug" class="toc-h3 toc-link" data-title="How do I debug?">How do I debug?</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#requirements" class="toc-h1 toc-link" data-title="Requirements">Requirements</a>
@@ -697,9 +710,25 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to quickbase.dev! This site is dedicated to providing information on how to navigate Quick Base&#39;s API.</p>
 
-<p>We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>The featured libraries are all designed to be flexible, portable, easy, and fun to use. We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>All the featured libraries are hosted on GitHub and are open and welcome to submissions.</p>
+
+<p>Additionally, all the featured libraries are available for use under their respective <a href='http://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache-2.0 licenses</a> found in each respective repository.</p>
 
 <p>We are continually trying to improve the information available! Please feel free to submit an issue or a pull request to help us improve!</p>
+<h2 id='support'>Support</h2>
+<p>The featured libraries are open-source projects open and welcome to all submissions.</p>
+
+<p>Please keep all support requests to their respective GitHub repositories. For example, for a PHP issue please do not open an issue in the node repository, open it in the PHP repository.</p>
+<h2 id='faq'>FAQ</h2><h4 id='how-do-i-debug'>How do I debug?</h4>
+<p>In JavaScript, the libraries make good use of the <code>debug</code> library.</p>
+
+<p>If you are in the browser, to engage the debug functionality, open your developer tools console and enter <code>window.localStorage.debug = &#39;*&#39;;</code>. Then refresh the page. Any API calls will now be logged directly to the console so you know exactly what is being sent to Quick Base and what is being sent back.</p>
+
+<p>If you are use Nodejs, you&#39;ll have to set the DEBUG environment variable, for Windows <code>SET DEBUG=*</code>, for unix based systems <code>DEBUG=*</code>. Any API calls will now be logged directly to stdout so you know exactly what is being sent to Quick Base and what is being sent back.</p>
+
+<p>In PHP, the library has a very rudamentary system. If you set the <code>QuickBase</code> instance public property <code>debug</code> to <code>true</code>, then the library will <code>var_dump</code> all outgoing requests, but not incoming responses. You can accomplish the same feat by <code>var_dump</code>&#39;ing the result of your <code>api()</code> method call.</p>
 <h1 id='requirements'>Requirements</h1>
 <p>Below are the requirements for various platforms.</p>
 
