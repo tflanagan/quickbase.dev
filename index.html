@@ -708,7 +708,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to quickbase.dev! This site is dedicated to providing information on how to navigate Quick Base&#39;s API.</p>
+<p>Welcome to quickbase.dev! This site is dedicated to providing information and help on how to navigate Quick Base&#39;s API.</p>
 
 <p>The featured libraries are all designed to be flexible, portable, easy, and fun to use. We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
@@ -728,9 +728,13 @@
 <span class="c1">// $ DEBUG=* node path/to/script.js</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">debug</span> <span class="o">=</span> <span class="s1">'*'</span><span class="p">;</span>
 <span class="nb">window</span><span class="p">.</span><span class="nx">reload</span><span class="p">();</span> <span class="c1">// You have to refresh for the changes to take hold</span>
-</code></pre><pre class="highlight php tab-php"><code>$quickbase = new \QuickBase\QuickBase(array( ... ));
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
-$quickbase-&gt;debug = true;
+<span class="nv">$quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\QuickBase\QuickBase</span><span class="p">(</span><span class="k">array</span><span class="p">(</span> <span class="o">...</span> <span class="p">));</span>
+
+<span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">debug</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="cp">?&gt;</span>
 </code></pre>
 <p>In JavaScript, the libraries make good use of the <code>debug</code> library.</p>
 
