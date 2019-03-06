@@ -37,7 +37,7 @@ Please keep all support requests to their respective GitHub repositories. For ex
 
 ## FAQ
 
-#### How do I debug?
+### How do I debug?
 
 In JavaScript, the libraries make good use of the `debug` library.
 
