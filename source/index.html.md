@@ -21,9 +21,31 @@ search: true
 
 Welcome to quickbase.dev! This site is dedicated to providing information on how to navigate Quick Base's API.
 
-We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The featured libraries are all designed to be flexible, portable, easy, and fun to use. We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
+All the featured libraries are hosted on GitHub and are open and welcome to submissions.
+
+Additionally, all the featured libraries are available for use under their respective <a href='http://www.apache.org/licenses/LICENSE-2.0' target='_blank'>Apache-2.0 licenses</a> found in each respective repository.
 
 We are continually trying to improve the information available! Please feel free to submit an issue or a pull request to help us improve!
+
+## Support
+
+The featured libraries are open-source projects open and welcome to all submissions.
+
+Please keep all support requests to their respective GitHub repositories. For example, for a PHP issue please do not open an issue in the node repository, open it in the PHP repository.
+
+## FAQ
+
+#### How do I debug?
+
+In JavaScript, the libraries make good use of the `debug` library.
+
+If you are in the browser, to engage the debug functionality, open your developer tools console and enter `window.localStorage.debug = '*';`. Then refresh the page. Any API calls will now be logged directly to the console so you know exactly what is being sent to Quick Base and what is being sent back.
+
+If you are use Nodejs, you'll have to set the DEBUG environment variable, for Windows `SET DEBUG=*`, for unix based systems `DEBUG=*`. Any API calls will now be logged directly to stdout so you know exactly what is being sent to Quick Base and what is being sent back.
+
+In PHP, the library has a very rudamentary system. If you set the `QuickBase` instance public property `debug` to `true`, then the library will `var_dump` all outgoing requests, but not incoming responses. You can accomplish the same feat by `var_dump`'ing the result of your `api()` method call.
 
 # Requirements
 
