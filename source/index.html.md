@@ -47,7 +47,7 @@ Please keep all support requests to their respective GitHub repositories. For ex
 // $ DEBUG=* node path/to/script.js
 ```
 
-```javascript-browser
+```javascript--browser
 window.localStorage.debug = '*';
 window.reload(); // You have to refresh for the changes to take hold
 ```
