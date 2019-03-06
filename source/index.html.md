@@ -39,6 +39,25 @@ Please keep all support requests to their respective GitHub repositories. For ex
 
 ### How do I debug?
 
+```javascript--node
+// Windows
+// $ SET DEBUG=* && node path/to/script.js
+
+// Unix
+// $ DEBUG=* node path/to/script.js
+```
+
+```javascript-browser
+window.localStorage.debug = '*';
+window.reload(); // You have to refresh for the changes to take hold
+```
+
+```php
+$quickbase = new \QuickBase\QuickBase(array( ... ));
+
+$quickbase->debug = true;
+```
+
 In JavaScript, the libraries make good use of the `debug` library.
 
 If you are in the browser, to engage the debug functionality, open your developer tools console and enter `window.localStorage.debug = '*';`. Then refresh the page. Any API calls will now be logged directly to the console so you know exactly what is being sent to Quick Base and what is being sent back.
