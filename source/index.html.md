@@ -43,10 +43,10 @@ Please keep all support requests to their respective GitHub repositories. For ex
 
 ```javascript--node
 // Windows
-// $ SET DEBUG=* && node path/to/script.js
+$ SET DEBUG=* && node path/to/script.js
 
 // Unix
-// $ DEBUG=* node path/to/script.js
+$ DEBUG=* node path/to/script.js
 ```
 
 ```javascript--browser
