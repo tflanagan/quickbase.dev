@@ -237,6 +237,11 @@
                   </li>
                   <li>
                     <a href="#making-an-api-call" class="toc-h2 toc-link" data-title="Making an API Call">Making an API Call</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#api-action-options" class="toc-h3 toc-link" data-title="<code>.api(action[, options])</code>"><code>.api(action[, options])</code></a>
+                          </li>
+                      </ul>
                   </li>
                   <li>
                     <a href="#quick-base-api-endpoints" class="toc-h2 toc-link" data-title="Quick Base API Endpoints">Quick Base API Endpoints</a>
@@ -680,7 +685,7 @@
 <p>Installing the Quick Base library for your desired platform requires either including the browserified version of the library in your HTML page or install it via a package manager (npm or composer).</p>
 
 <p>Including the library for use in your code depends on your platform.</p>
-<h2 id='initialization'>Initialization</h2><pre class="highlight php tab-php"><code>$qb = new \QuickBase\QuickBase(array(
+<h2 id='initialization'>Initialization</h2><pre class="highlight php tab-php"><code>$quickbase = new \QuickBase\QuickBase(array(
   'realm' =&gt; 'subdomain/realm',
   'userToken' =&gt; 'user token',
   'appToken' =&gt; 'application token',
@@ -719,24 +724,24 @@
 <tr>
 <td>realm</td>
 <td>true</td>
-<td>&#39;www&#39;</td>
+<td></td>
 <td>Quick Base Realm (or subdomain)</td>
 </tr>
 <tr>
 <td>appToken</td>
 <td>false</td>
-<td>&#39;&#39;</td>
+<td></td>
 <td>Quick Base Application Token</td>
 </tr>
 <tr>
 <td>userToken</td>
 <td>false</td>
-<td>&#39;&#39;</td>
+<td></td>
 <td>Quick Base User Token</td>
 </tr>
 <tr>
 <td>flags</td>
-<td>false</td>
+<td></td>
 <td></td>
 <td>Object containing a collection of API parameters</td>
 </tr>
@@ -749,11 +754,76 @@
 <tr>
 <td>- encoding</td>
 <td>false</td>
-<td>&#39;ISO-8859-1&#39;</td>
+<td>ISO-8859-1</td>
 <td>The encoding used to make requests to and parse responses from Quick Base</td>
 </tr>
 </tbody></table>
-<h2 id='making-an-api-call'>Making an API Call</h2><h2 id='quick-base-api-endpoints'>Quick Base API Endpoints</h2><h3 id='api_addfield'>API_AddField</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddField'</span><span class="p">,</span> <span class="p">{</span>
+<h2 id='making-an-api-call'>Making an API Call</h2>
+<p>The Quick Base librarys are built in such a way as to be as future-proof as possible. 9/10 times, a new API endpoint will automatically be supported if you&#39;re using these libraries.</p>
+
+<p>The way we accomplish this is by exposing a single method <code>.api()</code>.</p>
+<h4 id='api-action-options'><code>.api(action[, options])</code></h4><pre class="highlight php tab-php"><code>try {
+  $results = $quickbase-&gt;api('SomeAPI_Action', array(
+    'dbid' =&gt; 'bddnn3uz9',
+    'someFutureProperty' =&gt; 'lorem ipsum'
+  ));
+
+  // Handle results
+}catch(\Exception $err){
+  // Handle error
+}
+</code></pre><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'SomeAPI_Action'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">someFutureProperty</span><span class="p">:</span> <span class="s1">'lorem ipsum'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle results</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'SomeAPI_Action'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">someFutureProperty</span><span class="p">:</span> <span class="s1">'lorem ipsum'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
+  <span class="c1">// Handle results</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>true</td>
+<td></td>
+<td>The Quick Base API Action you wish to execute (ie: API_DoQuery)</td>
+</tr>
+<tr>
+<td>options</td>
+<td></td>
+<td></td>
+<td>An object containing data pertaining to your API Action</td>
+</tr>
+</tbody></table>
+<h2 id='quick-base-api-endpoints'>Quick Base API Endpoints</h2><h3 id='api_addfield'>API_AddField</h3><pre class="highlight php tab-php"><code>try {
+  $results = $quickbase-&gt;api('API_AddField', array(
+    'dbid' =&gt; 'bddnn3uz9',
+    'add_to_forms' =&gt; true,
+    'label' =&gt; 'Label',
+    'mode' =&gt; 'virtual',
+    'type' =&gt; 'formula'
+  ));
+
+  // Handle results
+}catch(\Exception $err){
+  // Handle error
+}
+</code></pre><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddField'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">add_to_forms</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">label</span><span class="p">:</span> <span class="s1">'Label'</span><span class="p">,</span>
@@ -780,11 +850,11 @@
 <p>The above returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="err">action</span><span class="p">:</span><span class="w"> </span><span class="err">'API_AddField'</span><span class="p">,</span><span class="w">
-  </span><span class="err">errcode</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="err">errtext</span><span class="p">:</span><span class="w"> </span><span class="err">'No</span><span class="w"> </span><span class="err">error'</span><span class="p">,</span><span class="w">
-  </span><span class="err">fid</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-  </span><span class="err">label</span><span class="p">:</span><span class="w"> </span><span class="err">'Label'</span><span class="w">
+  </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_AddField"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fid"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/add_field.html'>Quick Base Documentation</a></p>
