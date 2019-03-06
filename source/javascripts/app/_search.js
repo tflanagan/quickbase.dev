@@ -70,13 +70,9 @@
         return r.score > 0.0001;
       });
 
-      console.log('SEARCH', index, index.search(searchInput.value), results);
-
       if (results.length) {
         searchResults.empty();
         $.each(results, function (index, result) {
-          console.log('SEARCH RESULT', index, result);
-
           var elem = document.getElementById(result.ref);
           searchResults.append("<li><a href='#" + result.ref + "'>" + $(elem).text() + "</a></li>");
         });
