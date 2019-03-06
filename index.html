@@ -643,9 +643,9 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a></li>
+            <li><a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a></li>
             <li><a href='https://github.com/lord/slate' target='_blank'>Documentation Powered by Slate</a></li>
-            <li>Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a></li>
+            <li>Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -784,7 +784,7 @@ This library makes API calls asychronously. As Quick Base cannot support n numbe
 If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
 </aside>
 
-<p>The way we accomplish this is by exposing a single method <code>.api()</code>.</p>
+<p>The way we accomplish this is by exposing a single method <code>api()</code>.</p>
 <h4 id='api-action-options'><code>.api(action[, options])</code></h4><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'SomeAPI_Action'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">someFutureProperty</span><span class="p">:</span> <span class="s1">'lorem ipsum'</span>
@@ -810,7 +810,7 @@ If your application experiences a normal traffic rate that is higher than averag
   <span class="p">));</span>
 
   <span class="c1">// Handle results
-</span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$err</span><span class="p">){</span>
+</span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$error</span><span class="p">){</span>
   <span class="c1">// Handle error
 </span><span class="p">}</span>
 
@@ -837,6 +837,10 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>An object containing data pertaining to your API Action</td>
 </tr>
 </tbody></table>
+
+<p>In JavaScript, the <code>api()</code> method returns a Promise, powered by <a href='http://bluebirdjs.com/docs/getting-started.html' target='_blank'>bluebirdjs</a>. If an error occurs during the request, you can handle the error by using <code>catch()</code>. Otherwise, you can continue processing with the results passed into a <code>then()</code>.</p>
+
+<p>In PHP, the <code>api()</code> method returns the resulting JSON object from the API call. If an error occurs, it will be thrown and needs to be caught with a <code>try/catch</code> statement.</p>
 <h2 id='quick-base-api-endpoints'>Quick Base API Endpoints</h2>
 <p>The following is a list of Quick Base API Endpoints mostly compiled from Quick Base&#39;s own help section.</p>
 
@@ -877,7 +881,7 @@ If your application experiences a normal traffic rate that is higher than averag
   <span class="p">));</span>
 
   <span class="c1">// Handle results
-</span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$err</span><span class="p">){</span>
+</span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$error</span><span class="p">){</span>
   <span class="c1">// Handle error
 </span><span class="p">}</span>
 
