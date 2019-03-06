@@ -51,7 +51,7 @@ Please keep all support requests to their respective GitHub repositories. For ex
 
 ```javascript--browser
 window.localStorage.debug = '*';
-window.reload(); // You have to refresh for the changes to take hold
+window.location.reload(); // You have to refresh for the changes to take hold
 ```
 
 ```php
