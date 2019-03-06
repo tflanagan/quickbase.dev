@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;,&quot;javascript--node&quot;,&quot;javascript--browser&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -213,7 +213,8 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="php">php</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="javascript--node">javascript--node</a>
+              <a href="#" data-language-name="javascript--browser">javascript--browser</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -227,10 +228,16 @@
             <a href="#quickbase" class="toc-h1 toc-link" data-title="QuickBase">QuickBase</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#initiation" class="toc-h2 toc-link" data-title="Initiation">Initiation</a>
+                    <a href="#installation-amp-loading" class="toc-h2 toc-link" data-title="Installation &amp; Loading">Installation &amp; Loading</a>
                   </li>
                   <li>
-                    <a href="#api" class="toc-h2 toc-link" data-title="api">api</a>
+                    <a href="#initialization" class="toc-h2 toc-link" data-title="Initialization">Initialization</a>
+                  </li>
+                  <li>
+                    <a href="#making-an-api-call" class="toc-h2 toc-link" data-title="Making an API Call">Making an API Call</a>
+                  </li>
+                  <li>
+                    <a href="#quick-base-api-endpoints" class="toc-h2 toc-link" data-title="Quick Base API Endpoints">Quick Base API Endpoints</a>
                       <ul class="toc-list-h3">
                           <li>
                             <a href="#api_addfield" class="toc-h3 toc-link" data-title="API_AddField">API_AddField</a>
@@ -429,58 +436,63 @@
             <a href="#qbrecord" class="toc-h1 toc-link" data-title="QBRecord">QBRecord</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#initiation-2" class="toc-h2 toc-link" data-title="Initiation">Initiation</a>
+                    <a href="#initialization-2" class="toc-h2 toc-link" data-title="Initialization">Initialization</a>
                   </li>
                   <li>
-                    <a href="#clear" class="toc-h2 toc-link" data-title="clear">clear</a>
-                  </li>
-                  <li>
-                    <a href="#delete" class="toc-h2 toc-link" data-title="delete">delete</a>
-                  </li>
-                  <li>
-                    <a href="#get" class="toc-h2 toc-link" data-title="get">get</a>
-                  </li>
-                  <li>
-                    <a href="#getdbid" class="toc-h2 toc-link" data-title="getDBID">getDBID</a>
-                  </li>
-                  <li>
-                    <a href="#getfid" class="toc-h2 toc-link" data-title="getFid">getFid</a>
-                  </li>
-                  <li>
-                    <a href="#getfids" class="toc-h2 toc-link" data-title="getFids">getFids</a>
-                  </li>
-                  <li>
-                    <a href="#getfield" class="toc-h2 toc-link" data-title="getField">getField</a>
-                  </li>
-                  <li>
-                    <a href="#getfields" class="toc-h2 toc-link" data-title="getFields">getFields</a>
-                  </li>
-                  <li>
-                    <a href="#gettablename" class="toc-h2 toc-link" data-title="getTableName">getTableName</a>
-                  </li>
-                  <li>
-                    <a href="#load" class="toc-h2 toc-link" data-title="load">load</a>
-                  </li>
-                  <li>
-                    <a href="#loadschema" class="toc-h2 toc-link" data-title="loadSchema">loadSchema</a>
-                  </li>
-                  <li>
-                    <a href="#save" class="toc-h2 toc-link" data-title="save">save</a>
-                  </li>
-                  <li>
-                    <a href="#set" class="toc-h2 toc-link" data-title="set">set</a>
-                  </li>
-                  <li>
-                    <a href="#setdbid" class="toc-h2 toc-link" data-title="setDBID">setDBID</a>
-                  </li>
-                  <li>
-                    <a href="#setfid" class="toc-h2 toc-link" data-title="setFid">setFid</a>
-                  </li>
-                  <li>
-                    <a href="#setfids" class="toc-h2 toc-link" data-title="setFids">setFids</a>
-                  </li>
-                  <li>
-                    <a href="#tojson" class="toc-h2 toc-link" data-title="toJson">toJson</a>
+                    <a href="#instance-methods" class="toc-h2 toc-link" data-title="Instance Methods">Instance Methods</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#clear" class="toc-h3 toc-link" data-title="clear">clear</a>
+                          </li>
+                          <li>
+                            <a href="#delete" class="toc-h3 toc-link" data-title="delete">delete</a>
+                          </li>
+                          <li>
+                            <a href="#get" class="toc-h3 toc-link" data-title="get">get</a>
+                          </li>
+                          <li>
+                            <a href="#getdbid" class="toc-h3 toc-link" data-title="getDBID">getDBID</a>
+                          </li>
+                          <li>
+                            <a href="#getfid" class="toc-h3 toc-link" data-title="getFid">getFid</a>
+                          </li>
+                          <li>
+                            <a href="#getfids" class="toc-h3 toc-link" data-title="getFids">getFids</a>
+                          </li>
+                          <li>
+                            <a href="#getfield" class="toc-h3 toc-link" data-title="getField">getField</a>
+                          </li>
+                          <li>
+                            <a href="#getfields" class="toc-h3 toc-link" data-title="getFields">getFields</a>
+                          </li>
+                          <li>
+                            <a href="#gettablename" class="toc-h3 toc-link" data-title="getTableName">getTableName</a>
+                          </li>
+                          <li>
+                            <a href="#load" class="toc-h3 toc-link" data-title="load">load</a>
+                          </li>
+                          <li>
+                            <a href="#loadschema" class="toc-h3 toc-link" data-title="loadSchema">loadSchema</a>
+                          </li>
+                          <li>
+                            <a href="#save" class="toc-h3 toc-link" data-title="save">save</a>
+                          </li>
+                          <li>
+                            <a href="#set" class="toc-h3 toc-link" data-title="set">set</a>
+                          </li>
+                          <li>
+                            <a href="#setdbid" class="toc-h3 toc-link" data-title="setDBID">setDBID</a>
+                          </li>
+                          <li>
+                            <a href="#setfid" class="toc-h3 toc-link" data-title="setFid">setFid</a>
+                          </li>
+                          <li>
+                            <a href="#setfids" class="toc-h3 toc-link" data-title="setFids">setFids</a>
+                          </li>
+                          <li>
+                            <a href="#tojson" class="toc-h3 toc-link" data-title="toJson">toJson</a>
+                          </li>
+                      </ul>
                   </li>
               </ul>
           </li>
@@ -488,163 +500,135 @@
             <a href="#qbtable" class="toc-h1 toc-link" data-title="QBTable">QBTable</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#clear-2" class="toc-h2 toc-link" data-title="clear">clear</a>
+                    <a href="#initialization-3" class="toc-h2 toc-link" data-title="Initialization">Initialization</a>
                   </li>
                   <li>
-                    <a href="#deleterecord" class="toc-h2 toc-link" data-title="deleteRecord">deleteRecord</a>
-                  </li>
-                  <li>
-                    <a href="#deleterecords" class="toc-h2 toc-link" data-title="deleteRecords">deleteRecords</a>
-                  </li>
-                  <li>
-                    <a href="#getappid" class="toc-h2 toc-link" data-title="getAppID">getAppID</a>
-                  </li>
-                  <li>
-                    <a href="#getdateformat" class="toc-h2 toc-link" data-title="getDateFormat">getDateFormat</a>
-                  </li>
-                  <li>
-                    <a href="#getdbid-2" class="toc-h2 toc-link" data-title="getDBID">getDBID</a>
-                  </li>
-                  <li>
-                    <a href="#getchildtables" class="toc-h2 toc-link" data-title="getChildTables">getChildTables</a>
-                  </li>
-                  <li>
-                    <a href="#getfid-2" class="toc-h2 toc-link" data-title="getFid">getFid</a>
-                  </li>
-                  <li>
-                    <a href="#getfids-2" class="toc-h2 toc-link" data-title="getFids">getFids</a>
-                  </li>
-                  <li>
-                    <a href="#getfield-2" class="toc-h2 toc-link" data-title="getField">getField</a>
-                  </li>
-                  <li>
-                    <a href="#getfields-2" class="toc-h2 toc-link" data-title="getFields">getFields</a>
-                  </li>
-                  <li>
-                    <a href="#getnrecords" class="toc-h2 toc-link" data-title="getNRecords">getNRecords</a>
-                  </li>
-                  <li>
-                    <a href="#getoptions" class="toc-h2 toc-link" data-title="getOptions">getOptions</a>
-                  </li>
-                  <li>
-                    <a href="#getplural" class="toc-h2 toc-link" data-title="getPlural">getPlural</a>
-                  </li>
-                  <li>
-                    <a href="#getqueries" class="toc-h2 toc-link" data-title="getQueries">getQueries</a>
-                  </li>
-                  <li>
-                    <a href="#getquery" class="toc-h2 toc-link" data-title="getQuery">getQuery</a>
-                  </li>
-                  <li>
-                    <a href="#getrecord" class="toc-h2 toc-link" data-title="getRecord">getRecord</a>
-                  </li>
-                  <li>
-                    <a href="#getrecords" class="toc-h2 toc-link" data-title="getRecords">getRecords</a>
-                  </li>
-                  <li>
-                    <a href="#getsingular" class="toc-h2 toc-link" data-title="getSingular">getSingular</a>
-                  </li>
-                  <li>
-                    <a href="#getslist" class="toc-h2 toc-link" data-title="getSList">getSList</a>
-                  </li>
-                  <li>
-                    <a href="#gettablename-2" class="toc-h2 toc-link" data-title="getTableName">getTableName</a>
-                  </li>
-                  <li>
-                    <a href="#gettimezone" class="toc-h2 toc-link" data-title="getTimezone">getTimezone</a>
-                  </li>
-                  <li>
-                    <a href="#getvariable" class="toc-h2 toc-link" data-title="getVariable">getVariable</a>
-                  </li>
-                  <li>
-                    <a href="#getvariables" class="toc-h2 toc-link" data-title="getVariables">getVariables</a>
-                  </li>
-                  <li>
-                    <a href="#load-2" class="toc-h2 toc-link" data-title="load">load</a>
-                  </li>
-                  <li>
-                    <a href="#_load" class="toc-h2 toc-link" data-title="_load">_load</a>
-                  </li>
-                  <li>
-                    <a href="#loadnrecords" class="toc-h2 toc-link" data-title="loadNRecords">loadNRecords</a>
-                  </li>
-                  <li>
-                    <a href="#loadschema-2" class="toc-h2 toc-link" data-title="loadSchema">loadSchema</a>
-                  </li>
-                  <li>
-                    <a href="#save-2" class="toc-h2 toc-link" data-title="save">save</a>
-                  </li>
-                  <li>
-                    <a href="#setdbid-2" class="toc-h2 toc-link" data-title="setDBID">setDBID</a>
-                  </li>
-                  <li>
-                    <a href="#setfid-2" class="toc-h2 toc-link" data-title="setFid">setFid</a>
-                  </li>
-                  <li>
-                    <a href="#setfids-2" class="toc-h2 toc-link" data-title="setFids">setFids</a>
-                  </li>
-                  <li>
-                    <a href="#setoptions" class="toc-h2 toc-link" data-title="setOptions">setOptions</a>
-                  </li>
-                  <li>
-                    <a href="#setquery" class="toc-h2 toc-link" data-title="setQuery">setQuery</a>
-                  </li>
-                  <li>
-                    <a href="#setslist" class="toc-h2 toc-link" data-title="setSList">setSList</a>
-                  </li>
-                  <li>
-                    <a href="#tojson-2" class="toc-h2 toc-link" data-title="toJson">toJson</a>
-                  </li>
-                  <li>
-                    <a href="#upsertrecord" class="toc-h2 toc-link" data-title="upsertRecord">upsertRecord</a>
-                  </li>
-                  <li>
-                    <a href="#upsertrecords" class="toc-h2 toc-link" data-title="upsertRecords">upsertRecords</a>
-                  </li>
-                  <li>
-                    <a href="#newrecord" class="toc-h2 toc-link" data-title="NewRecord">NewRecord</a>
-                  </li>
-                  <li>
-                    <a href="#newrecords" class="toc-h2 toc-link" data-title="NewRecords">NewRecords</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#instance-methods-2" class="toc-h2 toc-link" data-title="Instance Methods">Instance Methods</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#http-request" class="toc-h3 toc-link" data-title="HTTP Request">HTTP Request</a>
+                            <a href="#clear-2" class="toc-h3 toc-link" data-title="clear">clear</a>
                           </li>
                           <li>
-                            <a href="#query-parameters" class="toc-h3 toc-link" data-title="Query Parameters">Query Parameters</a>
+                            <a href="#deleterecord" class="toc-h3 toc-link" data-title="deleteRecord">deleteRecord</a>
+                          </li>
+                          <li>
+                            <a href="#deleterecords" class="toc-h3 toc-link" data-title="deleteRecords">deleteRecords</a>
+                          </li>
+                          <li>
+                            <a href="#getappid" class="toc-h3 toc-link" data-title="getAppID">getAppID</a>
+                          </li>
+                          <li>
+                            <a href="#getdateformat" class="toc-h3 toc-link" data-title="getDateFormat">getDateFormat</a>
+                          </li>
+                          <li>
+                            <a href="#getdbid-2" class="toc-h3 toc-link" data-title="getDBID">getDBID</a>
+                          </li>
+                          <li>
+                            <a href="#getchildtables" class="toc-h3 toc-link" data-title="getChildTables">getChildTables</a>
+                          </li>
+                          <li>
+                            <a href="#getfid-2" class="toc-h3 toc-link" data-title="getFid">getFid</a>
+                          </li>
+                          <li>
+                            <a href="#getfids-2" class="toc-h3 toc-link" data-title="getFids">getFids</a>
+                          </li>
+                          <li>
+                            <a href="#getfield-2" class="toc-h3 toc-link" data-title="getField">getField</a>
+                          </li>
+                          <li>
+                            <a href="#getfields-2" class="toc-h3 toc-link" data-title="getFields">getFields</a>
+                          </li>
+                          <li>
+                            <a href="#getnrecords" class="toc-h3 toc-link" data-title="getNRecords">getNRecords</a>
+                          </li>
+                          <li>
+                            <a href="#getoptions" class="toc-h3 toc-link" data-title="getOptions">getOptions</a>
+                          </li>
+                          <li>
+                            <a href="#getplural" class="toc-h3 toc-link" data-title="getPlural">getPlural</a>
+                          </li>
+                          <li>
+                            <a href="#getqueries" class="toc-h3 toc-link" data-title="getQueries">getQueries</a>
+                          </li>
+                          <li>
+                            <a href="#getquery" class="toc-h3 toc-link" data-title="getQuery">getQuery</a>
+                          </li>
+                          <li>
+                            <a href="#getrecord" class="toc-h3 toc-link" data-title="getRecord">getRecord</a>
+                          </li>
+                          <li>
+                            <a href="#getrecords" class="toc-h3 toc-link" data-title="getRecords">getRecords</a>
+                          </li>
+                          <li>
+                            <a href="#getsingular" class="toc-h3 toc-link" data-title="getSingular">getSingular</a>
+                          </li>
+                          <li>
+                            <a href="#getslist" class="toc-h3 toc-link" data-title="getSList">getSList</a>
+                          </li>
+                          <li>
+                            <a href="#gettablename-2" class="toc-h3 toc-link" data-title="getTableName">getTableName</a>
+                          </li>
+                          <li>
+                            <a href="#gettimezone" class="toc-h3 toc-link" data-title="getTimezone">getTimezone</a>
+                          </li>
+                          <li>
+                            <a href="#getvariable" class="toc-h3 toc-link" data-title="getVariable">getVariable</a>
+                          </li>
+                          <li>
+                            <a href="#getvariables" class="toc-h3 toc-link" data-title="getVariables">getVariables</a>
+                          </li>
+                          <li>
+                            <a href="#load-2" class="toc-h3 toc-link" data-title="load">load</a>
+                          </li>
+                          <li>
+                            <a href="#_load" class="toc-h3 toc-link" data-title="_load">_load</a>
+                          </li>
+                          <li>
+                            <a href="#loadnrecords" class="toc-h3 toc-link" data-title="loadNRecords">loadNRecords</a>
+                          </li>
+                          <li>
+                            <a href="#loadschema-2" class="toc-h3 toc-link" data-title="loadSchema">loadSchema</a>
+                          </li>
+                          <li>
+                            <a href="#save-2" class="toc-h3 toc-link" data-title="save">save</a>
+                          </li>
+                          <li>
+                            <a href="#setdbid-2" class="toc-h3 toc-link" data-title="setDBID">setDBID</a>
+                          </li>
+                          <li>
+                            <a href="#setfid-2" class="toc-h3 toc-link" data-title="setFid">setFid</a>
+                          </li>
+                          <li>
+                            <a href="#setfids-2" class="toc-h3 toc-link" data-title="setFids">setFids</a>
+                          </li>
+                          <li>
+                            <a href="#setoptions" class="toc-h3 toc-link" data-title="setOptions">setOptions</a>
+                          </li>
+                          <li>
+                            <a href="#setquery" class="toc-h3 toc-link" data-title="setQuery">setQuery</a>
+                          </li>
+                          <li>
+                            <a href="#setslist" class="toc-h3 toc-link" data-title="setSList">setSList</a>
+                          </li>
+                          <li>
+                            <a href="#tojson-2" class="toc-h3 toc-link" data-title="toJson">toJson</a>
+                          </li>
+                          <li>
+                            <a href="#upsertrecord" class="toc-h3 toc-link" data-title="upsertRecord">upsertRecord</a>
+                          </li>
+                          <li>
+                            <a href="#upsertrecords" class="toc-h3 toc-link" data-title="upsertRecords">upsertRecords</a>
                           </li>
                       </ul>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#static-methods" class="toc-h2 toc-link" data-title="Static Methods">Static Methods</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#http-request-2" class="toc-h3 toc-link" data-title="HTTP Request">HTTP Request</a>
+                            <a href="#newrecord" class="toc-h3 toc-link" data-title="NewRecord">NewRecord</a>
                           </li>
                           <li>
-                            <a href="#url-parameters" class="toc-h3 toc-link" data-title="URL Parameters">URL Parameters</a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#http-request-3" class="toc-h3 toc-link" data-title="HTTP Request">HTTP Request</a>
-                          </li>
-                          <li>
-                            <a href="#url-parameters-2" class="toc-h3 toc-link" data-title="URL Parameters">URL Parameters</a>
+                            <a href="#newrecords" class="toc-h3 toc-link" data-title="NewRecords">NewRecords</a>
                           </li>
                       </ul>
                   </li>
@@ -669,180 +653,91 @@
 <p>We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
 <p>We are continually trying to improve the information available! Please feel free to submit an issue or a pull request to help us improve!</p>
-<h1 id='quickbase'>QuickBase</h1><h2 id='initiation'>Initiation</h2><h2 id='api'>api</h2><h3 id='api_addfield'>API_AddField</h3><h3 id='api_addgrouptorole'>API_AddGroupToRole</h3><h3 id='api_addrecord'>API_AddRecord</h3><h3 id='api_addreplacedbpage'>API_AddReplaceDBPage</h3><h3 id='api_addsubgroup'>API_AddSubGroup</h3><h3 id='api_addusertogroup'>API_AddUserToGroup</h3><h3 id='api_addusertorole'>API_AddUserToRole</h3><h3 id='api_authenticate'>API_Authenticate</h3><h3 id='api_changegroupinfo'>API_ChangeGroupInfo</h3><h3 id='api_changemanager'>API_ChangeManager</h3><h3 id='api_changerecordowner'>API_ChangeRecordOwner</h3><h3 id='api_changeuserrole'>API_ChangeUserRole</h3><h3 id='api_clonedatabase'>API_CloneDatabase</h3><h3 id='api_copygroup'>API_CopyGroup</h3><h3 id='api_copymasterdetail'>API_CopyMasterDetail</h3><h3 id='api_createdatabase'>API_CreateDatabase</h3><h3 id='api_creategroup'>API_CreateGroup</h3><h3 id='api_createtable'>API_CreateTable</h3><h3 id='api_deletedatabase'>API_DeleteDatabase</h3><h3 id='api_deletefield'>API_DeleteField</h3><h3 id='api_deletegroup'>API_DeleteGroup</h3><h3 id='api_deleterecord'>API_DeleteRecord</h3><h3 id='api_doquery'>API_DoQuery</h3><h3 id='api_doquerycount'>API_DoQueryCount</h3><h3 id='api_editrecord'>API_EditRecord</h3><h3 id='api_fieldaddchoices'>API_FieldAddChoices</h3><h3 id='api_fieldremovechoices'>API_FieldRemoveChoices</h3><h3 id='api_finddbbyname'>API_FindDBByName</h3><h3 id='api_genaddrecordform'>API_GenAddRecordForm</h3><h3 id='api_genresultstable'>API_GenResultsTable</h3><h3 id='api_getancestorinfo'>API_GetAncestorInfo</h3><h3 id='api_getappdtminfo'>API_GetAppDTMInfo</h3><h3 id='api_getdbpage'>API_GetDBPage</h3><h3 id='api_getdbinfo'>API_GetDBInfo</h3><h3 id='api_getdbvar'>API_GetDBVar</h3><h3 id='api_getgrouprole'>API_GetGroupRole</h3><h3 id='api_getnumrecords'>API_GetNumRecords</h3><h3 id='api_getschema'>API_GetSchema</h3><h3 id='api_getrecordashtml'>API_GetRecordAsHTML</h3><h3 id='api_getrecordinfo'>API_GetRecordInfo</h3><h3 id='api_getroleinfo'>API_GetRoleInfo</h3><h3 id='api_getuserinfo'>API_GetUserInfo</h3><h3 id='api_getuserrole'>API_GetUserRole</h3><h3 id='api_getusersingroup'>API_GetUsersInGroup</h3><h3 id='api_granteddbs'>API_GrantedDBs</h3><h3 id='api_granteddbsforgroup'>API_GrantedDBsForGroup</h3><h3 id='api_grantedgroups'>API_GrantedGroups</h3><h3 id='api_importfromcsv'>API_ImportFromCSV</h3><h3 id='api_provisionuser'>API_ProvisionUser</h3><h3 id='api_purgerecords'>API_PurgeRecords</h3><h3 id='api_removegroupfromrole'>API_RemoveGroupFromRole</h3><h3 id='api_removesubgroup'>API_RemoveSubgroup</h3><h3 id='api_removeuserfromgroup'>API_RemoveUserFromGroup</h3><h3 id='api_removeuserfromrole'>API_RemoveUserFromRole</h3><h3 id='api_renameapp'>API_RenameApp</h3><h3 id='api_runimport'>API_RunImport</h3><h3 id='api_sendinvitation'>API_SendInvitation</h3><h3 id='api_setdbvar'>API_SetDBVar</h3><h3 id='api_setfieldproperties'>API_SetFieldProperties</h3><h3 id='api_setkeyfield'>API_SetKeyField</h3><h3 id='api_signout'>API_SignOut</h3><h3 id='api_uploadfile'>API_UploadFile</h3><h3 id='api_userroles'>API_UserRoles</h3><h1 id='qbrecord'>QBRecord</h1><h2 id='initiation-2'>Initiation</h2><h2 id='clear'>clear</h2><h2 id='delete'>delete</h2><h2 id='get'>get</h2><h2 id='getdbid'>getDBID</h2><h2 id='getfid'>getFid</h2><h2 id='getfids'>getFids</h2><h2 id='getfield'>getField</h2><h2 id='getfields'>getFields</h2><h2 id='gettablename'>getTableName</h2><h2 id='load'>load</h2><h2 id='loadschema'>loadSchema</h2><h2 id='save'>save</h2><h2 id='set'>set</h2><h2 id='setdbid'>setDBID</h2><h2 id='setfid'>setFid</h2><h2 id='setfids'>setFids</h2><h2 id='tojson'>toJson</h2><h1 id='qbtable'>QBTable</h1><h2 id='clear-2'>clear</h2><h2 id='deleterecord'>deleteRecord</h2><h2 id='deleterecords'>deleteRecords</h2><h2 id='getappid'>getAppID</h2><h2 id='getdateformat'>getDateFormat</h2><h2 id='getdbid-2'>getDBID</h2><h2 id='getchildtables'>getChildTables</h2><h2 id='getfid-2'>getFid</h2><h2 id='getfids-2'>getFids</h2><h2 id='getfield-2'>getField</h2><h2 id='getfields-2'>getFields</h2><h2 id='getnrecords'>getNRecords</h2><h2 id='getoptions'>getOptions</h2><h2 id='getplural'>getPlural</h2><h2 id='getqueries'>getQueries</h2><h2 id='getquery'>getQuery</h2><h2 id='getrecord'>getRecord</h2><h2 id='getrecords'>getRecords</h2><h2 id='getsingular'>getSingular</h2><h2 id='getslist'>getSList</h2><h2 id='gettablename-2'>getTableName</h2><h2 id='gettimezone'>getTimezone</h2><h2 id='getvariable'>getVariable</h2><h2 id='getvariables'>getVariables</h2><h2 id='load-2'>load</h2><h2 id='_load'>_load</h2><h2 id='loadnrecords'>loadNRecords</h2><h2 id='loadschema-2'>loadSchema</h2><h2 id='save-2'>save</h2><h2 id='setdbid-2'>setDBID</h2><h2 id='setfid-2'>setFid</h2><h2 id='setfids-2'>setFids</h2><h2 id='setoptions'>setOptions</h2><h2 id='setquery'>setQuery</h2><h2 id='setslist'>setSList</h2><h2 id='tojson-2'>toJson</h2><h2 id='upsertrecord'>upsertRecord</h2><h2 id='upsertrecords'>upsertRecords</h2><h2 id='newrecord'>NewRecord</h2><h2 id='newrecords'>NewRecords</h2><h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='quickbase'>QuickBase</h1><h2 id='installation-amp-loading'>Installation &amp; Loading</h2>
+<p>Installing the Quick Base library for your desired platform requires either including the browserified version of the library in your HTML page or install it via a package manager (npm or composer).</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Including the library for use in your code depends on your platform.</p>
+<pre class="highlight php tab-php"><code>// $ composer require tflanagan/quickbase
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+require_once(__DIR__.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php');
+</code></pre><pre class="highlight javascript tab-javascript--node"><code><span class="c1">// $ npm install --save quickbase</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<span class="kr">const</span> <span class="nx">QuickBase</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'quickbase'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="c1">// &lt;script type="text/javascript" src="quickbase.browserify.min.js"&gt;&lt;/script&gt;</span>
+</code></pre><h2 id='initialization'>Initialization</h2>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Required</th>
 <th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
+<td>realm</td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>&#39;www&#39;</td>
+<td>Quick Base Realm (or subdomain)</td>
+</tr>
+<tr>
+<td>useSSL</td>
+<td>false</td>
+<td>true</td>
+<td>Use HTTPS or HTTP when communicating with Quick Base</td>
+</tr>
+<tr>
+<td>appToken</td>
+<td>false</td>
+<td>&#39;&#39;</td>
+<td>Quick Base Application Token</td>
+</tr>
+<tr>
+<td>userToken</td>
+<td>false</td>
+<td>&#39;&#39;</td>
+<td>Quick Base User Token</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>false</td>
+<td></td>
+<td>Object containing a collection of API parameters</td>
+</tr>
+<tr>
+<td>- useXML</td>
+<td>false</td>
+<td>true</td>
+<td>Send API requests via <code>POST</code> or <code>GET</code></td>
+</tr>
+<tr>
+<td>- msInUTC</td>
+<td>false</td>
+<td>true</td>
+<td>Interpret all timestamps as milliseconds in UTC rather than using the local application time</td>
+</tr>
+<tr>
+<td>- encoding</td>
+<td>false</td>
+<td>&#39;ISO-8859-1&#39;</td>
+<td>The encoding used to make requests to and parse responses from Quick Base</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
+<pre class="highlight php tab-php"><code>$qb = new \QuickBase\QuickBase(array(
+  'realm' =&gt; 'subdomain/realm',
+  'userToken' =&gt; 'user token',
+  'appToken' =&gt; 'application token'
+));
+</code></pre><pre class="highlight javascript tab-javascript--node"><code><span class="kr">const</span> <span class="nx">quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QuickBase</span><span class="p">({</span>
+  <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
+  <span class="na">userToken</span><span class="p">:</span> <span class="s1">'user token'</span><span class="p">,</span>
+  <span class="na">appToken</span><span class="p">:</span> <span class="s1">'application token'</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="kd">var</span> <span class="nx">quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QuickBase</span><span class="p">({</span>
+  <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
+  <span class="na">userToken</span><span class="p">:</span> <span class="s1">'user token'</span><span class="p">,</span>
+  <span class="na">appToken</span><span class="p">:</span> <span class="s1">'application token'</span>
+<span class="p">});</span>
+</code></pre><h2 id='making-an-api-call'>Making an API Call</h2><h2 id='quick-base-api-endpoints'>Quick Base API Endpoints</h2><h3 id='api_addfield'>API_AddField</h3><h3 id='api_addgrouptorole'>API_AddGroupToRole</h3><h3 id='api_addrecord'>API_AddRecord</h3><h3 id='api_addreplacedbpage'>API_AddReplaceDBPage</h3><h3 id='api_addsubgroup'>API_AddSubGroup</h3><h3 id='api_addusertogroup'>API_AddUserToGroup</h3><h3 id='api_addusertorole'>API_AddUserToRole</h3><h3 id='api_authenticate'>API_Authenticate</h3><h3 id='api_changegroupinfo'>API_ChangeGroupInfo</h3><h3 id='api_changemanager'>API_ChangeManager</h3><h3 id='api_changerecordowner'>API_ChangeRecordOwner</h3><h3 id='api_changeuserrole'>API_ChangeUserRole</h3><h3 id='api_clonedatabase'>API_CloneDatabase</h3><h3 id='api_copygroup'>API_CopyGroup</h3><h3 id='api_copymasterdetail'>API_CopyMasterDetail</h3><h3 id='api_createdatabase'>API_CreateDatabase</h3><h3 id='api_creategroup'>API_CreateGroup</h3><h3 id='api_createtable'>API_CreateTable</h3><h3 id='api_deletedatabase'>API_DeleteDatabase</h3><h3 id='api_deletefield'>API_DeleteField</h3><h3 id='api_deletegroup'>API_DeleteGroup</h3><h3 id='api_deleterecord'>API_DeleteRecord</h3><h3 id='api_doquery'>API_DoQuery</h3><h3 id='api_doquerycount'>API_DoQueryCount</h3><h3 id='api_editrecord'>API_EditRecord</h3><h3 id='api_fieldaddchoices'>API_FieldAddChoices</h3><h3 id='api_fieldremovechoices'>API_FieldRemoveChoices</h3><h3 id='api_finddbbyname'>API_FindDBByName</h3><h3 id='api_genaddrecordform'>API_GenAddRecordForm</h3><h3 id='api_genresultstable'>API_GenResultsTable</h3><h3 id='api_getancestorinfo'>API_GetAncestorInfo</h3><h3 id='api_getappdtminfo'>API_GetAppDTMInfo</h3><h3 id='api_getdbpage'>API_GetDBPage</h3><h3 id='api_getdbinfo'>API_GetDBInfo</h3><h3 id='api_getdbvar'>API_GetDBVar</h3><h3 id='api_getgrouprole'>API_GetGroupRole</h3><h3 id='api_getnumrecords'>API_GetNumRecords</h3><h3 id='api_getschema'>API_GetSchema</h3><h3 id='api_getrecordashtml'>API_GetRecordAsHTML</h3><h3 id='api_getrecordinfo'>API_GetRecordInfo</h3><h3 id='api_getroleinfo'>API_GetRoleInfo</h3><h3 id='api_getuserinfo'>API_GetUserInfo</h3><h3 id='api_getuserrole'>API_GetUserRole</h3><h3 id='api_getusersingroup'>API_GetUsersInGroup</h3><h3 id='api_granteddbs'>API_GrantedDBs</h3><h3 id='api_granteddbsforgroup'>API_GrantedDBsForGroup</h3><h3 id='api_grantedgroups'>API_GrantedGroups</h3><h3 id='api_importfromcsv'>API_ImportFromCSV</h3><h3 id='api_provisionuser'>API_ProvisionUser</h3><h3 id='api_purgerecords'>API_PurgeRecords</h3><h3 id='api_removegroupfromrole'>API_RemoveGroupFromRole</h3><h3 id='api_removesubgroup'>API_RemoveSubgroup</h3><h3 id='api_removeuserfromgroup'>API_RemoveUserFromGroup</h3><h3 id='api_removeuserfromrole'>API_RemoveUserFromRole</h3><h3 id='api_renameapp'>API_RenameApp</h3><h3 id='api_runimport'>API_RunImport</h3><h3 id='api_sendinvitation'>API_SendInvitation</h3><h3 id='api_setdbvar'>API_SetDBVar</h3><h3 id='api_setfieldproperties'>API_SetFieldProperties</h3><h3 id='api_setkeyfield'>API_SetKeyField</h3><h3 id='api_signout'>API_SignOut</h3><h3 id='api_uploadfile'>API_UploadFile</h3><h3 id='api_userroles'>API_UserRoles</h3><h1 id='qbrecord'>QBRecord</h1><h2 id='initialization-2'>Initialization</h2><h2 id='instance-methods'>Instance Methods</h2><h3 id='clear'>clear</h3><h3 id='delete'>delete</h3><h3 id='get'>get</h3><h3 id='getdbid'>getDBID</h3><h3 id='getfid'>getFid</h3><h3 id='getfids'>getFids</h3><h3 id='getfield'>getField</h3><h3 id='getfields'>getFields</h3><h3 id='gettablename'>getTableName</h3><h3 id='load'>load</h3><h3 id='loadschema'>loadSchema</h3><h3 id='save'>save</h3><h3 id='set'>set</h3><h3 id='setdbid'>setDBID</h3><h3 id='setfid'>setFid</h3><h3 id='setfids'>setFids</h3><h3 id='tojson'>toJson</h3><h1 id='qbtable'>QBTable</h1><h2 id='initialization-3'>Initialization</h2><h2 id='instance-methods-2'>Instance Methods</h2><h3 id='clear-2'>clear</h3><h3 id='deleterecord'>deleteRecord</h3><h3 id='deleterecords'>deleteRecords</h3><h3 id='getappid'>getAppID</h3><h3 id='getdateformat'>getDateFormat</h3><h3 id='getdbid-2'>getDBID</h3><h3 id='getchildtables'>getChildTables</h3><h3 id='getfid-2'>getFid</h3><h3 id='getfids-2'>getFids</h3><h3 id='getfield-2'>getField</h3><h3 id='getfields-2'>getFields</h3><h3 id='getnrecords'>getNRecords</h3><h3 id='getoptions'>getOptions</h3><h3 id='getplural'>getPlural</h3><h3 id='getqueries'>getQueries</h3><h3 id='getquery'>getQuery</h3><h3 id='getrecord'>getRecord</h3><h3 id='getrecords'>getRecords</h3><h3 id='getsingular'>getSingular</h3><h3 id='getslist'>getSList</h3><h3 id='gettablename-2'>getTableName</h3><h3 id='gettimezone'>getTimezone</h3><h3 id='getvariable'>getVariable</h3><h3 id='getvariables'>getVariables</h3><h3 id='load-2'>load</h3><h3 id='_load'>_load</h3><h3 id='loadnrecords'>loadNRecords</h3><h3 id='loadschema-2'>loadSchema</h3><h3 id='save-2'>save</h3><h3 id='setdbid-2'>setDBID</h3><h3 id='setfid-2'>setFid</h3><h3 id='setfids-2'>setFids</h3><h3 id='setoptions'>setOptions</h3><h3 id='setquery'>setQuery</h3><h3 id='setslist'>setSList</h3><h3 id='tojson-2'>toJson</h3><h3 id='upsertrecord'>upsertRecord</h3><h3 id='upsertrecords'>upsertRecords</h3><h2 id='static-methods'>Static Methods</h2><h3 id='newrecord'>NewRecord</h3><h3 id='newrecords'>NewRecords</h3><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
@@ -906,7 +801,8 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="php">php</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="javascript--node">javascript--node</a>
+                <a href="#" data-language-name="javascript--browser">javascript--browser</a>
           </div>
       </div>
     </div>
