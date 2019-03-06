@@ -588,9 +588,6 @@
                             <a href="#load-2" class="toc-h3 toc-link" data-title="load">load</a>
                           </li>
                           <li>
-                            <a href="#_load" class="toc-h3 toc-link" data-title="_load">_load</a>
-                          </li>
-                          <li>
                             <a href="#loadnrecords" class="toc-h3 toc-link" data-title="loadNRecords">loadNRecords</a>
                           </li>
                           <li>
@@ -666,8 +663,8 @@
 <p>This class is utilized in the abstraction layers QBRecord and QBTable.</p>
 <h2 id='repository-links'>Repository Links</h2>
 <ul>
-<li>PHP: <a href='https://github.com/tflanagan/php-quickbase'>https://github.com/tflanagan/php-quickbase</a></li>
-<li>JavaScript: <a href='https://github.com/tflanagan/node-quickbase'>https://github.com/tflanagan/node-quickbase</a></li>
+<li>PHP: <a href='https://github.com/tflanagan/php-quickbase' target='_blank'>https://github.com/tflanagan/php-quickbase</a></li>
+<li>JavaScript: <a href='https://github.com/tflanagan/node-quickbase' target='_blank'>https://github.com/tflanagan/node-quickbase</a></li>
 </ul>
 <h2 id='installation-amp-loading'>Installation &amp; Loading</h2><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
@@ -781,8 +778,9 @@
 <p>The Quick Base librarys are built in such a way as to be as future-proof as possible. 9/10 times, a new API endpoint will automatically be supported if you&#39;re using these libraries.</p>
 
 <aside class="notice">
-<i>(JavaScript Only)</i> This library makes API calls asychronously. As Quick Base cannot support `n` number of requests at a given time, the default limit is `10`. This throttles the requests sent to Quick Base in order to preserve the Quick Base applications integrity and performance.
-
+<i>(JavaScript Only)</i><br />
+This library makes API calls asychronously. As Quick Base cannot support n number of requests at a given time, the default limit is 10. This throttles the requests sent to Quick Base in order to preserve the Quick Base applications integrity and performance.<br />
+<br />
 If your application experiences a normal traffic rate that is higher than average, you may want to consider reducing the `connectionLimit` setting.
 </aside>
 
@@ -839,7 +837,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>An object containing data pertaining to your API Action</td>
 </tr>
 </tbody></table>
-<h2 id='quick-base-api-endpoints'>Quick Base API Endpoints</h2><h3 id='api_addfield'>API_AddField</h3><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<h2 id='quick-base-api-endpoints'>Quick Base API Endpoints</h2>
+<p>The following is a list of Quick Base API Endpoints mostly compiled from Quick Base&#39;s own help section.</p>
+
+<p>Each endpoint has an overview of the endpoint and what it supports, an example of using it in code, what the response from Quick Base looks like in JSON, and a link to Quick Base&#39;s help section for that specific endpoint.</p>
+
+<p>This list may not contain everything that is supported. As these libraries are future-proof, if Quick Base comes out with a new endpoint, it will be automatically supported - so long as Quick Base hasn&#39;t changed too much. We will try to keep this update to date, time allowing. To that note, Quick Base&#39;s documentation is the ultimate authority in regards to what is supported.</p>
+<h3 id='api_addfield'>API_AddField</h3><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_AddField'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
@@ -890,7 +894,7 @@ If your application experiences a normal traffic rate that is higher than averag
   </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><a href='https://help.quickbase.com/api-guide/add_field.html'>Quick Base Documentation</a></p>
+<p><a href='https://help.quickbase.com/api-guide/add_field.html' target='_blank'>Quick Base Documentation</a></p>
 
 <p>Use API_AddField to add a new field to a table. You invoke this call on a table-level dbid.</p>
 
@@ -934,27 +938,90 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <p>Possible <code>type</code> values:</p>
 
-<p>UI: TYPE | API: TYPE
-Checkbox | checkbox
-Date | date
-Duration | duration
-Email | Address email
-File | Attachment file
-Formula | (see the &#39;mode&#39; param)
-Lookup | (see the &#39;mode&#39; param)
-List - User | multiuserid
-Multi-Select Text | multitext
-Numeric | float
-Numeric - Currency | currency
-Numeric - Percent | percent
-Numeric - Rating | rating
-Phone Number | phone
-Report  Link | dblink
-Text | text
-Time Of Day | timeofday
-URL | url
-User | userid</p>
-<h3 id='api_addgrouptorole'>API_AddGroupToRole</h3><h3 id='api_addrecord'>API_AddRecord</h3><h3 id='api_addreplacedbpage'>API_AddReplaceDBPage</h3><h3 id='api_addsubgroup'>API_AddSubGroup</h3><h3 id='api_addusertogroup'>API_AddUserToGroup</h3><h3 id='api_addusertorole'>API_AddUserToRole</h3><h3 id='api_authenticate'>API_Authenticate</h3><h3 id='api_changegroupinfo'>API_ChangeGroupInfo</h3><h3 id='api_changemanager'>API_ChangeManager</h3><h3 id='api_changerecordowner'>API_ChangeRecordOwner</h3><h3 id='api_changeuserrole'>API_ChangeUserRole</h3><h3 id='api_clonedatabase'>API_CloneDatabase</h3><h3 id='api_copygroup'>API_CopyGroup</h3><h3 id='api_copymasterdetail'>API_CopyMasterDetail</h3><h3 id='api_createdatabase'>API_CreateDatabase</h3><h3 id='api_creategroup'>API_CreateGroup</h3><h3 id='api_createtable'>API_CreateTable</h3><h3 id='api_deletedatabase'>API_DeleteDatabase</h3><h3 id='api_deletefield'>API_DeleteField</h3><h3 id='api_deletegroup'>API_DeleteGroup</h3><h3 id='api_deleterecord'>API_DeleteRecord</h3><h3 id='api_doquery'>API_DoQuery</h3><h3 id='api_doquerycount'>API_DoQueryCount</h3><h3 id='api_editrecord'>API_EditRecord</h3><h3 id='api_fieldaddchoices'>API_FieldAddChoices</h3><h3 id='api_fieldremovechoices'>API_FieldRemoveChoices</h3><h3 id='api_finddbbyname'>API_FindDBByName</h3><h3 id='api_genaddrecordform'>API_GenAddRecordForm</h3><h3 id='api_genresultstable'>API_GenResultsTable</h3><h3 id='api_getancestorinfo'>API_GetAncestorInfo</h3><h3 id='api_getappdtminfo'>API_GetAppDTMInfo</h3><h3 id='api_getdbpage'>API_GetDBPage</h3><h3 id='api_getdbinfo'>API_GetDBInfo</h3><h3 id='api_getdbvar'>API_GetDBVar</h3><h3 id='api_getgrouprole'>API_GetGroupRole</h3><h3 id='api_getnumrecords'>API_GetNumRecords</h3><h3 id='api_getschema'>API_GetSchema</h3><h3 id='api_getrecordashtml'>API_GetRecordAsHTML</h3><h3 id='api_getrecordinfo'>API_GetRecordInfo</h3><h3 id='api_getroleinfo'>API_GetRoleInfo</h3><h3 id='api_getuserinfo'>API_GetUserInfo</h3><h3 id='api_getuserrole'>API_GetUserRole</h3><h3 id='api_getusersingroup'>API_GetUsersInGroup</h3><h3 id='api_granteddbs'>API_GrantedDBs</h3><h3 id='api_granteddbsforgroup'>API_GrantedDBsForGroup</h3><h3 id='api_grantedgroups'>API_GrantedGroups</h3><h3 id='api_importfromcsv'>API_ImportFromCSV</h3><h3 id='api_provisionuser'>API_ProvisionUser</h3><h3 id='api_purgerecords'>API_PurgeRecords</h3><h3 id='api_removegroupfromrole'>API_RemoveGroupFromRole</h3><h3 id='api_removesubgroup'>API_RemoveSubgroup</h3><h3 id='api_removeuserfromgroup'>API_RemoveUserFromGroup</h3><h3 id='api_removeuserfromrole'>API_RemoveUserFromRole</h3><h3 id='api_renameapp'>API_RenameApp</h3><h3 id='api_runimport'>API_RunImport</h3><h3 id='api_sendinvitation'>API_SendInvitation</h3><h3 id='api_setdbvar'>API_SetDBVar</h3><h3 id='api_setfieldproperties'>API_SetFieldProperties</h3><h3 id='api_setkeyfield'>API_SetKeyField</h3><h3 id='api_signout'>API_SignOut</h3><h3 id='api_uploadfile'>API_UploadFile</h3><h3 id='api_userroles'>API_UserRoles</h3><h1 id='qbrecord'>QBRecord</h1><h2 id='initialization-2'>Initialization</h2><h2 id='instance-methods'>Instance Methods</h2><h3 id='clear'>clear</h3><h3 id='delete'>delete</h3><h3 id='get'>get</h3><h3 id='getdbid'>getDBID</h3><h3 id='getfid'>getFid</h3><h3 id='getfids'>getFids</h3><h3 id='getfield'>getField</h3><h3 id='getfields'>getFields</h3><h3 id='gettablename'>getTableName</h3><h3 id='load'>load</h3><h3 id='loadschema'>loadSchema</h3><h3 id='save'>save</h3><h3 id='set'>set</h3><h3 id='setdbid'>setDBID</h3><h3 id='setfid'>setFid</h3><h3 id='setfids'>setFids</h3><h3 id='tojson'>toJson</h3><h1 id='qbtable'>QBTable</h1><h2 id='initialization-3'>Initialization</h2><h2 id='instance-methods-2'>Instance Methods</h2><h3 id='clear-2'>clear</h3><h3 id='deleterecord'>deleteRecord</h3><h3 id='deleterecords'>deleteRecords</h3><h3 id='getappid'>getAppID</h3><h3 id='getdateformat'>getDateFormat</h3><h3 id='getdbid-2'>getDBID</h3><h3 id='getchildtables'>getChildTables</h3><h3 id='getfid-2'>getFid</h3><h3 id='getfids-2'>getFids</h3><h3 id='getfield-2'>getField</h3><h3 id='getfields-2'>getFields</h3><h3 id='getnrecords'>getNRecords</h3><h3 id='getoptions'>getOptions</h3><h3 id='getplural'>getPlural</h3><h3 id='getqueries'>getQueries</h3><h3 id='getquery'>getQuery</h3><h3 id='getrecord'>getRecord</h3><h3 id='getrecords'>getRecords</h3><h3 id='getsingular'>getSingular</h3><h3 id='getslist'>getSList</h3><h3 id='gettablename-2'>getTableName</h3><h3 id='gettimezone'>getTimezone</h3><h3 id='getvariable'>getVariable</h3><h3 id='getvariables'>getVariables</h3><h3 id='load-2'>load</h3><h3 id='_load'>_load</h3><h3 id='loadnrecords'>loadNRecords</h3><h3 id='loadschema-2'>loadSchema</h3><h3 id='save-2'>save</h3><h3 id='setdbid-2'>setDBID</h3><h3 id='setfid-2'>setFid</h3><h3 id='setfids-2'>setFids</h3><h3 id='setoptions'>setOptions</h3><h3 id='setquery'>setQuery</h3><h3 id='setslist'>setSList</h3><h3 id='tojson-2'>toJson</h3><h3 id='upsertrecord'>upsertRecord</h3><h3 id='upsertrecords'>upsertRecords</h3><h2 id='static-methods'>Static Methods</h2><h3 id='newrecord'>NewRecord</h3><h3 id='newrecords'>NewRecords</h3><h1 id='errors'>Errors</h1>
+<table><thead>
+<tr>
+<th>UI: TYPE</th>
+<th>API: TYPE</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Checkbox</td>
+<td>checkbox</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>date</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>duration</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Address email</td>
+</tr>
+<tr>
+<td>File</td>
+<td>Attachment file</td>
+</tr>
+<tr>
+<td>Formula</td>
+<td>(see the &#39;mode&#39; param)</td>
+</tr>
+<tr>
+<td>Lookup</td>
+<td>(see the &#39;mode&#39; param)</td>
+</tr>
+<tr>
+<td>List - User</td>
+<td>multiuserid</td>
+</tr>
+<tr>
+<td>Multi-Select Text</td>
+<td>multitext</td>
+</tr>
+<tr>
+<td>Numeric</td>
+<td>float</td>
+</tr>
+<tr>
+<td>Numeric - Currency</td>
+<td>currency</td>
+</tr>
+<tr>
+<td>Numeric - Percent</td>
+<td>percent</td>
+</tr>
+<tr>
+<td>Numeric - Rating</td>
+<td>rating</td>
+</tr>
+<tr>
+<td>Phone Number</td>
+<td>phone</td>
+</tr>
+<tr>
+<td>Report  Link</td>
+<td>dblink</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>text</td>
+</tr>
+<tr>
+<td>Time Of Day</td>
+<td>timeofday</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>url</td>
+</tr>
+<tr>
+<td>User</td>
+<td>userid</td>
+</tr>
+</tbody></table>
+<h3 id='api_addgrouptorole'>API_AddGroupToRole</h3><h3 id='api_addrecord'>API_AddRecord</h3><h3 id='api_addreplacedbpage'>API_AddReplaceDBPage</h3><h3 id='api_addsubgroup'>API_AddSubGroup</h3><h3 id='api_addusertogroup'>API_AddUserToGroup</h3><h3 id='api_addusertorole'>API_AddUserToRole</h3><h3 id='api_authenticate'>API_Authenticate</h3><h3 id='api_changegroupinfo'>API_ChangeGroupInfo</h3><h3 id='api_changemanager'>API_ChangeManager</h3><h3 id='api_changerecordowner'>API_ChangeRecordOwner</h3><h3 id='api_changeuserrole'>API_ChangeUserRole</h3><h3 id='api_clonedatabase'>API_CloneDatabase</h3><h3 id='api_copygroup'>API_CopyGroup</h3><h3 id='api_copymasterdetail'>API_CopyMasterDetail</h3><h3 id='api_createdatabase'>API_CreateDatabase</h3><h3 id='api_creategroup'>API_CreateGroup</h3><h3 id='api_createtable'>API_CreateTable</h3><h3 id='api_deletedatabase'>API_DeleteDatabase</h3><h3 id='api_deletefield'>API_DeleteField</h3><h3 id='api_deletegroup'>API_DeleteGroup</h3><h3 id='api_deleterecord'>API_DeleteRecord</h3><h3 id='api_doquery'>API_DoQuery</h3><h3 id='api_doquerycount'>API_DoQueryCount</h3><h3 id='api_editrecord'>API_EditRecord</h3><h3 id='api_fieldaddchoices'>API_FieldAddChoices</h3><h3 id='api_fieldremovechoices'>API_FieldRemoveChoices</h3><h3 id='api_finddbbyname'>API_FindDBByName</h3><h3 id='api_genaddrecordform'>API_GenAddRecordForm</h3><h3 id='api_genresultstable'>API_GenResultsTable</h3><h3 id='api_getancestorinfo'>API_GetAncestorInfo</h3><h3 id='api_getappdtminfo'>API_GetAppDTMInfo</h3><h3 id='api_getdbpage'>API_GetDBPage</h3><h3 id='api_getdbinfo'>API_GetDBInfo</h3><h3 id='api_getdbvar'>API_GetDBVar</h3><h3 id='api_getgrouprole'>API_GetGroupRole</h3><h3 id='api_getnumrecords'>API_GetNumRecords</h3><h3 id='api_getschema'>API_GetSchema</h3><h3 id='api_getrecordashtml'>API_GetRecordAsHTML</h3><h3 id='api_getrecordinfo'>API_GetRecordInfo</h3><h3 id='api_getroleinfo'>API_GetRoleInfo</h3><h3 id='api_getuserinfo'>API_GetUserInfo</h3><h3 id='api_getuserrole'>API_GetUserRole</h3><h3 id='api_getusersingroup'>API_GetUsersInGroup</h3><h3 id='api_granteddbs'>API_GrantedDBs</h3><h3 id='api_granteddbsforgroup'>API_GrantedDBsForGroup</h3><h3 id='api_grantedgroups'>API_GrantedGroups</h3><h3 id='api_importfromcsv'>API_ImportFromCSV</h3><h3 id='api_provisionuser'>API_ProvisionUser</h3><h3 id='api_purgerecords'>API_PurgeRecords</h3><h3 id='api_removegroupfromrole'>API_RemoveGroupFromRole</h3><h3 id='api_removesubgroup'>API_RemoveSubgroup</h3><h3 id='api_removeuserfromgroup'>API_RemoveUserFromGroup</h3><h3 id='api_removeuserfromrole'>API_RemoveUserFromRole</h3><h3 id='api_renameapp'>API_RenameApp</h3><h3 id='api_runimport'>API_RunImport</h3><h3 id='api_sendinvitation'>API_SendInvitation</h3><h3 id='api_setdbvar'>API_SetDBVar</h3><h3 id='api_setfieldproperties'>API_SetFieldProperties</h3><h3 id='api_setkeyfield'>API_SetKeyField</h3><h3 id='api_signout'>API_SignOut</h3><h3 id='api_uploadfile'>API_UploadFile</h3><h3 id='api_userroles'>API_UserRoles</h3><h1 id='qbrecord'>QBRecord</h1><h2 id='initialization-2'>Initialization</h2><h2 id='instance-methods'>Instance Methods</h2><h3 id='clear'>clear</h3><h3 id='delete'>delete</h3><h3 id='get'>get</h3><h3 id='getdbid'>getDBID</h3><h3 id='getfid'>getFid</h3><h3 id='getfids'>getFids</h3><h3 id='getfield'>getField</h3><h3 id='getfields'>getFields</h3><h3 id='gettablename'>getTableName</h3><h3 id='load'>load</h3><h3 id='loadschema'>loadSchema</h3><h3 id='save'>save</h3><h3 id='set'>set</h3><h3 id='setdbid'>setDBID</h3><h3 id='setfid'>setFid</h3><h3 id='setfids'>setFids</h3><h3 id='tojson'>toJson</h3><h1 id='qbtable'>QBTable</h1><h2 id='initialization-3'>Initialization</h2><h2 id='instance-methods-2'>Instance Methods</h2><h3 id='clear-2'>clear</h3><h3 id='deleterecord'>deleteRecord</h3><h3 id='deleterecords'>deleteRecords</h3><h3 id='getappid'>getAppID</h3><h3 id='getdateformat'>getDateFormat</h3><h3 id='getdbid-2'>getDBID</h3><h3 id='getchildtables'>getChildTables</h3><h3 id='getfid-2'>getFid</h3><h3 id='getfids-2'>getFids</h3><h3 id='getfield-2'>getField</h3><h3 id='getfields-2'>getFields</h3><h3 id='getnrecords'>getNRecords</h3><h3 id='getoptions'>getOptions</h3><h3 id='getplural'>getPlural</h3><h3 id='getqueries'>getQueries</h3><h3 id='getquery'>getQuery</h3><h3 id='getrecord'>getRecord</h3><h3 id='getrecords'>getRecords</h3><h3 id='getsingular'>getSingular</h3><h3 id='getslist'>getSList</h3><h3 id='gettablename-2'>getTableName</h3><h3 id='gettimezone'>getTimezone</h3><h3 id='getvariable'>getVariable</h3><h3 id='getvariables'>getVariables</h3><h3 id='load-2'>load</h3><h3 id='loadnrecords'>loadNRecords</h3><h3 id='loadschema-2'>loadSchema</h3><h3 id='save-2'>save</h3><h3 id='setdbid-2'>setDBID</h3><h3 id='setfid-2'>setFid</h3><h3 id='setfids-2'>setFids</h3><h3 id='setoptions'>setOptions</h3><h3 id='setquery'>setQuery</h3><h3 id='setslist'>setSList</h3><h3 id='tojson-2'>toJson</h3><h3 id='upsertrecord'>upsertRecord</h3><h3 id='upsertrecords'>upsertRecords</h3><h2 id='static-methods'>Static Methods</h2><h3 id='newrecord'>NewRecord</h3><h3 id='newrecords'>NewRecords</h3><h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
