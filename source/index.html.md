@@ -2,9 +2,9 @@
 title: Quick Base Developers
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - php
   - javascript--node
   - javascript--browser
+  - php
 
 toc_footers:
   - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a>
@@ -38,16 +38,6 @@ This class is utilized in the abstraction layers QBRecord and QBTable.
 
 ## Installation & Loading
 
-```php
-<?php
-
-// $ composer require tflanagan/quickbase
-
-require_once(__DIR__.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php');
-
-?>
-```
-
 ```javascript--node
 // $ npm install --save quickbase
 
@@ -58,27 +48,21 @@ const QuickBase = require('quickbase');
 // <script type="text/javascript" src="quickbase.browserify.min.js"></script>
 ```
 
+```php
+<?php
+
+// $ composer require tflanagan/quickbase
+
+require_once(__DIR__.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php');
+
+?>
+```
+
 Installing the Quick Base library for your desired platform requires either including the browserified version of the library in your HTML page or install it via a package manager (npm or composer).
 
 Including the library for use in your code depends on your platform.
 
 ## Initialization
-
-```php
-<?php
-
-$quickbase = new \QuickBase\QuickBase(array(
-  'realm' => 'subdomain/realm',
-  'userToken' => 'user token',
-  'appToken' => 'application token',
-  'flags' => array(
-    'msInUTC' => true,
-    'encoding' => 'ISO-8859-1'
-  )
-));
-
-?>
-```
 
 ```javascript--node
 const quickbase = new QuickBase({
@@ -108,6 +92,22 @@ var quickbase = new QuickBase({
 });
 ```
 
+```php
+<?php
+
+$quickbase = new \QuickBase\QuickBase(array(
+  'realm' => 'subdomain/realm',
+  'userToken' => 'user token',
+  'appToken' => 'application token',
+  'flags' => array(
+    'msInUTC' => true,
+    'encoding' => 'ISO-8859-1'
+  )
+));
+
+?>
+```
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 realm | true | | Quick Base Realm (or subdomain)
@@ -134,23 +134,6 @@ The way we accomplish this is by exposing a single method `.api()`.
 
 #### `.api(action[, options])`
 
-```php
-<?php
-
-try {
-  $results = $quickbase->api('SomeAPI_Action', array(
-    'dbid' => 'bddnn3uz9',
-    'someFutureProperty' => 'lorem ipsum'
-  ));
-
-  // Handle results
-}catch(\Exception $err){
-  // Handle error
-}
-
-?>
-```
-
 ```javascript--node
 quickbase.api('SomeAPI_Action', {
   dbid: 'bddnn3uz9',
@@ -173,6 +156,23 @@ quickbase.api('SomeAPI_Action', {
 });
 ```
 
+```php
+<?php
+
+try {
+  $results = $quickbase->api('SomeAPI_Action', array(
+    'dbid' => 'bddnn3uz9',
+    'someFutureProperty' => 'lorem ipsum'
+  ));
+
+  // Handle results
+}catch(\Exception $err){
+  // Handle error
+}
+
+?>
+```
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 action | true | | The Quick Base API Action you wish to execute (ie: API_DoQuery)
@@ -187,6 +187,34 @@ Each endpoint has an overview of the endpoint and what it supports, an example o
 This list may not contain everything that is supported. As these libraries are future-proof, if Quick Base comes out with a new endpoint, it will be automatically supported - so long as Quick Base hasn't changed too much. We will try to keep this update to date, time allowing. To that note, Quick Base's documentation is the ultimate authority in regards to what is supported.
 
 ### API_AddField
+
+```javascript--node
+quickbase.api('API_AddField', {
+  dbid: 'bddnn3uz9',
+  add_to_forms: true,
+  label: 'Label',
+  mode: 'virtual',
+  type: 'formula'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_AddField', {
+  dbid: 'bddnn3uz9',
+  add_to_forms: true,
+  label: 'Label',
+  mode: 'virtual',
+  type: 'formula'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
 
 ```php
 <?php
@@ -206,34 +234,6 @@ try {
 }
 
 ?>
-```
-
-```javascript--node
-quickbase.api('API_AddField', {
-  dbid: 'bddnn3uz9',
-  add_to_forms: true,
-  label: 'Label',
-  mode: 'virtual',
-  type: 'formula'
-}).then((results) => {
-  // Handle results
-}).catch((error) => {
-  // Handle error
-});
-```
-
-```javascript--browser
-quickbase.api('API_AddField', {
-  dbid: 'bddnn3uz9',
-  add_to_forms: true,
-  label: 'Label',
-  mode: 'virtual',
-  type: 'formula'
-}).then(function(results){
-  // Handle results
-}).catch(function(error){
-  // Handle error
-});
 ```
 
 > The above returns JSON structured like this:
@@ -260,7 +260,7 @@ Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 add_to_forms | false | false | Specifies whether the field you are adding should appear at the end of any form with form properties set to "Auto-Add new fields."
 label | true | | Name of the new field
-mode | Lookup/Formula only | | Specifies whether the field is a formula field or a lookup field
+mode | Lookup/Formula only | | Specifies whether the field is a formula field or a lookup field (possible values for formula: 'virtual', and lookup: 'lookup')
 type | true | | The Quick Base field type.
 
 Possible `type` values:
@@ -270,10 +270,10 @@ UI: TYPE | API: TYPE
 Checkbox | checkbox
 Date | date
 Duration | duration
-Email | Address email
-File | Attachment file
-Formula | (see the 'mode' param)
-Lookup | (see the 'mode' param)
+Email Address | email
+File Attachment | file
+Formula | any other type
+Lookup | text or float
 List - User | multiuserid
 Multi-Select Text | multitext
 Numeric | float
