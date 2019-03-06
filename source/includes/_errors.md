@@ -1,6 +1,6 @@
 # Error Handling
 
-When making an API call to Quick Base, Quick Base responds with at least three values, `errcode`, `errtext`, and `errdetail`.
+When making an API call to Quick Base, Quick Base responds with at least two values, `errcode`, and `errtext` and sometimes an `errdetail` property.
 
 After receiving a response, the libraries detailed automatically check and verify that the response does not contain an error. You do not have to explicity check if `errcode` is equal to 0.
 

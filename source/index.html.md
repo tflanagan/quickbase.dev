@@ -643,7 +643,8 @@ pagebody | true | | Contains the contents of the page you are adding.
 
 ```javascript--node
 quickbase.api('API_AddSubGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '345889.sdfs',
+  subgroupid: '820935.ksjf'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -653,7 +654,8 @@ quickbase.api('API_AddSubGroup', {
 
 ```javascript--browser
 quickbase.api('API_AddSubGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '345889.sdfs',
+  subgroupid: '820935.ksjf'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -666,7 +668,8 @@ quickbase.api('API_AddSubGroup', {
 
 try {
   $results = $quickbase->api('API_AddSubGroup', array(
-    'dbid' => 'bddnn3uz9'
+    'gid' => '345889.sdfs',
+    'subgroupid' => '820935.ksjf'
   ));
 
   // Handle results
@@ -691,13 +694,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_AddUserToGroup
 
 ```javascript--node
 quickbase.api('API_AddUserToGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '345889.sdfd',
+  userid: '898790.qntp',
+  allowAdminAccess: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -707,7 +711,9 @@ quickbase.api('API_AddUserToGroup', {
 
 ```javascript--browser
 quickbase.api('API_AddUserToGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '345889.sdfd',
+  userid: '898790.qntp',
+  allowAdminAccess: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -720,7 +726,9 @@ quickbase.api('API_AddUserToGroup', {
 
 try {
   $results = $quickbase->api('API_AddUserToGroup', array(
-    'dbid' => 'bddnn3uz9'
+    'gid' => '345889.sdfd',
+    'userid' => '898790.qntp',
+    'allowAdminAccess' => false
   ));
 
   // Handle results
@@ -745,13 +753,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_AddUserToRole
 
 ```javascript--node
 quickbase.api('API_AddUserToRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  userid: '112245.efy7',
+  roleid: 10
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -761,7 +770,9 @@ quickbase.api('API_AddUserToRole', {
 
 ```javascript--browser
 quickbase.api('API_AddUserToRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  userid: '112245.efy7',
+  roleid: 10
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -774,7 +785,9 @@ quickbase.api('API_AddUserToRole', {
 
 try {
   $results = $quickbase->api('API_AddUserToRole', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'userid' => '112245.efy7',
+    'roleid' => 10
   ));
 
   // Handle results
@@ -805,7 +818,9 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_Authenticate', {
-  dbid: 'bddnn3uz9'
+  username: 'PTBarnum',
+  password: 'TopSecret',
+  hours: 12
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -815,7 +830,9 @@ quickbase.api('API_Authenticate', {
 
 ```javascript--browser
 quickbase.api('API_Authenticate', {
-  dbid: 'bddnn3uz9'
+  username: 'PTBarnum',
+  password: 'TopSecret',
+  hours: 12
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -828,7 +845,9 @@ quickbase.api('API_Authenticate', {
 
 try {
   $results = $quickbase->api('API_Authenticate', array(
-    'dbid' => 'bddnn3uz9'
+    'username' => 'PTBarnum',
+    'password' => 'TopSecret',
+    'hours' => 12
   ));
 
   // Handle results
@@ -845,7 +864,9 @@ try {
 {
   "action": "API_Authenticate",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "ticket": "2_beeinrxmv_dpvx_b_crf8ttndjwyf9bui94rhciirqcs",
+  "userid": "112245.efy7"
 }
 ```
 
@@ -853,13 +874,16 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_ChangeGroupInfo
 
 ```javascript--node
 quickbase.api('API_ChangeGroupInfo', {
-  dbid: 'bddnn3uz9'
+  gid: '345889.sdjl',
+  name: 'AcmeSalesTeamLeads',
+  description: 'Team Leaders for the Acme division',
+  accountID: 456789,
+  allowsAdminAccess: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -869,7 +893,11 @@ quickbase.api('API_ChangeGroupInfo', {
 
 ```javascript--browser
 quickbase.api('API_ChangeGroupInfo', {
-  dbid: 'bddnn3uz9'
+  gid: '345889.sdjl',
+  name: 'AcmeSalesTeamLeads',
+  description: 'Team Leaders for the Acme division',
+  accountID: 456789,
+  allowsAdminAccess: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -882,7 +910,11 @@ quickbase.api('API_ChangeGroupInfo', {
 
 try {
   $results = $quickbase->api('API_ChangeGroupInfo', array(
-    'dbid' => 'bddnn3uz9'
+    'gid' => '345889.sdjl',
+    'name' => 'AcmeSalesTeamLeads',
+    'description' => 'Team Leaders for the Acme division',
+    'accountID' => 456789,
+    'allowsAdminAccess' => false
   ));
 
   // Handle results
@@ -907,13 +939,12 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_ChangeManager
 
 ```javascript--node
 quickbase.api('API_ChangeManager', {
-  dbid: 'bddnn3uz9'
+  newmgr: 'angela_leon@gmail.com'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -923,7 +954,7 @@ quickbase.api('API_ChangeManager', {
 
 ```javascript--browser
 quickbase.api('API_ChangeManager', {
-  dbid: 'bddnn3uz9'
+  newmgr: 'angela_leon@gmail.com'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -936,7 +967,7 @@ quickbase.api('API_ChangeManager', {
 
 try {
   $results = $quickbase->api('API_ChangeManager', array(
-    'dbid' => 'bddnn3uz9'
+    'newmgr' => 'angela_leon@gmail.com'
   ));
 
   // Handle results
@@ -961,13 +992,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_ChangeRecordOwner
 
 ```javascript--node
 quickbase.api('API_ChangeRecordOwner', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  rid: 3,
+  newowner: 'Muggsy'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -977,7 +1009,9 @@ quickbase.api('API_ChangeRecordOwner', {
 
 ```javascript--browser
 quickbase.api('API_ChangeRecordOwner', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  rid: 3,
+  newowner: 'Muggsy'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -990,7 +1024,9 @@ quickbase.api('API_ChangeRecordOwner', {
 
 try {
   $results = $quickbase->api('API_ChangeRecordOwner', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'rid' => 3,
+    'newowner' => 'Muggsy'
   ));
 
   // Handle results
@@ -1021,7 +1057,10 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_ChangeUserRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  userid: '112248.5nzg',
+  roleid: 11,
+  newroleid: 12
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1031,7 +1070,10 @@ quickbase.api('API_ChangeUserRole', {
 
 ```javascript--browser
 quickbase.api('API_ChangeUserRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  userid: '112248.5nzg',
+  roleid: 11,
+  newroleid: 12
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1044,7 +1086,10 @@ quickbase.api('API_ChangeUserRole', {
 
 try {
   $results = $quickbase->api('API_ChangeUserRole', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'userid' => '112248.5nzg',
+    'roleid' => 11,
+    'newroleid' => 12
   ));
 
   // Handle results
@@ -1075,7 +1120,12 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_CloneDatabase', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  newdbname: 'YellowDots',
+  newdbdesc: 'Database copy with no data',
+  keepData: true,
+  exludeFiles: true,
+  usersandroles: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1085,7 +1135,12 @@ quickbase.api('API_CloneDatabase', {
 
 ```javascript--browser
 quickbase.api('API_CloneDatabase', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  newdbname: 'YellowDots',
+  newdbdesc: 'Database copy with no data',
+  keepData: true,
+  exludeFiles: true,
+  usersandroles: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1098,7 +1153,12 @@ quickbase.api('API_CloneDatabase', {
 
 try {
   $results = $quickbase->api('API_CloneDatabase', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'newdbname' => 'YellowDots',
+    'newdbdesc' => 'Database copy with no data',
+    'keepData' => true,
+    'exludeFiles' => true,
+    'usersandroles' => false
   ));
 
   // Handle results
@@ -1115,7 +1175,8 @@ try {
 {
   "action": "API_CloneDatabase",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "newdbid": "bddnc6pn7"
 }
 ```
 
@@ -1123,13 +1184,16 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_CopyGroup
 
 ```javascript--node
 quickbase.api('API_CopyGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '1213.dsfj',
+  name: 'SalesTeamLeadsCopy',
+  description: 'Copy of the current Sales Team Leads Group',
+  gacct: ''
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1139,7 +1203,10 @@ quickbase.api('API_CopyGroup', {
 
 ```javascript--browser
 quickbase.api('API_CopyGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '1213.dsfj',
+  name: 'SalesTeamLeadsCopy',
+  description: 'Copy of the current Sales Team Leads Group',
+  gacct: ''
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1152,7 +1219,10 @@ quickbase.api('API_CopyGroup', {
 
 try {
   $results = $quickbase->api('API_CopyGroup', array(
-    'dbid' => 'bddnn3uz9'
+    'gid' => '1213.dsfj',
+    'name' => 'SalesTeamLeadsCopy',
+    'description' => 'Copy of the current Sales Team Leads Group',
+    'gacct' => ''
   ));
 
   // Handle results
@@ -1169,7 +1239,13 @@ try {
 {
   "action": "API_CopyGroup",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "group": {
+    "id" => "1219.d47h",
+    "name" => "SalesTeamLeadsCopy",
+    "description" => "Copy of the current Sales Team Leads Group",
+    "managedByUser" => true
+  }
 }
 ```
 
@@ -1177,13 +1253,17 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_CopyMasterDetail
 
 ```javascript--node
 quickbase.api('API_CopyMasterDetail', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  destrid: 0,
+  sourcerid: 1,
+  copyfid: 6,
+  recurse: true,
+  relfids: 'all'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1193,7 +1273,12 @@ quickbase.api('API_CopyMasterDetail', {
 
 ```javascript--browser
 quickbase.api('API_CopyMasterDetail', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  destrid: 0,
+  sourcerid: 1,
+  copyfid: 6,
+  recurse: true,
+  relfids: 'all'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1206,7 +1291,12 @@ quickbase.api('API_CopyMasterDetail', {
 
 try {
   $results = $quickbase->api('API_CopyMasterDetail', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'destrid' => 0,
+    'sourcerid' => 1,
+    'copyfid' => 6,
+    'recurse' => true,
+    'relfids' => 'all'
   ));
 
   // Handle results
@@ -1223,7 +1313,9 @@ try {
 {
   "action": "API_CopyMasterDetail",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "parentrid": 1,
+  "numcreated": 4
 }
 ```
 
@@ -1231,13 +1323,15 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_CreateDatabase
 
 ```javascript--node
 quickbase.api('API_CreateDatabase', {
-  dbid: 'bddnn3uz9'
+  dbname: 'FuelCharter',
+  dbdesc: 'Vehicle and Fuel Cost Tracker',
+  createapptoken: true
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1247,7 +1341,9 @@ quickbase.api('API_CreateDatabase', {
 
 ```javascript--browser
 quickbase.api('API_CreateDatabase', {
-  dbid: 'bddnn3uz9'
+  dbname: 'FuelCharter',
+  dbdesc: 'Vehicle and Fuel Cost Tracker',
+  createapptoken: true
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1260,7 +1356,9 @@ quickbase.api('API_CreateDatabase', {
 
 try {
   $results = $quickbase->api('API_CreateDatabase', array(
-    'dbid' => 'bddnn3uz9'
+    'dbname' => 'FuelCharter',
+    'dbdesc' => 'Vehicle and Fuel Cost Tracker',
+    'createapptoken' => true
   ));
 
   // Handle results
@@ -1278,6 +1376,9 @@ try {
   "action": "API_CreateDatabase",
   "errcode": 0,
   "errtext": "No error"
+  'dbid' => 'bddnn3uz9',
+  'appdbid' => 'bddnn3ub7',
+  'apptoken' => 'cmzaaz3dgdmmwwksdb7zcd7a9wg'
 }
 ```
 
@@ -1285,13 +1386,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_CreateGroup
 
 ```javascript--node
 quickbase.api('API_CreateGroup', {
-  dbid: 'bddnn3uz9'
+  name: 'MarketingSupport',
+  description: 'Support staff for sr marketing group',
+  accountID: 456789
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1301,7 +1403,9 @@ quickbase.api('API_CreateGroup', {
 
 ```javascript--browser
 quickbase.api('API_CreateGroup', {
-  dbid: 'bddnn3uz9'
+  name: 'MarketingSupport',
+  description: 'Support staff for sr marketing group',
+  accountID: 456789
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1314,7 +1418,9 @@ quickbase.api('API_CreateGroup', {
 
 try {
   $results = $quickbase->api('API_CreateGroup', array(
-    'dbid' => 'bddnn3uz9'
+    'name' => 'MarketingSupport',
+    'description' => 'Support staff for sr marketing group',
+    'accountID' => 456789
   ));
 
   // Handle results
@@ -1331,7 +1437,13 @@ try {
 {
   "action": "API_CreateGroup",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "group": {
+    "id" => "1219.d47h",
+    "name" => "SalesTeamLeadsCopy",
+    "description" => "Copy of the current Sales Team Leads Group",
+    "managedByUser" => true
+  }
 }
 ```
 
@@ -1339,13 +1451,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_CreateTable
 
 ```javascript--node
 quickbase.api('API_CreateTable', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  tname: 'My Vehicle List',
+  pnoun: 'Vehicles'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1355,7 +1468,9 @@ quickbase.api('API_CreateTable', {
 
 ```javascript--browser
 quickbase.api('API_CreateTable', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  tname: 'My Vehicle List',
+  pnoun: 'Vehicles'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1368,7 +1483,9 @@ quickbase.api('API_CreateTable', {
 
 try {
   $results = $quickbase->api('API_CreateTable', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'tname' => 'My Vehicle List',
+    'pnoun' => 'Vehicles'
   ));
 
   // Handle results
@@ -1385,7 +1502,8 @@ try {
 {
   "action": "API_CreateTable",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "newdbid": "bddfa5nbx"
 }
 ```
 
@@ -1393,7 +1511,6 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_DeleteDatabase
 
@@ -1453,7 +1570,8 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_DeleteField', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fid: 6
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1463,7 +1581,8 @@ quickbase.api('API_DeleteField', {
 
 ```javascript--browser
 quickbase.api('API_DeleteField', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fid: 6
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1476,7 +1595,8 @@ quickbase.api('API_DeleteField', {
 
 try {
   $results = $quickbase->api('API_DeleteField', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'fid' => 6
   ));
 
   // Handle results
@@ -1507,7 +1627,7 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_DeleteGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '345889.skef'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1517,7 +1637,7 @@ quickbase.api('API_DeleteGroup', {
 
 ```javascript--browser
 quickbase.api('API_DeleteGroup', {
-  dbid: 'bddnn3uz9'
+  gid: '345889.skef'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1530,7 +1650,7 @@ quickbase.api('API_DeleteGroup', {
 
 try {
   $results = $quickbase->api('API_DeleteGroup', array(
-    'dbid' => 'bddnn3uz9'
+    'gid' => '345889.skef'
   ));
 
   // Handle results
@@ -1555,13 +1675,13 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_DeleteRecord
 
 ```javascript--node
 quickbase.api('API_DeleteRecord', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  rid: 6
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1571,7 +1691,8 @@ quickbase.api('API_DeleteRecord', {
 
 ```javascript--browser
 quickbase.api('API_DeleteRecord', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  rid: 6
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1584,7 +1705,8 @@ quickbase.api('API_DeleteRecord', {
 
 try {
   $results = $quickbase->api('API_DeleteRecord', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'rid' => 6
   ));
 
   // Handle results
@@ -1601,7 +1723,8 @@ try {
 {
   "action": "API_DeleteRecord",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "rid": 6
 }
 ```
 
@@ -1609,13 +1732,22 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_DoQuery
 
 ```javascript--node
 quickbase.api('API_DoQuery', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  query: "{'5'.CT.'Ragnar Lodbrok'}AND{'5'.CT.'Acquisitions'}",
+  /* qid: 1, */
+  /* qname: 'List All', */
+  clist: '3',
+  slist: '3',
+  options: 'num-r.sortorder-A.skp-10.onlynew',
+  fmt: 'structured',
+  returnpercentage: true,
+  includeRids: true
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1625,7 +1757,16 @@ quickbase.api('API_DoQuery', {
 
 ```javascript--browser
 quickbase.api('API_DoQuery', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  query: "{'5'.CT.'Ragnar Lodbrok'}AND{'5'.CT.'Acquisitions'}",
+  /* qid: 1, */
+  /* qname: 'List All', */
+  clist: '3',
+  slist: '3',
+  options: 'num-r.sortorder-A.skp-10.onlynew',
+  fmt: 'structured',
+  returnpercentage: true,
+  includeRids: true
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1637,8 +1778,17 @@ quickbase.api('API_DoQuery', {
 <?php
 
 try {
-  $results = $quickbase->API_DoQuery('API_', array(
-    'dbid' => 'bddnn3uz9'
+  $results = $quickbase->api('API_DoQuery', array(
+    'dbid' => 'bddnn3uz9',
+    'query' => "{'5'.CT.'Ragnar Lodbrok'}AND{'5'.CT.'Acquisitions'}",
+    /* 'qid' => 1, */
+    /* 'qname' => 'List All', */
+    'clist' => '3',
+    'slist' => '3',
+    'options' => 'num-r.sortorder-A.skp-10.onlynew',
+    'fmt' => 'structured',
+    'returnpercentage' => true,
+    'includeRids' => true
   ));
 
   // Handle results
@@ -1655,7 +1805,78 @@ try {
 {
   "action": "API_DoQuery",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "qid": -1,
+  "qname": "",
+  "table": {
+    "name": "API created Sample",
+    "desc": "This is a sample table.",
+    "original": {
+      "table_id": "bh9ckdaue",
+      "app_id": "bh9ckc9ft",
+      "cre_date": 1204586581894,
+      "mod_date": 1206583187767,
+      "next_record_id": 34,
+      "next_field_id": 24,
+      "next_query_id": 5,
+      "def_sort_fid": 6,
+      "def_sort_order": 1
+    },
+    "variables": {
+      "Blue": 14,
+      "Jack": 14,
+      "Magenta": 12,
+      "usercode": 14
+    },
+    "queries": [
+      {
+        "id": 1,
+        "qyname": "List All",
+        "qytype": "table",
+        "qycalst": "0.0"
+      }
+    ],
+    "fields": [
+      {
+        "id": 3,
+        "field_type": "recordid",
+        "base_type": "int32",
+        "role": "recordid",
+        "mode": "virtual",
+        "label": "Record ID#",
+        "nowrap": 1,
+        "bold": 1,
+        "required": 0,
+        "appears_by_default": 0,
+        "find_enabled": 1,
+        "allow_new_choices": 0,
+        "sort_as_given": 0,
+        "default_value": 10,
+        "carrychoices": 1,
+        "foreignkey": 0,
+        "unique": 1,
+        "doesdatacopy": 0,
+        "fieldhelp": "",
+        "comma_start": 0,
+        "does_average": 0,
+        "does_total": 0,
+        "blank_is_zero": 0
+      }
+    ],
+    "lastluserid": 0,
+    "lusers": [
+      {
+        "id": "112149.bhsv",
+        "name": "AppBoss"
+      }
+    ],
+    "records": [
+      {
+        "rid": 4,
+        "3": 4
+      }
+    ]
+  }
 }
 ```
 
@@ -1663,13 +1884,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_DoQueryCount
 
 ```javascript--node
 quickbase.api('API_DoQueryCount', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  query: "{'7'.XCT.'blue car'}"
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1679,7 +1901,8 @@ quickbase.api('API_DoQueryCount', {
 
 ```javascript--browser
 quickbase.api('API_DoQueryCount', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  query: "{'7'.XCT.'blue car'}"
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1692,7 +1915,8 @@ quickbase.api('API_DoQueryCount', {
 
 try {
   $results = $quickbase->api('API_DoQueryCount', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'query' => "{'7'.XCT.'blue car'}"
   ));
 
   // Handle results
@@ -1709,7 +1933,8 @@ try {
 {
   "action": "API_DoQueryCount",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "numMatches": 1
 }
 ```
 
@@ -1717,13 +1942,23 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_EditRecord
 
 ```javascript--node
 quickbase.api('API_EditRecord', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  rid: 17,
+  /* update_id: 1205700075470, */
+  fields: [
+    { fid: 6, value: 'Hi!' },
+    { name: 'File Attachment', value: 'base64', filename: 'image.png' }
+  ],
+  disprec: false,
+  fform: false,
+  ignoreError: false,
+  msInUTC: true
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1733,7 +1968,17 @@ quickbase.api('API_EditRecord', {
 
 ```javascript--browser
 quickbase.api('API_EditRecord', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  rid: 17,
+  /* update_id: 1205700075470, */
+  fields: [
+    { fid: 6, value: 'Hi!' },
+    { name: 'File Attachment', value: 'base64', filename: 'image.png' }
+  ],
+  disprec: false,
+  fform: false,
+  ignoreError: false,
+  msInUTC: true
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1746,7 +1991,17 @@ quickbase.api('API_EditRecord', {
 
 try {
   $results = $quickbase->api('API_EditRecord', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'rid' => 17,
+    /* 'update_id' => 1205700075470, */
+    'fields' => array(
+      array( 'fid' => 6, 'value' => 'Hi!' ),
+      array( 'name' => 'File Attachment', 'value' => 'base64...', 'filename' => 'image.png' )
+    ),
+    'disprec' => false,
+    'fform' => false,
+    'ignoreError' => false,
+    'msInUTC' => true
   ));
 
   // Handle results
@@ -1763,7 +2018,10 @@ try {
 {
   "action": "API_EditRecord",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "rid": 17,
+  "num_fields_changed": 2,
+  "update_id": 1205700275470
 }
 ```
 
@@ -1771,13 +2029,15 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_FieldAddChoices
 
 ```javascript--node
 quickbase.api('API_FieldAddChoices', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fid: 11,
+  choice: 'Don Tomas'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1787,7 +2047,9 @@ quickbase.api('API_FieldAddChoices', {
 
 ```javascript--browser
 quickbase.api('API_FieldAddChoices', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fid: 11,
+  choice: 'Don Tomas'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1800,7 +2062,9 @@ quickbase.api('API_FieldAddChoices', {
 
 try {
   $results = $quickbase->api('API_FieldAddChoices', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'fid' => 11,
+    'choice' => 'Don Tomas'
   ));
 
   // Handle results
@@ -1817,7 +2081,10 @@ try {
 {
   "action": "API_FieldAddChoices",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "fid": 11,
+  "fname": 'Fumables',
+  "numadded": 1
 }
 ```
 
@@ -1831,7 +2098,9 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_FieldRemoveChoices', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fid: 11,
+  choice: 'Black'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1841,7 +2110,9 @@ quickbase.api('API_FieldRemoveChoices', {
 
 ```javascript--browser
 quickbase.api('API_FieldRemoveChoices', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fid: 11,
+  choice: 'Black'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1854,7 +2125,9 @@ quickbase.api('API_FieldRemoveChoices', {
 
 try {
   $results = $quickbase->api('API_FieldRemoveChoices', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'fid' => 11,
+    'choice' => 'Black'
   ));
 
   // Handle results
@@ -1871,7 +2144,10 @@ try {
 {
   "action": "API_FieldRemoveChoices",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "fid": 11,
+  "fname": 'Color Choice',
+  "numremoved": 1
 }
 ```
 
@@ -1879,13 +2155,14 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_FindDBByName
 
 ```javascript--node
 quickbase.api('API_FindDBByName', {
-  dbid: 'bddnn3uz9'
+  dbname: 'TestTable',
+  ParentsOnly: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1895,7 +2172,8 @@ quickbase.api('API_FindDBByName', {
 
 ```javascript--browser
 quickbase.api('API_FindDBByName', {
-  dbid: 'bddnn3uz9'
+  dbname: 'TestTable',
+  ParentsOnly: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1908,7 +2186,8 @@ quickbase.api('API_FindDBByName', {
 
 try {
   $results = $quickbase->api('API_FindDBByName', array(
-    'dbid' => 'bddnn3uz9'
+    'dbname' => 'TestTable',
+    'ParentsOnly' => false
   ));
 
   // Handle results
@@ -1925,7 +2204,8 @@ try {
 {
   "action": "API_FindDBByName",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "dbid": "bdcagynhs"
 }
 ```
 
@@ -1933,13 +2213,15 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
 
 ### API_GenAddRecordForm
 
 ```javascript--node
 quickbase.api('API_GenAddRecordForm', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fields: [
+    { name: 'Vehicle Make', value: 'Ford' }
+  ]
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -1949,7 +2231,10 @@ quickbase.api('API_GenAddRecordForm', {
 
 ```javascript--browser
 quickbase.api('API_GenAddRecordForm', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  fields: [
+    { name: 'Vehicle Make', value: 'Ford' }
+  ]
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -1962,7 +2247,10 @@ quickbase.api('API_GenAddRecordForm', {
 
 try {
   $results = $quickbase->api('API_GenAddRecordForm', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'fields' => array(
+      array( 'name' => 'Vehicle Make', 'value' => 'Ford' )
+    )
   ));
 
   // Handle results
@@ -1973,27 +2261,27 @@ try {
 ?>
 ```
 
-> The above returns JSON structured like this:
-
-```json
-{
-  "action": "API_GenAddRecordForm",
-  "errcode": 0,
-  "errtext": "No error"
-}
-```
+> Unlike most API calls, the above returns a string of the desired forms HTML rather than an object with properties.
 
 <a href='https://help.quickbase.com/api-guide/gen_add_record_form.html' target='_blank'>Quick Base Documentation</a>
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_GenResultsTable
 
 ```javascript--node
 quickbase.api('API_GenResultsTable', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  query: "{'11'.CT.'Bob'}AND{'19'.GTE.'5'}",
+  /* qid: 1, */
+  /* qname: 'List All', */
+  clist: '6.7.9.11.16',
+  slist: '11.6'
+  options: 'num-4.sortorder-D',
+  jht: 'n',
+  jsa: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -2003,7 +2291,15 @@ quickbase.api('API_GenResultsTable', {
 
 ```javascript--browser
 quickbase.api('API_GenResultsTable', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  query: "{'11'.CT.'Bob'}AND{'19'.GTE.'5'}",
+  /* qid: 1, */
+  /* qname: 'List All', */
+  clist: '6.7.9.11.16',
+  slist: '11.6'
+  options: 'num-4.sortorder-D',
+  jht: 'n',
+  jsa: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -2016,7 +2312,15 @@ quickbase.api('API_GenResultsTable', {
 
 try {
   $results = $quickbase->api('API_GenResultsTable', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'query' => "{'11'.CT.'Bob'}AND{'19'.GTE.'5'}",
+    /* 'qid' => 1, */
+    /* 'qname' => 'List All', */
+    'clist' => '6.7.9.11.16',
+    'slist' => '11.6'
+    'options' => 'num-4.sortorder-D',
+    'jht' => 'n',
+    'jsa' => false
   ));
 
   // Handle results
@@ -2027,21 +2331,13 @@ try {
 ?>
 ```
 
-> The above returns JSON structured like this:
-
-```json
-{
-  "action": "API_GenResultsTable",
-  "errcode": 0,
-  "errtext": "No error"
-}
-```
+> Unlike most API calls, the above returns a string of the desired table HTML rather than an object with properties.
 
 <a href='https://help.quickbase.com/api-guide/gen_results_table.html' target='_blank'>Quick Base Documentation</a>
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_GetAncestorInfo
 
@@ -2087,7 +2383,9 @@ try {
 {
   "action": "API_GetAncestorInfo",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "ancestorappid": "bbyhxrmsv",
+  "oldestancestorappid": "bbyhxrmsv"
 }
 ```
 
@@ -2285,7 +2583,7 @@ quickbase.api('API_GetDBVar', {
 <?php
 
 try {
-  $results = $quickbase->API_GetDBVar('API_', array(
+  $results = $quickbase->api('API_GetDBVar', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -2339,7 +2637,7 @@ quickbase.api('API_GetFieldProperties', {
 <?php
 
 try {
-  $results = $quickbase->API_GetFieldProperties('API_', array(
+  $results = $quickbase->api('API_GetFieldProperties', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -3581,7 +3879,7 @@ quickbase.api('API_SetDBVar', {
 <?php
 
 try {
-  $results = $quickbase->API_SetDBVar('API_', array(
+  $results = $quickbase->api('API_SetDBVar', array(
     'dbid' => 'bddnn3uz9'
   ));
 
@@ -3743,7 +4041,7 @@ quickbase.api('API_SignOut', {
 <?php
 
 try {
-  $results = $quickbase->API_SignOut('API_', array(
+  $results = $quickbase->api('API_SignOut', array(
     'dbid' => 'bddnn3uz9'
   ));
 
