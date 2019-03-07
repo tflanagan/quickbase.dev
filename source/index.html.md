@@ -691,6 +691,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_AddSubGroup.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_AddSubGroup to embed a group into another group.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
@@ -750,6 +752,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_AddUserToGroup.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_AddUserToGroup to add a user to a group. The user can be added as a member of the group, as a member and a manager of the group, or as a manager but not a member of the group.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
@@ -808,6 +812,18 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/add_user_to_role.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_AddUserToRole to assign a user to a role in your Quick Base application.
+
+You assign a user to a role using API_AddUserToRole. After you assign the role, you can use API_SendInvitation to invite the user to the application.
+
+You can invoke this call on a single user several times, applying a different role each time, if you want give the user more than one role. Giving a user more than one role allows the user to sign in to the same Quick Base application with different roles. (Note that if you try to assign a role the user already has, you'll see an error message.)
+
+Quick Base supplies standard default roles for each application: viewer, participant, and administrator. You can change these and even create custom roles for your applications. You can find out which roles are being used for a particular application using the API_GetRoleInfo call.
+
+Note: You can also assign roles to users when you provision users. See API_ProvisionUser for more information.
+
+To assign roles to users using the Quick Base API or UI, you must have either Basic Access with Sharing access or Full Administration access to the application. Note that, if you have Basic Access with Sharing permissions, you cannot add a user to a role that has Full Administration permissions.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -870,6 +886,18 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/authenticate.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_Authenticate to validate a user's username and password. You invoke this call on /db/main (no dbid).
+
+API_Authenticate validates the supplied user name and password, and, if successful, returns a ticket that is supplied in subsequent API calls. The ticket is valid for 12 hours, unless you specify a different value in the hours parameter. In addition to the ticket, a cookie is also returned with the name TICKET. This is the only API call that returns a ticket cookie.
+
+Note: It is possible to use a ticket to obtain a ticket (that is, pass in a ticket instead of a username and password).
+
+Using API_Authenticate is the equivalent of logging into Quick Base. Remember that merely logging into Quick Base by itself does not give you access rights to even a single Quick Base application. You must first be assigned a role in the application by someone who has administrator rights. (See API Overview for more information about how to use the authentication ticket when making API calls.)
+
+You should always use secure HTTPS (not HTTP) when calling API_Authenticate. Quick Base does not support API calls over HTTP.
+
+Note: API_Authenticate calls have a maximum time limit of 4,380 hours, or approximately 6 months. This applies to new tickets initiated on or after January 21, 2018.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -936,6 +964,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_ChangeGroupInfo.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_ChangeGroupInfo to modify the metadata for a group. One or more elements can be modified.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
@@ -988,6 +1018,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/API_ChangeManager.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_ChangeManager to assign a user to manage an app.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -1047,6 +1079,12 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/change_record_owner.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_ChangeRecordOwner to change the owner of a record.
+
+In Quick Base, a person who creates a record is the record owner. You can set up roles that restrict a record's view/modify access to the record owner. On occasion, you may need to transfer record ownership from one user to another. If you are using a technical support application, for instance, you might want to transfer ownership of a support incident (record) from one tech support rep to another.
+
+You must have Full Administration rights on the application to use this call.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -1110,6 +1148,12 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/change_user_role.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_ChangeUserRole to assign a user to a new role, to upgrade or downgrade access, or simply to move the user to a different role.
+
+You can also use this call to assign the user to a special role called None (role id 9) which removes the user's access to the application. Use the None role if you want to disable access while retaining the user on the application user list.
+
+To assign roles to users using the Quick Base API or UI, you must have either Basic Access with Sharing access or Full Administration access to the application. Note that, if you have Basic Access with Sharing permissions, you cannot add a user to a role that has Full Administration permissions.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -1181,6 +1225,10 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/clone_database.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_CloneDatabase to make a copy of a Quick Base application. You can choose to use the keepData parameter if you want to copy the application's data in addition to its structure. If you want to copy data, but exclude file attachments, you can use the excludefiles parameter in your request. After you copy an application, changes to the source application will not affect the copy you created, and vice versa.
+
+When you copy a Quick Base application, all users with access to the original application automatically have access to the application copy. You can choose to remove some or all of these users from the application copy using the API_RemoveUserFromRole.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -1249,6 +1297,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/API_CopyGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_CopyGroup to duplicate an existing group with the same list of users and subgroups, and a different name and ID.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -1320,6 +1370,14 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_CopyMasterDetail.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_CopyMasterDetail to copy a master record with its detail records, or to import only the detail records from one master record into a different master record. For example, you could copy a master Project record and its detail Task records.  You also could import only the Task records from a selected master Project record into a different Project record.
+
+You invoke this call on a table-level dbid for the master table to which you are copying or importing records.
+
+API_CopyMasterDetail copies or imports all fields in selected records, regardless of the fields' permission and Auto-Fill settings.  (When Auto-Fill is enabled, a field's value is copied when a user clicks the "Add Similar" button to add a new Project.)
+
+This API does not copy file attachments with the records.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -1382,6 +1440,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/create_database.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_CreateDatabase to create a new Quick Base application. Quick Base creates the main application table populated only with built-in fields and returns an application token for your API application.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -1448,6 +1508,14 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_CreateGroup.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_CreateGroup to create a new group. The group will be created with the caller as the group owner and the caller will also be the first user in the group.
+
+The call needs an account id which will be the associated account for the group, unless the call is made to a realm with only one account. If the realm only has one account, then the account associated with the realm will be the group account.
+
+If a realm has more than one account, the accountID parameter will be used to disambiguate the associated account for the group.
+
+The caller (user) must be the manager of the account where the group is created.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
@@ -1508,6 +1576,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/create_table.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_CreateTable to create a table for an application. You must have application administration rights to use this call. The dbid you supply must be an application-level dbid, not a table-level dbid.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
@@ -1560,6 +1630,10 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/delete_database.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_DeleteDatabase to delete a table or an entire application. Supply an application-level dbid to delete an application; supply a table-level dbid to delete a table.
+
+If you use this API to delete an app, you must be the app manager, or the API will return an error. If you use this API to delete a table, you must have Full Administration permissions in the app, or the API will return an error.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -1618,6 +1692,12 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/delete_field.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_DeleteField to delete a field by specifying the field id (fid). You invoke this call on a table-level dbid. (If you use an application level dbid, Quick Base returns an error.)
+
+You must have Full Administration permissions on the application to use this call.
+
+This call deletes the field for all records, regardless of whether the field contains data. Note that the call does not issue a warning message before the deletion.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -1671,6 +1751,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/API_DeleteGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_DeleteGroup to delete a group.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -1728,6 +1810,12 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/delete_record.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_DeleteRecord to delete a single record from a table.  You invoke this call on a table-level dbid. If you use an application level dbid, you’ll get an error.
+
+You must have Full Administration permissions on the application to use this call.
+
+Note that this call allows you to delete one record at a time. If you want to delete several records at once, see API_PurgeRecords.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -1881,6 +1969,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/do_query.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_DoQuery to get records from a table. You invoke this call on a table-level dbid. You can use the parameters (described below) to define which columns will be returned, how many records will be returned and how they will be sorted, and whether the Quick Base should return structured data.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -1938,6 +2028,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/do_query_count.html' target='_blank'>Quick Base Documentation</a>
+
+You invoke this call against a table dbid using a query string to determine the number of records that will be returned.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -2026,6 +2118,10 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/edit_record.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_EditRecord to change any editable field values in the specified record. Only those fields specified are changed; unspecified fields are left unchanged.
+
+You can specify either field names or field IDs when using this call.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -2088,6 +2184,14 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/field_add_choices.html' target='_blank'>Quick Base Documentation</a>
+
+Use this call to add new choices to a text - multiple choice or multi-select text field in a Quick Base table.
+
+Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.
+
+If you have Full Administration rights on the application, you can add new choices to any field of those types. If you don’t have these rights, you can use this call only on fields with properties that are set to allow users to add new choices. (In the Quick Base UI, you can set the Allow users to create new choices field property to allow users to do this. You can also set this property using API_SetFieldProperties.)
+
+If the choice you specify already exists in the list, it will not be added. No duplicates are allowed.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -2152,6 +2256,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/field_remove_choices.html' target='_blank'>Quick Base Documentation</a>
 
+Use this call this to remove one or more of the options listed within a Text - Multiple Choice or Multi-select Text field in a Quick Base application. You can remove any choices that you created yourself. You must have Full Administration rights on the application to remove choices you did not create. 
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -2210,6 +2316,10 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/find_db_by_name.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_FindDBByName to find the application-level dbid of an application whose name you know. When you use this call, Quick Base searches only those applications to which you have access. Because you can have multiple applications with the same name, you should be aware that more than one application dbid can be returned.
+
+If a Quick Base application consists of a single table, this call returns the child dbid of that table (NOT the application dbid). If you want to find the application-level dbid in this case, set the parentsOnly parameter to 1 for the request.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
@@ -2263,6 +2373,10 @@ try {
 > Unlike most API calls, the above returns a string of the desired forms HTML rather than an object with properties.
 
 <a href='https://help.quickbase.com/api-guide/gen_add_record_form.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GenAddRecordForm to return the standard Quick Base Add record page for the table whose dbid you specify. The form contains edit fields for the user to complete and a Save button to add the record to the database.
+
+If you want to pre-fill any fields, you can do so by supplying one or more field/value pairs in the request. Any fields not pre-filled or completed by the user are set to the default values set in the table field properties.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -2334,6 +2448,16 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/gen_results_table.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GenResultsTable to embed a Quick Base table report in an HTML page.
+
+This call is typically used in its URL form embedded in an HTML page. When the HTML page is opened in a browser, the call runs automatically and returns results to qdbWrite() for display in the HTML page.
+
+You can also specify that the results should be returned as a JavaScript array, in CSV format, or as tab separated values.
+
+By default, API_GenResultsTable returns the same number of rows as would be returned in the UI. However, you can specify a different number of rows in your table by including num-n in the options parameter.
+
+You can split a result set into several tables by calling API_GenResultsTable once for each table, using the skp option after the first invocation to skip over the records already returned.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -2389,6 +2513,10 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/getancestorinfo.html' target='_blank'>Quick Base Documentation</a>
+
+This call must be invoked on the app dbid (not on a table dbid) to get ancestor information about the current application. To use this call, you must have at least read permissions on the table.
+
+The first generation copy of an application returns the same DBID for both oldestancestorappid and ancestorappid.  The grandchild of a template  (and subsequent generations) shows the immediate parent app as the ancestorappid and the original template as the oldestancestorappid.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -2459,6 +2587,12 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/get_app_dtm_info.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GetAppDTMInfo to get  the timestamp of the last time change throughout the application. You must invoke this call on an application dbid, not on a table dbid.
+
+This is a fast, unobtrusive way to get the time of the last change in an application schema or in records within its tables. No ticket or app token is required for this call, nor does this call result in the application being loaded into memory in Quick Base.
+
+The response to this call contains a parameter indicating the next time you will be allowed to make this call again.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -2516,6 +2650,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/get_db_info.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetDBInfo to get metadata information, such as the last time the table was modified. For example, you might use this function to find out if the table has changed since you last used it, or to find out if a new record has been added to the table. You can invoke this call on either an application-level dbid or a table-level dbid.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -2580,6 +2716,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/get_db_page.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GetDBPage to retrieve a stored page in Quick Base. Quick Base allows you to store various types of pages, ranging from user-guide pages for your application to Exact Forms, used to automate insertion of data into Word documents using a special Word template from Quick Base.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -2637,6 +2775,12 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/getdbvar.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetDBVar to get values assigned to variables (DBVars) set up in your Quick Base application. DBVars are variables you can create to use in your application.
+
+API_GetDBVar returns only one DBVar. If you want to retrieve more than one variable, you'll need to invoke this call multiple times.
+
+Once you've set them up, you can assign values to them using API_SetDBVar. (Use the application-level dbid.) You’ll get an error if the DBVar you ask for does not exist.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -2720,6 +2864,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_GetFieldProperties.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GetFieldProperties to view the properties of a field. Returns properties specific to the field type.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -2784,6 +2930,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_GetGroupRole.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GetGroupRole determine the roleid for a group within an application.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -2838,6 +2986,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/getnumrecords.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetNumRecords to get the total number of records in the table. Invoke this call on a table-level dbid.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -2940,6 +3090,12 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/getschema.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GetSchema to get information about the specified application or application table.
+
+When invoked on an application dbid, this call returns DBVars created for the application and all child table dbids.
+
+When invoked on a table dbid, the call returns DBVars and additional table-related information such as reports, field IDs (fid), key field ID (key_fid), individual record names, base type, and the current property settings for each field. In addition, this call returns the default List All and List Changes reports.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -2991,6 +3147,8 @@ try {
 > Unlike most API calls, the above returns a string of the desired forms HTML rather than an object with properties.
 
 <a href='https://help.quickbase.com/api-guide/getrecordashtml.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetRecordAsHTML to get a record within an HTML fragment that can be embedded in another Web page.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -3061,6 +3219,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/getrecordinfo.html' target='_blank'>Quick Base Documentation</a>
 
+se API_GetRecordInfo to get the values and types of all the fields in a record. You invoke this call on a table-level dbid.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
@@ -3126,6 +3286,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/getroleinfo.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GetRoleInfo to get all of the roles that apply to the application. You invoke this call on the application-level dbid.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -3183,6 +3345,14 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/getuserinfo.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetUserInfo to get the username and user ID associated with an email address used for Quick Base sign in. You invoke this call on db/main. You can use this call to grant  a user access rights to your application and then invite that user to your application. This call is typically made to return the Quick Base user ID for a user whose email address you know, in preparation for subsequent calls to API_AddUserToRole (grant access rights) and API_SendInvitation, both of which require the user ID.
+
+The user email that you specify must be recognized in Quick Base.
+
+If the anonymous user passes in an email parameter, the email will be passed back in the response.
+
+If you don’t supply an email parameter, the ticket parameter will be used to determine the current user, which means the current user ID, name, and email are returned.
 
 ### API_GetUserRole
 
@@ -3258,6 +3428,12 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/getuserrole.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetUserRole to see what roles are assigned to a specific user in an application. Invoke this call on an application-level dbid.
+
+Note that, if you do not have sharing permissions on the application, the API call returns your own roles only. To get your roles, you must either invoke the call with no user ID or supply your own user ID.
+
+You  must have Basic Access with Sharing or Full Administration permissions to use this API call to get roles for users other than yourself.  Also, note that, if you want this call to return any roles assigned to a user because he or she is part of a group, you must use the inclgrps parameter (described below). If you do not specify this parameter, API_GetUserRole returns only those roles assigned to the individual user.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -3347,6 +3523,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_GetUsersInGroup.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GetUsersInGroup to get the list of users and groups that make up the members and/or managers of a group.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
@@ -3416,6 +3594,10 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/granteddbs.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_GrantedDBs to get a list of the names and dbids of all the applications and tables that you are entitled to access, across all domains. You invoke this call on https://target_domain/db/main.
+
+This call returns all the apps that you have access to, across all domains, not only the target domain. However, you can use the realmAppsOnly parameter to make this call return only the apps in the realm the call is being made against.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
@@ -3475,6 +3657,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/API_GrantedDBsForGroup.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GrantedDBsForGroup to get a list of all the applications that a group can access.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -3540,6 +3724,8 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/API_GrantedGroups.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GrantedGroups to get the list of groups to which a user has been granted access. If the adminOnly flag is passed, then only return groups in which this user has administration privileges.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -3636,6 +3822,10 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/importfromcsv.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_ImportFromCSV to add or update several records. You invoke this call on a table-level dbid. You can add AND update in the same API_ImportFromCSV request. (For an Add, leave the Record ID empty.)
+
+The clist parameter is optional when adding new records to a table. When updating existing records, the clist parameter must contain the field ID for the key field (usually 3 for the Record ID#). The CSV file you're importing must also include a column that contains the value of the key field for each record that will be updated.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -3703,6 +3893,12 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/provisionuser.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_ProvisionUser to add a user who is not yet registered with Quick Base to your application. You invoke an application-level dbid for a user that is not yet registered with Quick Base, but whose email is known to you. 
+
+After you invoke this call, you’ll need to invoke API_SendInvitation to invite the new user via email. When the user clicks on the email invitation, the user is prompted to complete the brief registration. (At this time, the user can change the first and last name you assigned.)
+
+If a user already is registered with Quick Base, the API will return an error. With registered users, you should use API_GetUserInfo, API_AddUserToRole, and API_SendInvitation.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -3711,7 +3907,10 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_PurgeRecords', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  query: ''
+  /* qid: 1 */
+  /* qname: 'List All' */
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3721,7 +3920,10 @@ quickbase.api('API_PurgeRecords', {
 
 ```javascript--browser
 quickbase.api('API_PurgeRecords', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  query: ''
+  /* qid: 1 */
+  /* qname: 'List All' */
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3734,7 +3936,10 @@ quickbase.api('API_PurgeRecords', {
 
 try {
   $results = $quickbase->api('API_PurgeRecords', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'query' => ''
+    /* 'qid' => 1 */
+    /* 'qname' => 'List All' */
   ));
 
   // Handle results
@@ -3751,21 +3956,29 @@ try {
 {
   "action": "API_PurgeRecords",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "num_records_deleted": 21
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/purgerecords.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_PurgeRecords to delete the specified records from the specified table. All records matching the criteria in the specified query will be deleted.
+
+You can build your own query string using the query parameter in the call. You can also use a saved query for the table, using qid or qname. See API_DoQuery for information on saved queries or for instructions on building the query string.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_RemoveGroupFromRole
 
 ```javascript--node
 quickbase.api('API_RemoveGroupFromRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  gid: '345889.sjkl',
+  roleid: 12,
+  allRoles: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3775,7 +3988,10 @@ quickbase.api('API_RemoveGroupFromRole', {
 
 ```javascript--browser
 quickbase.api('API_RemoveGroupFromRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  gid: '345889.sjkl',
+  roleid: 12,
+  allRoles: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3788,7 +4004,10 @@ quickbase.api('API_RemoveGroupFromRole', {
 
 try {
   $results = $quickbase->api('API_RemoveGroupFromRole', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'gid' => '345889.sjkl',
+    'roleid' => 12,
+    'allRoles' => false
   ));
 
   // Handle results
@@ -3811,6 +4030,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_RemoveGroupFromRole.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_RemoveGroupFromRole to remove a group from a role in an app. You can also indicate if you want to remove a group from all roles in an application.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -3819,7 +4040,9 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_RemoveSubgroup', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  gid: '345889.sjkl',
+  subgroupid: '345889.skld'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3829,7 +4052,9 @@ quickbase.api('API_RemoveSubgroup', {
 
 ```javascript--browser
 quickbase.api('API_RemoveSubgroup', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  gid: '345889.sjkl',
+  subgroupid: '345889.skld'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3842,7 +4067,9 @@ quickbase.api('API_RemoveSubgroup', {
 
 try {
   $results = $quickbase->api('API_RemoveSubgroup', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'gid' => '345889.sjkl',
+    'subgroupid' => '345889.skld'
   ));
 
   // Handle results
@@ -3865,6 +4092,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_RemoveSubgroup.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_RemoveSubgroup to remove a nested group from a group.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -3873,7 +4102,9 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_RemoveUserFromGroup', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  gid: '345889.sjkl',
+  userid: '9380434.rtgf'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3883,7 +4114,9 @@ quickbase.api('API_RemoveUserFromGroup', {
 
 ```javascript--browser
 quickbase.api('API_RemoveUserFromGroup', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  gid: '345889.sjkl',
+  userid: '9380434.rtgf'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3896,7 +4129,9 @@ quickbase.api('API_RemoveUserFromGroup', {
 
 try {
   $results = $quickbase->api('API_RemoveUserFromGroup', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'gid' => '345889.sjkl',
+    'userid' => '9380434.rtgf'
   ));
 
   // Handle results
@@ -3919,6 +4154,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/API_RemoveUserFromGroup.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_RemoveUserFromGroup to remove a user from a group.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -3927,7 +4164,9 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_RemoveUserFromRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  userid: '112245.efy7',
+  roleid: 11
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3937,7 +4176,9 @@ quickbase.api('API_RemoveUserFromRole', {
 
 ```javascript--browser
 quickbase.api('API_RemoveUserFromRole', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  userid: '112245.efy7',
+  roleid: 11
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3950,7 +4191,9 @@ quickbase.api('API_RemoveUserFromRole', {
 
 try {
   $results = $quickbase->api('API_RemoveUserFromRole', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'userid' => '112245.efy7',
+    'roleid' => 11
   ));
 
   // Handle results
@@ -3973,6 +4216,14 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/removeuserfromrole.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_RemoveUserFromRole to remove a user from a specified role. You invoke this call on an application-level dbid. If the user has no other role, this call eliminates the user from the application’s role list. You’ll need to get the user ID by calling API_GetUserInfo if you want to assign the user to another role in the future.
+
+This call can be used to remove the user entirely from any role in the application, effectively turning off access to that user. If you intend to turn off all access, you would need to call API_GetUserRole Info to see what roles the user has, then invoke API_RemoveUserFromRole on each role.
+
+If you expect to add that user to another role in the future, you should consider using API_ChangeUserRole, which can be used to turn off access (with a role set to None) while keeping the user on the application’s role list for future reinstatement or role change.
+
+If you are simply changing the user from one role to another, you should use API_ChangeUserRole.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -3981,7 +4232,8 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_RenameApp', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  newappname: 'Refueler'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3991,7 +4243,8 @@ quickbase.api('API_RenameApp', {
 
 ```javascript--browser
 quickbase.api('API_RenameApp', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  newappname: 'Refueler'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4004,7 +4257,8 @@ quickbase.api('API_RenameApp', {
 
 try {
   $results = $quickbase->api('API_RenameApp', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'newappname' => 'Refueler'
   ));
 
   // Handle results
@@ -4027,6 +4281,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/renameapp.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_RenameApp to change an application's name. You invoke this call on an application-level dbid. You must have full administration rights on the application to use this call.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -4035,7 +4291,8 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_RunImport', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  id: 10
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4045,7 +4302,8 @@ quickbase.api('API_RunImport', {
 
 ```javascript--browser
 quickbase.api('API_RunImport', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  id: 10
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4058,7 +4316,8 @@ quickbase.api('API_RunImport', {
 
 try {
   $results = $quickbase->api('API_RunImport', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'id' => 10
   ));
 
   // Handle results
@@ -4075,21 +4334,28 @@ try {
 {
   "action": "API_RunImport",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "import_status": "3 new records were created."
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/runimport.html' target='_blank'>Quick Base Documentation</a>
 
+Quick Base allows you to import data from one or more of your application tables into another application table. You can import tables from within your application, or from another application. (For complete information on this feature, see the Quick Base online help.)
+
+If you'll need to execute the same import multiple times, you can save a specific import and execute it any time you need to run it. To run a saved import, invoke API_RunImport on a table dbid whose ID you specify in this call. Note that you can’t use API_GetSchema to get the saved import's ID because API_GetSchema doesn’t return the saved import.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_SendInvitation
 
 ```javascript--node
 quickbase.api('API_SendInvitation', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  userid: '112249.ctdg',
+  usertext: 'Welcome!'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4099,7 +4365,9 @@ quickbase.api('API_SendInvitation', {
 
 ```javascript--browser
 quickbase.api('API_SendInvitation', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  userid: '112249.ctdg',
+  usertext: 'Welcome!'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4112,7 +4380,9 @@ quickbase.api('API_SendInvitation', {
 
 try {
   $results = $quickbase->api('API_SendInvitation', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'userid' => '112249.ctdg',
+    'usertext' => 'Welcome!'
   ));
 
   // Handle results
@@ -4135,6 +4405,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/sendinvitation.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_SendInvitation to send an email invitation to your application. You can send an email invitation to either an existing Quick Base user that you have granted application access to via API_AddUserToRole, or to a new Quick Base user that you have created via API_ProvisionUser.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -4143,7 +4415,9 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_SetDBVar', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  varname: 'usercode',
+  value: 14
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4153,7 +4427,9 @@ quickbase.api('API_SetDBVar', {
 
 ```javascript--browser
 quickbase.api('API_SetDBVar', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  varname: 'usercode',
+  value: 14
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4166,7 +4442,9 @@ quickbase.api('API_SetDBVar', {
 
 try {
   $results = $quickbase->api('API_SetDBVar', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'varname' => 'usercode',
+    'value' => 14
   ));
 
   // Handle results
@@ -4189,6 +4467,8 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/setdbvar.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_SetDBVar to create a database variable (DBVar) or set a value for it. If the DBVar already exists, this call overwrites the existing value.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
@@ -4197,7 +4477,8 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_SetFieldProperties', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  fid: 6
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4207,7 +4488,8 @@ quickbase.api('API_SetFieldProperties', {
 
 ```javascript--browser
 quickbase.api('API_SetFieldProperties', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  fid: 6
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4220,7 +4502,8 @@ quickbase.api('API_SetFieldProperties', {
 
 try {
   $results = $quickbase->api('API_SetFieldProperties', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'fid' => 6
   ));
 
   // Handle results
@@ -4237,21 +4520,30 @@ try {
 {
   "action": "API_SetFieldProperties",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "fid": 6,
+  "name": "Business Phone Number"
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/setfieldproperties.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_SetFieldProperties to set one or more properties of a field. You invoke this on a table-level dbid.
+
+Typically, you use this call after you create a new field using API_AddField, to set up its default behavior. You can also use this call at any time if you want to change properties, even if the affected field has data.
+
+The properties available for a field vary slightly for the different field types. To get all of the available properties for a field, and to get the field id (fid) needed, use the API_GetSchema call.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_SetKeyField
 
 ```javascript--node
 quickbase.api('API_SetKeyField', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  fid: 6
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4261,7 +4553,8 @@ quickbase.api('API_SetKeyField', {
 
 ```javascript--browser
 quickbase.api('API_SetKeyField', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  fid: 6
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4274,7 +4567,8 @@ quickbase.api('API_SetKeyField', {
 
 try {
   $results = $quickbase->api('API_SetKeyField', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'fid' => 6
   ));
 
   // Handle results
@@ -4296,6 +4590,12 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/setkeyfield.html' target='_blank'>Quick Base Documentation</a>
+Use API_SetKeyField to specify a field in the table as the key field. You invoke this call on a table dbid. You must have full administration rights on the application to use this call.
+
+If you don't specify a key field,  Quick Base uses the built-in Record ID field as the key field. However, if you want to use a different field as the key field for a table, the following conditions must be met:
+
+* The field type you pick must support uniqueness (make sure the Unique checkbox is checked, which disallows duplicate entries).
+* If there is data in the table, the field values must all be unique and cannot be blank.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -4304,9 +4604,7 @@ dbid | true | | Application DBID
 ### API_SignOut
 
 ```javascript--node
-quickbase.api('API_SignOut', {
-  dbid: 'bddnn3uz9'
-}).then((results) => {
+quickbase.api('API_SignOut').then((results) => {
   // Handle results
 }).catch((error) => {
   // Handle error
@@ -4314,9 +4612,7 @@ quickbase.api('API_SignOut', {
 ```
 
 ```javascript--browser
-quickbase.api('API_SignOut', {
-  dbid: 'bddnn3uz9'
-}).then(function(results){
+quickbase.api('API_SignOut').then(function(results){
   // Handle results
 }).catch(function(error){
   // Handle error
@@ -4327,9 +4623,7 @@ quickbase.api('API_SignOut', {
 <?php
 
 try {
-  $results = $quickbase->api('API_SignOut', array(
-    'dbid' => 'bddnn3uz9'
-  ));
+  $results = $quickbase->api('API_SignOut');
 
   // Handle results
 }catch(\Exception $error){
@@ -4351,15 +4645,23 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/signout.html' target='_blank'>Quick Base Documentation</a>
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+This call is for use by API client implementations that make use of the ticket cookie rather than the <ticket> parameter.
+
+Invoking this call returns a null ticket cookie (with the name TICKET).  In some cases, invoking API_SignOut results in applications at the local machine (the API client) being unable to access Quick Base applications until API_Authenticate is called for a new ticket cookie.
+
+This call does not invalidate any tickets, nor log off the caller from any Quick Base applications, nor prevent further access of Quick Base applications. If the caller has saved a valid ticket, that caller can continue to use that ticket even after API_SignOut is called.
 
 ### API_UploadFile
 
 ```javascript--node
 quickbase.api('API_UploadFile', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  rid: 12,
+  field: {
+    fid: 18,
+    filename: 'photo1.jpg',
+    value: 'base64'
+  }
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4369,7 +4671,13 @@ quickbase.api('API_UploadFile', {
 
 ```javascript--browser
 quickbase.api('API_UploadFile', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bguin9b8e',
+  rid: 12,
+  field: {
+    fid: 18,
+    filename: 'photo1.jpg',
+    value: 'base64'
+  }
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4382,7 +4690,13 @@ quickbase.api('API_UploadFile', {
 
 try {
   $results = $quickbase->api('API_UploadFile', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bguin9b8e',
+    'rid' => 12,
+    'field' => array(
+      'fid' => 18,
+      'filename' => 'photo1.jpg',
+      'value' => 'base64'
+    )
   ));
 
   // Handle results
@@ -4399,15 +4713,25 @@ try {
 {
   "action": "API_UploadFile",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "file_fields": [
+    "field": [
+      {
+        "id": 13,
+        "url": "https://target_domain/up/bc4gzy4nx/g/rc/ep/va/qchain.log"
+      }
+    ]
+  ]
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/uploadfile.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_UploadFile to upload base64-encoded file attachments in Quick Base.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
 
 ### API_UserRoles
 
@@ -4453,11 +4777,36 @@ try {
 {
   "action": "API_UserRoles",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "users": [
+    {
+      "type": "user",
+      "id": "112149.bhsv",
+      "name": "Jack Danielsson",
+      "lastAccess": 1403035235243,
+      "lastAccessAppLocal": "06-17-2014 01:00 PM",
+      "firstName": "Jack",
+      "lastName": "Danielsson",
+      "roles": [
+        {
+          "id": 12,
+          "name": "Administrator",
+          "access": {
+            "id": 1,
+            "name": "Administrator"
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/userroles.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_UserRoles to get details about an application’s users and their roles. This call returns all users and their roles.
+
+Note: In order to use the API_UserRoles call, you must have either Basic Access with Sharing access or Full Administration access to the application. If you have only Basic Access with Sharing access, you cannot add a user to a role that has Full Administration permissions.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -4467,7 +4816,8 @@ dbid | true | | Application DBID
 
 ```javascript--node
 quickbase.api('API_Webhooks_Activate', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionIDList: '3,4,5'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4477,7 +4827,8 @@ quickbase.api('API_Webhooks_Activate', {
 
 ```javascript--browser
 quickbase.api('API_Webhooks_Activate', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionIDList: '3,4,5'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4490,7 +4841,8 @@ quickbase.api('API_Webhooks_Activate', {
 
 try {
   $results = $quickbase->api('API_Webhooks_Activate', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'actionIDList' => '3,4,5'
   ));
 
   // Handle results
@@ -4507,21 +4859,26 @@ try {
 {
   "action": "API_Webhooks_Activate",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "numChanged": 3
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/API_Webhooks_Activate.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_Webhooks_Activate to make a webhook active.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+actionIDList | true | | Comma separated webhook ID's
 
 ### API_Webhooks_Copy
 
 ```javascript--node
 quickbase.api('API_Webhooks_Copy', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionID: 3
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4531,7 +4888,8 @@ quickbase.api('API_Webhooks_Copy', {
 
 ```javascript--browser
 quickbase.api('API_Webhooks_Copy', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionID: 3
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4544,7 +4902,8 @@ quickbase.api('API_Webhooks_Copy', {
 
 try {
   $results = $quickbase->api('API_Webhooks_Copy', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'actionID' => 3
   ));
 
   // Handle results
@@ -4561,21 +4920,28 @@ try {
 {
   "action": "API_Webhooks_Copy",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "actionID": 7,
+  "success": true
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/API_Webhooks_Copy.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_Webhooks_Copy to make a duplicate of an existing webhook.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+actionID | true | | Webhook ID that you wish to copy
 
 ### API_Webhooks_Create
 
 ```javascript--node
 quickbase.api('API_Webhooks_Create', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  label: 'Some New Webhook',
+  webhookURL: 'https://some.vendor/service'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4585,7 +4951,9 @@ quickbase.api('API_Webhooks_Create', {
 
 ```javascript--browser
 quickbase.api('API_Webhooks_Create', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  label: 'Some New Webhook',
+  webhookURL: 'https://some.vendor/service'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4598,7 +4966,9 @@ quickbase.api('API_Webhooks_Create', {
 
 try {
   $results = $quickbase->api('API_Webhooks_Create', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'label' => 'Some New Webhook',
+    'webhookURL' => 'https://some.vendor/service'
   ));
 
   // Handle results
@@ -4615,21 +4985,39 @@ try {
 {
   "action": "API_Webhooks_Create",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "success": true,
+  "changed": true
 }
 ```
 
 <a href='https://help.quickbase.com/api-guide/API_Webhooks_Create.html' target='_blank'>Quick Base Documentation</a>
 
+Use API_Webhooks_Create to set up and configure a webhook.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+label | true | | A unique name for the webhook
+description | false | | Description of the webhoook
+query | false | | Filter criteria to trigger the webhook
+workflowWhen | false | a | Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example "mda" (modify, delete, add)
+webhookURL | true | | Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx
+webhookHeader | false | | Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.
+webhookHeaderCount | false | | The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1
+webhookHeaderKey(n) | false | | For example:<br /><br />WebhookHeaderKey1=TOKEN
+webhookHeaderValue(n) | false | | Example:<br /><br />WebhookHeaderValue1=VALUE
+webhookMessage | false | | Payload of the webhook
+webhookMessageFormat | false | XML | Format of the payload:<br /><br />XML<br />JSON<br />RAW
+webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE
+tfidsWhich | false | | Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add 'tfids' request parameter.<br /><br />Set the value of this parameter to 'tfidsAny' to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids>
 
 ### API_Webhooks_Delete
 
 ```javascript--node
 quickbase.api('API_Webhooks_Delete', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionIDList: '3,4,5'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4639,7 +5027,8 @@ quickbase.api('API_Webhooks_Delete', {
 
 ```javascript--browser
 quickbase.api('API_Webhooks_Delete', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionIDList: '3,4,5'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4652,7 +5041,8 @@ quickbase.api('API_Webhooks_Delete', {
 
 try {
   $results = $quickbase->api('API_Webhooks_Delete', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'actionIDList' => '3,4,5'
   ));
 
   // Handle results
@@ -4669,7 +5059,8 @@ try {
 {
   "action": "API_Webhooks_Delete",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "numChanged": 3
 }
 ```
 
@@ -4677,13 +5068,15 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+actionIDList | true | | Comma-separated IDs of the webhooks
 
 ### API_Webhooks_Deactivate
 
 ```javascript--node
 quickbase.api('API_Webhooks_Deactivate', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionIDList: '3,4,5'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4693,7 +5086,8 @@ quickbase.api('API_Webhooks_Deactivate', {
 
 ```javascript--browser
 quickbase.api('API_Webhooks_Deactivate', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionIDList: '3,4,5'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4706,7 +5100,8 @@ quickbase.api('API_Webhooks_Deactivate', {
 
 try {
   $results = $quickbase->api('API_Webhooks_Deactivate', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'actionIDList' => '3,4,5'
   ));
 
   // Handle results
@@ -4723,7 +5118,9 @@ try {
 {
   "action": "API_Webhooks_Deactivate",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "numChanged": 3,
+  "success": true
 }
 ```
 
@@ -4731,13 +5128,17 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+actionIDList | true | | Comma-separated IDs of the webhooks
 
 ### API_Webhooks_Edit
 
 ```javascript--node
 quickbase.api('API_Webhooks_Edit', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionID: 6,
+  label: 'Some Existing Webhook to be Modified',
+  webhookURL: 'https://some.vendor/service'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4747,7 +5148,10 @@ quickbase.api('API_Webhooks_Edit', {
 
 ```javascript--browser
 quickbase.api('API_Webhooks_Edit', {
-  dbid: 'bddnn3uz9'
+  dbid: 'bddnn3uz9',
+  actionID: 6,
+  label: 'Some Existing Webhook to be Modified',
+  webhookURL: 'https://some.vendor/service'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4760,7 +5164,10 @@ quickbase.api('API_Webhooks_Edit', {
 
 try {
   $results = $quickbase->api('API_Webhooks_Edit', array(
-    'dbid' => 'bddnn3uz9'
+    'dbid' => 'bddnn3uz9',
+    'actionID' => 6,
+    'label' => 'Some Existing Webhook to be Modified',
+    'webhookURL' => 'https://some.vendor/service'
   ));
 
   // Handle results
@@ -4777,7 +5184,9 @@ try {
 {
   "action": "API_Webhooks_Edit",
   "errcode": 0,
-  "errtext": "No error"
+  "errtext": "No error",
+  "changed": true,
+  "success": true
 }
 ```
 
@@ -4785,7 +5194,21 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+actionID | true | | The target webhook ID
+label | true | | A unique name for the webhook
+description | false | | Description of the webhoook
+query | false | | Filter criteria to trigger the webhook
+workflowWhen | false | a | Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example "mda" (modify, delete, add)
+webhookURL | true | | Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx
+webhookHeader | false | | Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.
+webhookHeaderCount | false | | The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1
+webhookHeaderKey(n) | false | | For example:<br /><br />WebhookHeaderKey1=TOKEN
+webhookHeaderValue(n) | false | | Example:<br /><br />WebhookHeaderValue1=VALUE
+webhookMessage | false | | Payload of the webhook
+webhookMessageFormat | false | XML | Format of the payload:<br /><br />XML<br />JSON<br />RAW
+webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE
+tfidsWhich | false | | Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add 'tfids' request parameter.<br /><br />Set the value of this parameter to 'tfidsAny' to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids>
 
 # QBRecord
 
