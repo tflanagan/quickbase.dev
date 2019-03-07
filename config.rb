@@ -56,15 +56,3 @@ set :port, 4567
 helpers do
   require './lib/toc_data.rb'
 end
-
-# Global Variables
-
-# API Endpoint localization
-set :qbapi_param_dbid, 'dbid | true | | Application DBID'
-config[:qbapi_param_dbid_application]
-set :qbapi_param_dbid, 'dbid | true | | Application or Table DBID'
-config[:qbapi_param_dbid_application_table]
-set :qbapi_param_dbid, 'dbid | true | | Table DBID'
-config[:qbapi_param_dbid_table]
-set :qbapi_param_query, 'query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use `query` to build your own query string.<br />Use `qid` if you want to use a saved query and want to use its query ID.<br />Use `qname` if you want to use a saved query and refer to it by its query name.'
-config[:qbapi_param_query]
