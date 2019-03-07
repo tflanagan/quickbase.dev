@@ -206,7 +206,7 @@ The Quick Base librarys are built in such a way as to be as future-proof as poss
 
 The way we accomplish this is by exposing a single method `api()`.
 
-#### `.api(action[, options])`
+### `.api(action[, options])`
 
 ```javascript--node
 quickbase.api('SomeAPI_Action', {
@@ -695,6 +695,8 @@ Use API_AddSubGroup to embed a group into another group.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+gid | true | | The id of the group which will contain the subgroup.
+subgroupid | true | | The id of the group to be embedded in the target group.
 
 ### API_AddUserToGroup
 
@@ -756,6 +758,11 @@ Use API_AddUserToGroup to add a user to a group. The user can be added as a memb
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+gid | true | | The id of the group to manage.
+uid | true | | The id of the Quick Base user to add to the group.
+email | false | | The email of the Quick Base user
+screenName | false | | The screen name of the Quick Base user, if set
+allowAdminAccess | false | false | Whether the user should be added as an admin of the group.
 
 ### API_AddUserToRole
 
@@ -828,6 +835,8 @@ To assign roles to users using the Quick Base API or UI, you must have either Ba
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+userid | true | | The userid of the user to be added to the access role.
+roleid | true | | The ID of the access role being assigned to the user.
 
 ### API_Authenticate
 
@@ -901,6 +910,9 @@ Note: API_Authenticate calls have a maximum time limit of 4,380 hours, or approx
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+username | true | | The user’s email address registered with Quick Base or the user name that was selected within Quick Base when the user registered.
+password | true | | The user’s Quick Base password.
+hours | false | 12 | The number of hours that the ticket will be valid. There is a maximum time limit of 4,380 hours or approximately 6 months.
 
 ### API_ChangeGroupInfo
 
@@ -968,11 +980,16 @@ Use API_ChangeGroupInfo to modify the metadata for a group. One or more elements
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+gid | true | | The id of the group to manage.
+name | false | | The name of the new group. It may not contain spaces or punctuation.
+description | false | | A text description of the group.
+accountId | false | | The account that will own the group.
 
 ### API_ChangeManager
 
 ```javascript--node
 quickbase.api('API_ChangeManager', {
+  dbid: 'bddnn3uz9',
   newmgr: 'angela_leon@gmail.com'
 }).then((results) => {
   // Handle results
@@ -983,6 +1000,7 @@ quickbase.api('API_ChangeManager', {
 
 ```javascript--browser
 quickbase.api('API_ChangeManager', {
+  dbid: 'bddnn3uz9',
   newmgr: 'angela_leon@gmail.com'
 }).then(function(results){
   // Handle results
@@ -996,6 +1014,7 @@ quickbase.api('API_ChangeManager', {
 
 try {
   $results = $quickbase->api('API_ChangeManager', array(
+    'dbid' => 'bddnn3uz9',
     'newmgr' => 'angela_leon@gmail.com'
   ));
 
@@ -1023,6 +1042,8 @@ Use API_ChangeManager to assign a user to manage an app.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+newmgr  true | | A valid email address for the new app manager
 
 ### API_ChangeRecordOwner
 
@@ -1088,7 +1109,9 @@ You must have Full Administration rights on the application to use this call.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+rid <i>or</i> key | true | |  The record ID. Every record in every table has a unique rid.<br /><br />Normally, the record ID is the key field for the record. If you set your record's key field to a field OTHER than the record id (rid), you should use the key parameter rather than rid.
+newowner | true | | Specifies the user to whom you are transferring ownership. (Email address or username)
 
 ### API_ChangeUserRole
 
@@ -1158,6 +1181,9 @@ To assign roles to users using the Quick Base API or UI, you must have either Ba
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+userid | true | | The user ID. You can use API_GetUserInfo to get the user ID for a particular user.
+roleid | true | | The user’s current role in the application
+newroleid | false | 9 | If this parameter is not supplied, or is supplied but left blank, the role id is set to 9 (None). If this parameter is supplied with an invalid role id (including 0), the API call will return an error.
 
 ### API_CloneDatabase
 
@@ -1232,6 +1258,11 @@ When you copy a Quick Base application, all users with access to the original ap
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+newdbname | true | | Specifies a name for the new application.
+newdbdesc | false | | Specifies the description for the new application.
+keepData | false | false | Copy data or not into the new application
+excludefiles | false | true | Specifies that you do not want to copy file attachments when you copy an application.
+usersandroles | false | false | If true, users will be assigned roles, if false, users and roles will be copied separately
 
 ### API_CopyGroup
 
@@ -1302,6 +1333,10 @@ Use API_CopyGroup to duplicate an existing group with the same list of users and
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+gid | true | | The id of the group to manage.
+name | true | | The name of the new group.
+description | false | | A description of the group. Default is the description of the source group.
+gacct | false | account for the source group | The account used for the group
 
 ### API_CopyMasterDetail
 
@@ -1381,6 +1416,12 @@ This API does not copy file attachments with the records.
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+destrid | true | | The record id of the destination record to which you want the records copied.<br /><br />If you want to copy the source master record and its detail records, set this to 0.<br /><br />If you want to import detail records from a different master record, set this to the record id of the master record to which you want to import the detail records.
+sourcerid | true | | The record id of the source record from which you want to copy detail records.
+copyfid | true | | The field id of a text field used in the name of the new record, if destrid = 0. The name becomes “Copy of field value".<br /><br />This field cannot be a lookup, append-only text, or formula field.  It also cannot be a unique or snapshot field.
+recurse | false | true |  
+Set this parameter to true to copy all detail records associated with the master record's detail records recursively.  This API supports up to 10 levels of recursion.
+relfids | false | all | A list of comma-separated report link field ids that specify the relationships you want to be copied.<br /><br />For example:<br /><relfids>7,9</relfids>
 
 ### API_CreateDatabase
 
@@ -1445,6 +1486,9 @@ Use API_CreateDatabase to create a new Quick Base application. Quick Base create
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+dbname | true | | The name of the new application
+dbdesc | true | | The description for the new application.
+createapptoken | false | false | Generate an application token for the new application
 
 ### API_CreateGroup
 
@@ -1518,6 +1562,9 @@ The caller (user) must be the manager of the account where the group is created.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+name | true | | The name of the new group. It may not contain spaces or punctuation.
+description | true | | A text description of the group.
+accountID | false | | The account that will own the group.
 
 ### API_CreateTable
 
@@ -1580,6 +1627,9 @@ Use API_CreateTable to create a table for an application. You must have applicat
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+tname | false | Records | The name you want to use for the name of the table.
+pnoun | false | Records | The name you want to use for records in the table. You should use a plural noun that can apply to all records in the table. For example, if each table row contains information about a vehicle that your company owns, you might want to use "Vehicles" as your pnoun.
 
 ### API_DeleteDatabase
 
@@ -1637,7 +1687,7 @@ If you use this API to delete an app, you must be the app manager, or the API wi
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Application or Table DBID
 
 ### API_DeleteField
 
@@ -1701,6 +1751,7 @@ This call deletes the field for all records, regardless of whether the field con
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+fid | true | | Field ID you wish to delete
 
 ### API_DeleteGroup
 
@@ -1756,6 +1807,7 @@ Use API_DeleteGroup to delete a group.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+gid | true | | The id of the group to delete.
 
 ### API_DeleteRecord
 
@@ -1820,6 +1872,7 @@ Note that this call allows you to delete one record at a time. If you want to de
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+rid <i>or</i> key | true | | The record ID of the record to be deleted. If the primary key of the table is not the [Record ID#] field, you should use `key` and the primary key as the value
 
 ### API_DoQuery
 
@@ -1974,6 +2027,13 @@ Use API_DoQuery to get records from a table. You invoke this call on a table-lev
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use <query>{myfid.operator.value}</query> to build your own query string.<br />Use <qid>n</qid>if you want to use a saved query and want to use its query ID.<br />Use <qname>myQuery</qname> if you want to use a saved query and refer to it by its query name.
+clist | false | default table columns | A period-delimited list of field IDs to be returned. Quick Base will return values for these field IDs in the order in which you enter them here. To return all fields use a value of `a`
+slist | false | default table sort | A period-delimited list of field IDs
+options | false | | Specifies return options for the query. You can use any or all of the options, separating the options with a period.<br /><br />num-n --specifies a maximum of n records in the return<br />onlynew --returns only those records marked with new or updated flags<br />skp-n --skips the first n records returned by the query<br />sortorder-A --specifies an ascending order<br />sortorder-D --specifies a descending order<br />nosort --returns unsorted records, ignoring the sortorder option, the slist parameter, and the default sort for the table
+fmt | false | global instance setting | Set this parameter to structured to specify that the query should return structured data.
+returnpercentage | false | global instance setting | Specifies whether Numeric - Percent values in the returned data will be percentage format (10% is shown as 10) or decimal format (10% is shown as .1).
+includeRids | false | global instance setting | Specifies that the record IDs of each record should be returned.
 
 ### API_DoQueryCount
 
@@ -2034,6 +2094,7 @@ You invoke this call against a table dbid using a query string to determine the 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+<%= config[:endpoint] %>
 
 ### API_EditRecord
 
@@ -2651,7 +2712,7 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/get_db_info.html' target='_blank'>Quick Base Documentation</a>
 
-Use API_GetDBInfo to get metadata information, such as the last time the table was modified. For example, you might use this function to find out if the table has changed since you last used it, or to find out if a new record has been added to the table. You can invoke this call on either an application-level dbid or a table-level dbid.
+Use API_GetDBPage to retrieve a stored page in Quick Base. Quick Base allows you to store various types of pages, ranging from user-guide pages for your application to Exact Forms, used to automate insertion of data into Word documents using a special Word template from Quick Base.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -2716,7 +2777,7 @@ try {
 
 <a href='https://help.quickbase.com/api-guide/get_db_page.html' target='_blank'>Quick Base Documentation</a>
 
-Use API_GetDBPage to retrieve a stored page in Quick Base. Quick Base allows you to store various types of pages, ranging from user-guide pages for your application to Exact Forms, used to automate insertion of data into Word documents using a special Word template from Quick Base.
+Use API_GetDBInfo to get metadata information, such as the last time the table was modified. For example, you might use this function to find out if the table has changed since you last used it, or to find out if a new record has been added to the table. You can invoke this call on either an application-level dbid or a table-level dbid.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------

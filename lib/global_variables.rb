@@ -1,0 +1,3 @@
+# API Endpoint localization
+set :endpoint, 'query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use <query>{myfid.operator.value}</query> to build your own query string.<br />Use <qid>n</qid>if you want to use a saved query and want to use its query ID.<br />Use <qname>myQuery</qname> if you want to use a saved query and refer to it by its query name.'
+config[:endpoint]
