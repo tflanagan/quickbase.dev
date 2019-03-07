@@ -58,4 +58,4 @@ helpers do
 end
 
 # Global Variables
-require './lib/global_variables.rb'
+load './lib/global_variables.rb'
