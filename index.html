@@ -1512,6 +1512,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_AddSubGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_AddSubGroup to embed a group into another group.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1566,6 +1568,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_AddUserToGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_AddUserToGroup to add a user to a group. The user can be added as a member of the group, as a member and a manager of the group, or as a manager but not a member of the group.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1619,6 +1623,18 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/add_user_to_role.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_AddUserToRole to assign a user to a role in your Quick Base application.</p>
+
+<p>You assign a user to a role using API_AddUserToRole. After you assign the role, you can use API_SendInvitation to invite the user to the application.</p>
+
+<p>You can invoke this call on a single user several times, applying a different role each time, if you want give the user more than one role. Giving a user more than one role allows the user to sign in to the same Quick Base application with different roles. (Note that if you try to assign a role the user already has, you&#39;ll see an error message.)</p>
+
+<p>Quick Base supplies standard default roles for each application: viewer, participant, and administrator. You can change these and even create custom roles for your applications. You can find out which roles are being used for a particular application using the API_GetRoleInfo call.</p>
+
+<p>Note: You can also assign roles to users when you provision users. See API_ProvisionUser for more information.</p>
+
+<p>To assign roles to users using the Quick Base API or UI, you must have either Basic Access with Sharing access or Full Administration access to the application. Note that, if you have Basic Access with Sharing permissions, you cannot add a user to a role that has Full Administration permissions.</p>
 
 <table><thead>
 <tr>
@@ -1682,6 +1698,18 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/authenticate.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_Authenticate to validate a user&#39;s username and password. You invoke this call on /db/main (no dbid).</p>
+
+<p>API_Authenticate validates the supplied user name and password, and, if successful, returns a ticket that is supplied in subsequent API calls. The ticket is valid for 12 hours, unless you specify a different value in the hours parameter. In addition to the ticket, a cookie is also returned with the name TICKET. This is the only API call that returns a ticket cookie.</p>
+
+<p>Note: It is possible to use a ticket to obtain a ticket (that is, pass in a ticket instead of a username and password).</p>
+
+<p>Using API_Authenticate is the equivalent of logging into Quick Base. Remember that merely logging into Quick Base by itself does not give you access rights to even a single Quick Base application. You must first be assigned a role in the application by someone who has administrator rights. (See API Overview for more information about how to use the authentication ticket when making API calls.)</p>
+
+<p>You should always use secure HTTPS (not HTTP) when calling API_Authenticate. Quick Base does not support API calls over HTTP.</p>
+
+<p>Note: API_Authenticate calls have a maximum time limit of 4,380 hours, or approximately 6 months. This applies to new tickets initiated on or after January 21, 2018.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1742,6 +1770,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_ChangeGroupInfo.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_ChangeGroupInfo to modify the metadata for a group. One or more elements can be modified.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1789,6 +1819,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_ChangeManager.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_ChangeManager to assign a user to manage an app.</p>
 
 <table><thead>
 <tr>
@@ -1843,6 +1875,12 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/change_record_owner.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_ChangeRecordOwner to change the owner of a record.</p>
+
+<p>In Quick Base, a person who creates a record is the record owner. You can set up roles that restrict a record&#39;s view/modify access to the record owner. On occasion, you may need to transfer record ownership from one user to another. If you are using a technical support application, for instance, you might want to transfer ownership of a support incident (record) from one tech support rep to another.</p>
+
+<p>You must have Full Administration rights on the application to use this call.</p>
 
 <table><thead>
 <tr>
@@ -1906,6 +1944,12 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/change_user_role.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_ChangeUserRole to assign a user to a new role, to upgrade or downgrade access, or simply to move the user to a different role.</p>
+
+<p>You can also use this call to assign the user to a special role called None (role id 9) which removes the user&#39;s access to the application. Use the None role if you want to disable access while retaining the user on the application user list.</p>
+
+<p>To assign roles to users using the Quick Base API or UI, you must have either Basic Access with Sharing access or Full Administration access to the application. Note that, if you have Basic Access with Sharing permissions, you cannot add a user to a role that has Full Administration permissions.</p>
 
 <table><thead>
 <tr>
@@ -1977,6 +2021,10 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/clone_database.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_CloneDatabase to make a copy of a Quick Base application. You can choose to use the keepData parameter if you want to copy the application&#39;s data in addition to its structure. If you want to copy data, but exclude file attachments, you can use the excludefiles parameter in your request. After you copy an application, changes to the source application will not affect the copy you created, and vice versa.</p>
+
+<p>When you copy a Quick Base application, all users with access to the original application automatically have access to the application copy. You can choose to remove some or all of these users from the application copy using the API_RemoveUserFromRole.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2046,6 +2094,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_CopyGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_CopyGroup to duplicate an existing group with the same list of users and subgroups, and a different name and ID.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2111,6 +2161,14 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_CopyMasterDetail.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_CopyMasterDetail to copy a master record with its detail records, or to import only the detail records from one master record into a different master record. For example, you could copy a master Project record and its detail Task records.  You also could import only the Task records from a selected master Project record into a different Project record.</p>
+
+<p>You invoke this call on a table-level dbid for the master table to which you are copying or importing records.</p>
+
+<p>API_CopyMasterDetail copies or imports all fields in selected records, regardless of the fields&#39; permission and Auto-Fill settings.  (When Auto-Fill is enabled, a field&#39;s value is copied when a user clicks the &quot;Add Similar&quot; button to add a new Project.)</p>
+
+<p>This API does not copy file attachments with the records.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2174,6 +2232,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/create_database.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_CreateDatabase to create a new Quick Base application. Quick Base creates the main application table populated only with built-in fields and returns an application token for your API application.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2234,6 +2294,14 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_CreateGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_CreateGroup to create a new group. The group will be created with the caller as the group owner and the caller will also be the first user in the group.</p>
+
+<p>The call needs an account id which will be the associated account for the group, unless the call is made to a realm with only one account. If the realm only has one account, then the account associated with the realm will be the group account.</p>
+
+<p>If a realm has more than one account, the accountID parameter will be used to disambiguate the associated account for the group.</p>
+
+<p>The caller (user) must be the manager of the account where the group is created.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2289,6 +2357,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/create_table.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_CreateTable to create a table for an application. You must have application administration rights to use this call. The dbid you supply must be an application-level dbid, not a table-level dbid.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2336,6 +2406,10 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/delete_database.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_DeleteDatabase to delete a table or an entire application. Supply an application-level dbid to delete an application; supply a table-level dbid to delete a table.</p>
+
+<p>If you use this API to delete an app, you must be the app manager, or the API will return an error. If you use this API to delete a table, you must have Full Administration permissions in the app, or the API will return an error.</p>
 
 <table><thead>
 <tr>
@@ -2394,6 +2468,12 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/delete_field.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_DeleteField to delete a field by specifying the field id (fid). You invoke this call on a table-level dbid. (If you use an application level dbid, Quick Base returns an error.)</p>
+
+<p>You must have Full Administration permissions on the application to use this call.</p>
+
+<p>This call deletes the field for all records, regardless of whether the field contains data. Note that the call does not issue a warning message before the deletion.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2448,6 +2528,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_DeleteGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_DeleteGroup to delete a group.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2499,6 +2581,12 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/delete_record.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_DeleteRecord to delete a single record from a table.  You invoke this call on a table-level dbid. If you use an application level dbid, you’ll get an error.</p>
+
+<p>You must have Full Administration permissions on the application to use this call.</p>
+
+<p>Note that this call allows you to delete one record at a time. If you want to delete several records at once, see API_PurgeRecords.</p>
 
 <table><thead>
 <tr>
@@ -2652,6 +2740,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/do_query.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_DoQuery to get records from a table. You invoke this call on a table-level dbid. You can use the parameters (described below) to define which columns will be returned, how many records will be returned and how they will be sorted, and whether the Quick Base should return structured data.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2709,6 +2799,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/do_query_count.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>You invoke this call against a table dbid using a query string to determine the number of records that will be returned.</p>
 
 <table><thead>
 <tr>
@@ -2797,6 +2889,10 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/edit_record.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_EditRecord to change any editable field values in the specified record. Only those fields specified are changed; unspecified fields are left unchanged.</p>
+
+<p>You can specify either field names or field IDs when using this call.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2859,6 +2955,14 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/field_add_choices.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use this call to add new choices to a text - multiple choice or multi-select text field in a Quick Base table.</p>
+
+<p>Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.</p>
+
+<p>If you have Full Administration rights on the application, you can add new choices to any field of those types. If you don’t have these rights, you can use this call only on fields with properties that are set to allow users to add new choices. (In the Quick Base UI, you can set the Allow users to create new choices field property to allow users to do this. You can also set this property using API_SetFieldProperties.)</p>
+
+<p>If the choice you specify already exists in the list, it will not be added. No duplicates are allowed.</p>
 
 <table><thead>
 <tr>
@@ -2923,6 +3027,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/field_remove_choices.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use this call this to remove one or more of the options listed within a Text - Multiple Choice or Multi-select Text field in a Quick Base application. You can remove any choices that you created yourself. You must have Full Administration rights on the application to remove choices you did not create. </p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2981,6 +3087,10 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/find_db_by_name.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_FindDBByName to find the application-level dbid of an application whose name you know. When you use this call, Quick Base searches only those applications to which you have access. Because you can have multiple applications with the same name, you should be aware that more than one application dbid can be returned.</p>
+
+<p>If a Quick Base application consists of a single table, this call returns the child dbid of that table (NOT the application dbid). If you want to find the application-level dbid in this case, set the parentsOnly parameter to 1 for the request.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3032,6 +3142,10 @@ If your application experiences a normal traffic rate that is higher than averag
 </blockquote>
 
 <p><a href='https://help.quickbase.com/api-guide/gen_add_record_form.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GenAddRecordForm to return the standard Quick Base Add record page for the table whose dbid you specify. The form contains edit fields for the user to complete and a Save button to add the record to the database.</p>
+
+<p>If you want to pre-fill any fields, you can do so by supplying one or more field/value pairs in the request. Any fields not pre-filled or completed by the user are set to the default values set in the table field properties.</p>
 
 <table><thead>
 <tr>
@@ -3106,6 +3220,16 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <p><a href='https://help.quickbase.com/api-guide/gen_results_table.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GenResultsTable to embed a Quick Base table report in an HTML page.</p>
+
+<p>This call is typically used in its URL form embedded in an HTML page. When the HTML page is opened in a browser, the call runs automatically and returns results to qdbWrite() for display in the HTML page.</p>
+
+<p>You can also specify that the results should be returned as a JavaScript array, in CSV format, or as tab separated values.</p>
+
+<p>By default, API_GenResultsTable returns the same number of rows as would be returned in the UI. However, you can specify a different number of rows in your table by including num-n in the options parameter.</p>
+
+<p>You can split a result set into several tables by calling API_GenResultsTable once for each table, using the skp option after the first invocation to skip over the records already returned.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3161,6 +3285,10 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getancestorinfo.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>This call must be invoked on the app dbid (not on a table dbid) to get ancestor information about the current application. To use this call, you must have at least read permissions on the table.</p>
+
+<p>The first generation copy of an application returns the same DBID for both oldestancestorappid and ancestorappid.  The grandchild of a template  (and subsequent generations) shows the immediate parent app as the ancestorappid and the original template as the oldestancestorappid.</p>
 
 <table><thead>
 <tr>
@@ -3231,6 +3359,12 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/get_app_dtm_info.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GetAppDTMInfo to get  the timestamp of the last time change throughout the application. You must invoke this call on an application dbid, not on a table dbid.</p>
+
+<p>This is a fast, unobtrusive way to get the time of the last change in an application schema or in records within its tables. No ticket or app token is required for this call, nor does this call result in the application being loaded into memory in Quick Base.</p>
+
+<p>The response to this call contains a parameter indicating the next time you will be allowed to make this call again.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3288,6 +3422,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/get_db_info.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GetDBInfo to get metadata information, such as the last time the table was modified. For example, you might use this function to find out if the table has changed since you last used it, or to find out if a new record has been added to the table. You can invoke this call on either an application-level dbid or a table-level dbid.</p>
 
 <table><thead>
 <tr>
@@ -3352,6 +3488,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/get_db_page.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GetDBPage to retrieve a stored page in Quick Base. Quick Base allows you to store various types of pages, ranging from user-guide pages for your application to Exact Forms, used to automate insertion of data into Word documents using a special Word template from Quick Base.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3409,6 +3547,12 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getdbvar.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GetDBVar to get values assigned to variables (DBVars) set up in your Quick Base application. DBVars are variables you can create to use in your application.</p>
+
+<p>API_GetDBVar returns only one DBVar. If you want to retrieve more than one variable, you&#39;ll need to invoke this call multiple times.</p>
+
+<p>Once you&#39;ve set them up, you can assign values to them using API_SetDBVar. (Use the application-level dbid.) You’ll get an error if the DBVar you ask for does not exist.</p>
 
 <table><thead>
 <tr>
@@ -3492,6 +3636,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GetFieldProperties.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GetFieldProperties to view the properties of a field. Returns properties specific to the field type.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3556,6 +3702,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GetGroupRole.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GetGroupRole determine the roleid for a group within an application.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3610,6 +3758,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getnumrecords.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GetNumRecords to get the total number of records in the table. Invoke this call on a table-level dbid.</p>
 
 <table><thead>
 <tr>
@@ -3712,6 +3862,12 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getschema.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GetSchema to get information about the specified application or application table.</p>
+
+<p>When invoked on an application dbid, this call returns DBVars created for the application and all child table dbids.</p>
+
+<p>When invoked on a table dbid, the call returns DBVars and additional table-related information such as reports, field IDs (fid), key field ID (key_fid), individual record names, base type, and the current property settings for each field. In addition, this call returns the default List All and List Changes reports.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3766,6 +3922,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </blockquote>
 
 <p><a href='https://help.quickbase.com/api-guide/getrecordashtml.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GetRecordAsHTML to get a record within an HTML fragment that can be embedded in another Web page.</p>
 
 <table><thead>
 <tr>
@@ -3836,6 +3994,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getrecordinfo.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>se API_GetRecordInfo to get the values and types of all the fields in a record. You invoke this call on a table-level dbid.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3901,6 +4061,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getroleinfo.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GetRoleInfo to get all of the roles that apply to the application. You invoke this call on the application-level dbid.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3958,6 +4120,14 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getuserinfo.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GetUserInfo to get the username and user ID associated with an email address used for Quick Base sign in. You invoke this call on db/main. You can use this call to grant  a user access rights to your application and then invite that user to your application. This call is typically made to return the Quick Base user ID for a user whose email address you know, in preparation for subsequent calls to API_AddUserToRole (grant access rights) and API_SendInvitation, both of which require the user ID.</p>
+
+<p>The user email that you specify must be recognized in Quick Base.</p>
+
+<p>If the anonymous user passes in an email parameter, the email will be passed back in the response.</p>
+
+<p>If you don’t supply an email parameter, the ticket parameter will be used to determine the current user, which means the current user ID, name, and email are returned.</p>
 <h3 id='api_getuserrole'>API_GetUserRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetUserRole'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
   <span class="na">userid</span><span class="p">:</span> <span class="s1">'112245.efy7'</span><span class="p">,</span>
@@ -4021,6 +4191,12 @@ If your application experiences a normal traffic rate that is higher than averag
 }
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getuserrole.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GetUserRole to see what roles are assigned to a specific user in an application. Invoke this call on an application-level dbid.</p>
+
+<p>Note that, if you do not have sharing permissions on the application, the API call returns your own roles only. To get your roles, you must either invoke the call with no user ID or supply your own user ID.</p>
+
+<p>You  must have Basic Access with Sharing or Full Administration permissions to use this API call to get roles for users other than yourself.  Also, note that, if you want this call to return any roles assigned to a user because he or she is part of a group, you must use the inclgrps parameter (described below). If you do not specify this parameter, API_GetUserRole returns only those roles assigned to the individual user.</p>
 
 <table><thead>
 <tr>
@@ -4110,6 +4286,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GetUsersInGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GetUsersInGroup to get the list of users and groups that make up the members and/or managers of a group.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4174,6 +4352,10 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/granteddbs.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_GrantedDBs to get a list of the names and dbids of all the applications and tables that you are entitled to access, across all domains. You invoke this call on https://target_domain/db/main.</p>
+
+<p>This call returns all the apps that you have access to, across all domains, not only the target domain. However, you can use the realmAppsOnly parameter to make this call return only the apps in the realm the call is being made against.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4228,6 +4410,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GrantedDBsForGroup.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GrantedDBsForGroup to get a list of all the applications that a group can access.</p>
 
 <table><thead>
 <tr>
@@ -4288,6 +4472,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GrantedGroups.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_GrantedGroups to get the list of groups to which a user has been granted access. If the adminOnly flag is passed, then only return groups in which this user has administration privileges.</p>
 
 <table><thead>
 <tr>
@@ -4379,6 +4565,10 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/importfromcsv.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_ImportFromCSV to add or update several records. You invoke this call on a table-level dbid. You can add AND update in the same API_ImportFromCSV request. (For an Add, leave the Record ID empty.)</p>
+
+<p>The clist parameter is optional when adding new records to a table. When updating existing records, the clist parameter must contain the field ID for the key field (usually 3 for the Record ID#). The CSV file you&#39;re importing must also include a column that contains the value of the key field for each record that will be updated.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4446,6 +4636,12 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/provisionuser.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_ProvisionUser to add a user who is not yet registered with Quick Base to your application. You invoke an application-level dbid for a user that is not yet registered with Quick Base, but whose email is known to you. </p>
+
+<p>After you invoke this call, you’ll need to invoke API_SendInvitation to invite the new user via email. When the user clicks on the email invitation, the user is prompted to complete the brief registration. (At this time, the user can change the first and last name you assigned.)</p>
+
+<p>If a user already is registered with Quick Base, the API will return an error. With registered users, you should use API_GetUserInfo, API_AddUserToRole, and API_SendInvitation.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4462,14 +4658,20 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_purgerecords'>API_PurgeRecords</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_PurgeRecords'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">query</span><span class="p">:</span> <span class="s1">''</span>
+  <span class="cm">/* qid: 1 */</span>
+  <span class="cm">/* qname: 'List All' */</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_PurgeRecords'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">query</span><span class="p">:</span> <span class="s1">''</span>
+  <span class="cm">/* qid: 1 */</span>
+  <span class="cm">/* qname: 'List All' */</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4479,7 +4681,10 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_PurgeRecords'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'query'</span> <span class="o">=&gt;</span> <span class="s1">''</span>
+    <span class="cm">/* 'qid' =&gt; 1 */</span>
+    <span class="cm">/* 'qname' =&gt; 'List All' */</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4495,10 +4700,15 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_PurgeRecords"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"num_records_deleted"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/purgerecords.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_PurgeRecords to delete the specified records from the specified table. All records matching the criteria in the specified query will be deleted.</p>
+
+<p>You can build your own query string using the query parameter in the call. You can also use a saved query for the table, using qid or qname. See API_DoQuery for information on saved queries or for instructions on building the query string.</p>
 
 <table><thead>
 <tr>
@@ -4512,18 +4722,24 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
 </tr>
 </tbody></table>
 <h3 id='api_removegroupfromrole'>API_RemoveGroupFromRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveGroupFromRole'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">gid</span><span class="p">:</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+  <span class="na">roleid</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="na">allRoles</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveGroupFromRole'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">gid</span><span class="p">:</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+  <span class="na">roleid</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="na">allRoles</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4533,7 +4749,10 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RemoveGroupFromRole'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'gid'</span> <span class="o">=&gt;</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+    <span class="s1">'roleid'</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="s1">'allRoles'</span> <span class="o">=&gt;</span> <span class="kc">false</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4554,6 +4773,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_RemoveGroupFromRole.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_RemoveGroupFromRole to remove a group from a role in an app. You can also indicate if you want to remove a group from all roles in an application.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4570,14 +4791,18 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_removesubgroup'>API_RemoveSubgroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveSubgroup'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">gid</span><span class="p">:</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+  <span class="na">subgroupid</span><span class="p">:</span> <span class="s1">'345889.skld'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveSubgroup'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">gid</span><span class="p">:</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+  <span class="na">subgroupid</span><span class="p">:</span> <span class="s1">'345889.skld'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4587,7 +4812,9 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RemoveSubgroup'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'gid'</span> <span class="o">=&gt;</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+    <span class="s1">'subgroupid'</span> <span class="o">=&gt;</span> <span class="s1">'345889.skld'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4608,6 +4835,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_RemoveSubgroup.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_RemoveSubgroup to remove a nested group from a group.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4624,14 +4853,18 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_removeuserfromgroup'>API_RemoveUserFromGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromGroup'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">gid</span><span class="p">:</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+  <span class="na">userid</span><span class="p">:</span> <span class="s1">'9380434.rtgf'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromGroup'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">gid</span><span class="p">:</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+  <span class="na">userid</span><span class="p">:</span> <span class="s1">'9380434.rtgf'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4641,7 +4874,9 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromGroup'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'gid'</span> <span class="o">=&gt;</span> <span class="s1">'345889.sjkl'</span><span class="p">,</span>
+    <span class="s1">'userid'</span> <span class="o">=&gt;</span> <span class="s1">'9380434.rtgf'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4662,6 +4897,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_RemoveUserFromGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_RemoveUserFromGroup to remove a user from a group.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4678,14 +4915,18 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_removeuserfromrole'>API_RemoveUserFromRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromRole'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">userid</span><span class="p">:</span> <span class="s1">'112245.efy7'</span><span class="p">,</span>
+  <span class="na">roleid</span><span class="p">:</span> <span class="mi">11</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromRole'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">userid</span><span class="p">:</span> <span class="s1">'112245.efy7'</span><span class="p">,</span>
+  <span class="na">roleid</span><span class="p">:</span> <span class="mi">11</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4695,7 +4936,9 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromRole'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'userid'</span> <span class="o">=&gt;</span> <span class="s1">'112245.efy7'</span><span class="p">,</span>
+    <span class="s1">'roleid'</span> <span class="o">=&gt;</span> <span class="mi">11</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4716,6 +4959,14 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/removeuserfromrole.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_RemoveUserFromRole to remove a user from a specified role. You invoke this call on an application-level dbid. If the user has no other role, this call eliminates the user from the application’s role list. You’ll need to get the user ID by calling API_GetUserInfo if you want to assign the user to another role in the future.</p>
+
+<p>This call can be used to remove the user entirely from any role in the application, effectively turning off access to that user. If you intend to turn off all access, you would need to call API_GetUserRole Info to see what roles the user has, then invoke API_RemoveUserFromRole on each role.</p>
+
+<p>If you expect to add that user to another role in the future, you should consider using API_ChangeUserRole, which can be used to turn off access (with a role set to None) while keeping the user on the application’s role list for future reinstatement or role change.</p>
+
+<p>If you are simply changing the user from one role to another, you should use API_ChangeUserRole.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4732,14 +4983,16 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_renameapp'>API_RenameApp</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RenameApp'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">newappname</span><span class="p">:</span> <span class="s1">'Refueler'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RenameApp'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">newappname</span><span class="p">:</span> <span class="s1">'Refueler'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4749,7 +5002,8 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RenameApp'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'newappname'</span> <span class="o">=&gt;</span> <span class="s1">'Refueler'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4770,6 +5024,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/renameapp.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_RenameApp to change an application&#39;s name. You invoke this call on an application-level dbid. You must have full administration rights on the application to use this call.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4786,14 +5042,16 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_runimport'>API_RunImport</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RunImport'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">id</span><span class="p">:</span> <span class="mi">10</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RunImport'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">id</span><span class="p">:</span> <span class="mi">10</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4803,7 +5061,8 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_RunImport'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="mi">10</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4819,10 +5078,15 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_RunImport"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"import_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3 new records were created."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/runimport.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Quick Base allows you to import data from one or more of your application tables into another application table. You can import tables from within your application, or from another application. (For complete information on this feature, see the Quick Base online help.)</p>
+
+<p>If you&#39;ll need to execute the same import multiple times, you can save a specific import and execute it any time you need to run it. To run a saved import, invoke API_RunImport on a table dbid whose ID you specify in this call. Note that you can’t use API_GetSchema to get the saved import&#39;s ID because API_GetSchema doesn’t return the saved import.</p>
 
 <table><thead>
 <tr>
@@ -4836,18 +5100,22 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
 </tr>
 </tbody></table>
 <h3 id='api_sendinvitation'>API_SendInvitation</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SendInvitation'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">userid</span><span class="p">:</span> <span class="s1">'112249.ctdg'</span><span class="p">,</span>
+  <span class="na">usertext</span><span class="p">:</span> <span class="s1">'Welcome!'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SendInvitation'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">userid</span><span class="p">:</span> <span class="s1">'112249.ctdg'</span><span class="p">,</span>
+  <span class="na">usertext</span><span class="p">:</span> <span class="s1">'Welcome!'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4857,7 +5125,9 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_SendInvitation'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'userid'</span> <span class="o">=&gt;</span> <span class="s1">'112249.ctdg'</span><span class="p">,</span>
+    <span class="s1">'usertext'</span> <span class="o">=&gt;</span> <span class="s1">'Welcome!'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4878,6 +5148,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/sendinvitation.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_SendInvitation to send an email invitation to your application. You can send an email invitation to either an existing Quick Base user that you have granted application access to via API_AddUserToRole, or to a new Quick Base user that you have created via API_ProvisionUser.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4894,14 +5166,18 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_setdbvar'>API_SetDBVar</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetDBVar'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">varname</span><span class="p">:</span> <span class="s1">'usercode'</span><span class="p">,</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">14</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetDBVar'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">varname</span><span class="p">:</span> <span class="s1">'usercode'</span><span class="p">,</span>
+  <span class="na">value</span><span class="p">:</span> <span class="mi">14</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4911,7 +5187,9 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_SetDBVar'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'varname'</span> <span class="o">=&gt;</span> <span class="s1">'usercode'</span><span class="p">,</span>
+    <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="mi">14</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4932,6 +5210,8 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/setdbvar.html' target='_blank'>Quick Base Documentation</a></p>
 
+<p>Use API_SetDBVar to create a database variable (DBVar) or set a value for it. If the DBVar already exists, this call overwrites the existing value.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4948,14 +5228,16 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_setfieldproperties'>API_SetFieldProperties</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetFieldProperties'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">fid</span><span class="p">:</span> <span class="mi">6</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetFieldProperties'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">fid</span><span class="p">:</span> <span class="mi">6</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -4965,7 +5247,8 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_SetFieldProperties'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'fid'</span> <span class="o">=&gt;</span> <span class="mi">6</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -4981,10 +5264,18 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_SetFieldProperties"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fid"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Business Phone Number"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/setfieldproperties.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_SetFieldProperties to set one or more properties of a field. You invoke this on a table-level dbid.</p>
+
+<p>Typically, you use this call after you create a new field using API_AddField, to set up its default behavior. You can also use this call at any time if you want to change properties, even if the affected field has data.</p>
+
+<p>The properties available for a field vary slightly for the different field types. To get all of the available properties for a field, and to get the field id (fid) needed, use the API_GetSchema call.</p>
 
 <table><thead>
 <tr>
@@ -4998,18 +5289,20 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
 </tr>
 </tbody></table>
 <h3 id='api_setkeyfield'>API_SetKeyField</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetKeyField'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">fid</span><span class="p">:</span> <span class="mi">6</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetKeyField'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">fid</span><span class="p">:</span> <span class="mi">6</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -5019,7 +5312,8 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_SetKeyField'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'fid'</span> <span class="o">=&gt;</span> <span class="mi">6</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -5038,7 +5332,15 @@ If your application experiences a normal traffic rate that is higher than averag
   </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><a href='https://help.quickbase.com/api-guide/setkeyfield.html' target='_blank'>Quick Base Documentation</a></p>
+<p><a href='https://help.quickbase.com/api-guide/setkeyfield.html' target='_blank'>Quick Base Documentation</a>
+Use API_SetKeyField to specify a field in the table as the key field. You invoke this call on a table dbid. You must have full administration rights on the application to use this call.</p>
+
+<p>If you don&#39;t specify a key field,  Quick Base uses the built-in Record ID field as the key field. However, if you want to use a different field as the key field for a table, the following conditions must be met:</p>
+
+<ul>
+<li>The field type you pick must support uniqueness (make sure the Unique checkbox is checked, which disallows duplicate entries).</li>
+<li>If there is data in the table, the field values must all be unique and cannot be blank.</li>
+</ul>
 
 <table><thead>
 <tr>
@@ -5055,16 +5357,12 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>Application DBID</td>
 </tr>
 </tbody></table>
-<h3 id='api_signout'>API_SignOut</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SignOut'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<h3 id='api_signout'>API_SignOut</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SignOut'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
-</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SignOut'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SignOut'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
   <span class="c1">// Handle error</span>
@@ -5072,9 +5370,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
-  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_SignOut'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
-  <span class="p">));</span>
+  <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_SignOut'</span><span class="p">);</span>
 
   <span class="c1">// Handle results
 </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">\Exception</span> <span class="nv">$error</span><span class="p">){</span>
@@ -5094,30 +5390,32 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/signout.html' target='_blank'>Quick Base Documentation</a></p>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
-</tbody></table>
+<p>This call is for use by API client implementations that make use of the ticket cookie rather than the <ticket> parameter.</p>
+
+<p>Invoking this call returns a null ticket cookie (with the name TICKET).  In some cases, invoking API_SignOut results in applications at the local machine (the API client) being unable to access Quick Base applications until API_Authenticate is called for a new ticket cookie.</p>
+
+<p>This call does not invalidate any tickets, nor log off the caller from any Quick Base applications, nor prevent further access of Quick Base applications. If the caller has saved a valid ticket, that caller can continue to use that ticket even after API_SignOut is called.</p>
 <h3 id='api_uploadfile'>API_UploadFile</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_UploadFile'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">rid</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="na">field</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fid</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'photo1.jpg'</span><span class="p">,</span>
+    <span class="na">value</span><span class="p">:</span> <span class="s1">'base64'</span>
+  <span class="p">}</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_UploadFile'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+  <span class="na">rid</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+  <span class="na">field</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">fid</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="s1">'photo1.jpg'</span><span class="p">,</span>
+    <span class="na">value</span><span class="p">:</span> <span class="s1">'base64'</span>
+  <span class="p">}</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -5127,7 +5425,13 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_UploadFile'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
+    <span class="s1">'rid'</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="s1">'field'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+      <span class="s1">'fid'</span> <span class="o">=&gt;</span> <span class="mi">18</span><span class="p">,</span>
+      <span class="s1">'filename'</span> <span class="o">=&gt;</span> <span class="s1">'photo1.jpg'</span><span class="p">,</span>
+      <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'base64'</span>
+    <span class="p">)</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -5143,10 +5447,20 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_UploadFile"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"file_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"field"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://target_domain/up/bc4gzy4nx/g/rc/ep/va/qchain.log"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/uploadfile.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_UploadFile to upload base64-encoded file attachments in Quick Base.</p>
 
 <table><thead>
 <tr>
@@ -5160,7 +5474,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
 </tr>
 </tbody></table>
 <h3 id='api_userroles'>API_UserRoles</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_UserRoles'</span><span class="p">,</span> <span class="p">{</span>
@@ -5197,10 +5511,35 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_UserRoles"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"112149.bhsv"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Danielsson"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastAccess"</span><span class="p">:</span><span class="w"> </span><span class="mi">1403035235243</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastAccessAppLocal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06-17-2014 01:00 PM"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danielsson"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Administrator"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Administrator"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/userroles.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_UserRoles to get details about an application’s users and their roles. This call returns all users and their roles.</p>
+
+<p>Note: In order to use the API_UserRoles call, you must have either Basic Access with Sharing access or Full Administration access to the application. If you have only Basic Access with Sharing access, you cannot add a user to a role that has Full Administration permissions.</p>
 
 <table><thead>
 <tr>
@@ -5218,14 +5557,16 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_activate'>API_Webhooks_Activate</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Activate'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionIDList</span><span class="p">:</span> <span class="s1">'3,4,5'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Activate'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionIDList</span><span class="p">:</span> <span class="s1">'3,4,5'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -5235,7 +5576,8 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Activate'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+    <span class="s1">'actionIDList'</span> <span class="o">=&gt;</span> <span class="s1">'3,4,5'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -5251,10 +5593,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_Webhooks_Activate"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"numChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Activate.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_Webhooks_Activate to make a webhook active.</p>
 
 <table><thead>
 <tr>
@@ -5268,18 +5613,26 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
+</tr>
+<tr>
+<td>actionIDList</td>
+<td>true</td>
+<td></td>
+<td>Comma separated webhook ID&#39;s</td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_copy'>API_Webhooks_Copy</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Copy'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionID</span><span class="p">:</span> <span class="mi">3</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Copy'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionID</span><span class="p">:</span> <span class="mi">3</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -5289,7 +5642,8 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Copy'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+    <span class="s1">'actionID'</span> <span class="o">=&gt;</span> <span class="mi">3</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -5305,10 +5659,14 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_Webhooks_Copy"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"actionID"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Copy.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_Webhooks_Copy to make a duplicate of an existing webhook.</p>
 
 <table><thead>
 <tr>
@@ -5322,18 +5680,28 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
+</tr>
+<tr>
+<td>actionID</td>
+<td>true</td>
+<td></td>
+<td>Webhook ID that you wish to copy</td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_create'>API_Webhooks_Create</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Create'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">label</span><span class="p">:</span> <span class="s1">'Some New Webhook'</span><span class="p">,</span>
+  <span class="na">webhookURL</span><span class="p">:</span> <span class="s1">'https://some.vendor/service'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Create'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">label</span><span class="p">:</span> <span class="s1">'Some New Webhook'</span><span class="p">,</span>
+  <span class="na">webhookURL</span><span class="p">:</span> <span class="s1">'https://some.vendor/service'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -5343,7 +5711,9 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Create'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Some New Webhook'</span><span class="p">,</span>
+    <span class="s1">'webhookURL'</span> <span class="o">=&gt;</span> <span class="s1">'https://some.vendor/service'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -5359,10 +5729,14 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_Webhooks_Create"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"changed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Create.html' target='_blank'>Quick Base Documentation</a></p>
+
+<p>Use API_Webhooks_Create to set up and configure a webhook.</p>
 
 <table><thead>
 <tr>
@@ -5376,18 +5750,98 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
+</tr>
+<tr>
+<td>label</td>
+<td>true</td>
+<td></td>
+<td>A unique name for the webhook</td>
+</tr>
+<tr>
+<td>description</td>
+<td>false</td>
+<td></td>
+<td>Description of the webhoook</td>
+</tr>
+<tr>
+<td>query</td>
+<td>false</td>
+<td></td>
+<td>Filter criteria to trigger the webhook</td>
+</tr>
+<tr>
+<td>workflowWhen</td>
+<td>false</td>
+<td>a</td>
+<td>Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example &quot;mda&quot; (modify, delete, add)</td>
+</tr>
+<tr>
+<td>webhookURL</td>
+<td>true</td>
+<td></td>
+<td>Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx</td>
+</tr>
+<tr>
+<td>webhookHeader</td>
+<td>false</td>
+<td></td>
+<td>Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.</td>
+</tr>
+<tr>
+<td>webhookHeaderCount</td>
+<td>false</td>
+<td></td>
+<td>The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1</td>
+</tr>
+<tr>
+<td>webhookHeaderKey(n)</td>
+<td>false</td>
+<td></td>
+<td>For example:<br /><br />WebhookHeaderKey1=TOKEN</td>
+</tr>
+<tr>
+<td>webhookHeaderValue(n)</td>
+<td>false</td>
+<td></td>
+<td>Example:<br /><br />WebhookHeaderValue1=VALUE</td>
+</tr>
+<tr>
+<td>webhookMessage</td>
+<td>false</td>
+<td></td>
+<td>Payload of the webhook</td>
+</tr>
+<tr>
+<td>webhookMessageFormat</td>
+<td>false</td>
+<td>XML</td>
+<td>Format of the payload:<br /><br />XML<br />JSON<br />RAW</td>
+</tr>
+<tr>
+<td>webhookHTTPVerb</td>
+<td>false</td>
+<td>POST</td>
+<td>A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE</td>
+</tr>
+<tr>
+<td>tfidsWhich</td>
+<td>false</td>
+<td></td>
+<td>Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add &#39;tfids&#39; request parameter.<br /><br />Set the value of this parameter to &#39;tfidsAny&#39; to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids></td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_delete'>API_Webhooks_Delete</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Delete'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionIDList</span><span class="p">:</span> <span class="s1">'3,4,5'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Delete'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionIDList</span><span class="p">:</span> <span class="s1">'3,4,5'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -5397,7 +5851,8 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Delete'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+    <span class="s1">'actionIDList'</span> <span class="o">=&gt;</span> <span class="s1">'3,4,5'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -5413,7 +5868,8 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_Webhooks_Delete"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"numChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Delete.html' target='_blank'>Quick Base Documentation</a></p>
@@ -5430,18 +5886,26 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
+</tr>
+<tr>
+<td>actionIDList</td>
+<td>true</td>
+<td></td>
+<td>Comma-separated IDs of the webhooks</td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_deactivate'>API_Webhooks_Deactivate</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Deactivate'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionIDList</span><span class="p">:</span> <span class="s1">'3,4,5'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Deactivate'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionIDList</span><span class="p">:</span> <span class="s1">'3,4,5'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -5451,7 +5915,8 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Deactivate'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+    <span class="s1">'actionIDList'</span> <span class="o">=&gt;</span> <span class="s1">'3,4,5'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -5467,7 +5932,9 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_Webhooks_Deactivate"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"numChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Deactivate.html' target='_blank'>Quick Base Documentation</a></p>
@@ -5484,18 +5951,30 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
+</tr>
+<tr>
+<td>actionIDList</td>
+<td>true</td>
+<td></td>
+<td>Comma-separated IDs of the webhooks</td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_edit'>API_Webhooks_Edit</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Edit'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionID</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="na">label</span><span class="p">:</span> <span class="s1">'Some Existing Webhook to be Modified'</span><span class="p">,</span>
+  <span class="na">webhookURL</span><span class="p">:</span> <span class="s1">'https://some.vendor/service'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle error</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Edit'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
+  <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+  <span class="na">actionID</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="na">label</span><span class="p">:</span> <span class="s1">'Some Existing Webhook to be Modified'</span><span class="p">,</span>
+  <span class="na">webhookURL</span><span class="p">:</span> <span class="s1">'https://some.vendor/service'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">){</span>
   <span class="c1">// Handle results</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
@@ -5505,7 +5984,10 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <span class="k">try</span> <span class="p">{</span>
   <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$quickbase</span><span class="o">-&gt;</span><span class="na">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Edit'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span>
+    <span class="s1">'dbid'</span> <span class="o">=&gt;</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
+    <span class="s1">'actionID'</span> <span class="o">=&gt;</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="s1">'label'</span> <span class="o">=&gt;</span> <span class="s1">'Some Existing Webhook to be Modified'</span><span class="p">,</span>
+    <span class="s1">'webhookURL'</span> <span class="o">=&gt;</span> <span class="s1">'https://some.vendor/service'</span>
   <span class="p">));</span>
 
   <span class="c1">// Handle results
@@ -5521,7 +6003,9 @@ If your application experiences a normal traffic rate that is higher than averag
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_Webhooks_Edit"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errcode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="w">
+  </span><span class="s2">"errtext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No error"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"changed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Edit.html' target='_blank'>Quick Base Documentation</a></p>
@@ -5538,7 +6022,91 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Application DBID</td>
+<td>Table DBID</td>
+</tr>
+<tr>
+<td>actionID</td>
+<td>true</td>
+<td></td>
+<td>The target webhook ID</td>
+</tr>
+<tr>
+<td>label</td>
+<td>true</td>
+<td></td>
+<td>A unique name for the webhook</td>
+</tr>
+<tr>
+<td>description</td>
+<td>false</td>
+<td></td>
+<td>Description of the webhoook</td>
+</tr>
+<tr>
+<td>query</td>
+<td>false</td>
+<td></td>
+<td>Filter criteria to trigger the webhook</td>
+</tr>
+<tr>
+<td>workflowWhen</td>
+<td>false</td>
+<td>a</td>
+<td>Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example &quot;mda&quot; (modify, delete, add)</td>
+</tr>
+<tr>
+<td>webhookURL</td>
+<td>true</td>
+<td></td>
+<td>Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx</td>
+</tr>
+<tr>
+<td>webhookHeader</td>
+<td>false</td>
+<td></td>
+<td>Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.</td>
+</tr>
+<tr>
+<td>webhookHeaderCount</td>
+<td>false</td>
+<td></td>
+<td>The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1</td>
+</tr>
+<tr>
+<td>webhookHeaderKey(n)</td>
+<td>false</td>
+<td></td>
+<td>For example:<br /><br />WebhookHeaderKey1=TOKEN</td>
+</tr>
+<tr>
+<td>webhookHeaderValue(n)</td>
+<td>false</td>
+<td></td>
+<td>Example:<br /><br />WebhookHeaderValue1=VALUE</td>
+</tr>
+<tr>
+<td>webhookMessage</td>
+<td>false</td>
+<td></td>
+<td>Payload of the webhook</td>
+</tr>
+<tr>
+<td>webhookMessageFormat</td>
+<td>false</td>
+<td>XML</td>
+<td>Format of the payload:<br /><br />XML<br />JSON<br />RAW</td>
+</tr>
+<tr>
+<td>webhookHTTPVerb</td>
+<td>false</td>
+<td>POST</td>
+<td>A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE</td>
+</tr>
+<tr>
+<td>tfidsWhich</td>
+<td>false</td>
+<td></td>
+<td>Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add &#39;tfids&#39; request parameter.<br /><br />Set the value of this parameter to &#39;tfidsAny&#39; to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids></td>
 </tr>
 </tbody></table>
 <h1 id='qbrecord'>QBRecord</h1><h2 id='initialization-2'>Initialization</h2><h2 id='instance-methods'>Instance Methods</h2><h3 id='clear'>clear</h3><h3 id='delete'>delete</h3><h3 id='get'>get</h3><h3 id='getdbid'>getDBID</h3><h3 id='getfid'>getFid</h3><h3 id='getfids'>getFids</h3><h3 id='getfield'>getField</h3><h3 id='getfields'>getFields</h3><h3 id='gettablename'>getTableName</h3><h3 id='load'>load</h3><h3 id='loadschema'>loadSchema</h3><h3 id='save'>save</h3><h3 id='set'>set</h3><h3 id='setdbid'>setDBID</h3><h3 id='setfid'>setFid</h3><h3 id='setfids'>setFids</h3><h3 id='tojson'>toJson</h3><h1 id='qbtable'>QBTable</h1><h2 id='initialization-3'>Initialization</h2><h2 id='instance-methods-2'>Instance Methods</h2><h3 id='clear-2'>clear</h3><h3 id='deleterecord'>deleteRecord</h3><h3 id='deleterecords'>deleteRecords</h3><h3 id='getappid'>getAppID</h3><h3 id='getdateformat'>getDateFormat</h3><h3 id='getdbid-2'>getDBID</h3><h3 id='getchildtables'>getChildTables</h3><h3 id='getfid-2'>getFid</h3><h3 id='getfids-2'>getFids</h3><h3 id='getfield-2'>getField</h3><h3 id='getfields-2'>getFields</h3><h3 id='getnrecords'>getNRecords</h3><h3 id='getoptions'>getOptions</h3><h3 id='getplural'>getPlural</h3><h3 id='getqueries'>getQueries</h3><h3 id='getquery'>getQuery</h3><h3 id='getrecord'>getRecord</h3><h3 id='getrecords'>getRecords</h3><h3 id='getsingular'>getSingular</h3><h3 id='getslist'>getSList</h3><h3 id='gettablename-2'>getTableName</h3><h3 id='gettimezone'>getTimezone</h3><h3 id='getvariable'>getVariable</h3><h3 id='getvariables'>getVariables</h3><h3 id='load-2'>load</h3><h3 id='loadnrecords'>loadNRecords</h3><h3 id='loadschema-2'>loadSchema</h3><h3 id='save-2'>save</h3><h3 id='setdbid-2'>setDBID</h3><h3 id='setfid-2'>setFid</h3><h3 id='setfids-2'>setFids</h3><h3 id='setoptions'>setOptions</h3><h3 id='setquery'>setQuery</h3><h3 id='setslist'>setSList</h3><h3 id='tojson-2'>toJson</h3><h3 id='upsertrecord'>upsertRecord</h3><h3 id='upsertrecords'>upsertRecords</h3><h2 id='static-methods'>Static Methods</h2><h3 id='newrecord'>NewRecord</h3><h3 id='newrecords'>NewRecords</h3><h1 id='formatting-data-for-quick-base'>Formatting Data for Quick Base</h1>
