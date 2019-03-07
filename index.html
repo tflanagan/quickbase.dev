@@ -1028,37 +1028,12 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID that you want to add a field to</td>
-</tr>
-<tr>
-<td>add_to_forms</td>
-<td>false</td>
-<td>false</td>
-<td>Specifies whether the field you are adding should appear at the end of any form with form properties set to &quot;Auto-Add new fields.&quot;</td>
-</tr>
-<tr>
-<td>label</td>
-<td>true</td>
-<td></td>
-<td>Name of the new field</td>
-</tr>
-<tr>
-<td>mode</td>
-<td>Lookup/Formula only</td>
-<td></td>
-<td>Specifies whether the field is a formula field or a lookup field (possible values for formula: &#39;virtual&#39;, and lookup: &#39;lookup&#39;)</td>
-</tr>
-<tr>
-<td>type</td>
-<td>true</td>
-<td></td>
-<td>The Quick Base field type.</td>
-</tr>
 </tbody></table>
+
+<p>add_to_forms | false | false | Specifies whether the field you are adding should appear at the end of any form with form properties set to &quot;Auto-Add new fields.&quot;
+label | true | | Name of the new field
+mode | Lookup/Formula only | | Specifies whether the field is a formula field or a lookup field (possible values for formula: &#39;virtual&#39;, and lookup: &#39;lookup&#39;)
+type | true | | The Quick Base field type.</p>
 
 <p>Possible <code>type</code> values:</p>
 
@@ -1199,25 +1174,10 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
-<tr>
-<td>gid</td>
-<td>true</td>
-<td></td>
-<td>The id of the group</td>
-</tr>
-<tr>
-<td>roleid</td>
-<td>true</td>
-<td></td>
-<td>The id of the role</td>
-</tr>
 </tbody></table>
+
+<p>gid | true | | The id of the group
+roleid | true | | The id of the role</p>
 <h3 id='api_addrecord'>API_AddRecord</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddRecord'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">fields</span><span class="p">:</span> <span class="p">[</span>
@@ -1291,49 +1251,14 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>fields</td>
-<td>true</td>
-<td></td>
-<td>Array of objects with fid/value parameters</td>
-</tr>
-<tr>
-<td>disprec</td>
-<td>false</td>
-<td>false</td>
-<td>Set this parameter to true to specify that the new record should be displayed within the Quick Base application. An application login required before the record can be displayed. If you use this parameter, Quick Base, returns the normal Quick Base HTML page that displays the record.<br /><br />Omit this property if you don&#39;t want the new record to display within the Quick Base application.</td>
-</tr>
-<tr>
-<td>fform</td>
-<td>false</td>
-<td>false</td>
-<td>Set this parameter to true if you are invoking API_AddRecord from within an HTML form that has checkboxes and want those checkboxes to set Quick Base Checkbox fields.<br /><br />Omit this property if you don&#39;t need Quick Base to set Checkbox fields based on your HTML page.</td>
-</tr>
-<tr>
-<td>ignoreError</td>
-<td>false</td>
-<td>false</td>
-<td>Set this parameter to true to specify that no error should be returned when a built-in field (for example, Record ID#) is written-to in an API_AddRecord call.<br /><br />If you do not set this parameter, Quick Base returns an error when API_AddRecord writes to a built-in field.</td>
-</tr>
-<tr>
-<td>msInUTC</td>
-<td>false</td>
-<td>global instance setting</td>
-<td>Allows you to specify that Quick Base should interpret all date/time stamps passed in as milliseconds using Coordinated Universal Time (UTC) rather than using the local application time.<br /><br />Set this parameter to true if you want to use Coordinated Universal Time.</td>
-</tr>
-<tr>
-<td>msAsDurationDefault</td>
-<td>false</td>
-<td>false</td>
-<td>Set this parameter to true to specify milliseconds, instead of days, as the default units for a duration field value sent without any units.<br /><br />If you set this parameter to false or omit it, then any duration field values sent without a unit will default to being interpreted as days.</td>
-</tr>
 </tbody></table>
+
+<p>fields | true | | Array of objects with fid/value parameters
+disprec | false | false | Set this parameter to true to specify that the new record should be displayed within the Quick Base application. An application login required before the record can be displayed. If you use this parameter, Quick Base, returns the normal Quick Base HTML page that displays the record.<br /><br />Omit this property if you don&#39;t want the new record to display within the Quick Base application.
+fform | false | false | Set this parameter to true if you are invoking API_AddRecord from within an HTML form that has checkboxes and want those checkboxes to set Quick Base Checkbox fields.<br /><br />Omit this property if you don&#39;t need Quick Base to set Checkbox fields based on your HTML page.
+ignoreError | false | false | Set this parameter to true to specify that no error should be returned when a built-in field (for example, Record ID#) is written-to in an API_AddRecord call.<br /><br />If you do not set this parameter, Quick Base returns an error when API_AddRecord writes to a built-in field.
+msInUTC | false | global instance setting | Allows you to specify that Quick Base should interpret all date/time stamps passed in as milliseconds using Coordinated Universal Time (UTC) rather than using the local application time.<br /><br />Set this parameter to true if you want to use Coordinated Universal Time.
+msAsDurationDefault | false | false | Set this parameter to true to specify milliseconds, instead of days, as the default units for a duration field value sent without any units.<br /><br />If you set this parameter to false or omit it, then any duration field values sent without a unit will default to being interpreted as days.</p>
 <h3 id='api_addreplacedbpage'>API_AddReplaceDBPage</h3><pre class="highlight javascript tab-javascript--node"><code><span class="c1">// Adding a new DB Page</span>
 <span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddReplaceDBPage'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
@@ -1439,37 +1364,12 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
-<tr>
-<td>pagename</td>
-<td>true</td>
-<td></td>
-<td>The name of the DB Page</td>
-</tr>
-<tr>
-<td>pageid</td>
-<td>true, if updating</td>
-<td></td>
-<td>The id of the DB Page you wish to update</td>
-</tr>
-<tr>
-<td>pagetype</td>
-<td>true</td>
-<td></td>
-<td>Page type value, possible values are 1 for XSL stylesheets or HTML Pages and 3 for Exact Forms</td>
-</tr>
-<tr>
-<td>pagebody</td>
-<td>true</td>
-<td></td>
-<td>Contains the contents of the page you are adding.</td>
-</tr>
 </tbody></table>
+
+<p>pagename | true | | The name of the DB Page
+pageid | true, if updating | | The id of the DB Page you wish to update
+pagetype | true | | Page type value, possible values are 1 for XSL stylesheets or HTML Pages and 3 for Exact Forms
+pagebody | true | | Contains the contents of the page you are adding.</p>
 <h3 id='api_addsubgroup'>API_AddSubGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddSubGroup'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">gid</span><span class="p">:</span> <span class="s1">'345889.sdfs'</span><span class="p">,</span>
   <span class="na">subgroupid</span><span class="p">:</span> <span class="s1">'820935.ksjf'</span>
@@ -1686,25 +1586,10 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
-<tr>
-<td>userid</td>
-<td>true</td>
-<td></td>
-<td>The userid of the user to be added to the access role.</td>
-</tr>
-<tr>
-<td>roleid</td>
-<td>true</td>
-<td></td>
-<td>The ID of the access role being assigned to the user.</td>
-</tr>
 </tbody></table>
+
+<p>userid | true | | The userid of the user to be added to the access role.
+roleid | true | | The ID of the access role being assigned to the user.</p>
 <h3 id='api_authenticate'>API_Authenticate</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Authenticate'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">username</span><span class="p">:</span> <span class="s1">'PTBarnum'</span><span class="p">,</span>
   <span class="na">password</span><span class="p">:</span> <span class="s1">'TopSecret'</span><span class="p">,</span>
@@ -1929,19 +1814,9 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
-<tr>
-<td>newmgr  true</td>
-<td></td>
-<td>A valid email address for the new app manager</td>
-<td></td>
-</tr>
 </tbody></table>
+
+<p>newmgr  true | | A valid email address for the new app manager</p>
 <h3 id='api_changerecordowner'>API_ChangeRecordOwner</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ChangeRecordOwner'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">rid</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
@@ -2001,25 +1876,10 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>rid <i>or</i> key</td>
-<td>true</td>
-<td></td>
-<td>The record ID. Every record in every table has a unique rid.<br /><br />Normally, the record ID is the key field for the record. If you set your record&#39;s key field to a field OTHER than the record id (rid), you should use the key parameter rather than rid.</td>
-</tr>
-<tr>
-<td>newowner</td>
-<td>true</td>
-<td></td>
-<td>Specifies the user to whom you are transferring ownership. (Email address or username)</td>
-</tr>
 </tbody></table>
+
+<p>rid <i>or</i> key | true | |  The record ID. Every record in every table has a unique rid.<br /><br />Normally, the record ID is the key field for the record. If you set your record&#39;s key field to a field OTHER than the record id (rid), you should use the key parameter rather than rid.
+newowner | true | | Specifies the user to whom you are transferring ownership. (Email address or username)</p>
 <h3 id='api_changeuserrole'>API_ChangeUserRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ChangeUserRole'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">userid</span><span class="p">:</span> <span class="s1">'112248.5nzg'</span><span class="p">,</span>
@@ -2082,31 +1942,11 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
-<tr>
-<td>userid</td>
-<td>true</td>
-<td></td>
-<td>The user ID. You can use API_GetUserInfo to get the user ID for a particular user.</td>
-</tr>
-<tr>
-<td>roleid</td>
-<td>true</td>
-<td></td>
-<td>The user’s current role in the application</td>
-</tr>
-<tr>
-<td>newroleid</td>
-<td>false</td>
-<td>9</td>
-<td>If this parameter is not supplied, or is supplied but left blank, the role id is set to 9 (None). If this parameter is supplied with an invalid role id (including 0), the API call will return an error.</td>
-</tr>
 </tbody></table>
+
+<p>userid | true | | The user ID. You can use API_GetUserInfo to get the user ID for a particular user.
+roleid | true | | The user’s current role in the application
+newroleid | false | 9 | If this parameter is not supplied, or is supplied but left blank, the role id is set to 9 (None). If this parameter is supplied with an invalid role id (including 0), the API call will return an error.</p>
 <h3 id='api_clonedatabase'>API_CloneDatabase</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CloneDatabase'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">newdbname</span><span class="p">:</span> <span class="s1">'YellowDots'</span><span class="p">,</span>
@@ -2174,43 +2014,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>newdbname</td>
-<td>true</td>
-<td></td>
-<td>Specifies a name for the new application.</td>
-</tr>
-<tr>
-<td>newdbdesc</td>
-<td>false</td>
-<td></td>
-<td>Specifies the description for the new application.</td>
-</tr>
-<tr>
-<td>keepData</td>
-<td>false</td>
-<td>false</td>
-<td>Copy data or not into the new application</td>
-</tr>
-<tr>
-<td>excludefiles</td>
-<td>false</td>
-<td>true</td>
-<td>Specifies that you do not want to copy file attachments when you copy an application.</td>
-</tr>
-<tr>
-<td>usersandroles</td>
-<td>false</td>
-<td>false</td>
-<td>If true, users will be assigned roles, if false, users and roles will be copied separately</td>
-</tr>
 </tbody></table>
+
+<p>newdbname | true | | Specifies a name for the new application.
+newdbdesc | false | | Specifies the description for the new application.
+keepData | false | false | Copy data or not into the new application
+excludefiles | false | true | Specifies that you do not want to copy file attachments when you copy an application.
+usersandroles | false | false | If true, users will be assigned roles, if false, users and roles will be copied separately</p>
 <h3 id='api_copygroup'>API_CopyGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CopyGroup'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">gid</span><span class="p">:</span> <span class="s1">'1213.dsfj'</span><span class="p">,</span>
   <span class="na">name</span><span class="p">:</span> <span class="s1">'SalesTeamLeadsCopy'</span><span class="p">,</span>
@@ -2372,39 +2182,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>destrid</td>
-<td>true</td>
-<td></td>
-<td>The record id of the destination record to which you want the records copied.<br /><br />If you want to copy the source master record and its detail records, set this to 0.<br /><br />If you want to import detail records from a different master record, set this to the record id of the master record to which you want to import the detail records.</td>
-</tr>
-<tr>
-<td>sourcerid</td>
-<td>true</td>
-<td></td>
-<td>The record id of the source record from which you want to copy detail records.</td>
-</tr>
-<tr>
-<td>copyfid</td>
-<td>true</td>
-<td></td>
-<td>The field id of a text field used in the name of the new record, if destrid = 0. The name becomes “Copy of field value&quot;.<br /><br />This field cannot be a lookup, append-only text, or formula field.  It also cannot be a unique or snapshot field.</td>
-</tr>
-<tr>
-<td>recurse</td>
-<td>false</td>
-<td>true</td>
-<td></td>
-</tr>
 </tbody></table>
 
-<p>Set this parameter to true to copy all detail records associated with the master record&#39;s detail records recursively.  This API supports up to 10 levels of recursion.
+<p>destrid | true | | The record id of the destination record to which you want the records copied.<br /><br />If you want to copy the source master record and its detail records, set this to 0.<br /><br />If you want to import detail records from a different master record, set this to the record id of the master record to which you want to import the detail records.
+sourcerid | true | | The record id of the source record from which you want to copy detail records.
+copyfid | true | | The field id of a text field used in the name of the new record, if destrid = 0. The name becomes “Copy of field value&quot;.<br /><br />This field cannot be a lookup, append-only text, or formula field.  It also cannot be a unique or snapshot field.
+recurse | false | true |<br>
+Set this parameter to true to copy all detail records associated with the master record&#39;s detail records recursively.  This API supports up to 10 levels of recursion.
 relfids | false | all | A list of comma-separated report link field ids that specify the relationships you want to be copied.<br /><br />For example:<br /><relfids>7,9</relfids></p>
 <h3 id='api_createdatabase'>API_CreateDatabase</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CreateDatabase'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbname</span><span class="p">:</span> <span class="s1">'FuelCharter'</span><span class="p">,</span>
@@ -2625,25 +2409,10 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
-<tr>
-<td>tname</td>
-<td>false</td>
-<td>Records</td>
-<td>The name you want to use for the name of the table.</td>
-</tr>
-<tr>
-<td>pnoun</td>
-<td>false</td>
-<td>Records</td>
-<td>The name you want to use for records in the table. You should use a plural noun that can apply to all records in the table. For example, if each table row contains information about a vehicle that your company owns, you might want to use &quot;Vehicles&quot; as your pnoun.</td>
-</tr>
 </tbody></table>
+
+<p>tname | false | Records | The name you want to use for the name of the table.
+pnoun | false | Records | The name you want to use for records in the table. You should use a plural noun that can apply to all records in the table. For example, if each table row contains information about a vehicle that your company owns, you might want to use &quot;Vehicles&quot; as your pnoun.</p>
 <h3 id='api_deletedatabase'>API_DeleteDatabase</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DeleteDatabase'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -2695,12 +2464,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application or Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_deletefield'>API_DeleteField</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DeleteField'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
@@ -2758,19 +2521,9 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
-<tr>
-<td>fid</td>
-<td>true</td>
-<td></td>
-<td>Field ID you wish to delete</td>
-</tr>
 </tbody></table>
+
+<p>fid | true | | Field ID you wish to delete</p>
 <h3 id='api_deletegroup'>API_DeleteGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DeleteGroup'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">gid</span><span class="p">:</span> <span class="s1">'345889.skef'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -2884,19 +2637,9 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>rid <i>or</i> key</td>
-<td>true</td>
-<td></td>
-<td>The record ID of the record to be deleted. If the primary key of the table is not the [Record ID#] field, you should use <code>key</code> and the primary key as the value</td>
-</tr>
 </tbody></table>
+
+<p>rid <i>or</i> key | true | | The record ID of the record to be deleted. If the primary key of the table is not the [Record ID#] field, you should use <code>key</code> and the primary key as the value</p>
 <h3 id='api_doquery'>API_DoQuery</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DoQuery'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">query</span><span class="p">:</span> <span class="s2">"{'5'.CT.'Ragnar Lodbrok'}AND{'5'.CT.'Acquisitions'}"</span><span class="p">,</span>
@@ -3044,55 +2787,15 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>query <i>or</i> qid <i>or</i> qname</td>
-<td>false</td>
-<td>all</td>
-<td>Specifies the query. You can use any of these three options:<br /><br />Use <query>{myfid.operator.value}</query> to build your own query string.<br />Use <qid>n</qid>if you want to use a saved query and want to use its query ID.<br />Use <qname>myQuery</qname> if you want to use a saved query and refer to it by its query name.</td>
-</tr>
-<tr>
-<td>clist</td>
-<td>false</td>
-<td>default table columns</td>
-<td>A period-delimited list of field IDs to be returned. Quick Base will return values for these field IDs in the order in which you enter them here. To return all fields use a value of <code>a</code></td>
-</tr>
-<tr>
-<td>slist</td>
-<td>false</td>
-<td>default table sort</td>
-<td>A period-delimited list of field IDs</td>
-</tr>
-<tr>
-<td>options</td>
-<td>false</td>
-<td></td>
-<td>Specifies return options for the query. You can use any or all of the options, separating the options with a period.<br /><br />num-n --specifies a maximum of n records in the return<br />onlynew --returns only those records marked with new or updated flags<br />skp-n --skips the first n records returned by the query<br />sortorder-A --specifies an ascending order<br />sortorder-D --specifies a descending order<br />nosort --returns unsorted records, ignoring the sortorder option, the slist parameter, and the default sort for the table</td>
-</tr>
-<tr>
-<td>fmt</td>
-<td>false</td>
-<td>global instance setting</td>
-<td>Set this parameter to structured to specify that the query should return structured data.</td>
-</tr>
-<tr>
-<td>returnpercentage</td>
-<td>false</td>
-<td>global instance setting</td>
-<td>Specifies whether Numeric - Percent values in the returned data will be percentage format (10% is shown as 10) or decimal format (10% is shown as .1).</td>
-</tr>
-<tr>
-<td>includeRids</td>
-<td>false</td>
-<td>global instance setting</td>
-<td>Specifies that the record IDs of each record should be returned.</td>
-</tr>
 </tbody></table>
+
+<p>query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use <query>{myfid.operator.value}</query> to build your own query string.<br />Use <qid>n</qid>if you want to use a saved query and want to use its query ID.<br />Use <qname>myQuery</qname> if you want to use a saved query and refer to it by its query name.
+clist | false | default table columns | A period-delimited list of field IDs to be returned. Quick Base will return values for these field IDs in the order in which you enter them here. To return all fields use a value of <code>a</code>
+slist | false | default table sort | A period-delimited list of field IDs
+options | false | | Specifies return options for the query. You can use any or all of the options, separating the options with a period.<br /><br />num-n --specifies a maximum of n records in the return<br />onlynew --returns only those records marked with new or updated flags<br />skp-n --skips the first n records returned by the query<br />sortorder-A --specifies an ascending order<br />sortorder-D --specifies a descending order<br />nosort --returns unsorted records, ignoring the sortorder option, the slist parameter, and the default sort for the table
+fmt | false | global instance setting | Set this parameter to structured to specify that the query should return structured data.
+returnpercentage | false | global instance setting | Specifies whether Numeric - Percent values in the returned data will be percentage format (10% is shown as 10) or decimal format (10% is shown as .1).
+includeRids | false | global instance setting | Specifies that the record IDs of each record should be returned.</p>
 <h3 id='api_doquerycount'>API_DoQueryCount</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DoQueryCount'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">query</span><span class="p">:</span> <span class="s2">"{'7'.XCT.'blue car'}"</span>
@@ -3156,7 +2859,7 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <td>query <i>or</i> qid <i>or</i> qname</td>
 <td>false</td>
 <td>all</td>
-<td>Specifies the query. You can use any of these three options:<br /><br />Use <query>{myfid.operator.value}</query> to build your own query string.<br />Use <qid>n</qid>if you want to use a saved query and want to use its query ID.<br />Use <qname>myQuery</qname> if you want to use a saved query and refer to it by its query name.</td>
+<td>Specifies the query. You can use any of these three options:<br /><br />Use <code>query</code> to build your own query string.<br />Use <code>qid</code> if you want to use a saved query and want to use its query ID.<br />Use <code>qname</code> if you want to use a saved query and refer to it by its query name.</td>
 </tr>
 </tbody></table>
 <h3 id='api_editrecord'>API_EditRecord</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_EditRecord'</span><span class="p">,</span> <span class="p">{</span>
@@ -3243,12 +2946,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_fieldaddchoices'>API_FieldAddChoices</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_FieldAddChoices'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
@@ -3314,12 +3011,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_fieldremovechoices'>API_FieldRemoveChoices</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_FieldRemoveChoices'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
@@ -3379,12 +3070,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_finddbbyname'>API_FindDBByName</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_FindDBByName'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbname</span><span class="p">:</span> <span class="s1">'TestTable'</span><span class="p">,</span>
@@ -3497,12 +3182,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_genresultstable'>API_GenResultsTable</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GenResultsTable'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
@@ -3580,12 +3259,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getancestorinfo'>API_GetAncestorInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetAncestorInfo'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
@@ -3640,12 +3313,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getappdtminfo'>API_GetAppDTMInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetAppDTMInfo'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
@@ -3715,12 +3382,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getdbpage'>API_GetDBPage</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetDBPage'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -3775,12 +3436,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getdbinfo'>API_GetDBInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetDBInfo'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
@@ -3840,12 +3495,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getdbvar'>API_GetDBVar</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetDBVar'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -3904,12 +3553,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getfieldproperties'>API_GetFieldProperties</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetFieldProperties'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
@@ -3988,12 +3631,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getgrouprole'>API_GetGroupRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetGroupRole'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -4054,12 +3691,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getnumrecords'>API_GetNumRecords</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetNumRecords'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
@@ -4111,12 +3742,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getschema'>API_GetSchema</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetSchema'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
@@ -4218,12 +3843,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getrecordashtml'>API_GetRecordAsHTML</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetRecordAsHTML'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -4275,12 +3894,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getrecordinfo'>API_GetRecordInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetRecordInfo'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -4346,12 +3959,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getroleinfo'>API_GetRoleInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetRoleInfo'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
@@ -4413,12 +4020,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getuserinfo'>API_GetUserInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetUserInfo'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
@@ -4548,12 +4149,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_getusersingroup'>API_GetUsersInGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetUsersInGroup'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">gid</span><span class="p">:</span> <span class="s1">'2345.skdj'</span><span class="p">,</span>
@@ -4919,12 +4514,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_provisionuser'>API_ProvisionUser</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ProvisionUser'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -4992,12 +4581,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_purgerecords'>API_PurgeRecords</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_PurgeRecords'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5060,12 +4643,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_removegroupfromrole'>API_RemoveGroupFromRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveGroupFromRole'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5125,12 +4702,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_removesubgroup'>API_RemoveSubgroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveSubgroup'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5187,12 +4758,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_removeuserfromgroup'>API_RemoveUserFromGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromGroup'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5249,12 +4814,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_removeuserfromrole'>API_RemoveUserFromRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromRole'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5317,12 +4876,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_renameapp'>API_RenameApp</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RenameApp'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5376,12 +4929,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_runimport'>API_RunImport</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RunImport'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5438,12 +4985,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_sendinvitation'>API_SendInvitation</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SendInvitation'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5500,12 +5041,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_setdbvar'>API_SetDBVar</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetDBVar'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5562,12 +5097,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_setfieldproperties'>API_SetFieldProperties</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetFieldProperties'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5627,12 +5156,6 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_setkeyfield'>API_SetKeyField</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetKeyField'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
@@ -5692,12 +5215,6 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_signout'>API_SignOut</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SignOut'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Handle results</span>
@@ -5812,12 +5329,6 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_userroles'>API_UserRoles</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_UserRoles'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span>
@@ -5891,12 +5402,6 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Application DBID</td>
-</tr>
 </tbody></table>
 <h3 id='api_webhooks_activate'>API_Webhooks_Activate</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Activate'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
@@ -5951,19 +5456,9 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>actionIDList</td>
-<td>true</td>
-<td></td>
-<td>Comma separated webhook ID&#39;s</td>
-</tr>
 </tbody></table>
+
+<p>actionIDList | true | | Comma separated webhook ID&#39;s</p>
 <h3 id='api_webhooks_copy'>API_Webhooks_Copy</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Copy'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">actionID</span><span class="p">:</span> <span class="mi">3</span>
@@ -6018,19 +5513,9 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>actionID</td>
-<td>true</td>
-<td></td>
-<td>Webhook ID that you wish to copy</td>
-</tr>
 </tbody></table>
+
+<p>actionID | true | | Webhook ID that you wish to copy</p>
 <h3 id='api_webhooks_create'>API_Webhooks_Create</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Create'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">label</span><span class="p">:</span> <span class="s1">'Some New Webhook'</span><span class="p">,</span>
@@ -6088,91 +5573,21 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>label</td>
-<td>true</td>
-<td></td>
-<td>A unique name for the webhook</td>
-</tr>
-<tr>
-<td>description</td>
-<td>false</td>
-<td></td>
-<td>Description of the webhoook</td>
-</tr>
-<tr>
-<td>query</td>
-<td>false</td>
-<td></td>
-<td>Filter criteria to trigger the webhook</td>
-</tr>
-<tr>
-<td>workflowWhen</td>
-<td>false</td>
-<td>a</td>
-<td>Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example &quot;mda&quot; (modify, delete, add)</td>
-</tr>
-<tr>
-<td>webhookURL</td>
-<td>true</td>
-<td></td>
-<td>Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx</td>
-</tr>
-<tr>
-<td>webhookHeader</td>
-<td>false</td>
-<td></td>
-<td>Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.</td>
-</tr>
-<tr>
-<td>webhookHeaderCount</td>
-<td>false</td>
-<td></td>
-<td>The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1</td>
-</tr>
-<tr>
-<td>webhookHeaderKey(n)</td>
-<td>false</td>
-<td></td>
-<td>For example:<br /><br />WebhookHeaderKey1=TOKEN</td>
-</tr>
-<tr>
-<td>webhookHeaderValue(n)</td>
-<td>false</td>
-<td></td>
-<td>Example:<br /><br />WebhookHeaderValue1=VALUE</td>
-</tr>
-<tr>
-<td>webhookMessage</td>
-<td>false</td>
-<td></td>
-<td>Payload of the webhook</td>
-</tr>
-<tr>
-<td>webhookMessageFormat</td>
-<td>false</td>
-<td>XML</td>
-<td>Format of the payload:<br /><br />XML<br />JSON<br />RAW</td>
-</tr>
-<tr>
-<td>webhookHTTPVerb</td>
-<td>false</td>
-<td>POST</td>
-<td>A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE</td>
-</tr>
-<tr>
-<td>tfidsWhich</td>
-<td>false</td>
-<td></td>
-<td>Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add &#39;tfids&#39; request parameter.<br /><br />Set the value of this parameter to &#39;tfidsAny&#39; to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids></td>
-</tr>
 </tbody></table>
+
+<p>label | true | | A unique name for the webhook
+description | false | | Description of the webhoook
+query | false | | Filter criteria to trigger the webhook
+workflowWhen | false | a | Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example &quot;mda&quot; (modify, delete, add)
+webhookURL | true | | Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx
+webhookHeader | false | | Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.
+webhookHeaderCount | false | | The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1
+webhookHeaderKey(n) | false | | For example:<br /><br />WebhookHeaderKey1=TOKEN
+webhookHeaderValue(n) | false | | Example:<br /><br />WebhookHeaderValue1=VALUE
+webhookMessage | false | | Payload of the webhook
+webhookMessageFormat | false | XML | Format of the payload:<br /><br />XML<br />JSON<br />RAW
+webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE
+tfidsWhich | false | | Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add &#39;tfids&#39; request parameter.<br /><br />Set the value of this parameter to &#39;tfidsAny&#39; to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids></p>
 <h3 id='api_webhooks_delete'>API_Webhooks_Delete</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Delete'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">actionIDList</span><span class="p">:</span> <span class="s1">'3,4,5'</span>
@@ -6224,19 +5639,9 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>actionIDList</td>
-<td>true</td>
-<td></td>
-<td>Comma-separated IDs of the webhooks</td>
-</tr>
 </tbody></table>
+
+<p>actionIDList | true | | Comma-separated IDs of the webhooks</p>
 <h3 id='api_webhooks_deactivate'>API_Webhooks_Deactivate</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Deactivate'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">actionIDList</span><span class="p">:</span> <span class="s1">'3,4,5'</span>
@@ -6289,19 +5694,9 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>actionIDList</td>
-<td>true</td>
-<td></td>
-<td>Comma-separated IDs of the webhooks</td>
-</tr>
 </tbody></table>
+
+<p>actionIDList | true | | Comma-separated IDs of the webhooks</p>
 <h3 id='api_webhooks_edit'>API_Webhooks_Edit</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Edit'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bddnn3uz9'</span><span class="p">,</span>
   <span class="na">actionID</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
@@ -6360,97 +5755,22 @@ Use API_SetKeyField to specify a field in the table as the key field. You invoke
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>dbid</td>
-<td>true</td>
-<td></td>
-<td>Table DBID</td>
-</tr>
-<tr>
-<td>actionID</td>
-<td>true</td>
-<td></td>
-<td>The target webhook ID</td>
-</tr>
-<tr>
-<td>label</td>
-<td>true</td>
-<td></td>
-<td>A unique name for the webhook</td>
-</tr>
-<tr>
-<td>description</td>
-<td>false</td>
-<td></td>
-<td>Description of the webhoook</td>
-</tr>
-<tr>
-<td>query</td>
-<td>false</td>
-<td></td>
-<td>Filter criteria to trigger the webhook</td>
-</tr>
-<tr>
-<td>workflowWhen</td>
-<td>false</td>
-<td>a</td>
-<td>Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example &quot;mda&quot; (modify, delete, add)</td>
-</tr>
-<tr>
-<td>webhookURL</td>
-<td>true</td>
-<td></td>
-<td>Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx</td>
-</tr>
-<tr>
-<td>webhookHeader</td>
-<td>false</td>
-<td></td>
-<td>Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.</td>
-</tr>
-<tr>
-<td>webhookHeaderCount</td>
-<td>false</td>
-<td></td>
-<td>The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1</td>
-</tr>
-<tr>
-<td>webhookHeaderKey(n)</td>
-<td>false</td>
-<td></td>
-<td>For example:<br /><br />WebhookHeaderKey1=TOKEN</td>
-</tr>
-<tr>
-<td>webhookHeaderValue(n)</td>
-<td>false</td>
-<td></td>
-<td>Example:<br /><br />WebhookHeaderValue1=VALUE</td>
-</tr>
-<tr>
-<td>webhookMessage</td>
-<td>false</td>
-<td></td>
-<td>Payload of the webhook</td>
-</tr>
-<tr>
-<td>webhookMessageFormat</td>
-<td>false</td>
-<td>XML</td>
-<td>Format of the payload:<br /><br />XML<br />JSON<br />RAW</td>
-</tr>
-<tr>
-<td>webhookHTTPVerb</td>
-<td>false</td>
-<td>POST</td>
-<td>A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE</td>
-</tr>
-<tr>
-<td>tfidsWhich</td>
-<td>false</td>
-<td></td>
-<td>Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add &#39;tfids&#39; request parameter.<br /><br />Set the value of this parameter to &#39;tfidsAny&#39; to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids></td>
-</tr>
 </tbody></table>
+
+<p>actionID | true | | The target webhook ID
+label | true | | A unique name for the webhook
+description | false | | Description of the webhoook
+query | false | | Filter criteria to trigger the webhook
+workflowWhen | false | a | Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example &quot;mda&quot; (modify, delete, add)
+webhookURL | true | | Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx
+webhookHeader | false | | Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.
+webhookHeaderCount | false | | The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1
+webhookHeaderKey(n) | false | | For example:<br /><br />WebhookHeaderKey1=TOKEN
+webhookHeaderValue(n) | false | | Example:<br /><br />WebhookHeaderValue1=VALUE
+webhookMessage | false | | Payload of the webhook
+webhookMessageFormat | false | XML | Format of the payload:<br /><br />XML<br />JSON<br />RAW
+webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE
+tfidsWhich | false | | Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add &#39;tfids&#39; request parameter.<br /><br />Set the value of this parameter to &#39;tfidsAny&#39; to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids></p>
 <h1 id='qbrecord'>QBRecord</h1><h2 id='initialization-2'>Initialization</h2><h2 id='instance-methods'>Instance Methods</h2><h3 id='clear'>clear</h3><h3 id='delete'>delete</h3><h3 id='get'>get</h3><h3 id='getdbid'>getDBID</h3><h3 id='getfid'>getFid</h3><h3 id='getfids'>getFids</h3><h3 id='getfield'>getField</h3><h3 id='getfields'>getFields</h3><h3 id='gettablename'>getTableName</h3><h3 id='load'>load</h3><h3 id='loadschema'>loadSchema</h3><h3 id='save'>save</h3><h3 id='set'>set</h3><h3 id='setdbid'>setDBID</h3><h3 id='setfid'>setFid</h3><h3 id='setfids'>setFids</h3><h3 id='tojson'>toJson</h3><h1 id='qbtable'>QBTable</h1><h2 id='initialization-3'>Initialization</h2><h2 id='instance-methods-2'>Instance Methods</h2><h3 id='clear-2'>clear</h3><h3 id='deleterecord'>deleteRecord</h3><h3 id='deleterecords'>deleteRecords</h3><h3 id='getappid'>getAppID</h3><h3 id='getdateformat'>getDateFormat</h3><h3 id='getdbid-2'>getDBID</h3><h3 id='getchildtables'>getChildTables</h3><h3 id='getfid-2'>getFid</h3><h3 id='getfids-2'>getFids</h3><h3 id='getfield-2'>getField</h3><h3 id='getfields-2'>getFields</h3><h3 id='getnrecords'>getNRecords</h3><h3 id='getoptions'>getOptions</h3><h3 id='getplural'>getPlural</h3><h3 id='getqueries'>getQueries</h3><h3 id='getquery'>getQuery</h3><h3 id='getrecord'>getRecord</h3><h3 id='getrecords'>getRecords</h3><h3 id='getsingular'>getSingular</h3><h3 id='getslist'>getSList</h3><h3 id='gettablename-2'>getTableName</h3><h3 id='gettimezone'>getTimezone</h3><h3 id='getvariable'>getVariable</h3><h3 id='getvariables'>getVariables</h3><h3 id='load-2'>load</h3><h3 id='loadnrecords'>loadNRecords</h3><h3 id='loadschema-2'>loadSchema</h3><h3 id='save-2'>save</h3><h3 id='setdbid-2'>setDBID</h3><h3 id='setfid-2'>setFid</h3><h3 id='setfids-2'>setFids</h3><h3 id='setoptions'>setOptions</h3><h3 id='setquery'>setQuery</h3><h3 id='setslist'>setSList</h3><h3 id='tojson-2'>toJson</h3><h3 id='upsertrecord'>upsertRecord</h3><h3 id='upsertrecords'>upsertRecords</h3><h2 id='static-methods'>Static Methods</h2><h3 id='newrecord'>NewRecord</h3><h3 id='newrecords'>NewRecords</h3><h1 id='formatting-data-for-quick-base'>Formatting Data for Quick Base</h1>
 <p>Quick Base has very specific patterns and formats for various field types that you will need to pay attention to.</p>
 
