@@ -343,7 +343,7 @@ The amount of data space consumed by a field depends on the field type.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID that you want to add a field to
+<%= config[:qbapi_param_dbid_table] %>
 add_to_forms | false | false | Specifies whether the field you are adding should appear at the end of any form with form properties set to "Auto-Add new fields."
 label | true | | Name of the new field
 mode | Lookup/Formula only | | Specifies whether the field is a formula field or a lookup field (possible values for formula: 'virtual', and lookup: 'lookup')
@@ -432,7 +432,7 @@ Use API_AddGroupToRole to add a group to a role in an app.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 gid | true | | The id of the group
 roleid | true | | The id of the role
 
@@ -514,7 +514,7 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 fields | true | | Array of objects with fid/value parameters
 disprec | false | false | Set this parameter to true to specify that the new record should be displayed within the Quick Base application. An application login required before the record can be displayed. If you use this parameter, Quick Base, returns the normal Quick Base HTML page that displays the record.<br /><br />Omit this property if you don't want the new record to display within the Quick Base application.
 fform | false | false | Set this parameter to true if you are invoking API_AddRecord from within an HTML form that has checkboxes and want those checkboxes to set Quick Base Checkbox fields.<br /><br />Omit this property if you don't need Quick Base to set Checkbox fields based on your HTML page.
@@ -632,7 +632,7 @@ Quick Base allows you to store various types of pages at the application level. 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 pagename | true | | The name of the DB Page
 pageid | true, if updating | | The id of the DB Page you wish to update
 pagetype | true | | Page type value, possible values are 1 for XSL stylesheets or HTML Pages and 3 for Exact Forms
@@ -834,7 +834,7 @@ To assign roles to users using the Quick Base API or UI, you must have either Ba
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 userid | true | | The userid of the user to be added to the access role.
 roleid | true | | The ID of the access role being assigned to the user.
 
@@ -1042,7 +1042,7 @@ Use API_ChangeManager to assign a user to manage an app.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 newmgr  true | | A valid email address for the new app manager
 
 ### API_ChangeRecordOwner
@@ -1109,7 +1109,7 @@ You must have Full Administration rights on the application to use this call.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 rid <i>or</i> key | true | |  The record ID. Every record in every table has a unique rid.<br /><br />Normally, the record ID is the key field for the record. If you set your record's key field to a field OTHER than the record id (rid), you should use the key parameter rather than rid.
 newowner | true | | Specifies the user to whom you are transferring ownership. (Email address or username)
 
@@ -1180,7 +1180,7 @@ To assign roles to users using the Quick Base API or UI, you must have either Ba
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 userid | true | | The user ID. You can use API_GetUserInfo to get the user ID for a particular user.
 roleid | true | | The user’s current role in the application
 newroleid | false | 9 | If this parameter is not supplied, or is supplied but left blank, the role id is set to 9 (None). If this parameter is supplied with an invalid role id (including 0), the API call will return an error.
@@ -1257,7 +1257,7 @@ When you copy a Quick Base application, all users with access to the original ap
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 newdbname | true | | Specifies a name for the new application.
 newdbdesc | false | | Specifies the description for the new application.
 keepData | false | false | Copy data or not into the new application
@@ -1415,7 +1415,7 @@ This API does not copy file attachments with the records.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 destrid | true | | The record id of the destination record to which you want the records copied.<br /><br />If you want to copy the source master record and its detail records, set this to 0.<br /><br />If you want to import detail records from a different master record, set this to the record id of the master record to which you want to import the detail records.
 sourcerid | true | | The record id of the source record from which you want to copy detail records.
 copyfid | true | | The field id of a text field used in the name of the new record, if destrid = 0. The name becomes “Copy of field value".<br /><br />This field cannot be a lookup, append-only text, or formula field.  It also cannot be a unique or snapshot field.
@@ -1627,7 +1627,7 @@ Use API_CreateTable to create a table for an application. You must have applicat
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 tname | false | Records | The name you want to use for the name of the table.
 pnoun | false | Records | The name you want to use for records in the table. You should use a plural noun that can apply to all records in the table. For example, if each table row contains information about a vehicle that your company owns, you might want to use "Vehicles" as your pnoun.
 
@@ -1687,7 +1687,7 @@ If you use this API to delete an app, you must be the app manager, or the API wi
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application or Table DBID
+<%= config[:qbapi_param_dbid_application_table] %>
 
 ### API_DeleteField
 
@@ -1750,7 +1750,7 @@ This call deletes the field for all records, regardless of whether the field con
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 fid | true | | Field ID you wish to delete
 
 ### API_DeleteGroup
@@ -1871,7 +1871,7 @@ Note that this call allows you to delete one record at a time. If you want to de
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 rid <i>or</i> key | true | | The record ID of the record to be deleted. If the primary key of the table is not the [Record ID#] field, you should use `key` and the primary key as the value
 
 ### API_DoQuery
@@ -2026,7 +2026,7 @@ Use API_DoQuery to get records from a table. You invoke this call on a table-lev
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use <query>{myfid.operator.value}</query> to build your own query string.<br />Use <qid>n</qid>if you want to use a saved query and want to use its query ID.<br />Use <qname>myQuery</qname> if you want to use a saved query and refer to it by its query name.
 clist | false | default table columns | A period-delimited list of field IDs to be returned. Quick Base will return values for these field IDs in the order in which you enter them here. To return all fields use a value of `a`
 slist | false | default table sort | A period-delimited list of field IDs
@@ -2093,8 +2093,8 @@ You invoke this call against a table dbid using a query string to determine the 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
-<%= config[:endpoint] %>
+<%= config[:qbapi_param_dbid] %>
+<%= config[:qbapi_param_query] %>
 
 ### API_EditRecord
 
@@ -2185,7 +2185,7 @@ You can specify either field names or field IDs when using this call.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_FieldAddChoices
 
@@ -2256,7 +2256,7 @@ If the choice you specify already exists in the list, it will not be added. No d
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_FieldRemoveChoices
 
@@ -2321,7 +2321,7 @@ Use this call this to remove one or more of the options listed within a Text - M
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_FindDBByName
 
@@ -2441,7 +2441,7 @@ If you want to pre-fill any fields, you can do so by supplying one or more field
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_GenResultsTable
 
@@ -2521,7 +2521,7 @@ You can split a result set into several tables by calling API_GenResultsTable on
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_GetAncestorInfo
 
@@ -2581,7 +2581,7 @@ The first generation copy of an application returns the same DBID for both oldes
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetAppDTMInfo
 
@@ -2656,7 +2656,7 @@ The response to this call contains a parameter indicating the next time you will
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetDBPage
 
@@ -2716,7 +2716,7 @@ Use API_GetDBPage to retrieve a stored page in Quick Base. Quick Base allows you
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetDBInfo
 
@@ -2781,7 +2781,7 @@ Use API_GetDBInfo to get metadata information, such as the last time the table w
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_GetDBVar
 
@@ -2845,7 +2845,7 @@ Once you've set them up, you can assign values to them using API_SetDBVar. (Use 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetFieldProperties
 
@@ -2929,7 +2929,7 @@ Use API_GetFieldProperties to view the properties of a field. Returns properties
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_GetGroupRole
 
@@ -2995,7 +2995,7 @@ Use API_GetGroupRole determine the roleid for a group within an application.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetNumRecords
 
@@ -3052,7 +3052,7 @@ Use API_GetNumRecords to get the total number of records in the table. Invoke th
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetSchema
 
@@ -3159,7 +3159,7 @@ When invoked on a table dbid, the call returns DBVars and additional table-relat
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetRecordAsHTML
 
@@ -3213,7 +3213,7 @@ Use API_GetRecordAsHTML to get a record within an HTML fragment that can be embe
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_GetRecordInfo
 
@@ -3284,7 +3284,7 @@ se API_GetRecordInfo to get the values and types of all the fields in a record. 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_GetRoleInfo
 
@@ -3351,7 +3351,7 @@ Use API_GetRoleInfo to get all of the roles that apply to the application. You i
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetUserInfo
 
@@ -3498,7 +3498,7 @@ You  must have Basic Access with Sharing or Full Administration permissions to u
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_GetUsersInGroup
 
@@ -3889,7 +3889,7 @@ The clist parameter is optional when adding new records to a table. When updatin
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_ProvisionUser
 
@@ -3962,7 +3962,7 @@ If a user already is registered with Quick Base, the API will return an error. W
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_PurgeRecords
 
@@ -4030,7 +4030,7 @@ You can build your own query string using the query parameter in the call. You c
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_RemoveGroupFromRole
 
@@ -4095,7 +4095,7 @@ Use API_RemoveGroupFromRole to remove a group from a role in an app. You can als
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_RemoveSubgroup
 
@@ -4157,7 +4157,7 @@ Use API_RemoveSubgroup to remove a nested group from a group.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_RemoveUserFromGroup
 
@@ -4219,7 +4219,7 @@ Use API_RemoveUserFromGroup to remove a user from a group.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_RemoveUserFromRole
 
@@ -4287,7 +4287,7 @@ If you are simply changing the user from one role to another, you should use API
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_RenameApp
 
@@ -4346,7 +4346,7 @@ Use API_RenameApp to change an application's name. You invoke this call on an ap
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_RunImport
 
@@ -4408,7 +4408,7 @@ If you'll need to execute the same import multiple times, you can save a specifi
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_SendInvitation
 
@@ -4470,7 +4470,7 @@ Use API_SendInvitation to send an email invitation to your application. You can 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_SetDBVar
 
@@ -4532,7 +4532,7 @@ Use API_SetDBVar to create a database variable (DBVar) or set a value for it. If
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_SetFieldProperties
 
@@ -4597,7 +4597,7 @@ The properties available for a field vary slightly for the different field types
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_SetKeyField
 
@@ -4660,7 +4660,7 @@ If you don't specify a key field,  Quick Base uses the built-in Record ID field 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_SignOut
 
@@ -4792,7 +4792,7 @@ Use API_UploadFile to upload base64-encoded file attachments in Quick Base.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 
 ### API_UserRoles
 
@@ -4871,7 +4871,7 @@ Note: In order to use the API_UserRoles call, you must have either Basic Access 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+<%= config[:qbapi_param_dbid_application] %>
 
 ### API_Webhooks_Activate
 
@@ -4931,7 +4931,7 @@ Use API_Webhooks_Activate to make a webhook active.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 actionIDList | true | | Comma separated webhook ID's
 
 ### API_Webhooks_Copy
@@ -4993,7 +4993,7 @@ Use API_Webhooks_Copy to make a duplicate of an existing webhook.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 actionID | true | | Webhook ID that you wish to copy
 
 ### API_Webhooks_Create
@@ -5058,7 +5058,7 @@ Use API_Webhooks_Create to set up and configure a webhook.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 label | true | | A unique name for the webhook
 description | false | | Description of the webhoook
 query | false | | Filter criteria to trigger the webhook
@@ -5129,7 +5129,7 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 actionIDList | true | | Comma-separated IDs of the webhooks
 
 ### API_Webhooks_Deactivate
@@ -5189,7 +5189,7 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 actionIDList | true | | Comma-separated IDs of the webhooks
 
 ### API_Webhooks_Edit
@@ -5255,7 +5255,7 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Table DBID
+<%= config[:qbapi_param_dbid_table] %>
 actionID | true | | The target webhook ID
 label | true | | A unique name for the webhook
 description | false | | Description of the webhoook
