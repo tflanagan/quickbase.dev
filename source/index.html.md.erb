@@ -5543,7 +5543,7 @@ return record.delete().then(() => {
 ```javascript--browser
 record.set('recordid', 6);
 
-return record.delete().then(function(){
+record.delete().then(function(){
   // Record 6 deleted
 }).catch(function(error){
   // Handle error
@@ -5599,57 +5599,148 @@ This method returns the stored DBID.
 ### `.getFid(field[, byId])`
 
 ```javascript--node
+record.setFid('firstName', 6);
+
+const fid = record.getFid('firstName');
+const fidName = record.getFid(fid, true);
+
+console.log(fid, fidName); // 6, firstName
 ```
 
 ```javascript--browser
+record.setFid('firstName', 6);
+
+var fid = record.getFid('firstName');
+var fidName = record.getFid(fid, true);
+
+console.log(fid, fidName); // 6, firstName
 ```
+
+Returns either the field id or field name depending on `byId`
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+field | true | | The name of the field you wish to get the feild id of
+byId | false | false | If set to true then field is assumed to be the field id and returns to field name
 
 ### `.getFids()`
 
 ```javascript--node
+record.setFid('firstName', 6);
+record.setFid('lastName', 7);
+
+const fids = record.getFids();
+
+console.log(fids); // { firstName: 6, lastName: 7 }
 ```
 
 ```javascript--browser
+record.setFid('firstName', 6);
+record.setFid('lastName', 7);
+
+var fids = record.getFids();
+
+console.log(fids); // { firstName: 6, lastName: 7 }
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns the entire `fids` object
 
 ### `.getField(id)`
 
 ```javascript--node
+record.set('recordid', 3);
+record.setFid('firstName', 6);
+
+record.load().then(() => {
+  const field = record.getField(record.getFid('firstName'));
+
+  console.log(field); // { label: 'First Name', fid: 6, ... }
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+record.setFid('firstName', 6);
+
+record.loadSchema().then(function(){
+  const field = record.getField(record.getFid('firstName'));
+
+  console.log(field); // { label: 'First Name', fid: 6, ... }
+}).catch(function(error){
+  // Handle error
+});
 ```
+
+Returns field schema object
+
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+id | true | | Field id of the field you want returned
 
 ### `.getFields()`
 
 ```javascript--node
+record.setFid('firstName', 6);
+record.setFid('lastName', 7);
+
+record.loadSchema().then(() => {
+  const fields = record.getFields();
+
+  console.log(fields); // [{ label: 'First Name', fid: 6, ... }, { label: 'Last Name', fid: 7, ... }]
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+record.setFid('firstName', 6);
+record.setFid('lastName', 7);
+
+record.loadSchema().then(function(){
+  const fields = record.getFields();
+
+  console.log(fields); // [{ label: 'First Name', fid: 6, ... }, { label: 'Last Name', fid: 7, ... }]
+}).catch(function(error){
+  // Handle error
+});
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns an array of all loaded field schema objects
+
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
 
 ### `.getTableName()`
 
 ```javascript--node
+record.loadSchema().then(() => {
+  const tableName = record.getTableName();
+
+  console.log(tableName); // Customers
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+record.loadSchema().then(function(){
+  const tableName = record.getTableName();
+
+  console.log(tableName); // Customers
+}).catch(function(error){
+  // Handle error
+});
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
 
 ### `.load([localQuery[, localClist]])`
 
@@ -5669,9 +5760,6 @@ Parameter | Required | Default | Description
 
 ```javascript--browser
 ```
-
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
 
 ### `.save([fidsToSave])`
 
