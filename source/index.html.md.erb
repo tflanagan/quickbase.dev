@@ -139,7 +139,7 @@ require_once(__DIR__.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.
 ?>
 ```
 
-Installing the Quick Base library for your desired platform requires either including the browserified version of the library in your HTML page or install it via a package manager (npm or composer).
+Installing the Quick Base library for your desired platform requires either including the browserified version of the library in your HTML page or installing it via a package manager (npm or composer).
 
 Including the library for use in your code depends on your platform.
 
@@ -1043,7 +1043,7 @@ Use API_ChangeManager to assign a user to manage an app.
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-newmgr  true | | A valid email address for the new app manager
+newmgr | true | | A valid email address for the new app manager
 
 ### API_ChangeRecordOwner
 
@@ -4753,6 +4753,7 @@ try {
 ```
 
 <a href='https://help.quickbase.com/api-guide/setkeyfield.html' target='_blank'>Quick Base Documentation</a>
+
 Use API_SetKeyField to specify a field in the table as the key field. You invoke this call on a table dbid. You must have full administration rights on the application to use this call.
 
 If you don't specify a key field,  Quick Base uses the built-in Record ID field as the key field. However, if you want to use a different field as the key field for a table, the following conditions must be met:
@@ -5169,15 +5170,15 @@ dbid | true | | Table DBID
 label | true | | A unique name for the webhook
 description | false | | Description of the webhoook
 query | false | | Filter criteria to trigger the webhook
-workflowWhen | false | a | Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example "mda" (modify, delete, add)
-webhookURL | true | | Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx
+workflowWhen | false | a | Condition to trigger the webhook:<ul><li>a = add</li><li>d = delete</li><li>m = modify</li></ul>These can be combined in any order, for example "mda" (modify, delete, add)
+webhookURL | true | | Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br />https://myApp.quickbase.com/db/xxxxxx
 webhookHeader | false | | Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.
-webhookHeaderCount | false | | The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1
-webhookHeaderKey(n) | false | | For example:<br /><br />WebhookHeaderKey1=TOKEN
-webhookHeaderValue(n) | false | | Example:<br /><br />WebhookHeaderValue1=VALUE
+webhookHeaderCount | false | | The number of webhook headers.<br /><br />For example:<br />WebhookHeaderCount=1
+webhookHeaderKey(n) | false | | For example:<br />WebhookHeaderKey1=TOKEN
+webhookHeaderValue(n) | false | | Example:<br />WebhookHeaderValue1=VALUE
 webhookMessage | false | | Payload of the webhook
-webhookMessageFormat | false | XML | Format of the payload:<br /><br />XML<br />JSON<br />RAW
-webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE
+webhookMessageFormat | false | XML | Format of the payload:<ul><li>XML</li><li>JSON</li><li>RAW</li></ul>
+webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<ul><li>POST</li><li>GET</li><li>PUT</li><li>PATCH</li><li>DELETE</li></ul>
 tfidsWhich | false | | Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add 'tfids' request parameter.<br /><br />Set the value of this parameter to 'tfidsAny' to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids>
 
 ### API_Webhooks_Delete
@@ -5367,56 +5368,376 @@ actionID | true | | The target webhook ID
 label | true | | A unique name for the webhook
 description | false | | Description of the webhoook
 query | false | | Filter criteria to trigger the webhook
-workflowWhen | false | a | Condition to trigger the webhook:<br /><br />a = add<br /><br />d = delete<br /><br />m = modify<br /><br />These can be combined in any order, for example "mda" (modify, delete, add)
-webhookURL | true | | Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br /><br />https://myApp.quickbase.com/db/xxxxxx
+workflowWhen | false | a | Condition to trigger the webhook:<ul><li>a = add</li><li>d = delete</li><li>m = modify</li></ul>These can be combined in any order, for example "mda" (modify, delete, add)
+webhookURL | true | | Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br />https://myApp.quickbase.com/db/xxxxxx
 webhookHeader | false | | Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.
-webhookHeaderCount | false | | The number of webhook headers. For example:<br /><br />WebhookHeaderCount=1
-webhookHeaderKey(n) | false | | For example:<br /><br />WebhookHeaderKey1=TOKEN
-webhookHeaderValue(n) | false | | Example:<br /><br />WebhookHeaderValue1=VALUE
+webhookHeaderCount | false | | The number of webhook headers.<br /><br />For example:<br />WebhookHeaderCount=1
+webhookHeaderKey(n) | false | | For example:<br />WebhookHeaderKey1=TOKEN
+webhookHeaderValue(n) | false | | Example:<br />WebhookHeaderValue1=VALUE
 webhookMessage | false | | Payload of the webhook
-webhookMessageFormat | false | XML | Format of the payload:<br /><br />XML<br />JSON<br />RAW
-webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<br /><br />POST<br />GET<br />PUT<br />PATCH<br />DELETE
+webhookMessageFormat | false | XML | Format of the payload:<ul><li>XML</li><li>JSON</li><li>RAW</li></ul>
+webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<ul><li>POST</li><li>GET</li><li>PUT</li><li>PATCH</li><li>DELETE</li></ul>
 tfidsWhich | false | | Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add 'tfids' request parameter.<br /><br />Set the value of this parameter to 'tfidsAny' to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids>
 
 # QBRecord
 
+This abstraction class represents a singluar Quick Base record. Providing easy to use setters/getters and saving capabilities, this class aims to provide seamless integration between your code and Quick Base at the record level.
+
+This class is utilized in thee abstraction layer `QBTable` and itself utilizies the `QuickBase` class.
+
+## Repository Links
+
+* JavaScript: <a href='https://github.com/tflanagan/node-qb-record' target='_blank'>https://github.com/tflanagan/node-qb-record</a>
+
+## Installation & Loading
+
+```javascript--node
+// $ npm install --save qb-record
+
+const QBRecord = require('qb-record');
+```
+
+```javascript--browser
+// <script type="text/javascript" src="QBRecord.browserify.min.js"></script>
+```
+
+Installing the QBRecord library for your desired platform requires either including the browserified version of the library in your HTML page or installing it via a package manager (npm or composer).
+
+Including the library for use in your code depends on your platform.
+
 ## Initialization
+
+```javascript--node
+const quickbase = new QuickBase({
+  realm: realm: 'subdomain/realm',
+  userToken: 'user token',
+  appToken: 'application token',
+  flags: {
+    msInUTC: true,
+    encoding: 'ISO-8859-1'
+  },
+  connectionLimit: 10,
+  errorOnConnectionLimit: false
+});
+
+const record = new QBRecord({
+  /*
+  quickbase: {
+    realm: realm: 'subdomain/realm',
+    userToken: 'user token',
+    appToken: 'application token',
+    flags: {
+      msInUTC: true,
+      encoding: 'ISO-8859-1'
+    },
+    connectionLimit: 10,
+    errorOnConnectionLimit: false
+  },
+  */
+  quickbase: quickbase,
+  dbid: 'bddnn3uz9',
+  fids: {
+    recordid: 3,
+    primaryKey: 3
+  },
+
+  // If this is an existing record, then set the record id and primary key accordingly
+  recordid: 12,
+  primaryKey: 12
+});
+```
+
+```javascript--browser
+var quickbase = new QuickBase({
+  realm: realm: 'subdomain/realm',
+  userToken: 'user token',
+  appToken: 'application token',
+  flags: {
+    msInUTC: true,
+    encoding: 'ISO-8859-1'
+  },
+  connectionLimit: 10,
+  errorOnConnectionLimit: false
+});
+
+
+var record = new QBRecord({
+  /*
+  quickbase: {
+    realm: realm: 'subdomain/realm',
+    userToken: 'user token',
+    appToken: 'application token',
+    flags: {
+      msInUTC: true,
+      encoding: 'ISO-8859-1'
+    },
+    connectionLimit: 10,
+    errorOnConnectionLimit: false
+  },
+  */
+  quickbase: quickbase,
+  dbid: 'bddnn3uz9',
+  fids: {
+    recordid: 3,
+    primaryKey: 3
+  },
+
+  // If this is an existing record, then set the record id and primary key accordingly
+  recordid: 12,
+  primaryKey: 12
+});
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+quickbase: | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
+dbid | true | | Table DBID
+fids | false | | Object containing name/value pairs of fields and their field ids
+recordid | false | | If constructing a pre-existing record, you can define the record id at initialization
+primaryKey | false | | If constructing a pre-existing record, you can define the primary key at initialization
 
 ## Instance Methods
 
-### clear
+### `.clear()`
 
-### delete
+```javascript--node
+record.setFid('firstName', 6);
+record.set('firstName', 'Bob');
 
-### get
+console.log(record.getFid('firstName')); // 6
+console.log(record.get('firstName')); // Bob
 
-### getDBID
+record.clear();
 
-### getFid
+console.log(record.getFid('firstName')); // 6
+console.log(record.get('firstName')); // undefined
+```
 
-### getFids
+```javascript--browser
+record.setFid('firstName', 6);
+record.set('firstName', 'Bob');
 
-### getField
+console.log(record.getFid('firstName')); // 6
+console.log(record.get('firstName')); // Bob
 
-### getFields
+record.clear();
 
-### getTableName
+console.log(record.getFid('firstName')); // 6
+console.log(record.get('firstName')); // undefined
+```
 
-### load
+This method clears the QBRecord instance of any trace of the existing record, but preserves defined settings
 
-### loadSchema
+### `.delete()`
 
-### save
+```javascript--node
+record.set('recordid', 6);
 
-### set
+return record.delete().then(() => {
+  // Record 6 deleted
+}).catch((error) => {
+  // Handle error
+});
+```
 
-### setDBID
+```javascript--browser
+record.set('recordid', 6);
 
-### setFid
+return record.delete().then(function(){
+  // Record 6 deleted
+}).catch(function(error){
+  // Handle error
+});
+```
 
-### setFids
+This method deletes the record from QuickBase, then calls `.clear()`.
 
-### toJson
+### `.get(name)`
+
+```javascript--node
+record.set('firstName', 'Bob');
+
+const firstName = record.get('firstName');
+
+console.log(firstName); // Bob
+```
+
+```javascript--browser
+record.set('firstName', 'Bob');
+
+var firstName = record.get('firstName');
+
+console.log(firstName); // Bob
+```
+
+This method returns the stored value associated with the `name` argument, defined in the `fids` object in the inialization of the instance or defined with `.setFid()`.
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+name | true | | A string presenting a `fids` name/value pairs `name` value
+
+### `.getDBID()`
+
+```javascript--node
+record.setDBID('bddnn3uz9');
+
+const dbid = record.getDBID();
+
+console.log(dbid); // bddnn3uz9
+```
+
+```javascript--browser
+record.setDBID('bddnn3uz9');
+
+var dbid = record.getDBID();
+
+console.log(dbid); // bddnn3uz9
+```
+
+This method returns the stored DBID.
+
+### `.getFid(field[, byId])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getFids()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getField(id)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getFields()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getTableName()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.load([localQuery[, localClist]])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.loadSchema()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.save([fidsToSave])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.set(field, value)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setDBID(dbid)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setFid(name, id)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setFids(fields)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.toJson([fidsToConvert])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
 # QBTable
 
