@@ -2027,7 +2027,7 @@ Use API_DoQuery to get records from a table. You invoke this call on a table-lev
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use <query>{myfid.operator.value}</query> to build your own query string.<br />Use <qid>n</qid>if you want to use a saved query and want to use its query ID.<br />Use <qname>myQuery</qname> if you want to use a saved query and refer to it by its query name.
+query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use `query` to build your own query string.<br />Use `qid` if you want to use a saved query and want to use its query ID.<br />Use `qname` if you want to use a saved query and refer to it by its query name.
 clist | false | default table columns | A period-delimited list of field IDs to be returned. Quick Base will return values for these field IDs in the order in which you enter them here. To return all fields use a value of `a`
 slist | false | default table sort | A period-delimited list of field IDs
 options | false | | Specifies return options for the query. You can use any or all of the options, separating the options with a period.<br /><br />num-n --specifies a maximum of n records in the return<br />onlynew --returns only those records marked with new or updated flags<br />skp-n --skips the first n records returned by the query<br />sortorder-A --specifies an ascending order<br />sortorder-D --specifies a descending order<br />nosort --returns unsorted records, ignoring the sortorder option, the slist parameter, and the default sort for the table
@@ -2094,7 +2094,7 @@ You invoke this call against a table dbid using a query string to determine the 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use <query>{myfid.operator.value}</query> to build your own query string.<br />Use <qid>n</qid>if you want to use a saved query and want to use its query ID.<br />Use <qname>myQuery</qname> if you want to use a saved query and refer to it by its query name.
+query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use `query` to build your own query string.<br />Use `qid` if you want to use a saved query and want to use its query ID.<br />Use `qname` if you want to use a saved query and refer to it by its query name.
 
 ### API_EditRecord
 
@@ -2186,6 +2186,14 @@ You can specify either field names or field IDs when using this call.
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+rid <i>or</i> key | true | | 
+update_id | false | | Specifies the latest record state.<br /><br />Note that, if another user makes changes before you issue this call,  the update ID in Quick Base will change, which will render invalid the update ID that you have. In this case, you should get the latest version of the record and its new update ID, and then make your changes.<br /><br />You can obtain the update ID for a record using the API_GetRecordInfo for the record you are editing.
+fields | true | | Array of objects with fid/value parameters
+disprec | false | false | Set this parameter to true to specify that the new record should be displayed within the Quick Base application. An application login is required before the record can be displayed. If you use this parameter, Quick Base returns the normal Quick Base HTML page that displays the record.
+fform | false | false | Set this parameter to true if you are invoking API_EditRecord from within an HTML form that has checkboxes and want those checkboxes to set Quick Base checkbox fields.
+ignoreError | false | false | Set this parameter to true to specify that no error should be returned when a built-in field (for example, Record ID#) is written-to in an API_EditRecord call.
+msInUTC | false | false | Allows you to specify that Quick Base should interpret all date/time stamps passed in as milliseconds using Coordinated Universal Time (UTC) rather than using the local application time.
+
 
 ### API_FieldAddChoices
 
@@ -2257,6 +2265,8 @@ If the choice you specify already exists in the list, it will not be added. No d
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+fid | true | | The field ID of the setfield to which you want to add choices.
+choice | true | | Specifies a choice you want to add. Use this tag multiple times to add more than one choice.
 
 ### API_FieldRemoveChoices
 
@@ -2322,6 +2332,8 @@ Use this call this to remove one or more of the options listed within a Text - M
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+fid | true | | The field ID of the setfield to which you want to remove choices.
+choice | true | | Specifies a choice you want to remove. Use this tag multiple times to add more than one choice.<br /><br />If any choice you specify cannot be removed (either because it does not exist, or because you lack permission to remove it), other valid choices you specify will be removed.<br /><br />The operation will be considered successful if at least one choice is removed.  You should check the numremoved response value to make sure all the fields you expected were removed.
 
 ### API_FindDBByName
 
@@ -2383,6 +2395,8 @@ If a Quick Base application consists of a single table, this call returns the ch
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+dbname | true | | The name of the application you want to find
+ParentsOnly | false | false | Ensures an app ID is returned, regardless of whether the application contains a single table or not.<br /><br />Note that, in applications that contain more than one table, Quick Base always returns the app dbid, regardless of whether you use this parameter or not. However, if an application contains only a single table, Quick Base returns the table DBID if you do not specify this parameter.<br /><br />If you are not sure whether your app contains more than one table, or if you are sure it contains only a single table, set this parameter to 1 to make sure an app dbid is returned.
 
 ### API_GenAddRecordForm
 
@@ -2442,6 +2456,7 @@ If you want to pre-fill any fields, you can do so by supplying one or more field
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+fields | true | | Array of objects with fid/value parameters
 
 ### API_GenResultsTable
 
@@ -2522,6 +2537,12 @@ You can split a result set into several tables by calling API_GenResultsTable on
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use `query` to build your own query string.<br />Use `qid` if you want to use a saved query and want to use its query ID.<br />Use `qname` if you want to use a saved query and refer to it by its query name.
+clist | false | default table columns | A period-delimited list of field IDs to be returned. Quick Base will return values for these field IDs in the order in which you enter them here. To return all fields use a value of `a`
+slist | false | default table sort | A period-delimited list of field IDs
+options | false | | Specifies return options for the query. You can use any or all of the options, separating the options with a period.<br /><br />num-n --specifies a maximum of n records in the return<br />onlynew --returns only those records marked with new or updated flags<br />skp-n --skips the first n records returned by the query<br />sortorder-A --specifies an ascending order<br />sortorder-D --specifies a descending order<br />nosort --returns unsorted records, ignoring the sortorder option, the slist parameter, and the default sort for the table
+jht | true | | Returns the HTML for a table as a JavaScript function named qdbWrite(). You can then embed the HTML table into a Web page by calling the JavaScript function in the area of the Web page where you want the table to display.<br /><br />Set the value of the parameter to ‘n’ if you want the new look and feel introduced on Apr-12-2003.<br /><br />Set the value of this parameter ‘1’ if you want the CSS styles that render the HTML table with the Quick Base look and feel prior to Apr-11-2003.
+jsa | false | false | Set this parameter to true if you want the results returned as a JavaScript array.
 
 ### API_GetAncestorInfo
 
@@ -2658,66 +2679,6 @@ Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
 
-### API_GetDBPage
-
-```javascript--node
-quickbase.api('API_GetDBPage', {
-  dbid: 'bguin9b8e',
-  pageID: 3
-}).then((results) => {
-  // Handle results
-}).catch((error) => {
-  // Handle error
-});
-```
-
-```javascript--browser
-quickbase.api('API_GetDBPage', {
-  dbid: 'bguin9b8e',
-  pageID: 3
-}).then(function(results){
-  // Handle results
-}).catch(function(error){
-  // Handle error
-});
-```
-
-```php
-<?php
-
-try {
-  $results = $quickbase->api('API_GetDBPage', array(
-    'dbid' => 'bguin9b8e',
-    'pageID' => 3
-  ));
-
-  // Handle results
-}catch(\Exception $error){
-  // Handle error
-}
-
-?>
-```
-
-> The above returns JSON structured like this:
-
-```json
-{
-  "action": "API_GetDBPage",
-  "errcode": 0,
-  "errtext": "No error",
-  "pagebody": "<html></html>"
-}
-```
-
-<a href='https://help.quickbase.com/api-guide/get_db_info.html' target='_blank'>Quick Base Documentation</a>
-
-Use API_GetDBPage to retrieve a stored page in Quick Base. Quick Base allows you to store various types of pages, ranging from user-guide pages for your application to Exact Forms, used to automate insertion of data into Word documents using a special Word template from Quick Base.
-
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
-dbid | true | | Application DBID
-
 ### API_GetDBInfo
 
 ```javascript--node
@@ -2783,6 +2744,67 @@ Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
 
+### API_GetDBPage
+
+```javascript--node
+quickbase.api('API_GetDBPage', {
+  dbid: 'bguin9b8e',
+  pageID: 3
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetDBPage', {
+  dbid: 'bguin9b8e',
+  pageID: 3
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetDBPage', array(
+    'dbid' => 'bguin9b8e',
+    'pageID' => 3
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetDBPage",
+  "errcode": 0,
+  "errtext": "No error",
+  "pagebody": "<html></html>"
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/get_db_info.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetDBPage to retrieve a stored page in Quick Base. Quick Base allows you to store various types of pages, ranging from user-guide pages for your application to Exact Forms, used to automate insertion of data into Word documents using a special Word template from Quick Base.
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+pageID | true | | The ID of the page. You can also use the pagename.
+
 ### API_GetDBVar
 
 ```javascript--node
@@ -2846,6 +2868,8 @@ Once you've set them up, you can assign values to them using API_SetDBVar. (Use 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+varname | true | | The name of the variable in the target application.
+
 
 ### API_GetFieldProperties
 
@@ -2930,6 +2954,7 @@ Use API_GetFieldProperties to view the properties of a field. Returns properties
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+fid | true | | The Field ID of the field you wish to retrieve
 
 ### API_GetGroupRole
 
@@ -2996,6 +3021,7 @@ Use API_GetGroupRole determine the roleid for a group within an application.
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+gid | true | | The id of the group to manage.
 
 ### API_GetNumRecords
 
@@ -3049,6 +3075,202 @@ try {
 <a href='https://help.quickbase.com/api-guide/getnumrecords.html' target='_blank'>Quick Base Documentation</a>
 
 Use API_GetNumRecords to get the total number of records in the table. Invoke this call on a table-level dbid.
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Application DBID
+
+
+### API_GetRecordAsHTML
+
+```javascript--node
+quickbase.api('API_GetRecordAsHTML', {
+  dbid: 'bguin9b8e',
+  rid: 2,
+  dfid: 10
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetRecordAsHTML', {
+  dbid: 'bguin9b8e',
+  rid: 2,
+  dfid: 10
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetRecordAsHTML', array(
+    'dbid' => 'bguin9b8e',
+    'rid' => 2,
+    'dfid' => 10
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> Unlike most API calls, the above returns a string of the desired forms HTML rather than an object with properties.
+
+<a href='https://help.quickbase.com/api-guide/getrecordashtml.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetRecordAsHTML to get a record within an HTML fragment that can be embedded in another Web page.
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Table DBID
+rid <i>or</i> key | true | | The record ID of the record to be edited. You can obtain the recordID of any record in a query.<br /><br />If you use a key field OTHER than the record id (rid), you should use the key parameter rather than rid.
+dfid | false | | The dform id of the form used to generate the HTML. The resulting display matches the contents and layout  of the form you specify.<br /><br />You can obtain the dfid of a form by previewing or editing the form; the dfid is part of the URL in the browser’s address bar.
+
+### API_GetRecordInfo
+
+```javascript--node
+quickbase.api('API_GetRecordInfo', {
+  dbid: 'bguin9b8e',
+  rid: 2
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetRecordInfo', {
+  dbid: 'bguin9b8e',
+  rid: 2
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetRecordInfo', array(
+    'dbid' => 'bguin9b8e',
+    'rid' => 2
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetRecordInfo",
+  "errcode": 0,
+  "errtext": "No error",
+  "rid": 2,
+  "num_fields": 28,
+  "update_id": 1205780029699,
+  "field": [
+    {
+      "fid": 26,
+      "name": "Parent Page",
+      "type": "Numeric",
+      "value": 166
+    },
+    ...
+  ]
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getrecordinfo.html' target='_blank'>Quick Base Documentation</a>
+
+se API_GetRecordInfo to get the values and types of all the fields in a record. You invoke this call on a table-level dbid.
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | Table DBID
+rid <i>or</i> key | true | | The record ID of the record to be edited. You can obtain the recordID of any record in a query.<br /><br />If you use a key field OTHER than the record id (rid), you should use the key parameter rather than rid.
+
+### API_GetRoleInfo
+
+```javascript--node
+quickbase.api('API_GetRoleInfo', {
+  dbid: 'bddnn3uz9'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+quickbase.api('API_GetRoleInfo', {
+  dbid: 'bddnn3uz9'
+}).then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
+```
+
+```php
+<?php
+
+try {
+  $results = $quickbase->api('API_GetRoleInfo', array(
+    'dbid' => 'bddnn3uz9'
+  ));
+
+  // Handle results
+}catch(\Exception $error){
+  // Handle error
+}
+
+?>
+```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "action": "API_GetRoleInfo",
+  "errcode": 0,
+  "errtext": "No error",
+  "roles": [
+    {
+      "id": 11,
+      "name": "Participant",
+      "access": {
+        "id": 3,
+        "name": "Basic Access"
+      }
+    },
+    ...
+  ]
+}
+```
+
+<a href='https://help.quickbase.com/api-guide/getroleinfo.html' target='_blank'>Quick Base Documentation</a>
+
+Use API_GetRoleInfo to get all of the roles that apply to the application. You invoke this call on the application-level dbid.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -3161,198 +3383,6 @@ Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
 
-### API_GetRecordAsHTML
-
-```javascript--node
-quickbase.api('API_GetRecordAsHTML', {
-  dbid: 'bguin9b8e',
-  rid: 2,
-  dfid: 10
-}).then((results) => {
-  // Handle results
-}).catch((error) => {
-  // Handle error
-});
-```
-
-```javascript--browser
-quickbase.api('API_GetRecordAsHTML', {
-  dbid: 'bguin9b8e',
-  rid: 2,
-  dfid: 10
-}).then(function(results){
-  // Handle results
-}).catch(function(error){
-  // Handle error
-});
-```
-
-```php
-<?php
-
-try {
-  $results = $quickbase->api('API_GetRecordAsHTML', array(
-    'dbid' => 'bguin9b8e',
-    'rid' => 2,
-    'dfid' => 10
-  ));
-
-  // Handle results
-}catch(\Exception $error){
-  // Handle error
-}
-
-?>
-```
-
-> Unlike most API calls, the above returns a string of the desired forms HTML rather than an object with properties.
-
-<a href='https://help.quickbase.com/api-guide/getrecordashtml.html' target='_blank'>Quick Base Documentation</a>
-
-Use API_GetRecordAsHTML to get a record within an HTML fragment that can be embedded in another Web page.
-
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
-dbid | true | | Table DBID
-
-### API_GetRecordInfo
-
-```javascript--node
-quickbase.api('API_GetRecordInfo', {
-  dbid: 'bguin9b8e',
-  rid: 2
-}).then((results) => {
-  // Handle results
-}).catch((error) => {
-  // Handle error
-});
-```
-
-```javascript--browser
-quickbase.api('API_GetRecordInfo', {
-  dbid: 'bguin9b8e',
-  rid: 2
-}).then(function(results){
-  // Handle results
-}).catch(function(error){
-  // Handle error
-});
-```
-
-```php
-<?php
-
-try {
-  $results = $quickbase->api('API_GetRecordInfo', array(
-    'dbid' => 'bguin9b8e',
-    'rid' => 2
-  ));
-
-  // Handle results
-}catch(\Exception $error){
-  // Handle error
-}
-
-?>
-```
-
-> The above returns JSON structured like this:
-
-```json
-{
-  "action": "API_GetRecordInfo",
-  "errcode": 0,
-  "errtext": "No error",
-  "rid": 2,
-  "num_fields": 28,
-  "update_id": 1205780029699,
-  "field": [
-    {
-      "fid": 26,
-      "name": "Parent Page",
-      "type": "Numeric",
-      "value": 166
-    },
-    ...
-  ]
-}
-```
-
-<a href='https://help.quickbase.com/api-guide/getrecordinfo.html' target='_blank'>Quick Base Documentation</a>
-
-se API_GetRecordInfo to get the values and types of all the fields in a record. You invoke this call on a table-level dbid.
-
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
-dbid | true | | Table DBID
-
-### API_GetRoleInfo
-
-```javascript--node
-quickbase.api('API_GetRoleInfo', {
-  dbid: 'bddnn3uz9'
-}).then((results) => {
-  // Handle results
-}).catch((error) => {
-  // Handle error
-});
-```
-
-```javascript--browser
-quickbase.api('API_GetRoleInfo', {
-  dbid: 'bddnn3uz9'
-}).then(function(results){
-  // Handle results
-}).catch(function(error){
-  // Handle error
-});
-```
-
-```php
-<?php
-
-try {
-  $results = $quickbase->api('API_GetRoleInfo', array(
-    'dbid' => 'bddnn3uz9'
-  ));
-
-  // Handle results
-}catch(\Exception $error){
-  // Handle error
-}
-
-?>
-```
-
-> The above returns JSON structured like this:
-
-```json
-{
-  "action": "API_GetRoleInfo",
-  "errcode": 0,
-  "errtext": "No error",
-  "roles": [
-    {
-      "id": 11,
-      "name": "Participant",
-      "access": {
-        "id": 3,
-        "name": "Basic Access"
-      }
-    },
-    ...
-  ]
-}
-```
-
-<a href='https://help.quickbase.com/api-guide/getroleinfo.html' target='_blank'>Quick Base Documentation</a>
-
-Use API_GetRoleInfo to get all of the roles that apply to the application. You invoke this call on the application-level dbid.
-
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
-dbid | true | | Application DBID
-
 ### API_GetUserInfo
 
 ```javascript--node
@@ -3414,6 +3444,10 @@ The user email that you specify must be recognized in Quick Base.
 If the anonymous user passes in an email parameter, the email will be passed back in the response.
 
 If you don’t supply an email parameter, the ticket parameter will be used to determine the current user, which means the current user ID, name, and email are returned.
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+email | false | current user | Supply the email address (as registered with Quick Base) of the user whose information you want. You can also supply the user’s user name.<br /><br />If you don’t supply this parameter, the call returns the user info of the user to whom the ticket was issued (you).<br /><br />For anonymous users, the email parameter is ignored.
 
 ### API_GetUserRole
 
@@ -3499,6 +3533,8 @@ You  must have Basic Access with Sharing or Full Administration permissions to u
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+userid | false | current user | The user ID of the user whose current role you want to retrieve. You can get the userid using API_GetUserInfo.<br /><br />If you want to get your own roles, you can use your own userid or omit this parameter.<br /><br />To get the roles of another user, you must supply the user's user id. You must also have Basic Access with Sharing or Full Administration permissions on the application.
+inclgrps | false | Set this parameter to true if you want the call to return roles assigned to groups to which the user belongs.<br /><br />The call will return additional information about the role's type--that is whether the role is a user role, a role assigned to a group role, or a role assigned to a domain group.
 
 ### API_GetUsersInGroup
 
@@ -3588,15 +3624,18 @@ Use API_GetUsersInGroup to get the list of users and groups that make up the mem
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+gid | true | | The id of the group to list.
+includeAllMgrs | false | false | When this is set to true, both members and managers of the group are returned.
 
 ### API_GrantedDBs
 
 ```javascript--node
 quickbase.api('API_GrantedDBs', {
   adminOnly: false,
-  excludeparents: 0,
-  includeancestors: 0,
-  withembeddedtables: 0
+  excludeparents: false,
+  includeancestors: false,
+  withembeddedtables: false,
+  realmAppsOnly: false
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -3607,9 +3646,10 @@ quickbase.api('API_GrantedDBs', {
 ```javascript--browser
 quickbase.api('API_GrantedDBs', {
   adminOnly: false,
-  excludeparents: 0,
-  includeancestors: 0,
-  withembeddedtables: 0
+  excludeparents: false,
+  includeancestors: false,
+  withembeddedtables: false,
+  realmAppsOnly: false
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -3623,9 +3663,10 @@ quickbase.api('API_GrantedDBs', {
 try {
   $results = $quickbase->api('API_GrantedDBs', array(
     'adminOnly' => false,
-    'excludeparents' => 0,
-    'includeancestors' => 0,
-    'withembeddedtables' => 0
+    'excludeparents' => false,
+    'includeancestors' => false,
+    'withembeddedtables' => false,
+    'realmAppsOnly' => false
   ));
 
   // Handle results
@@ -3661,6 +3702,11 @@ This call returns all the apps that you have access to, across all domains, not 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+adminOnly | false | false | Set this paramter to true to return only tables where the user making the request has administration privileges.
+excludeparents | false | false | Specifies whether you want application-level dbids returned.
+includeancestors | false | false | Set this parameter to true to include ancestor and oldest ancestor information.
+withembeddedtables | false | true | Specifies whether you want child table dbids to be returned
+realmAppsOnly | false | false | Set this parameter to true to return only the apps in the realm the call is being made against.
 
 ### API_GrantedDBsForGroup
 
@@ -3723,6 +3769,7 @@ Use API_GrantedDBsForGroup to get a list of all the applications that a group ca
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+gid | true | | The id of the group to manage.
 
 ### API_GrantedGroups
 
@@ -3790,6 +3837,8 @@ Use API_GrantedGroups to get the list of groups to which a user has been granted
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+userid | true | | The user id
+adminonly | false | false | Only return groups where the user has admin rights.
 
 ### API_ImportFromCSV
 
@@ -3890,6 +3939,13 @@ The clist parameter is optional when adding new records to a table. When updatin
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+records_csv | true | | An aggregate containing the actual records you are importing.
+clist | true | | A period-delimited list of field IDs that indicates how the columns in the CSV file will map to fields in the table when the import happens. To prevent a column in the CSV file from being imported, enter a 0 in the field ID list.<br /><br />This means that the first field ID in the list maps to the first column in the CSV file, the second field ID maps to the second column in the CSV file, and so forth.
+clist_output | false | | Specifies which fields should be returned in addition to the record ID and updated ID.
+decimalPercent | false | false | Set this parameter to true so that decimal values like 0.50 will be interpreted to mean 50%.
+skipfirst | false | false | Set this parameter to true to prevent Quick Base from importing the first row of data in a CSV file. You must specify this parameter if the first row of your CSV file contains column names.
+msInUTC | false | global instance setting | Allows you to specify that Quick Base should interpret all date/time stamps passed in as milliseconds using Coordinated Universal Time (UTC) rather than using the local application time.
+mergeFieldId | false | | With this parameter, the import uses the field specified as the key, instead of the key field for the table.<ul><li>The merge field must be a unique field, and the specified merge field must contain unique values.</li><li>Values for the table key and/or record ID field will be ignored from input to prevent data corruption.</li><li>If the specified merge field uses a formula, and a record cannot be found by its value, a new record will be added if the resulting formula value is a valid value for the field.</li><li>Record ID or other table key field can be used as the specified merge field.</li><li>The clist parameter is required if this parameter is used.</li></ul>
 
 ### API_ProvisionUser
 
@@ -3963,6 +4019,10 @@ If a user already is registered with Quick Base, the API will return an error. W
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+email | true | | The email address of the person to whom you are granting access.
+roleid | false | none | The role ID of the role you want to assign this user to. You can find this information by invoking API_GetRoleInfo.
+fname | true | | The first name of the new Quick Base user.
+lname | true | | The last name of the new Quick Base user.
 
 ### API_PurgeRecords
 
@@ -4028,9 +4088,14 @@ Use API_PurgeRecords to delete the specified records from the specified table. A
 
 You can build your own query string using the query parameter in the call. You can also use a saved query for the table, using qid or qname. See API_DoQuery for information on saved queries or for instructions on building the query string.
 
+<aside class="warning">
+  Caution: Use this call carefully. If you do not supply a query parameter (`query` or `qid` or `qname`), ALL of the table records will be deleted. If you supply an empty query parameter (`query`, or `qid` or `qname`) all of the table records will be deleted as well. If you need to delete only one record, you should use API_DeleteRecord.
+</aside>
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+query <i>or</i> qid <i>or</i> qname | false | all | Specifies the query. You can use any of these three options:<br /><br />Use `query` to build your own query string.<br />Use `qid` if you want to use a saved query and want to use its query ID.<br />Use `qname` if you want to use a saved query and refer to it by its query name.
 
 ### API_RemoveGroupFromRole
 
@@ -4096,6 +4161,9 @@ Use API_RemoveGroupFromRole to remove a group from a role in an app. You can als
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+gid | true | | The id of the group to manage.
+roleid | true | | The ID of the access role being assigned to the group.
+allRoles | false | false | Set to true if the group is to be removed from all roles in the app. 
 
 ### API_RemoveSubgroup
 
@@ -4158,6 +4226,8 @@ Use API_RemoveSubgroup to remove a nested group from a group.
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+gid | true | | The id of the containing group.
+subgroupid | true | | The id of the subgroup.
 
 ### API_RemoveUserFromGroup
 
@@ -4165,7 +4235,9 @@ dbid | true | | Application DBID
 quickbase.api('API_RemoveUserFromGroup', {
   dbid: 'bguin9b8e',
   gid: '345889.sjkl',
-  userid: '9380434.rtgf'
+  uid: '9380434.rtgf'
+  // email: 'bob@smith.com'
+  // screenName: 'bob'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4177,7 +4249,9 @@ quickbase.api('API_RemoveUserFromGroup', {
 quickbase.api('API_RemoveUserFromGroup', {
   dbid: 'bguin9b8e',
   gid: '345889.sjkl',
-  userid: '9380434.rtgf'
+  uid: '9380434.rtgf'
+  // email: 'bob@smith.com'
+  // screenName: 'bob'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4192,7 +4266,9 @@ try {
   $results = $quickbase->api('API_RemoveUserFromGroup', array(
     'dbid' => 'bguin9b8e',
     'gid' => '345889.sjkl',
-    'userid' => '9380434.rtgf'
+    'uid' => '9380434.rtgf'
+    // 'email' => 'bob@smith.com'
+    // 'screenName' => 'bob'
   ));
 
   // Handle results
@@ -4220,6 +4296,10 @@ Use API_RemoveUserFromGroup to remove a user from a group.
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+gid | true | | The id of the group to manage.
+uid | true | | The id of the user to be removed from the group.
+email | false | | The email of the Quick Base user
+screenName | false | | The screen name of the Quick Base user
 
 ### API_RemoveUserFromRole
 
@@ -4288,6 +4368,8 @@ If you are simply changing the user from one role to another, you should use API
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+userid | true | | The ID of user you want removed from the role.
+roleid | true | | The ID of the role from which you want the user removed.
 
 ### API_RenameApp
 
@@ -4347,6 +4429,7 @@ Use API_RenameApp to change an application's name. You invoke this call on an ap
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+newappname | true | | The name you want to assign to the application
 
 ### API_RunImport
 
@@ -4406,9 +4489,19 @@ Quick Base allows you to import data from one or more of your application tables
 
 If you'll need to execute the same import multiple times, you can save a specific import and execute it any time you need to run it. To run a saved import, invoke API_RunImport on a table dbid whose ID you specify in this call. Note that you can’t use API_GetSchema to get the saved import's ID because API_GetSchema doesn’t return the saved import.
 
+To access the saved import ID:
+<ol>
+<li>Open the application into which you want to import data.</li>
+<li>On the app Home page, click Import/Export on the Page bar.</li>
+<li>Select the Import into a table from another table radio button.</li>
+<li>Click Import from Another Table.</li>
+<li>Click the name of the saved import you want to use. In the URL shown in the browser you will see this parameter: &id=X. X is the ID you need to supply to this call.</li>
+</ol>
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+id | true | | The ID of the saved import that you want to execute.
 
 ### API_SendInvitation
 
@@ -4471,6 +4564,8 @@ Use API_SendInvitation to send an email invitation to your application. You can 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+userid | true | | The ID of the Quick Base user you are inviting to your application.
+usertext | false | | The message you want to display in your email invitation.
 
 ### API_SetDBVar
 
@@ -4533,13 +4628,16 @@ Use API_SetDBVar to create a database variable (DBVar) or set a value for it. If
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
+varname | true | | The name you want the DBVar to have.
+value | true | | The value you want to set in the DBVar
 
 ### API_SetFieldProperties
 
 ```javascript--node
 quickbase.api('API_SetFieldProperties', {
   dbid: 'bguin9b8e',
-  fid: 6
+  fid: 6,
+  default_value: 'Hello World!'
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4550,7 +4648,8 @@ quickbase.api('API_SetFieldProperties', {
 ```javascript--browser
 quickbase.api('API_SetFieldProperties', {
   dbid: 'bguin9b8e',
-  fid: 6
+  fid: 6,
+  default_value: 'Hello World!'
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4564,7 +4663,8 @@ quickbase.api('API_SetFieldProperties', {
 try {
   $results = $quickbase->api('API_SetFieldProperties', array(
     'dbid' => 'bguin9b8e',
-    'fid' => 6
+    'fid' => 6,
+    'default_value' => 'Hello World!'
   ));
 
   // Handle results
@@ -4598,6 +4698,8 @@ The properties available for a field vary slightly for the different field types
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+fid | true | | Field ID of the field to be changed
+<i>property_name</i> | true | | Name/value pairs for the properties to be set.
 
 ### API_SetKeyField
 
@@ -4660,7 +4762,8 @@ If you don't specify a key field,  Quick Base uses the built-in Record ID field 
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | Application DBID
+dbid | true | | Table DBID
+fid | true | | The field ID of the table field to be used as the key field.
 
 ### API_SignOut
 
@@ -4718,11 +4821,11 @@ This call does not invalidate any tickets, nor log off the caller from any Quick
 quickbase.api('API_UploadFile', {
   dbid: 'bguin9b8e',
   rid: 12,
-  field: {
+  fields: [{
     fid: 18,
     filename: 'photo1.jpg',
     value: 'base64'
-  }
+  }]
 }).then((results) => {
   // Handle results
 }).catch((error) => {
@@ -4734,11 +4837,11 @@ quickbase.api('API_UploadFile', {
 quickbase.api('API_UploadFile', {
   dbid: 'bguin9b8e',
   rid: 12,
-  field: {
+  fields: [{
     fid: 18,
     filename: 'photo1.jpg',
     value: 'base64'
-  }
+  }]
 }).then(function(results){
   // Handle results
 }).catch(function(error){
@@ -4753,10 +4856,12 @@ try {
   $results = $quickbase->api('API_UploadFile', array(
     'dbid' => 'bguin9b8e',
     'rid' => 12,
-    'field' => array(
-      'fid' => 18,
-      'filename' => 'photo1.jpg',
-      'value' => 'base64'
+    'fields' => array(
+      array(
+        'fid' => 18,
+        'filename' => 'photo1.jpg',
+        'value' => 'base64'
+      )
     )
   ));
 
@@ -4793,6 +4898,8 @@ Use API_UploadFile to upload base64-encoded file attachments in Quick Base.
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
+rid | true | | The id of the record that will contain the file attachment
+fields | true | | Specify values for file attachment fields using either the fid or name property of the field object. The filename property value should be set to the name of the file with no path specified. Set the base64-encoded text from the encoded file to the value property of the field object<br /><br />Note that you must not use MIME encoding and must not include MIME headers. Many base64 encoders or base64 encoding methods are for MIME type encoding and will not work with Quick Base.<br /><br />You must not insert any new line characters when you base64 encode the file. If your file attachments appear to upload but don’t display in Quick Base, double check for presence of these characters.
 
 ### API_UserRoles
 
