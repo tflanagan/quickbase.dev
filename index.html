@@ -7101,7 +7101,7 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">record</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'recordid'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
 
-<span class="k">return</span> <span class="nx">record</span><span class="p">.</span><span class="k">delete</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<span class="nx">record</span><span class="p">.</span><span class="k">delete</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
   <span class="c1">// Record 6 deleted</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
   <span class="c1">// Handle error</span>
@@ -7148,7 +7148,21 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dbid</span><span class="p">);</span> <span class="c1">// bddnn3uz9</span>
 </code></pre>
 <p>This method returns the stored DBID.</p>
-<h3 id='getfid-field-byid'><code>.getFid(field[, byId])</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<h3 id='getfid-field-byid'><code>.getFid(field[, byId])</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">fid</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">fidName</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="nx">fid</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fid</span><span class="p">,</span> <span class="nx">fidName</span><span class="p">);</span> <span class="c1">// 6, firstName</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">fid</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fidName</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="nx">fid</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fid</span><span class="p">,</span> <span class="nx">fidName</span><span class="p">);</span> <span class="c1">// 6, firstName</span>
+</code></pre>
+<p>Returns either the field id or field name depending on <code>byId</code></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7157,8 +7171,59 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>field</td>
+<td>true</td>
+<td></td>
+<td>The name of the field you wish to get the feild id of</td>
+</tr>
+<tr>
+<td>byId</td>
+<td>false</td>
+<td>false</td>
+<td>If set to true then field is assumed to be the field id and returns to field name</td>
+</tr>
 </tbody></table>
-<h3 id='getfids'><code>.getFids()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<h3 id='getfids'><code>.getFids()</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">fids</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getFids</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fids</span><span class="p">);</span> <span class="c1">// { firstName: 6, lastName: 7 }</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">fids</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getFids</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fids</span><span class="p">);</span> <span class="c1">// { firstName: 6, lastName: 7 }</span>
+</code></pre>
+<p>Returns the entire <code>fids</code> object</p>
+<h3 id='getfield-id'><code>.getField(id)</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">record</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'recordid'</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="nx">record</span><span class="p">.</span><span class="nx">load</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getField</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">));</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span> <span class="c1">// { label: 'First Name', fid: 6, ... }</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="nx">record</span><span class="p">.</span><span class="nx">loadSchema</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kr">const</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getField</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">));</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span> <span class="c1">// { label: 'First Name', fid: 6, ... }</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre>
+<p>Returns field schema object</p>
+
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7167,37 +7232,57 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 <th>Description</th>
 </tr>
 </thead><tbody>
-</tbody></table>
-<h3 id='getfield-id'><code>.getField(id)</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
 <tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
+<td>id</td>
+<td>true</td>
+<td></td>
+<td>Field id of the field you want returned</td>
 </tr>
-</thead><tbody>
 </tbody></table>
-<h3 id='getfields'><code>.getFields()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-<h3 id='gettablename'><code>.getTableName()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<h3 id='getfields'><code>.getFields()</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="nx">record</span><span class="p">.</span><span class="nx">loadSchema</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getFields</span><span class="p">();</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fields</span><span class="p">);</span> <span class="c1">// [{ label: 'First Name', fid: 6, ... }, { label: 'Last Name', fid: 7, ... }]</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="nx">record</span><span class="p">.</span><span class="nx">loadSchema</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kr">const</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getFields</span><span class="p">();</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fields</span><span class="p">);</span> <span class="c1">// [{ label: 'First Name', fid: 6, ... }, { label: 'Last Name', fid: 7, ... }]</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre>
+<p>Returns an array of all loaded field schema objects</p>
+
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
+<h3 id='gettablename'><code>.getTableName()</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">record</span><span class="p">.</span><span class="nx">loadSchema</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">tableName</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getTableName</span><span class="p">();</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tableName</span><span class="p">);</span> <span class="c1">// Customers</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">record</span><span class="p">.</span><span class="nx">loadSchema</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kr">const</span> <span class="nx">tableName</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getTableName</span><span class="p">();</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tableName</span><span class="p">);</span> <span class="c1">// Customers</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre>
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
 <h3 id='load-localquery-localclist'><code>.load([localQuery[, localClist]])</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
 <table><thead>
 <tr>
@@ -7208,17 +7293,7 @@ relfids | false | all | A list of comma-separated report link field ids that spe
 </tr>
 </thead><tbody>
 </tbody></table>
-<h3 id='loadschema'><code>.loadSchema()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-<h3 id='save-fidstosave'><code>.save([fidsToSave])</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<h3 id='loadschema'><code>.loadSchema()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre><h3 id='save-fidstosave'><code>.save([fidsToSave])</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
 <table><thead>
 <tr>
 <th>Parameter</th>
