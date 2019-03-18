@@ -6142,8 +6142,7 @@ options | false | | Default `options` prepended to every DoQuery
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+This method clears the QBTable instance of any trace of existing data, but preserves defined settings
 
 ### `.deleteRecord(record)`
 
@@ -6153,8 +6152,11 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
+Removes the passed in QBRecord instance from the local cache. If the QBRecord has a Record ID, then it is deleted via API_DeleteRecord
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+record | true | | A `QBRecord` instance
 
 ### `.deleteRecords([individually])`
 
@@ -6164,8 +6166,11 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
+If individually is true, then it executes and API_DeleteRecord for each locally loaded QBRecord. If individually is false, then it executes an API_PurgeRecords for all of the locally loaded QBRecord's.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+individually | false | false | If true, API_DeleteRecord is used instead of API_PurgeRecords
 
 ### `.getAppID()`
 
@@ -6175,8 +6180,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+This method returns the stored App ID.
 
 ### `.getDateFormat()`
 
@@ -6186,8 +6190,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+This method returns the stored Quick Base applications configured date format.
 
 ### `.getDBID()`
 
@@ -6197,8 +6200,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+This method returns the stored DBID.
 
 ### `.getChildTables()`
 
@@ -6208,52 +6210,127 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns an array of objects comprising `dbid` and `name` of an applications tables
 
 ### `.getFid(field[, byId])`
 
 ```javascript--node
+table.setFid('firstName', 6);
+
+const fid = table.getFid('firstName');
+const fidName = table.getFid(fid, true);
+
+console.log(fid, fidName); // 6, firstName
 ```
 
 ```javascript--browser
+table.setFid('firstName', 6);
+
+var fid = table.getFid('firstName');
+var fidName = table.getFid(fid, true);
+
+console.log(fid, fidName); // 6, firstName
 ```
+
+Returns either the field id or field name depending on `byId`
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+field | true | | The name of the field you wish to get the feild id of
+byId | false | false | If set to true then field is assumed to be the field id and returns to field name
 
 ### `.getFids()`
 
 ```javascript--node
+table.setFid('firstName', 6);
+table.setFid('lastName', 7);
+
+const fids = table.getFids();
+
+console.log(fids); // { firstName: 6, lastName: 7 }
 ```
 
 ```javascript--browser
+table.setFid('firstName', 6);
+table.setFid('lastName', 7);
+
+var fids = table.getFids();
+
+console.log(fids); // { firstName: 6, lastName: 7 }
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns the entire `fids` object
 
 ### `.getField(id)`
 
 ```javascript--node
+table.set('recordid', 3);
+table.setFid('firstName', 6);
+
+table.load().then(() => {
+  const field = table.getField(table.getFid('firstName'));
+
+  console.log(field); // { label: 'First Name', fid: 6, ... }
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+table.setFid('firstName', 6);
+
+table.loadSchema().then(function(){
+  const field = table.getField(table.getFid('firstName'));
+
+  console.log(field); // { label: 'First Name', fid: 6, ... }
+}).catch(function(error){
+  // Handle error
+});
 ```
+
+Returns field schema object
+
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+id | true | | Field id of the field you want returned
 
 ### `.getFields()`
 
 ```javascript--node
+table.setFid('firstName', 6);
+table.setFid('lastName', 7);
+
+table.loadSchema().then(() => {
+  const fields = table.getFields();
+
+  console.log(fields); // [{ label: 'First Name', fid: 6, ... }, { label: 'Last Name', fid: 7, ... }]
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+table.setFid('firstName', 6);
+table.setFid('lastName', 7);
+
+table.loadSchema().then(function(){
+  const fields = table.getFields();
+
+  console.log(fields); // [{ label: 'First Name', fid: 6, ... }, { label: 'Last Name', fid: 7, ... }]
+}).catch(function(error){
+  // Handle error
+});
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns an array of all loaded field schema objects
+
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
 
 ### `.getNRecords()`
 
@@ -6263,8 +6340,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+If `.load()` has been executed, returns the number of loaded records.
 
 ### `.getOptions()`
 
@@ -6274,8 +6350,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns the configured `options`.
 
 ### `.getPlural()`
 
@@ -6285,8 +6360,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns the Quick Base configured plural noun for the tables records
 
 ### `.getQueries()`
 
@@ -6296,8 +6370,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns an array of configured Quick Base queries
 
 ### `.getQuery()`
 
@@ -6307,8 +6380,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns the configured `query`.
 
 ### `.getRecord(value, fieldName[, returnIndex])`
 
@@ -6318,8 +6390,15 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
+Find a specific record in the locally loaded QBRecords where `fieldName` is equal to `value`.
+
+If `returnIndex` is `true`, then it returns the index of the internal array for that record. If `returnIndex` is false, then it returns the QBRecord instance.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+value | true | | Value to search for
+fieldName | true | | Field name of field to search against
+returnIndex | false | false | If `true`, returns the index of the internal records array instead of the record itself
 
 ### `.getRecords()`
 
@@ -6329,8 +6408,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+If a `.load()` has been executed, return the loaded QBRecords.
 
 ### `.getSingular()`
 
@@ -6340,8 +6418,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns the Quick Base configured singular noun for the tables records
 
 ### `.getSList()`
 
@@ -6351,8 +6428,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns the configured `slist`.
 
 ### `.getTableName()`
 
@@ -6362,8 +6438,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+If `.load()` or `.loadSchema()` has been executed, returns the table name.
 
 ### `.getTimezone()`
 
@@ -6373,8 +6448,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Returns the Quick Base applications configured time zone
 
 ### `.getVariable(name)`
 
@@ -6384,8 +6458,11 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
+If `.load()` or `.loadSchema()` has been executed, returns defined requested variable.
+
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+name | true | | Name of the Quick Base variable
 
 ### `.getVariables()`
 
@@ -6395,8 +6472,7 @@ Parameter | Required | Default | Description
 ```javascript--browser
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+If `.load()` or `.loadSchema()` has been executed, returns an array of Quick Base variables.
 
 ### `.load([localQuery[, localClist[, localSlist[, localOptions]]])`
 
