@@ -2412,12 +2412,15 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>recurse</td>
 <td>false</td>
 <td>true</td>
-<td></td>
+<td>Set this parameter to true to copy all detail records associated with the master record&#39;s detail records recursively.  This API supports up to 10 levels of recursion.</td>
+</tr>
+<tr>
+<td>relfids</td>
+<td>false</td>
+<td>all</td>
+<td>A list of comma-separated report link field ids that specify the relationships you want to be copied.<br /><br />For example:<br /><relfids>7,9</relfids></td>
 </tr>
 </tbody></table>
-
-<p>Set this parameter to true to copy all detail records associated with the master record&#39;s detail records recursively.  This API supports up to 10 levels of recursion.
-relfids | false | all | A list of comma-separated report link field ids that specify the relationships you want to be copied.<br /><br />For example:<br /><relfids>7,9</relfids></p>
 <h3 id='api_createdatabase'>API_CreateDatabase</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CreateDatabase'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbname</span><span class="p">:</span> <span class="s1">'FuelCharter'</span><span class="p">,</span>
   <span class="na">dbdesc</span><span class="p">:</span> <span class="s1">'Vehicle and Fuel Cost Tracker'</span><span class="p">,</span>
