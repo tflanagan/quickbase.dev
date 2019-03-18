@@ -5383,7 +5383,7 @@ tfidsWhich | false | | Set the field IDs criteria to determine if webhook should
 
 This abstraction class represents a singluar Quick Base record. Providing easy to use setters/getters and saving capabilities, this class aims to provide seamless integration between your code and Quick Base at the record level.
 
-This class is utilized in thee abstraction layer `QBTable` and itself utilizies the `QuickBase` class.
+This class is utilized in the abstraction layer `QBTable` and itself utilizies the `QuickBase` class.
 
 ## Repository Links
 
@@ -6002,7 +6002,7 @@ project.toJson();
   "elapsedTime": 10800000,
   "$tableRow": "[DOM Object]",
   "tasks": [{
-    taskName: 'Some Task'
+    "taskName": "Some Task"
   }]
 }
 ```
@@ -6023,91 +6023,547 @@ Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 fidsToConvert | false | | An array of field names to convert into the resulting JSON object
 
-# QBTable
+# QBTable // TODO
+
+This abstraction class represents a singluar Quick Base table and the potential to represent multiple `QBRecord` instances. Providing easy to use setters/getters and saving capabilities, this class aims to provide seamless integration between your code and Quick Base at the table level.
+
+This class utilizies the `QBRecord` and `QuickBase` classes.
+
+## Repository Links
+
+* JavaScript: <a href='https://github.com/tflanagan/node-qb-table' target='_blank'>https://github.com/tflanagan/node-qb-table</a>
+
+## Installation & Loading
+
+```javascript--node
+// $ npm install --save qb-table
+
+const QBTable = require('qb-table');
+```
+
+```javascript--browser
+// <script type="text/javascript" src="QBTable.browserify.min.js"></script>
+```
+
+Installing the QBTable library for your desired platform requires either including the browserified version of the library in your HTML page or installing it via a package manager (npm or composer).
+
+Including the library for use in your code depends on your platform.
 
 ## Initialization
 
+```javascript--node
+const quickbase = new QuickBase({
+  realm: realm: 'subdomain/realm',
+  userToken: 'user token',
+  appToken: 'application token',
+  flags: {
+    msInUTC: true,
+    encoding: 'ISO-8859-1'
+  },
+  connectionLimit: 10,
+  errorOnConnectionLimit: false
+});
+
+const table = new QBTable({
+  /*
+  quickbase: {
+    realm: realm: 'subdomain/realm',
+    userToken: 'user token',
+    appToken: 'application token',
+    flags: {
+      msInUTC: true,
+      encoding: 'ISO-8859-1'
+    },
+    connectionLimit: 10,
+    errorOnConnectionLimit: false
+  },
+  */
+  quickbase: quickbase,
+  dbid: 'bddnn3uz9',
+  fids: {
+    recordid: 3,
+    primaryKey: 3
+  }
+});
+```
+
+```javascript--browser
+var quickbase = new QuickBase({
+  realm: realm: 'subdomain/realm',
+  userToken: 'user token',
+  appToken: 'application token',
+  flags: {
+    msInUTC: true,
+    encoding: 'ISO-8859-1'
+  },
+  connectionLimit: 10,
+  errorOnConnectionLimit: false
+});
+
+const table = new QBTable({
+  /*
+  quickbase: {
+    realm: realm: 'subdomain/realm',
+    userToken: 'user token',
+    appToken: 'application token',
+    flags: {
+      msInUTC: true,
+      encoding: 'ISO-8859-1'
+    },
+    connectionLimit: 10,
+    errorOnConnectionLimit: false
+  },
+  */
+  quickbase: quickbase,
+  dbid: 'bddnn3uz9',
+  fids: {
+    recordid: 3,
+    primaryKey: 3
+  }
+});
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+quickbase: | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
+dbid | true | | Table DBID
+fids | false | | Object containing name/value pairs of fields and their field ids
+query | false | | Default `query` prepended to every DoQuery
+slist | false | | Default `slist` prepended to every DoQuery
+options | false | | Default `options` prepended to every DoQuery
+
 ## Instance Methods
 
-### clear
+### `.clear()`
 
-### deleteRecord
+```javascript--node
+```
 
-### deleteRecords
+```javascript--browser
+```
 
-### getAppID
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### getDateFormat
+### `.deleteRecord(record)`
 
-### getDBID
+```javascript--node
+```
 
-### getChildTables
+```javascript--browser
+```
 
-### getFid
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### getFids
+### `.deleteRecords([individually])`
 
-### getField
+```javascript--node
+```
 
-### getFields
+```javascript--browser
+```
 
-### getNRecords
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### getOptions
+### `.getAppID()`
 
-### getPlural
+```javascript--node
+```
 
-### getQueries
+```javascript--browser
+```
 
-### getQuery
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### getRecord
+### `.getDateFormat()`
 
-### getRecords
+```javascript--node
+```
 
-### getSingular
+```javascript--browser
+```
 
-### getSList
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### getTableName
+### `.getDBID()`
 
-### getTimezone
+```javascript--node
+```
 
-### getVariable
+```javascript--browser
+```
 
-### getVariables
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### load
+### `.getChildTables()`
 
-### loadNRecords
+```javascript--node
+```
 
-### loadSchema
+```javascript--browser
+```
 
-### save
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### setDBID
+### `.getFid(field[, byId])`
 
-### setFid
+```javascript--node
+```
 
-### setFids
+```javascript--browser
+```
 
-### setOptions
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### setQuery
+### `.getFids()`
 
-### setSList
+```javascript--node
+```
 
-### toJson
+```javascript--browser
+```
 
-### upsertRecord
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
-### upsertRecords
+### `.getField(id)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getFields()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getNRecords()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getOptions()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getPlural()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getQueries()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getQuery()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getRecord(value, fieldName[, returnIndex])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getRecords()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getSingular()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getSList()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getTableName()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getTimezone()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getVariable(name)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.getVariables()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.load([localQuery[, localClist[, localSlist[, localOptions]]])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.loadNRecords([localQuery])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.loadSchema()`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.save([individually[, fidsToSave]])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setDBID(dbid)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setFid(name, id)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setFids(fields)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setOptions(options)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setQuery(query)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.setSList(slist)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.toJson([fidsToConvert])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.upsertRecord(options[, autoSave])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.upsertRecords(records)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
 ## Static Methods
 
-### NewRecord
+### `.NewRecord(table, record)`
 
-### NewRecords
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.NewRecords(table, records)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
 
 # Formatting Data for Quick Base
 
