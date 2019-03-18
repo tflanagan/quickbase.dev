@@ -7733,16 +7733,10 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 </tr>
 </tbody></table>
 <h2 id='instance-methods-2'>Instance Methods</h2><h3 id='clear-2'><code>.clear()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>This method clears the QBTable instance of any trace of existing data, but preserves defined settings</p>
 <h3 id='deleterecord-record'><code>.deleteRecord(record)</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<p>Removes the passed in QBRecord instance from the local cache. If the QBRecord has a Record ID, then it is deleted via API_DeleteRecord</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7751,8 +7745,16 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>record</td>
+<td>true</td>
+<td></td>
+<td>A <code>QBRecord</code> instance</td>
+</tr>
 </tbody></table>
 <h3 id='deleterecords-individually'><code>.deleteRecords([individually])</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<p>If individually is true, then it executes and API_DeleteRecord for each locally loaded QBRecord. If individually is false, then it executes an API_PurgeRecords for all of the locally loaded QBRecord&#39;s.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7761,38 +7763,36 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>individually</td>
+<td>false</td>
+<td>false</td>
+<td>If true, API_DeleteRecord is used instead of API_PurgeRecords</td>
+</tr>
 </tbody></table>
 <h3 id='getappid'><code>.getAppID()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>This method returns the stored App ID.</p>
 <h3 id='getdateformat'><code>.getDateFormat()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>This method returns the stored Quick Base applications configured date format.</p>
 <h3 id='getdbid-2'><code>.getDBID()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>This method returns the stored DBID.</p>
 <h3 id='getchildtables'><code>.getChildTables()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<p>Returns an array of objects comprising <code>dbid</code> and <code>name</code> of an applications tables</p>
+<h3 id='getfid-field-byid-2'><code>.getFid(field[, byId])</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">fid</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">fidName</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="nx">fid</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fid</span><span class="p">,</span> <span class="nx">fidName</span><span class="p">);</span> <span class="c1">// 6, firstName</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">fid</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fidName</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="nx">fid</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fid</span><span class="p">,</span> <span class="nx">fidName</span><span class="p">);</span> <span class="c1">// 6, firstName</span>
+</code></pre>
+<p>Returns either the field id or field name depending on <code>byId</code></p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7801,8 +7801,59 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>field</td>
+<td>true</td>
+<td></td>
+<td>The name of the field you wish to get the feild id of</td>
+</tr>
+<tr>
+<td>byId</td>
+<td>false</td>
+<td>false</td>
+<td>If set to true then field is assumed to be the field id and returns to field name</td>
+</tr>
 </tbody></table>
-<h3 id='getfid-field-byid-2'><code>.getFid(field[, byId])</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<h3 id='getfids-2'><code>.getFids()</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">fids</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFids</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fids</span><span class="p">);</span> <span class="c1">// { firstName: 6, lastName: 7 }</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">fids</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFids</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fids</span><span class="p">);</span> <span class="c1">// { firstName: 6, lastName: 7 }</span>
+</code></pre>
+<p>Returns the entire <code>fids</code> object</p>
+<h3 id='getfield-id-2'><code>.getField(id)</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">table</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'recordid'</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="nx">table</span><span class="p">.</span><span class="nx">load</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getField</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">));</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span> <span class="c1">// { label: 'First Name', fid: 6, ... }</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="nx">table</span><span class="p">.</span><span class="nx">loadSchema</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kr">const</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getField</span><span class="p">(</span><span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">));</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span> <span class="c1">// { label: 'First Name', fid: 6, ... }</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre>
+<p>Returns field schema object</p>
+
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7811,88 +7862,54 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
-</tbody></table>
-<h3 id='getfids-2'><code>.getFids()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
 <tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
+<td>id</td>
+<td>true</td>
+<td></td>
+<td>Field id of the field you want returned</td>
 </tr>
-</thead><tbody>
 </tbody></table>
-<h3 id='getfield-id-2'><code>.getField(id)</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-<h3 id='getfields-2'><code>.getFields()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<h3 id='getfields-2'><code>.getFields()</code></h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="nx">table</span><span class="p">.</span><span class="nx">loadSchema</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFields</span><span class="p">();</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fields</span><span class="p">);</span> <span class="c1">// [{ label: 'First Name', fid: 6, ... }, { label: 'Last Name', fid: 7, ... }]</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="nx">table</span><span class="p">.</span><span class="nx">loadSchema</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kr">const</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFields</span><span class="p">();</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fields</span><span class="p">);</span> <span class="c1">// [{ label: 'First Name', fid: 6, ... }, { label: 'Last Name', fid: 7, ... }]</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre>
+<p>Returns an array of all loaded field schema objects</p>
+
+<aside class="notice">
+  As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
+</aside>
 <h3 id='getnrecords'><code>.getNRecords()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>If <code>.load()</code> has been executed, returns the number of loaded records.</p>
 <h3 id='getoptions'><code>.getOptions()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>Returns the configured <code>options</code>.</p>
 <h3 id='getplural'><code>.getPlural()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>Returns the Quick Base configured plural noun for the tables records</p>
 <h3 id='getqueries'><code>.getQueries()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>Returns an array of configured Quick Base queries</p>
 <h3 id='getquery'><code>.getQuery()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>Returns the configured <code>query</code>.</p>
 <h3 id='getrecord-value-fieldname-returnindex'><code>.getRecord(value, fieldName[, returnIndex])</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<p>Find a specific record in the locally loaded QBRecords where <code>fieldName</code> is equal to <code>value</code>.</p>
+
+<p>If <code>returnIndex</code> is <code>true</code>, then it returns the index of the internal array for that record. If <code>returnIndex</code> is false, then it returns the QBRecord instance.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7901,58 +7918,38 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>value</td>
+<td>true</td>
+<td></td>
+<td>Value to search for</td>
+</tr>
+<tr>
+<td>fieldName</td>
+<td>true</td>
+<td></td>
+<td>Field name of field to search against</td>
+</tr>
+<tr>
+<td>returnIndex</td>
+<td>false</td>
+<td>false</td>
+<td>If <code>true</code>, returns the index of the internal records array instead of the record itself</td>
+</tr>
 </tbody></table>
 <h3 id='getrecords'><code>.getRecords()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>If a <code>.load()</code> has been executed, return the loaded QBRecords.</p>
 <h3 id='getsingular'><code>.getSingular()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>Returns the Quick Base configured singular noun for the tables records</p>
 <h3 id='getslist'><code>.getSList()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>Returns the configured <code>slist</code>.</p>
 <h3 id='gettablename-2'><code>.getTableName()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>If <code>.load()</code> or <code>.loadSchema()</code> has been executed, returns the table name.</p>
 <h3 id='gettimezone'><code>.getTimezone()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>Returns the Quick Base applications configured time zone</p>
 <h3 id='getvariable-name'><code>.getVariable(name)</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
+<p>If <code>.load()</code> or <code>.loadSchema()</code> has been executed, returns defined requested variable.</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7961,17 +7958,15 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>name</td>
+<td>true</td>
+<td></td>
+<td>Name of the Quick Base variable</td>
+</tr>
 </tbody></table>
 <h3 id='getvariables'><code>.getVariables()</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
+<p>If <code>.load()</code> or <code>.loadSchema()</code> has been executed, returns an array of Quick Base variables.</p>
 <h3 id='load-localquery-localclist-localslist-localoptions'><code>.load([localQuery[, localClist[, localSlist[, localOptions]]])</code></h3><pre class="highlight javascript tab-javascript--node"><code></code></pre><pre class="highlight javascript tab-javascript--browser"><code></code></pre>
 <table><thead>
 <tr>
