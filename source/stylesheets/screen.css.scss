@@ -364,8 +364,8 @@ html, body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
     background-color: #fdfdfd;
   }
 
@@ -379,7 +379,7 @@ html, body {
     font-size: 19px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #999;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
@@ -397,6 +397,11 @@ html, body {
     font-size: 15px;
     margin-top: 2.5em;
     margin-bottom: 0.8em;
+  }
+
+  h3 {
+    border-top: 1px solid #ccc;
+    padding-top: 12px;
   }
 
   h4, h5, h6 {
