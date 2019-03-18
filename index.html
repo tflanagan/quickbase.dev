@@ -711,6 +711,17 @@
           <li>
             <a href="#error-handling" class="toc-h1 toc-link" data-title="Error Handling">Error Handling</a>
           </li>
+          <li>
+            <a href="#practical-examples" class="toc-h1 toc-link" data-title="Practical Examples">Practical Examples</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#binding-qbrecord-to-a-lt-form-gt" class="toc-h2 toc-link" data-title="Binding QBRecord to a &lt;form&gt;">Binding QBRecord to a &lt;form&gt;</a>
+                  </li>
+                  <li>
+                    <a href="#batch-doquery-with-qbtable" class="toc-h2 toc-link" data-title="Batch DoQuery with QBTable">Batch DoQuery with QBTable</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a></li>
@@ -8607,6 +8618,117 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <td>The application is suspended, possibly due to nonpayment.</td>
 </tr>
 </tbody></table>
+<h1 id='practical-examples'>Practical Examples</h1><h2 id='binding-qbrecord-to-a-lt-form-gt'>Binding QBRecord to a &lt;form&gt;</h2><pre class="highlight javascript tab-javascript--browser"><code><span class="kd">var</span> <span class="nx">$form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'form.exampleForm'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">$firstName</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'input[name=firstName]'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">$lastName</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'input[name=lastName]'</span><span class="p">);</span>
+
+<span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="nx">record</span><span class="p">.</span><span class="nx">setFid</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="nx">record</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'recordid'</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="nx">$firstName</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'input'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">record</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+<span class="p">});</span>
+
+<span class="nx">$lastName</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'input'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">record</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">,</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+<span class="p">});</span>
+
+<span class="nx">$form</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'submit'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="nx">record</span><span class="p">.</span><span class="nx">save</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// Record saved</span>
+  <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+    <span class="c1">// Handle error</span>
+  <span class="p">});;</span>
+<span class="p">});</span>
+
+<span class="nx">record</span><span class="p">.</span><span class="nx">load</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$firstName</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'firstName'</span><span class="p">));</span>
+  <span class="nx">$lastName</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'lastName'</span><span class="p">));</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre>
+<p>Using <code>QBRecord</code>, binding your data and JavaScript to the DOM is easier than ever.</p>
+
+<p>Using jQuery to get access to the DOM, we can easily listen for changes to the form and immediately reflect them in our QBRecord instance.</p>
+
+<p>Once the user is done, we execute the <code>.save()</code> method which will save any input to Quick Base.</p>
+<h2 id='batch-doquery-with-qbtable'>Batch DoQuery with QBTable</h2><pre class="highlight javascript tab-javascript--node"><code><span class="kr">const</span> <span class="nx">setAll</span> <span class="o">=</span> <span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">){</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">batchSize</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">"{'"</span> <span class="o">+</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'recordid'</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"'.XEX.'0'}"</span>
+<span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">'AND'</span><span class="p">);</span>
+
+<span class="k">return</span> <span class="nx">table</span><span class="p">.</span><span class="nx">loadNRecords</span><span class="p">(</span><span class="nx">query</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">nRecords</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">setAll</span><span class="p">(</span><span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">nRecords</span> <span class="o">/</span> <span class="nx">batchSize</span><span class="p">)),</span> <span class="kc">false</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">records</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">table</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span>
+    <span class="na">query</span><span class="p">:</span> <span class="nx">query</span><span class="p">,</span>
+    <span class="na">slist</span><span class="p">:</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'recordid'</span><span class="p">),</span>
+    <span class="na">options</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s1">'num-'</span> <span class="o">+</span> <span class="nx">batchSize</span><span class="p">,</span>
+      <span class="s1">'skp-'</span> <span class="o">+</span> <span class="p">(</span><span class="nx">batchSize</span> <span class="o">*</span> <span class="nx">i</span><span class="p">)</span>
+    <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
+  <span class="p">}).</span><span class="nx">each</span><span class="p">((</span><span class="nx">record</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">records</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">record</span><span class="p">);</span>
+  <span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">records</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">},</span> <span class="p">[]).</span><span class="nx">then</span><span class="p">((</span><span class="nx">records</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle records array</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="kr">const</span> <span class="nx">setAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">value</span><span class="p">){</span>
+  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">){</span>
+    <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">batchSize</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">"{'"</span> <span class="o">+</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'recordid'</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"'.XEX.'0'}"</span>
+<span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">'AND'</span><span class="p">);</span>
+
+<span class="k">return</span> <span class="nx">table</span><span class="p">.</span><span class="nx">loadNRecords</span><span class="p">(</span><span class="nx">query</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">nRecords</span><span class="p">){</span>
+  <span class="k">return</span> <span class="nx">setAll</span><span class="p">(</span><span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">nRecords</span> <span class="o">/</span> <span class="nx">batchSize</span><span class="p">)),</span> <span class="kc">false</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">records</span><span class="p">,</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">table</span><span class="p">.</span><span class="nx">load</span><span class="p">({</span>
+    <span class="na">query</span><span class="p">:</span> <span class="nx">query</span><span class="p">,</span>
+    <span class="na">slist</span><span class="p">:</span> <span class="nx">table</span><span class="p">.</span><span class="nx">getFid</span><span class="p">(</span><span class="s1">'recordid'</span><span class="p">),</span>
+    <span class="na">options</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s1">'num-'</span> <span class="o">+</span> <span class="nx">batchSize</span><span class="p">,</span>
+      <span class="s1">'skp-'</span> <span class="o">+</span> <span class="p">(</span><span class="nx">batchSize</span> <span class="o">*</span> <span class="nx">i</span><span class="p">)</span>
+    <span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
+  <span class="p">}).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">record</span><span class="p">){</span>
+    <span class="nx">records</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">record</span><span class="p">);</span>
+  <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="nx">records</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">},</span> <span class="p">[]).</span><span class="nx">then</span><span class="p">((</span><span class="nx">records</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Handle records array</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+  <span class="c1">// Handle error</span>
+<span class="p">});</span>
+</code></pre>
+<p>This example demonstrates how you would work around the <code>Report Too Large</code> error Quick Base returns sometimes.</p>
+
+<p>If you need to batch out your DoQuery&#39;s, you first need to do a DoQueryCount and find out how many batches you are going to process.</p>
+
+<p>Using the <code>reduce</code> method of the Bluebirdjs library, we can compile and return a single array after <code>n</code> DoQuery&#39;s</p>
 
       </div>
       <div class="dark-box">
