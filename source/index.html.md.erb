@@ -1419,8 +1419,7 @@ dbid | true | | Table DBID
 destrid | true | | The record id of the destination record to which you want the records copied.<br /><br />If you want to copy the source master record and its detail records, set this to 0.<br /><br />If you want to import detail records from a different master record, set this to the record id of the master record to which you want to import the detail records.
 sourcerid | true | | The record id of the source record from which you want to copy detail records.
 copyfid | true | | The field id of a text field used in the name of the new record, if destrid = 0. The name becomes “Copy of field value".<br /><br />This field cannot be a lookup, append-only text, or formula field.  It also cannot be a unique or snapshot field.
-recurse | false | true |  
-Set this parameter to true to copy all detail records associated with the master record's detail records recursively.  This API supports up to 10 levels of recursion.
+recurse | false | true | Set this parameter to true to copy all detail records associated with the master record's detail records recursively.  This API supports up to 10 levels of recursion.
 relfids | false | all | A list of comma-separated report link field ids that specify the relationships you want to be copied.<br /><br />For example:<br /><relfids>7,9</relfids>
 
 ### API_CreateDatabase
