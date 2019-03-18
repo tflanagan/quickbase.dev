@@ -5738,6 +5738,8 @@ record.loadSchema().then(function(){
 });
 ```
 
+Returns the name of the Quick Base table.
+
 <aside class="notice">
   As this returns Quick Base schema, prior to usage, the instance requires a call to `.load()` or `.loadSchema()`.
 </aside>
@@ -5745,87 +5747,281 @@ record.loadSchema().then(function(){
 ### `.load([localQuery[, localClist]])`
 
 ```javascript--node
+record.set('recordid', 3);
+
+record.load().then(() => {
+  console.log(record.toJson()); // { recordid: 3, firstName: ... }
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+record.set('recordid', 3);
+
+record.load().then(function(){
+  console.log(record.toJson()); // { recordid: 3, firstName: ... }
+}).catch(function(error){
+  // Handle error
+});
 ```
+
+Loads the defined record from Quick Base, executing a structured DoQuery to retrieve and populate internal schema and data structures
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+localQuery | false | | A string or object<br /><br />If a string is passed in, it is treated as a query string. If an object is passed in, subsequent arguments will be ignored, assuming they've been passed in via this object.
+localClist | false | | A period delimited string of field ids or an array of field ids
 
 ### `.loadSchema()`
 
 ```javascript--node
+record.loadSchema().then(() => {
+  console.log(record.getFields());
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+record.loadSchema().then(function(){
+  console.log(record.getFields());
+}).catch(function(error){
+  // Handle error
+});
 ```
+
+Executes an API_GetSchema and stores the returned results internally.
 
 ### `.save([fidsToSave])`
 
 ```javascript--node
+record.set('firstName', 'Bob');
+record.set('lastName', 'Smith');
+
+record.save().then(() => {
+  console.log(record.get('recordid')); // 6
+}).catch((error) => {
+  // Handle error
+});
+
+// Explicity saving a list of fields
+record.set('firstName', 'Bob');
+record.set('lastName', 'Smith');
+record.set('age', 24);
+
+record.save([
+  'firstName',
+  'lastName'
+]).then(() => {
+  console.log(record.get('recordid')); // 6
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+record.set('firstName', 'Bob');
+record.set('lastName', 'Smith');
+
+]).then(function(){
+  console.log(record.get('recordid')); // 6
+}).catch(function(error){
+  // Handle error
+});
+
+// Explicity saving a list of fields
+record.set('firstName', 'Bob');
+record.set('lastName', 'Smith');
+record.set('age', 24);
+
+record.save([
+  'firstName',
+  'lastName'
+]).then(function(){
+  console.log(record.get('recordid')); // 6
+}).catch(function(error){
+  // Handle error
+});
 ```
+
+This method executes either an API_AddRecord or an API_EditRecord depending on
+the set Record ID. If a Record ID is stored, then it executes an API_EditRecord
+otherwise, an API_AddRecord.
+
+If `fidsToSave` is defined, then only configured fids in this array will be
+saved.
+
+If this executes an API_AddRecord, the newly assigned Record ID is
+automatically stored internally. If the defined primaryKey FID is also a
+defined field in the `fids` object, then this is also automatically stored
+internally.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+fidsToSave | false | | An array of inclusive fields to save, if omitted, all defined fields will be saved
 
 ### `.set(field, value)`
 
 ```javascript--node
+record.set('firstName', 'Bob');
+
+console.log(record.get('firstName')); // Bob
 ```
 
 ```javascript--browser
+record.set('firstName', 'Bob');
+
+console.log(record.get('firstName')); // Bob
 ```
+
+This method sets the passed in value associated with the `name` argument,
+defined in the `fids` object in the inialization of the instance.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+field | true | | Field name to set the value of
+value | true | | Value of the field to set
 
 ### `.setDBID(dbid)`
 
 ```javascript--node
+record.setDBID('bddnn3uz9');
+
+const dbid = record.getDBID();
+
+console.log(dbid); // bddnn3uz9
 ```
 
 ```javascript--browser
+record.setDBID('bddnn3uz9');
+
+const dbid = record.getDBID();
+
+console.log(dbid); // bddnn3uz9
 ```
+
+Sets the `dbid` setting.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+dbid | true | | DBID to set
 
 ### `.setFid(name, id)`
 
 ```javascript--node
+record.setFid('firstName', 6);
+
+console.log(record.getFid('firstName')); // 6
 ```
 
 ```javascript--browser
+record.setFid('firstName', 6);
+
+console.log(record.getFid('firstName')); // 6
 ```
+
+Adds/Updates configured field with the name of `name` and the field id of `id`.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+name | true | | Name of the field configuration you're defining
+id | true | | Field id of the field configuration you're defining
 
 ### `.setFids(fields)`
 
 ```javascript--node
+record.setFids([{
+  name: 'firstName',
+  fid: 6
+}, {
+  name: 'lastName',
+  fid: 7
+});
+
+console.log(record.getFids()); // { firstName: 6, lastName: 7 }
 ```
 
 ```javascript--browser
+record.setFids([{
+  name: 'firstName',
+  fid: 6
+}, {
+  name: 'lastName',
+  fid: 7
+});
+
+console.log(record.getFids()); // { firstName: 6, lastName: 7 }
 ```
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+fields | true | | An array of objects containing a `name` and `fid` attribute that will mapped over and passed to `.setFid()`
 
 ### `.toJson([fidsToConvert])`
 
 ```javascript--node
+project.set('projectName', 'Some Example Project');
+project.set('completed', false);
+project.set('finishDate', moment(1587355200000));
+project.set('elapsedTime', moment.duration(10800000));
+project.set('$tableRow', $('.some-tr-row'));
+
+task.set('taskName', 'Some Task');
+
+project.set('tasks', [
+  task
+]);
+
+project.toJson();
 ```
 
 ```javascript--browser
+project.set('projectName', 'Some Example Project');
+project.set('completed', false);
+project.set('finishDate', moment(1587355200000));
+project.set('elapsedTime', moment.duration(10800000));
+project.set('$tableRow', $('.some-tr-row'));
+
+task.set('taskName', 'Some Task');
+
+project.set('tasks', [
+  task
+]);
+
+project.toJson();
 ```
+
+> The above returns JSON structured like this:
+
+```json
+{
+  "projectName": "Some Example Project",
+  "completed": false,
+  "finishDate": "2020-04-20T04:00:00.000Z",
+  "elapsedTime": 10800000,
+  "$tableRow": "[DOM Object]",
+  "tasks": [{
+    taskName: 'Some Task'
+  }]
+}
+```
+
+Returns the record in JSON format.
+
+<aside class="notice">
+  This is a recursive function, looping through all values stored internally. If an object is detect, it will loop through its' properties.
+  <ul>
+    <li>This function converts DOM objects to the string `[DOM Object]`</li>
+    <li>This function converts Date and Moment objects to ISO strings</li>
+    <li>This function converts other QBRecord classes to JSON objects</li>
+    <li>This function converts Moment Duration objects to milliseconds</li>
+  </ul>
+</aside>
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+fidsToConvert | false | | An array of field names to convert into the resulting JSON object
 
 # QBTable
 
