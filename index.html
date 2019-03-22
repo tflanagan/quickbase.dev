@@ -709,6 +709,14 @@
             <a href="#formatting-data-for-quick-base" class="toc-h1 toc-link" data-title="Formatting Data for Quick Base">Formatting Data for Quick Base</a>
           </li>
           <li>
+            <a href="#query-tokens" class="toc-h1 toc-link" data-title="Query Tokens">Query Tokens</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#token-query-string-field-value-description" class="toc-h2 toc-link" data-title="Token | Query String | Field Value | Description">Token | Query String | Field Value | Description</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#error-handling" class="toc-h1 toc-link" data-title="Error Handling">Error Handling</a>
           </li>
           <li>
@@ -727,6 +735,8 @@
             <li><a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a></li>
             <li><a href='https://github.com/lord/slate' target='_blank'>Documentation Powered by Slate</a></li>
             <li>Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a></li>
+            <li>quickbase.dev is not affiliated with, connected to, or sponsored by Quick Base or QuickBase, Inc</li>
+            <li>Quick Base is a registered trademark of QuickBase, Inc</li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -8239,6 +8249,13 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <td>Formula fields are derived from other fields. You cannot write to this type of field directly. If your API writes to a formula field, Quick Base returns an error.</td>
 </tr>
 </tbody></table>
+<h1 id='query-tokens'>Query Tokens</h1>
+<p>These query tokens can be used in either the Quick Base query string or as a field value for API_EditRecord and API_AddRecord.</p>
+<h2 id='token-query-string-field-value-description'>Token | Query String | Field Value | Description</h2>
+<p><em>curuser</em> | true | true | Is replaced with the user id of the user assigned to the used ticket or user token
+<em>fid</em><i>&lt;field id&gt;</i> | true | true | Is replaced with the value of the specified field for that record (Example: _fid_3 would be the Record ID#)
+today | true | true | Represents today (date)
+now | true | true | Represents now (date/time)</p>
 <h1 id='error-handling'>Error Handling</h1>
 <p>When making an API call to Quick Base, Quick Base responds with at least two values, <code>errcode</code>, and <code>errtext</code> and sometimes an <code>errdetail</code> property.</p>
 
