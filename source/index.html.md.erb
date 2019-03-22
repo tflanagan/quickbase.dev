@@ -10,6 +10,8 @@ toc_footers:
   - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a>
   - <a href='https://github.com/lord/slate' target='_blank'>Documentation Powered by Slate</a>
   - Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a>
+  - quickbase.dev is not affiliated with, connected to, or sponsored by Quick Base or QuickBase, Inc
+  - Quick Base is a registered trademark of QuickBase, Inc
 
 includes:
 
@@ -6671,6 +6673,17 @@ iCalendar | iCalendar fields are derived from other fields. You can update this 
 vCard | vCard fields are derived from other fields. You can update this type of field only by updating the fields to which it refers.  You can't write to this type of field directly If your API writes to a vCard field, Quick Base returns an error.
 Predecessor | The Record ID of the predecessor record. Note that if you enter an invalid Record ID here, Quick Base returns an error.
 Formula | Formula fields are derived from other fields. You cannot write to this type of field directly. If your API writes to a formula field, Quick Base returns an error.
+
+# Query Tokens
+
+These query tokens can be used in either the Quick Base query string or as a field value for API_EditRecord and API_AddRecord.
+
+Token | Query String | Field Value | Description
+------------------------------------------------
+_curuser_ | true | true | Is replaced with the user id of the user assigned to the used ticket or user token
+_fid_<i>&lt;field id&gt;</i> | true | true | Is replaced with the value of the specified field for that record (Example: _fid_3 would be the Record ID#)
+today | true | true | Represents today (date)
+now | true | true | Represents now (date/time)
 
 # Error Handling
 
