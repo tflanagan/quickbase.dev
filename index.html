@@ -7041,7 +7041,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <p>This class is utilized in the abstraction layer <code>QBRecord</code> and <code>QBTable</code>, and itself utilizes the <code>QuickBase</code> class.</p>
 <h2 id='repository-links-2'>Repository Links</h2>
 <ul>
-<li>JavaScript: <a href='https://github.com/tflanagan/node-qb-field' target='_blank'>https://github.com/tflanagan/node-qb-record</a></li>
+<li>JavaScript: <a href='https://github.com/tflanagan/node-qb-field' target='_blank'>https://github.com/tflanagan/node-qb-field</a></li>
 </ul>
 <h2 id='installation-amp-loading-2'>Installation &amp; Loading</h2><pre class="highlight javascript tab-javascript--node"><code><span class="c1">// $ npm install --save qb-field</span>
 
@@ -7052,7 +7052,7 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <p>Including the library for use in your code depends on your platform.</p>
 <h2 id='initialization-2'>Initialization</h2><pre class="highlight javascript tab-javascript--node"><code><span class="kr">const</span> <span class="nx">quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QuickBase</span><span class="p">({</span>
-  <span class="na">realm</span><span class="p">:</span> <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
+  <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
   <span class="na">userToken</span><span class="p">:</span> <span class="s1">'user token'</span><span class="p">,</span>
   <span class="na">appToken</span><span class="p">:</span> <span class="s1">'application token'</span><span class="p">,</span>
   <span class="na">flags</span><span class="p">:</span> <span class="p">{</span>
@@ -7066,7 +7066,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <span class="kr">const</span> <span class="nx">field</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QBField</span><span class="p">({</span>
   <span class="cm">/*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -7084,7 +7084,7 @@ If your application experiences a normal traffic rate that is higher than averag
   <span class="na">fid</span><span class="p">:</span> <span class="mi">6</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="kd">var</span> <span class="nx">quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QuickBase</span><span class="p">({</span>
-  <span class="na">realm</span><span class="p">:</span> <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
+  <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
   <span class="na">userToken</span><span class="p">:</span> <span class="s1">'user token'</span><span class="p">,</span>
   <span class="na">appToken</span><span class="p">:</span> <span class="s1">'application token'</span><span class="p">,</span>
   <span class="na">flags</span><span class="p">:</span> <span class="p">{</span>
@@ -7099,7 +7099,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QBField</span><span class="p">({</span>
   <span class="cm">/*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -7126,7 +7126,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </thead><tbody>
 <tr>
-<td>quickbase:</td>
+<td>quickbase</td>
 <td>true</td>
 <td></td>
 <td>You can either pass in an existing <code>QuickBase</code> instance (preferred) or create a new <code>QuickBase</code> instance by passing in a configuration object</td>
@@ -7385,7 +7385,7 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <p>Including the library for use in your code depends on your platform.</p>
 <h2 id='initialization-3'>Initialization</h2><pre class="highlight javascript tab-javascript--node"><code><span class="kr">const</span> <span class="nx">quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QuickBase</span><span class="p">({</span>
-  <span class="na">realm</span><span class="p">:</span> <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
+  <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
   <span class="na">userToken</span><span class="p">:</span> <span class="s1">'user token'</span><span class="p">,</span>
   <span class="na">appToken</span><span class="p">:</span> <span class="s1">'application token'</span><span class="p">,</span>
   <span class="na">flags</span><span class="p">:</span> <span class="p">{</span>
@@ -7399,7 +7399,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <span class="kr">const</span> <span class="nx">record</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QBRecord</span><span class="p">({</span>
   <span class="cm">/*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -7422,7 +7422,7 @@ If your application experiences a normal traffic rate that is higher than averag
   <span class="na">primaryKey</span><span class="p">:</span> <span class="mi">12</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="kd">var</span> <span class="nx">quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QuickBase</span><span class="p">({</span>
-  <span class="na">realm</span><span class="p">:</span> <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
+  <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
   <span class="na">userToken</span><span class="p">:</span> <span class="s1">'user token'</span><span class="p">,</span>
   <span class="na">appToken</span><span class="p">:</span> <span class="s1">'application token'</span><span class="p">,</span>
   <span class="na">flags</span><span class="p">:</span> <span class="p">{</span>
@@ -7437,7 +7437,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <span class="kd">var</span> <span class="nx">record</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QBRecord</span><span class="p">({</span>
   <span class="cm">/*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -7469,7 +7469,7 @@ If your application experiences a normal traffic rate that is higher than averag
 </tr>
 </thead><tbody>
 <tr>
-<td>quickbase:</td>
+<td>quickbase</td>
 <td>true</td>
 <td></td>
 <td>You can either pass in an existing <code>QuickBase</code> instance (preferred) or create a new <code>QuickBase</code> instance by passing in a configuration object</td>
@@ -8044,7 +8044,7 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 
 <p>Including the library for use in your code depends on your platform.</p>
 <h2 id='initialization-4'>Initialization</h2><pre class="highlight javascript tab-javascript--node"><code><span class="kr">const</span> <span class="nx">quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QuickBase</span><span class="p">({</span>
-  <span class="na">realm</span><span class="p">:</span> <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
+  <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
   <span class="na">userToken</span><span class="p">:</span> <span class="s1">'user token'</span><span class="p">,</span>
   <span class="na">appToken</span><span class="p">:</span> <span class="s1">'application token'</span><span class="p">,</span>
   <span class="na">flags</span><span class="p">:</span> <span class="p">{</span>
@@ -8058,7 +8058,7 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <span class="kr">const</span> <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QBTable</span><span class="p">({</span>
   <span class="cm">/*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -8077,7 +8077,7 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
   <span class="p">}</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight javascript tab-javascript--browser"><code><span class="kd">var</span> <span class="nx">quickbase</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QuickBase</span><span class="p">({</span>
-  <span class="na">realm</span><span class="p">:</span> <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
+  <span class="na">realm</span><span class="p">:</span> <span class="s1">'subdomain/realm'</span><span class="p">,</span>
   <span class="na">userToken</span><span class="p">:</span> <span class="s1">'user token'</span><span class="p">,</span>
   <span class="na">appToken</span><span class="p">:</span> <span class="s1">'application token'</span><span class="p">,</span>
   <span class="na">flags</span><span class="p">:</span> <span class="p">{</span>
@@ -8091,7 +8091,7 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 <span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QBTable</span><span class="p">({</span>
   <span class="cm">/*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -8119,7 +8119,7 @@ defined in the <code>fids</code> object in the inialization of the instance.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>quickbase:</td>
+<td>quickbase</td>
 <td>true</td>
 <td></td>
 <td>You can either pass in an existing <code>QuickBase</code> instance (preferred) or create a new <code>QuickBase</code> instance by passing in a configuration object</td>
