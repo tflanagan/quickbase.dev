@@ -110,7 +110,7 @@ You will also require `composer`, which is a PHP package manager. To install `co
 
 This is the low level Quick Base class, giving you direct access to Quick Base's API.
 
-This class is utilized in the abstraction layers QBRecord and QBTable.
+This class is utilized in the abstraction layers `QBField`, `QBRecord` and `QBTable`.
 
 ## Repository Links
 
@@ -5378,6 +5378,341 @@ webhookMessageFormat | false | XML | Format of the payload:<ul><li>XML</li><li>J
 webhookHTTPVerb | false | POST | A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<ul><li>POST</li><li>GET</li><li>PUT</li><li>PATCH</li><li>DELETE</li></ul>
 tfidsWhich | false | | Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add 'tfids' request parameter.<br /><br />Set the value of this parameter to 'tfidsAny' to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids>
 
+# QBField
+
+This abstraction class represents a singluar Quick Base field. Providing easy to use setters/getters and saving capabilities, this class aims to provide seamless integration between your code and Quick Base at the field level.
+
+This class is utilized in the abstraction layer `QBRecord` and `QBTable`, and itself utilizes the `QuickBase` class.
+
+## Repository Links
+
+* JavaScript: <a href='https://github.com/tflanagan/node-qb-field' target='_blank'>https://github.com/tflanagan/node-qb-record</a>
+
+## Installation & Loading
+
+```javascript--node
+// $ npm install --save qb-field
+
+const QBField = require('qb-field');
+```
+
+```javascript--browser
+// <script type="text/javascript" src="QBField.browserify.min.js"></script>
+```
+
+Installing the QBField library for your desired platform requires either including the browserified version of the library in your HTML page or installing it via a package manager (npm or composer).
+
+Including the library for use in your code depends on your platform.
+
+## Initialization
+
+```javascript--node
+const quickbase = new QuickBase({
+  realm: realm: 'subdomain/realm',
+  userToken: 'user token',
+  appToken: 'application token',
+  flags: {
+    msInUTC: true,
+    encoding: 'ISO-8859-1'
+  },
+  connectionLimit: 10,
+  errorOnConnectionLimit: false
+});
+
+const field = new QBField({
+  /*
+  quickbase: {
+    realm: realm: 'subdomain/realm',
+    userToken: 'user token',
+    appToken: 'application token',
+    flags: {
+      msInUTC: true,
+      encoding: 'ISO-8859-1'
+    },
+    connectionLimit: 10,
+    errorOnConnectionLimit: false
+  },
+  */
+  quickbase: quickbase,
+  dbid: 'bddnn3uz9'
+
+  // If this is an existing field, then set the field id accordingly
+  fid: 6
+});
+```
+
+```javascript--browser
+var quickbase = new QuickBase({
+  realm: realm: 'subdomain/realm',
+  userToken: 'user token',
+  appToken: 'application token',
+  flags: {
+    msInUTC: true,
+    encoding: 'ISO-8859-1'
+  },
+  connectionLimit: 10,
+  errorOnConnectionLimit: false
+});
+
+
+var field = new QBField({
+  /*
+  quickbase: {
+    realm: realm: 'subdomain/realm',
+    userToken: 'user token',
+    appToken: 'application token',
+    flags: {
+      msInUTC: true,
+      encoding: 'ISO-8859-1'
+    },
+    connectionLimit: 10,
+    errorOnConnectionLimit: false
+  },
+  */
+  quickbase: quickbase,
+  dbid: 'bddnn3uz9'
+
+  // If this is an existing field, then set the field id accordingly
+  fid: 6
+});
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+quickbase: | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
+dbid | true | | Table DBID
+fid | false | -1 | Field ID
+
+## Instance Methods
+
+### `clear()`
+
+```javascript--node
+field.clear();
+```
+
+```javascript--browser
+field.clear();
+```
+
+This method clears the QBField instance of any trace of the existing field, but preserves defined connection settings.
+
+### `delete()`
+
+```javascript--node
+field.delete().then(() => {
+  // Handle success
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+field.delete().then(function(){
+  // Handle success
+}).catch(function(error){
+  // Handle error
+});
+```
+
+This method deletes the field from QuickBase, then calls .clear().
+
+### `get(attribute)`
+
+```javascript--node
+const label = field.get('label');
+const fieldType = field.get('field_type');
+```
+
+```javascript--browser
+var label = field.get('label');
+var fieldType = field.get('field_type');
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+attribute | true | | Attribute name
+
+Returns the specified attribute
+
+### `getDBID()`
+
+```javascript--node
+const dbid = field.getDBID();
+```
+
+```javascript--browser
+var dbid = field.getDBID();
+```
+
+As alias for `.get('dbid')`.
+
+This method returns the DBID.
+
+### `getFid()`
+
+```javascript--node
+const fid = field.getFid();
+```
+
+```javascript--browser
+var fid = field.getFid();
+```
+
+As alias for `.get('fid')`.
+
+This method returns the Field ID.
+
+### `load()`
+
+```javascript--node
+field.load().then(() => {
+  // Handle success
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+field.load().then(function(){
+  // Handle success
+}).catch(function(error){
+  // Handle error
+});
+```
+
+This method executes an API_GetFieldProperties for the stored Field ID attributes.
+
+### `save([attributesToSave])`
+
+```javascript--node
+field.save().then(() => {
+  // Handle success
+}).catch((error) => {
+  // Handle error
+});
+```
+
+```javascript--browser
+field.save().then(function(){
+  // Handle success
+}).catch(function(error){
+  // Handle error
+});
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+attributesToSave | false | | An array of attributes you'd like to save
+
+If a field id is not defined, this will execute an API_AddField. After a successful API_AddField, or if a field id was previously defined, this will execute an API_EditFieldProperties. If choices are defined for the field, then appropriate API_FieldAddChoices and API_FieldRemoveChoices are executed.
+
+If attributesToSave is defined, then only configured attributes in this array will be saved.
+
+If this executes an API_AddField, the newly assigned Field ID is automatically stored internally.
+
+### `set(attribute, value)`
+
+```javascript--node
+field.set('label', 'Custom Name');
+```
+
+```javascript--browser
+field.set('label', 'Custom Name');
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+attribute | true | | Attribute name
+value | true | | Attribute value
+
+This method sets the passed in `value` associated with the `attribute` argument.
+
+### `setDBID(dbid)`
+
+```javascript--node
+field.setDBID('bddnn3uz9');
+```
+
+```javascript--browser
+field.setDBID('bddnn3uz9');
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+dbid | true | | DBID of table
+
+Alias for `.set('dbid', 'bddnn3uz9')`.
+
+Sets the dbid setting.
+
+### `setFid(fid)`
+
+```javascript--node
+field.setFid(6);
+```
+
+```javascript--browser
+field.setFid(6);
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+fid | true | | Field ID
+
+Sets the fid setting.
+
+### `toJson([attributesToConvert])`
+
+```javascript--node
+const json = field.toJson();
+```
+
+```javascript--browser
+var json = field.toJson();
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+attributesToConvert | false | | attributes you'd like to convert to json
+
+Returns the field as a JSON object
+
+## Static Methods
+
+### `.FormatValue(field, value)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.NewField(options, attributes)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.ParseValue(field, value)`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
 # QBRecord
 
 This abstraction class represents a singluar Quick Base record. Providing easy to use setters/getters and saving capabilities, this class aims to provide seamless integration between your code and Quick Base at the record level.
@@ -6099,7 +6434,7 @@ var quickbase = new QuickBase({
   errorOnConnectionLimit: false
 });
 
-const table = new QBTable({
+var table = new QBTable({
   /*
   quickbase: {
     realm: realm: 'subdomain/realm',
@@ -6165,7 +6500,7 @@ record | true | | A `QBRecord` instance
 ```javascript--browser
 ```
 
-If individually is true, then it executes and API_DeleteRecord for each locally loaded QBRecord. If individually is false, then it executes an API_PurgeRecords for all of the locally loaded QBRecord's.
+If `individually` is `true`, then it executes and API_DeleteRecord for each locally loaded QBRecord. If `individually` is `false`, then it executes an API_PurgeRecords for all of the locally loaded QBRecord's.
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
@@ -6476,35 +6811,103 @@ If `.load()` or `.loadSchema()` has been executed, returns an array of Quick Bas
 ### `.load([localQuery[, localClist[, localSlist[, localOptions]]])`
 
 ```javascript--node
+table.load("{'3'.GT.'1'}").then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
+
+table.load({
+  query: "{'3'.GT.'1'}",
+  options: 'sortorder-A'
+}).then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+table.load("{'3'.GT.'1'}").then(function(records){
+  // Handle records
+}).catch(function(error){
+  // Handle error
+});
+
+table.load({
+  query: "{'3'.GT.'1'}",
+  options: 'sortorder-A'
+}).then(function(records){
+  // Handle records
+}).catch(function(error){
+  // Handle error
+});
 ```
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+localQuery | false | | Query string to filter on or an object of query parameters
+localClist | false | | List of Field ID's period delimited
+localSlist | false | | List of Field ID's period delimited
+localOptions | false | | List of query options period delimited
+
+This method executes an API_DoQuery. Will automatically map all values defined
+in the `fids` or `localClist` object.
+
+If `localQuery` is defined, it will be appended to the defined table query.
+If `localClist` is defined, this will be used instead of the defined `fids`.
+If `localSlist` is defined, this will be used instead of the defined `slist`.
+if `localOptions` is defined, this will be used instead of the defined
+`options`.
+
+You may also pass in an object as the first parameter, which in turn can pass
+in the other options.
 
 ### `.loadNRecords([localQuery])`
 
 ```javascript--node
+table.loadNRecords("{'3'.GT.'1'}").then((results) => {
+  // Handle results
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+table.loadNRecords("{'3'.GT.'1'}").then(function(results){
+  // Handle results
+}).catch(function(error){
+  // Handle error
+});
 ```
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
+localQuery | false | | Query string to filter on or an object of query parameters
+
+This method executes an API_DoQueryCount.
+
+If `localQuery` is defined, it will be appended to the defined table query.
 
 ### `.loadSchema()`
 
 ```javascript--node
+table.loadSchema().then((fields) => {
+  // Handle fields
+}).catch((error) => {
+  // Handle error
+});
 ```
 
 ```javascript--browser
+table.loadSchema().then(function(fields){
+  // Handle fields
+}).catch(function(error){
+  // Handle error
+});
 ```
 
-Parameter | Required | Default | Description
---------- | -------- | ------- | -----------
+Executes an API_GetSchema and stores the returned results internally.
 
 ### `.save([individually[, fidsToSave]])`
 
@@ -6594,6 +6997,28 @@ Parameter | Required | Default | Description
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
+### `.upsertField(options[, autoSave])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
+### `.upsertFields(fields[, autoSave])`
+
+```javascript--node
+```
+
+```javascript--browser
+```
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+
 ### `.upsertRecord(options[, autoSave])`
 
 ```javascript--node
@@ -6605,7 +7030,7 @@ Parameter | Required | Default | Description
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
-### `.upsertRecords(records)`
+### `.upsertRecords(records[, autoSave[, individually]])`
 
 ```javascript--node
 ```
@@ -6678,7 +7103,7 @@ Formula | Formula fields are derived from other fields. You cannot write to this
 These query tokens can be used in either the Quick Base query string or as a field value for API_EditRecord and API_AddRecord.
 
 Token | Query String | Field Value | Description
-------------------------------------------------
+----- | ------------ | ----------- | -----------
 _curuser_ | true | true | Is replaced with the user id of the user assigned to the used ticket or user token
 _fid_<i>&lt;field id&gt;</i> | true | true | Is replaced with the value of the specified field for that record (Example: _fid_3 would be the Record ID#)
 today | true | true | Represents today (date)
