@@ -5386,7 +5386,7 @@ This class is utilized in the abstraction layer `QBRecord` and `QBTable`, and it
 
 ## Repository Links
 
-* JavaScript: <a href='https://github.com/tflanagan/node-qb-field' target='_blank'>https://github.com/tflanagan/node-qb-record</a>
+* JavaScript: <a href='https://github.com/tflanagan/node-qb-field' target='_blank'>https://github.com/tflanagan/node-qb-field</a>
 
 ## Installation & Loading
 
@@ -5408,7 +5408,7 @@ Including the library for use in your code depends on your platform.
 
 ```javascript--node
 const quickbase = new QuickBase({
-  realm: realm: 'subdomain/realm',
+  realm: 'subdomain/realm',
   userToken: 'user token',
   appToken: 'application token',
   flags: {
@@ -5422,7 +5422,7 @@ const quickbase = new QuickBase({
 const field = new QBField({
   /*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -5443,7 +5443,7 @@ const field = new QBField({
 
 ```javascript--browser
 var quickbase = new QuickBase({
-  realm: realm: 'subdomain/realm',
+  realm: 'subdomain/realm',
   userToken: 'user token',
   appToken: 'application token',
   flags: {
@@ -5458,7 +5458,7 @@ var quickbase = new QuickBase({
 var field = new QBField({
   /*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -5479,7 +5479,7 @@ var field = new QBField({
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-quickbase: | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
+quickbase | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
 dbid | true | | Table DBID
 fid | false | -1 | Field ID
 
@@ -5745,7 +5745,7 @@ Including the library for use in your code depends on your platform.
 
 ```javascript--node
 const quickbase = new QuickBase({
-  realm: realm: 'subdomain/realm',
+  realm: 'subdomain/realm',
   userToken: 'user token',
   appToken: 'application token',
   flags: {
@@ -5759,7 +5759,7 @@ const quickbase = new QuickBase({
 const record = new QBRecord({
   /*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -5785,7 +5785,7 @@ const record = new QBRecord({
 
 ```javascript--browser
 var quickbase = new QuickBase({
-  realm: realm: 'subdomain/realm',
+  realm: 'subdomain/realm',
   userToken: 'user token',
   appToken: 'application token',
   flags: {
@@ -5800,7 +5800,7 @@ var quickbase = new QuickBase({
 var record = new QBRecord({
   /*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -5826,7 +5826,7 @@ var record = new QBRecord({
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-quickbase: | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
+quickbase | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
 dbid | true | | Table DBID
 fids | false | | Object containing name/value pairs of fields and their field ids
 recordid | false | | If constructing a pre-existing record, you can define the record id at initialization
@@ -6389,7 +6389,7 @@ Including the library for use in your code depends on your platform.
 
 ```javascript--node
 const quickbase = new QuickBase({
-  realm: realm: 'subdomain/realm',
+  realm: 'subdomain/realm',
   userToken: 'user token',
   appToken: 'application token',
   flags: {
@@ -6403,7 +6403,7 @@ const quickbase = new QuickBase({
 const table = new QBTable({
   /*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -6425,7 +6425,7 @@ const table = new QBTable({
 
 ```javascript--browser
 var quickbase = new QuickBase({
-  realm: realm: 'subdomain/realm',
+  realm: 'subdomain/realm',
   userToken: 'user token',
   appToken: 'application token',
   flags: {
@@ -6439,7 +6439,7 @@ var quickbase = new QuickBase({
 var table = new QBTable({
   /*
   quickbase: {
-    realm: realm: 'subdomain/realm',
+    realm: 'subdomain/realm',
     userToken: 'user token',
     appToken: 'application token',
     flags: {
@@ -6461,7 +6461,7 @@ var table = new QBTable({
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-quickbase: | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
+quickbase | true | | You can either pass in an existing `QuickBase` instance (preferred) or create a new `QuickBase` instance by passing in a configuration object
 dbid | true | | Table DBID
 fids | false | | Object containing name/value pairs of fields and their field ids
 query | false | | Default `query` prepended to every DoQuery
