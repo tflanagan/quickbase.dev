@@ -6785,49 +6785,16 @@ Parameter | Required | Default | Description
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 
-# Formatting Data for Quick Base
-
-Quick Base has very specific patterns and formats for various field types that you will need to pay attention to.
-
-Below is a table of Quick Base field types and their acceptable values.
-
-UI: Field Type | Acceptable Values
----------------|------------------
-Text | Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.
-Text - Multi-line | Any characters, special characters, numbers, or symbols. Note that non-alphanumeric characters (anything other than A-Z, a-z, and 0-9) may need to be encoded to appear as intended in your data.
-Text - Multiple Choice | A valid choice that has been set up for the multiple choice field. Note that Quick Base does not validate case here; if you enter "ford" and, in your application, the choice is "Ford," the choice will be accepted.<br /><br />If you enter an invalid choice, Quick Base generates an error.
-Multi-select Text | Up to 20 valid choices from the list set up for the field, separated by semi-colons. The set of choices provided must not contain duplicates.<br /><br />Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.
-Numeric | Positive or negative numbers. Quick Base ignores any non-numeric characters you enter here, but will not generate an error.<br /><br />If you've specified decimal places using API_SetFieldProperties, the value will be truncated  or lengthened accordingly.
-Numeric - Currency | Positive and negative numbers, with or without decimals. The decimal character should match the decimal character set in the field's properties.
-Numeric - Percent | A number that represents the percentage. Note that, if you want to indicate 80%, you should enter 80 in this field.
-Numeric - Rating | A numeric rating, from 1 - 5. Quick Base displays ratings as stars; if you enter 3 in a Numeric-Rating field, Quick Base displays 3 out of 5 stars selected.
-Date | A date in the format specified in the app's properties.<br /><br />Alternatively, a date in milliseconds since January 1, 1970 00:00:00 UTC.  Note that the Quick Base HTTP API returns dates in this format, which is the same internal representation used by JavaScript.
-Date/Time | A date and time. Dates should be in the format specified in the app's properties.<br /><br />This field is an extended date field that can also contain the time, in the format HH:MM AM/PM. If you don't specify AM or PM, Quick Base defaults to AM. If you don't specify a time, Quick Base defaults to 12:00 AM.
-Time of Day | A time in this format: HH:MM AM/PM.<br /><br />If you do not specify AM or PM, Quick Base defaults to AM.
-Duration | A number that indicates a period of time. Note that you must use API_SetFieldProperties to set the unit of measure.<br /><br />If you enter a non-numeric value here, Quick Base ignores the value (no error is generated.)
-Checkbox | A string that indicates whether the checkbox is checked or not.<br /><br />To specify that a checkbox is checked, enter any of these values:<ul><li>1</li><li>yes</li><li>true</li><li>on</li></ul>To specify that a checkbox is not checked, enter any string other than those listed above, or leave the parameter blank. If a Checkbox field is required, and does not default to "checked," you must enter some value to be able to save the record.
-Phone Number | A phone number, with or without an extension. Enter a 10-digit string of numbers. You are not required to enter special characters (parentheses or dashes).<br /><br />Example: For this phone number: (123) 456-7890<br /><br />...enter  1234567890<br /><br />If you want to include an extension, you can enter x after the last digit of the phone number, followed by the numeric characters that make up the extension. There is no minimum or maximum character limit on extensions.<br /><br />Example: For this phone number:(123) 456-7890 x9876<br /><br />...enter  1234567890x9876<br /><br />Quick Base ignores any non-numeric character you enter here (except for the x used for extensions).
-Email Address | An email address (joeuser@example.com).<br /><br />Note that if you enter an invalid email address, Quick Base does not generate an error.
-User | A Quick Base user's email address or Quick Base user name.
-List-User | Quick Base users' email addresses, Quick Base user names, or hashed user IDs, separated by semi-colons.<br /><br />Example: joe@example.com;sue@example.com
-File Attachment | A base64-encoded file.<br /><br />Note that you must not use MIME encoding and must not include MIME headers. Note that many base64 encoders or base64 encoding methods are for MIME type encoding and will not work with Quick Base.
-URL | A Web address. If you don't enter "http://", Quick Base adds it for you.<br /><br />Note that if you enter an invalid Web address, Quick Base does not generate an error.
-Report Link | Report links are derived from other fields. You can update which report is linked to by updating the field that the report link refers to. You can't write to this type of field directly. If your API writes to a Report Link field, Quick Base ignores the call.
-iCalendar | iCalendar fields are derived from other fields. You can update this type of field only by updating the fields to which it refers. You can't write to this type of field directly. If your API writes to an iCalendar field, Quick Base returns an error.
-vCard | vCard fields are derived from other fields. You can update this type of field only by updating the fields to which it refers.  You can't write to this type of field directly If your API writes to a vCard field, Quick Base returns an error.
-Predecessor | The Record ID of the predecessor record. Note that if you enter an invalid Record ID here, Quick Base returns an error.
-Formula | Formula fields are derived from other fields. You cannot write to this type of field directly. If your API writes to a formula field, Quick Base returns an error.
-
 # Query Tokens
 
 These query tokens can be used in either the Quick Base query string or as a field value for API_EditRecord and API_AddRecord.
 
 Token | Query String | Field Value | Description
 ----- | ------------ | ----------- | -----------
-_curuser_ | true | true | Is replaced with the user id of the user assigned to the used ticket or user token
-_fid_<i>&lt;field id&gt;</i> | true | true | Is replaced with the value of the specified field for that record (Example: _fid_3 would be the Record ID#)
-today | true | true | Represents today (date)
-now | true | true | Represents now (date/time)
+&lowbar;curuser&lowbar; | true | true | Is replaced with the user id of the user assigned to the used ticket or user token
+&lowbar;fid&lowbar;<i>&lt;field id&gt;</i> | true | true | Is replaced with the value of the specified field for that record (Example: _fid_3 would be the Record ID#)
+today | true | true | Used for date fields
+now | true | true | Used for date/time fields
 
 # Error Handling
 
@@ -6838,83 +6805,6 @@ After receiving a response, the libraries detailed automatically check and verif
 In JavaScript, an `Error` is thrown and needs to be caught in a `catch()` along the `Promise` chain.
 
 In PHP, an `Exception` is thrown and needs to be caught in a `try/catch` statement.
-
-Here is a list of possible Quick Base errors.
-
-Error Code | Error Text | Probable Cause
----------- | ---------- | --------------
-0 | No error | No error
-1 | Unknown error |
-2 | Invalid input | You did not specify a name for the new application.<br /><br />To grant Group Record permissions, you must specify the Target Group name.<br /><br />This option is available to corporate workgroup users only.<br /><br />You cannot place more than .5 MB in this field.<br /><br />You do not have permission to access this table.<br /><br />You did not specify the field name.<br /><br />The field identifier (fid) does not refer to an existing field. Please provide a valid field identifier.
-3 | Insufficient permissions | You do not have permission to perform the current operation.<br /><br />You do not have permission to clone (copy) an application. At a minimum, you must have View permission to copy an application.<br /><br />You do not have permission to query this table. At a minimum, you must have View permission to perform this operation.<br /><br />You do not have sufficient permission to delete the records you specified from this table.
-4 | Bad ticket | No user account was found that matches the e-mail address (or user name) and password you entered.<br /><br />Your ticket has expired or is invalid. By default tickets expire after 12 hours of use. One-time use tickets expire after one use or after 5 minutes. Please try signing in again.
-5 | Unimplemented operation |
-6 | Syntax error | Your Quick Base API call does not have the correct syntax.
-7 | API not allowed on this application table
-8 | SSL required for this application table
-9 | Invalid choice | You cannot set the specified field to "(choice)".
-10 | Invalid field type |
-11 | Could not parse XML input | Your XML request contains invalid XML.
-12 | Invalid source DBID |
-13 | Invalid account ID |
-14 | Missing DBID or DBID of wrong type |
-15 | Invalid hostname |
-19 | Unauthorized IP address | Realm IP filtering is in place, and the user is not logged in from an authorized location.
-20 | Unknown username/password | No user account was found that matches the e-mail address (or user name) and password you entered.
-21 | Unknown user | No user account was found that matches the e-mail address or user name you entered.<br /><br />No group was found that matches the group name you entered.
-22 | Sign-in required |
-23 | Feature not supported |
-24 | Invalid application token |
-25 | Duplicate application token |
-26 | Max count |
-27 | Registration required | The user specified is someone who has been invited to join an application, but who has never used Quick Base before.
-28 | Managed by LDAP |
-29 | User on Deny list |
-30 | No such record | There is no record in the table that matches the specified record identifier (rid).
-31 | No such field | There is no field in this table that matches the specified field identifier (fid).
-32 | The application does not exist or was deleted |
-33 | No such query | There is no query in this table that matches the specified query identifier (qid).<br /><br />There is no query in this table that matches the specified query name (qname).
-34 | You cannot change the value of this field |
-35 | No data returned |
-36 | Cloning error |
-37 | No such report |
-38 | Periodic report contains a restricted field |
-50 | Missing required field | The default value property for the specified field is blank. Please supply a non-blank value for this field.<br /><br />You have either provided a blank value for one or more required fields, or you haven't supplied any value for one or more required fields whose default property is blank. |
-51 | Attempting to add a non-unique value to a field marked "unique" |
-52 | Duplicate field |
-53 | The following required fields are missing from your import data: <field_1> [[<field_2>]...] |
-54 | Cached list of records not found |
-60 | Update conflict detected |
-61 | Schema is locked | You cannot make development changes to an application because it is locked. Quick Base locks an application when you create a sandbox copy of the application.
-70 | Account size limit exceeded |
-71 | Database size limit exceeded |
-73 | Your account has been suspended |
-74 | You are not allowed to create applications | You do not have Create permissions on the billing account.
-75 | View too large |
-76 | Too many criteria | The limit on the number of criteria is currently set to 100 and you have exceeded this limit.
-77 | API request limit exceeded | This can be returned if an API is called too frequently. The same API can't be called again before the time specified in the error message.
-78 | Data limit exceeded |
-80 | Overflow |
-81 | Item not found |
-82 | Operation took too long |
-83 | Access denied |
-84 | Database error |
-85 | Schema update error |
-87 | Invalid group | No group matched the group ID you provided.
-100 | Technical Difficulties -- try again later |
-101 | Quick Base is temporarily unavailable due to technical difficulties |
-102 | Invalid request - we cannot understand the URL you specified |
-103 | The Quick Base URL you specified contained an invalid srvr parameter |
-104 | Your Quick Base app is experiencing unusually heavy traffic. Please wait a few minutes and re-try this command. |
-105 | Quick Base is experiencing technical difficulties |
-110 | Invalid role | The specified role does not exist in the Quick Base.
-111 | User exists | The specified user already exists.
-112 | No user in role | If you try to change a user’s role and no user is in the role you specify as the user’s current role, you’ll get this error.
-113 | User already in role | The user has already been assigned the role you are trying to assign.
-114 | Must be admin user |
-150 | Upgrade plan |
-151 | Expired plan |
-152 | App suspended | The application is suspended, possibly due to nonpayment.
 
 # Practical Examples
 
