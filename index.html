@@ -1113,12 +1113,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/add_field.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_AddField to add a new field to a table. You invoke this call on a table-level dbid.</p>
-
-<p>When you add a field using API_AddField, you specify the field type, but no other field properties. After you&#39;ve added the field, you can use API_SetFieldProperties to set the properties of the new field and any default values. (You can&#39;t set field type using API_SetFieldProperties; if you want to change the field type after adding the field, you must use the Quick Base UI.)</p>
-
-<p>The amount of data space consumed by a field depends on the field type.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1131,31 +1125,31 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbid</td>
 <td>true</td>
 <td></td>
-<td>Table DBID that you want to add a field to</td>
+<td></td>
 </tr>
 <tr>
 <td>add_to_forms</td>
 <td>false</td>
 <td>false</td>
-<td>Specifies whether the field you are adding should appear at the end of any form with form properties set to &quot;Auto-Add new fields.&quot;</td>
+<td></td>
 </tr>
 <tr>
 <td>label</td>
 <td>true</td>
 <td></td>
-<td>Name of the new field</td>
+<td></td>
 </tr>
 <tr>
 <td>mode</td>
 <td>Lookup/Formula only</td>
 <td></td>
-<td>Specifies whether the field is a formula field or a lookup field (possible values for formula: &#39;virtual&#39;, and lookup: &#39;lookup&#39;)</td>
+<td></td>
 </tr>
 <tr>
 <td>type</td>
 <td>true</td>
 <td></td>
-<td>The Quick Base field type.</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -1288,8 +1282,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-node/api_addgrouptorole.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_AddGroupToRole to add a group to a role in an app.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1308,13 +1300,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group</td>
+<td></td>
 </tr>
 <tr>
 <td>roleid</td>
 <td>true</td>
 <td></td>
-<td>The id of the role</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_addrecord'>API_AddRecord</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddRecord'</span><span class="p">,</span> <span class="p">{</span>
@@ -1400,37 +1392,37 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>fields</td>
 <td>true</td>
 <td></td>
-<td>Array of objects with fid/value parameters</td>
+<td></td>
 </tr>
 <tr>
 <td>disprec</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true to specify that the new record should be displayed within the Quick Base application. An application login required before the record can be displayed. If you use this parameter, Quick Base, returns the normal Quick Base HTML page that displays the record.<br /><br />Omit this property if you don&#39;t want the new record to display within the Quick Base application.</td>
+<td></td>
 </tr>
 <tr>
 <td>fform</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true if you are invoking API_AddRecord from within an HTML form that has checkboxes and want those checkboxes to set Quick Base Checkbox fields.<br /><br />Omit this property if you don&#39;t need Quick Base to set Checkbox fields based on your HTML page.</td>
+<td></td>
 </tr>
 <tr>
 <td>ignoreError</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true to specify that no error should be returned when a built-in field (for example, Record ID#) is written-to in an API_AddRecord call.<br /><br />If you do not set this parameter, Quick Base returns an error when API_AddRecord writes to a built-in field.</td>
+<td></td>
 </tr>
 <tr>
 <td>msInUTC</td>
 <td>false</td>
 <td>global instance setting</td>
-<td>Allows you to specify that Quick Base should interpret all date/time stamps passed in as milliseconds using Coordinated Universal Time (UTC) rather than using the local application time.<br /><br />Set this parameter to true if you want to use Coordinated Universal Time.</td>
+<td></td>
 </tr>
 <tr>
 <td>msAsDurationDefault</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true to specify milliseconds, instead of days, as the default units for a duration field value sent without any units.<br /><br />If you set this parameter to false or omit it, then any duration field values sent without a unit will default to being interpreted as days.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_addreplacedbpage'>API_AddReplaceDBPage</h3><pre class="highlight javascript tab-javascript--node"><code><span class="c1">// Adding a new DB Page</span>
@@ -1526,10 +1518,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/add_replace_dbpage.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_AddReplaceDBPage to add a new database page or replace an existing page with a new page. You invoke this call on an application (dbid).</p>
-
-<p>Quick Base allows you to store various types of pages at the application level. These pages can be various text or rich text or HTML page that you store and link to buttons in the Quick Base UI. They can also be XSL templates used for customizing the Quick Base application. They can also be Exact Forms, which are forms (form letters, invoices, etc.) created in Microsoft Word using the Quick Base Exact Form template that gets data from Quick Base tables.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1548,25 +1536,25 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>pagename</td>
 <td>true</td>
 <td></td>
-<td>The name of the DB Page</td>
+<td></td>
 </tr>
 <tr>
 <td>pageid</td>
 <td>true, if updating</td>
 <td></td>
-<td>The id of the DB Page you wish to update</td>
+<td></td>
 </tr>
 <tr>
 <td>pagetype</td>
 <td>true</td>
 <td></td>
-<td>Page type value, possible values are 1 for XSL stylesheets or HTML Pages and 3 for Exact Forms</td>
+<td></td>
 </tr>
 <tr>
 <td>pagebody</td>
 <td>true</td>
 <td></td>
-<td>Contains the contents of the page you are adding.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_addsubgroup'>API_AddSubGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddSubGroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -1611,8 +1599,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_AddSubGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_AddSubGroup to embed a group into another group.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1625,13 +1611,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group which will contain the subgroup.</td>
+<td></td>
 </tr>
 <tr>
 <td>subgroupid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to be embedded in the target group.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_addusertogroup'>API_AddUserToGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddUserToGroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -1679,8 +1665,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_AddUserToGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_AddUserToGroup to add a user to a group. The user can be added as a member of the group, as a member and a manager of the group, or as a manager but not a member of the group.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1693,31 +1677,31 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to manage.</td>
+<td></td>
 </tr>
 <tr>
 <td>uid</td>
 <td>true</td>
 <td></td>
-<td>The id of the Quick Base user to add to the group.</td>
+<td></td>
 </tr>
 <tr>
 <td>email</td>
 <td>false</td>
 <td></td>
-<td>The email of the Quick Base user</td>
+<td></td>
 </tr>
 <tr>
 <td>screenName</td>
 <td>false</td>
 <td></td>
-<td>The screen name of the Quick Base user, if set</td>
+<td></td>
 </tr>
 <tr>
 <td>allowAdminAccess</td>
 <td>false</td>
 <td>false</td>
-<td>Whether the user should be added as an admin of the group.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_addusertorole'>API_AddUserToRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_AddUserToRole'</span><span class="p">,</span> <span class="p">{</span>
@@ -1765,18 +1749,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/add_user_to_role.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_AddUserToRole to assign a user to a role in your Quick Base application.</p>
-
-<p>You assign a user to a role using API_AddUserToRole. After you assign the role, you can use API_SendInvitation to invite the user to the application.</p>
-
-<p>You can invoke this call on a single user several times, applying a different role each time, if you want give the user more than one role. Giving a user more than one role allows the user to sign in to the same Quick Base application with different roles. (Note that if you try to assign a role the user already has, you&#39;ll see an error message.)</p>
-
-<p>Quick Base supplies standard default roles for each application: viewer, participant, and administrator. You can change these and even create custom roles for your applications. You can find out which roles are being used for a particular application using the API_GetRoleInfo call.</p>
-
-<p>Note: You can also assign roles to users when you provision users. See API_ProvisionUser for more information.</p>
-
-<p>To assign roles to users using the Quick Base API or UI, you must have either Basic Access with Sharing access or Full Administration access to the application. Note that, if you have Basic Access with Sharing permissions, you cannot add a user to a role that has Full Administration permissions.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1795,13 +1767,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>userid</td>
 <td>true</td>
 <td></td>
-<td>The userid of the user to be added to the access role.</td>
+<td></td>
 </tr>
 <tr>
 <td>roleid</td>
 <td>true</td>
 <td></td>
-<td>The ID of the access role being assigned to the user.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_authenticate'>API_Authenticate</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Authenticate'</span><span class="p">,</span> <span class="p">{</span>
@@ -1851,18 +1823,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/authenticate.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_Authenticate to validate a user&#39;s username and password. You invoke this call on /db/main (no dbid).</p>
-
-<p>API_Authenticate validates the supplied user name and password, and, if successful, returns a ticket that is supplied in subsequent API calls. The ticket is valid for 12 hours, unless you specify a different value in the hours parameter. In addition to the ticket, a cookie is also returned with the name TICKET. This is the only API call that returns a ticket cookie.</p>
-
-<p>Note: It is possible to use a ticket to obtain a ticket (that is, pass in a ticket instead of a username and password).</p>
-
-<p>Using API_Authenticate is the equivalent of logging into Quick Base. Remember that merely logging into Quick Base by itself does not give you access rights to even a single Quick Base application. You must first be assigned a role in the application by someone who has administrator rights. (See API Overview for more information about how to use the authentication ticket when making API calls.)</p>
-
-<p>You should always use secure HTTPS (not HTTP) when calling API_Authenticate. Quick Base does not support API calls over HTTP.</p>
-
-<p>Note: API_Authenticate calls have a maximum time limit of 4,380 hours, or approximately 6 months. This applies to new tickets initiated on or after January 21, 2018.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1875,19 +1835,19 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>username</td>
 <td>true</td>
 <td></td>
-<td>The user’s email address registered with Quick Base or the user name that was selected within Quick Base when the user registered.</td>
+<td></td>
 </tr>
 <tr>
 <td>password</td>
 <td>true</td>
 <td></td>
-<td>The user’s Quick Base password.</td>
+<td></td>
 </tr>
 <tr>
 <td>hours</td>
 <td>false</td>
 <td>12</td>
-<td>The number of hours that the ticket will be valid. There is a maximum time limit of 4,380 hours or approximately 6 months.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_changegroupinfo'>API_ChangeGroupInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ChangeGroupInfo'</span><span class="p">,</span> <span class="p">{</span>
@@ -1941,8 +1901,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_ChangeGroupInfo.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_ChangeGroupInfo to modify the metadata for a group. One or more elements can be modified.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1955,25 +1913,25 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to manage.</td>
+<td></td>
 </tr>
 <tr>
 <td>name</td>
 <td>false</td>
 <td></td>
-<td>The name of the new group. It may not contain spaces or punctuation.</td>
+<td></td>
 </tr>
 <tr>
 <td>description</td>
 <td>false</td>
 <td></td>
-<td>A text description of the group.</td>
+<td></td>
 </tr>
 <tr>
 <td>accountId</td>
 <td>false</td>
 <td></td>
-<td>The account that will own the group.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_changemanager'>API_ChangeManager</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ChangeManager'</span><span class="p">,</span> <span class="p">{</span>
@@ -2018,8 +1976,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_ChangeManager.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_ChangeManager to assign a user to manage an app.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2038,7 +1994,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>newmgr</td>
 <td>true</td>
 <td></td>
-<td>A valid email address for the new app manager</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_changerecordowner'>API_ChangeRecordOwner</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ChangeRecordOwner'</span><span class="p">,</span> <span class="p">{</span>
@@ -2086,12 +2042,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/change_record_owner.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_ChangeRecordOwner to change the owner of a record.</p>
-
-<p>In Quick Base, a person who creates a record is the record owner. You can set up roles that restrict a record&#39;s view/modify access to the record owner. On occasion, you may need to transfer record ownership from one user to another. If you are using a technical support application, for instance, you might want to transfer ownership of a support incident (record) from one tech support rep to another.</p>
-
-<p>You must have Full Administration rights on the application to use this call.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2110,13 +2060,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>rid <i>or</i> key</td>
 <td>true</td>
 <td></td>
-<td>The record ID. Every record in every table has a unique rid.<br /><br />Normally, the record ID is the key field for the record. If you set your record&#39;s key field to a field OTHER than the record id (rid), you should use the key parameter rather than rid.</td>
+<td></td>
 </tr>
 <tr>
 <td>newowner</td>
 <td>true</td>
 <td></td>
-<td>Specifies the user to whom you are transferring ownership. (Email address or username)</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_changeuserrole'>API_ChangeUserRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ChangeUserRole'</span><span class="p">,</span> <span class="p">{</span>
@@ -2167,12 +2117,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/change_user_role.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_ChangeUserRole to assign a user to a new role, to upgrade or downgrade access, or simply to move the user to a different role.</p>
-
-<p>You can also use this call to assign the user to a special role called None (role id 9) which removes the user&#39;s access to the application. Use the None role if you want to disable access while retaining the user on the application user list.</p>
-
-<p>To assign roles to users using the Quick Base API or UI, you must have either Basic Access with Sharing access or Full Administration access to the application. Note that, if you have Basic Access with Sharing permissions, you cannot add a user to a role that has Full Administration permissions.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2191,19 +2135,19 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>userid</td>
 <td>true</td>
 <td></td>
-<td>The user ID. You can use API_GetUserInfo to get the user ID for a particular user.</td>
+<td></td>
 </tr>
 <tr>
 <td>roleid</td>
 <td>true</td>
 <td></td>
-<td>The user’s current role in the application</td>
+<td></td>
 </tr>
 <tr>
 <td>newroleid</td>
 <td>false</td>
 <td>9</td>
-<td>If this parameter is not supplied, or is supplied but left blank, the role id is set to 9 (None). If this parameter is supplied with an invalid role id (including 0), the API call will return an error.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_clonedatabase'>API_CloneDatabase</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CloneDatabase'</span><span class="p">,</span> <span class="p">{</span>
@@ -2261,10 +2205,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/clone_database.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_CloneDatabase to make a copy of a Quick Base application. You can choose to use the keepData parameter if you want to copy the application&#39;s data in addition to its structure. If you want to copy data, but exclude file attachments, you can use the excludefiles parameter in your request. After you copy an application, changes to the source application will not affect the copy you created, and vice versa.</p>
-
-<p>When you copy a Quick Base application, all users with access to the original application automatically have access to the application copy. You can choose to remove some or all of these users from the application copy using the API_RemoveUserFromRole.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2283,31 +2223,31 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>newdbname</td>
 <td>true</td>
 <td></td>
-<td>Specifies a name for the new application.</td>
+<td></td>
 </tr>
 <tr>
 <td>newdbdesc</td>
 <td>false</td>
 <td></td>
-<td>Specifies the description for the new application.</td>
+<td></td>
 </tr>
 <tr>
 <td>keepData</td>
 <td>false</td>
 <td>false</td>
-<td>Copy data or not into the new application</td>
+<td></td>
 </tr>
 <tr>
 <td>excludefiles</td>
 <td>false</td>
 <td>true</td>
-<td>Specifies that you do not want to copy file attachments when you copy an application.</td>
+<td></td>
 </tr>
 <tr>
 <td>usersandroles</td>
 <td>false</td>
 <td>false</td>
-<td>If true, users will be assigned roles, if false, users and roles will be copied separately</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_copygroup'>API_CopyGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CopyGroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -2364,8 +2304,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_CopyGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_CopyGroup to duplicate an existing group with the same list of users and subgroups, and a different name and ID.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2378,25 +2316,25 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to manage.</td>
+<td></td>
 </tr>
 <tr>
 <td>name</td>
 <td>true</td>
 <td></td>
-<td>The name of the new group.</td>
+<td></td>
 </tr>
 <tr>
 <td>description</td>
 <td>false</td>
 <td></td>
-<td>A description of the group. Default is the description of the source group.</td>
+<td></td>
 </tr>
 <tr>
 <td>gacct</td>
 <td>false</td>
 <td>account for the source group</td>
-<td>The account used for the group</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_copymasterdetail'>API_CopyMasterDetail</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CopyMasterDetail'</span><span class="p">,</span> <span class="p">{</span>
@@ -2455,14 +2393,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_CopyMasterDetail.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_CopyMasterDetail to copy a master record with its detail records, or to import only the detail records from one master record into a different master record. For example, you could copy a master Project record and its detail Task records.  You also could import only the Task records from a selected master Project record into a different Project record.</p>
-
-<p>You invoke this call on a table-level dbid for the master table to which you are copying or importing records.</p>
-
-<p>API_CopyMasterDetail copies or imports all fields in selected records, regardless of the fields&#39; permission and Auto-Fill settings.  (When Auto-Fill is enabled, a field&#39;s value is copied when a user clicks the &quot;Add Similar&quot; button to add a new Project.)</p>
-
-<p>This API does not copy file attachments with the records.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2481,31 +2411,31 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>destrid</td>
 <td>true</td>
 <td></td>
-<td>The record id of the destination record to which you want the records copied.<br /><br />If you want to copy the source master record and its detail records, set this to 0.<br /><br />If you want to import detail records from a different master record, set this to the record id of the master record to which you want to import the detail records.</td>
+<td></td>
 </tr>
 <tr>
 <td>sourcerid</td>
 <td>true</td>
 <td></td>
-<td>The record id of the source record from which you want to copy detail records.</td>
+<td></td>
 </tr>
 <tr>
 <td>copyfid</td>
 <td>true</td>
 <td></td>
-<td>The field id of a text field used in the name of the new record, if destrid = 0. The name becomes “Copy of field value&quot;.<br /><br />This field cannot be a lookup, append-only text, or formula field.  It also cannot be a unique or snapshot field.</td>
+<td></td>
 </tr>
 <tr>
 <td>recurse</td>
 <td>false</td>
 <td>true</td>
-<td>Set this parameter to true to copy all detail records associated with the master record&#39;s detail records recursively.  This API supports up to 10 levels of recursion.</td>
+<td></td>
 </tr>
 <tr>
 <td>relfids</td>
 <td>false</td>
 <td>all</td>
-<td>A list of comma-separated report link field ids that specify the relationships you want to be copied.<br /><br />For example:<br /><relfids>7,9</relfids></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_createdatabase'>API_CreateDatabase</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CreateDatabase'</span><span class="p">,</span> <span class="p">{</span>
@@ -2556,8 +2486,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/create_database.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_CreateDatabase to create a new Quick Base application. Quick Base creates the main application table populated only with built-in fields and returns an application token for your API application.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2570,19 +2498,19 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbname</td>
 <td>true</td>
 <td></td>
-<td>The name of the new application</td>
+<td></td>
 </tr>
 <tr>
 <td>dbdesc</td>
 <td>true</td>
 <td></td>
-<td>The description for the new application.</td>
+<td></td>
 </tr>
 <tr>
 <td>createapptoken</td>
 <td>false</td>
 <td>false</td>
-<td>Generate an application token for the new application</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_creategroup'>API_CreateGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CreateGroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -2636,14 +2564,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_CreateGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_CreateGroup to create a new group. The group will be created with the caller as the group owner and the caller will also be the first user in the group.</p>
-
-<p>The call needs an account id which will be the associated account for the group, unless the call is made to a realm with only one account. If the realm only has one account, then the account associated with the realm will be the group account.</p>
-
-<p>If a realm has more than one account, the accountID parameter will be used to disambiguate the associated account for the group.</p>
-
-<p>The caller (user) must be the manager of the account where the group is created.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2656,19 +2576,19 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>name</td>
 <td>true</td>
 <td></td>
-<td>The name of the new group. It may not contain spaces or punctuation.</td>
+<td></td>
 </tr>
 <tr>
 <td>description</td>
 <td>true</td>
 <td></td>
-<td>A text description of the group.</td>
+<td></td>
 </tr>
 <tr>
 <td>accountID</td>
 <td>false</td>
 <td></td>
-<td>The account that will own the group.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_createtable'>API_CreateTable</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_CreateTable'</span><span class="p">,</span> <span class="p">{</span>
@@ -2717,8 +2637,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/create_table.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_CreateTable to create a table for an application. You must have application administration rights to use this call. The dbid you supply must be an application-level dbid, not a table-level dbid.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2737,13 +2655,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>tname</td>
 <td>false</td>
 <td>Records</td>
-<td>The name you want to use for the name of the table.</td>
+<td></td>
 </tr>
 <tr>
 <td>pnoun</td>
 <td>false</td>
 <td>Records</td>
-<td>The name you want to use for records in the table. You should use a plural noun that can apply to all records in the table. For example, if each table row contains information about a vehicle that your company owns, you might want to use &quot;Vehicles&quot; as your pnoun.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_deletedatabase'>API_DeleteDatabase</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DeleteDatabase'</span><span class="p">,</span> <span class="p">{</span>
@@ -2784,10 +2702,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/delete_database.html' target='_blank'>Quick Base Documentation</a></p>
-
-<p>Use API_DeleteDatabase to delete a table or an entire application. Supply an application-level dbid to delete an application; supply a table-level dbid to delete a table.</p>
-
-<p>If you use this API to delete an app, you must be the app manager, or the API will return an error. If you use this API to delete a table, you must have Full Administration permissions in the app, or the API will return an error.</p>
 
 <table><thead>
 <tr>
@@ -2846,12 +2760,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/delete_field.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_DeleteField to delete a field by specifying the field id (fid). You invoke this call on a table-level dbid. (If you use an application level dbid, Quick Base returns an error.)</p>
-
-<p>You must have Full Administration permissions on the application to use this call.</p>
-
-<p>This call deletes the field for all records, regardless of whether the field contains data. Note that the call does not issue a warning message before the deletion.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2870,7 +2778,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>fid</td>
 <td>true</td>
 <td></td>
-<td>Field ID you wish to delete</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_deletegroup'>API_DeleteGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DeleteGroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -2912,8 +2820,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_DeleteGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_DeleteGroup to delete a group.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2926,7 +2832,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to delete.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_deleterecord'>API_DeleteRecord</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DeleteRecord'</span><span class="p">,</span> <span class="p">{</span>
@@ -2972,12 +2878,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/delete_record.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_DeleteRecord to delete a single record from a table.  You invoke this call on a table-level dbid. If you use an application level dbid, you’ll get an error.</p>
-
-<p>You must have Full Administration permissions on the application to use this call.</p>
-
-<p>Note that this call allows you to delete one record at a time. If you want to delete several records at once, see API_PurgeRecords.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2996,7 +2896,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>rid <i>or</i> key</td>
 <td>true</td>
 <td></td>
-<td>The record ID of the record to be deleted. If the primary key of the table is not the [Record ID#] field, you should use <code>key</code> and the primary key as the value</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_doquery'>API_DoQuery</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DoQuery'</span><span class="p">,</span> <span class="p">{</span>
@@ -3136,8 +3036,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/do_query.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_DoQuery to get records from a table. You invoke this call on a table-level dbid. You can use the parameters (described below) to define which columns will be returned, how many records will be returned and how they will be sorted, and whether the Quick Base should return structured data.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3156,43 +3054,43 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>query <i>or</i> qid <i>or</i> qname</td>
 <td>false</td>
 <td>all</td>
-<td>Specifies the query. You can use any of these three options:<br /><br />Use <code>query</code> to build your own query string.<br />Use <code>qid</code> if you want to use a saved query and want to use its query ID.<br />Use <code>qname</code> if you want to use a saved query and refer to it by its query name.</td>
+<td></td>
 </tr>
 <tr>
 <td>clist</td>
 <td>false</td>
 <td>default table columns</td>
-<td>A period-delimited list of field IDs to be returned. Quick Base will return values for these field IDs in the order in which you enter them here. To return all fields use a value of <code>a</code></td>
+<td></td>
 </tr>
 <tr>
 <td>slist</td>
 <td>false</td>
 <td>default table sort</td>
-<td>A period-delimited list of field IDs</td>
+<td></td>
 </tr>
 <tr>
 <td>options</td>
 <td>false</td>
 <td></td>
-<td>Specifies return options for the query. You can use any or all of the options, separating the options with a period.<br /><br />num-n --specifies a maximum of n records in the return<br />onlynew --returns only those records marked with new or updated flags<br />skp-n --skips the first n records returned by the query<br />sortorder-A --specifies an ascending order<br />sortorder-D --specifies a descending order<br />nosort --returns unsorted records, ignoring the sortorder option, the slist parameter, and the default sort for the table</td>
+<td></td>
 </tr>
 <tr>
 <td>fmt</td>
 <td>false</td>
 <td>global instance setting</td>
-<td>Set this parameter to structured to specify that the query should return structured data.</td>
+<td></td>
 </tr>
 <tr>
 <td>returnpercentage</td>
 <td>false</td>
 <td>global instance setting</td>
-<td>Specifies whether Numeric - Percent values in the returned data will be percentage format (10% is shown as 10) or decimal format (10% is shown as .1).</td>
+<td></td>
 </tr>
 <tr>
 <td>includeRids</td>
 <td>false</td>
 <td>global instance setting</td>
-<td>Specifies that the record IDs of each record should be returned.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_doquerycount'>API_DoQueryCount</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_DoQueryCount'</span><span class="p">,</span> <span class="p">{</span>
@@ -3238,8 +3136,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/do_query_count.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>You invoke this call against a table dbid using a query string to determine the number of records that will be returned.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3258,7 +3154,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>query <i>or</i> qid <i>or</i> qname</td>
 <td>false</td>
 <td>all</td>
-<td>Specifies the query. You can use any of these three options:<br /><br />Use <code>query</code> to build your own query string.<br />Use <code>qid</code> if you want to use a saved query and want to use its query ID.<br />Use <code>qname</code> if you want to use a saved query and refer to it by its query name.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_editrecord'>API_EditRecord</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_EditRecord'</span><span class="p">,</span> <span class="p">{</span>
@@ -3333,10 +3229,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/edit_record.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_EditRecord to change any editable field values in the specified record. Only those fields specified are changed; unspecified fields are left unchanged.</p>
-
-<p>You can specify either field names or field IDs when using this call.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3361,37 +3253,37 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>update_id</td>
 <td>false</td>
 <td></td>
-<td>Specifies the latest record state.<br /><br />Note that, if another user makes changes before you issue this call,  the update ID in Quick Base will change, which will render invalid the update ID that you have. In this case, you should get the latest version of the record and its new update ID, and then make your changes.<br /><br />You can obtain the update ID for a record using the API_GetRecordInfo for the record you are editing.</td>
+<td></td>
 </tr>
 <tr>
 <td>fields</td>
 <td>true</td>
 <td></td>
-<td>Array of objects with fid/value parameters</td>
+<td></td>
 </tr>
 <tr>
 <td>disprec</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true to specify that the new record should be displayed within the Quick Base application. An application login is required before the record can be displayed. If you use this parameter, Quick Base returns the normal Quick Base HTML page that displays the record.</td>
+<td></td>
 </tr>
 <tr>
 <td>fform</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true if you are invoking API_EditRecord from within an HTML form that has checkboxes and want those checkboxes to set Quick Base checkbox fields.</td>
+<td></td>
 </tr>
 <tr>
 <td>ignoreError</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true to specify that no error should be returned when a built-in field (for example, Record ID#) is written-to in an API_EditRecord call.</td>
+<td></td>
 </tr>
 <tr>
 <td>msInUTC</td>
 <td>false</td>
 <td>false</td>
-<td>Allows you to specify that Quick Base should interpret all date/time stamps passed in as milliseconds using Coordinated Universal Time (UTC) rather than using the local application time.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_fieldaddchoices'>API_FieldAddChoices</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_FieldAddChoices'</span><span class="p">,</span> <span class="p">{</span>
@@ -3442,14 +3334,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/field_add_choices.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use this call to add new choices to a text - multiple choice or multi-select text field in a Quick Base table.</p>
-
-<p>Note: Choices added to a multi-select text field are limited to 60 characters, and the total number of choices in the field may not exceed 100.</p>
-
-<p>If you have Full Administration rights on the application, you can add new choices to any field of those types. If you don’t have these rights, you can use this call only on fields with properties that are set to allow users to add new choices. (In the Quick Base UI, you can set the Allow users to create new choices field property to allow users to do this. You can also set this property using API_SetFieldProperties.)</p>
-
-<p>If the choice you specify already exists in the list, it will not be added. No duplicates are allowed.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3468,13 +3352,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>fid</td>
 <td>true</td>
 <td></td>
-<td>The field ID of the setfield to which you want to add choices.</td>
+<td></td>
 </tr>
 <tr>
 <td>choice</td>
 <td>true</td>
 <td></td>
-<td>Specifies a choice you want to add. Use this tag multiple times to add more than one choice.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_fieldremovechoices'>API_FieldRemoveChoices</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_FieldRemoveChoices'</span><span class="p">,</span> <span class="p">{</span>
@@ -3525,8 +3409,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/field_remove_choices.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use this call this to remove one or more of the options listed within a Text - Multiple Choice or Multi-select Text field in a Quick Base application. You can remove any choices that you created yourself. You must have Full Administration rights on the application to remove choices you did not create. </p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3545,13 +3427,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>fid</td>
 <td>true</td>
 <td></td>
-<td>The field ID of the setfield to which you want to remove choices.</td>
+<td></td>
 </tr>
 <tr>
 <td>choice</td>
 <td>true</td>
 <td></td>
-<td>Specifies a choice you want to remove. Use this tag multiple times to add more than one choice.<br /><br />If any choice you specify cannot be removed (either because it does not exist, or because you lack permission to remove it), other valid choices you specify will be removed.<br /><br />The operation will be considered successful if at least one choice is removed.  You should check the numremoved response value to make sure all the fields you expected were removed.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_finddbbyname'>API_FindDBByName</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_FindDBByName'</span><span class="p">,</span> <span class="p">{</span>
@@ -3597,10 +3479,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/find_db_by_name.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_FindDBByName to find the application-level dbid of an application whose name you know. When you use this call, Quick Base searches only those applications to which you have access. Because you can have multiple applications with the same name, you should be aware that more than one application dbid can be returned.</p>
-
-<p>If a Quick Base application consists of a single table, this call returns the child dbid of that table (NOT the application dbid). If you want to find the application-level dbid in this case, set the parentsOnly parameter to 1 for the request.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3613,13 +3491,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>dbname</td>
 <td>true</td>
 <td></td>
-<td>The name of the application you want to find</td>
+<td></td>
 </tr>
 <tr>
 <td>ParentsOnly</td>
 <td>false</td>
 <td>false</td>
-<td>Ensures an app ID is returned, regardless of whether the application contains a single table or not.<br /><br />Note that, in applications that contain more than one table, Quick Base always returns the app dbid, regardless of whether you use this parameter or not. However, if an application contains only a single table, Quick Base returns the table DBID if you do not specify this parameter.<br /><br />If you are not sure whether your app contains more than one table, or if you are sure it contains only a single table, set this parameter to 1 to make sure an app dbid is returned.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_genaddrecordform'>API_GenAddRecordForm</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GenAddRecordForm'</span><span class="p">,</span> <span class="p">{</span>
@@ -3665,10 +3543,6 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <p><a href='https://help.quickbase.com/api-guide/gen_add_record_form.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GenAddRecordForm to return the standard Quick Base Add record page for the table whose dbid you specify. The form contains edit fields for the user to complete and a Save button to add the record to the database.</p>
-
-<p>If you want to pre-fill any fields, you can do so by supplying one or more field/value pairs in the request. Any fields not pre-filled or completed by the user are set to the default values set in the table field properties.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3687,7 +3561,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>fields</td>
 <td>true</td>
 <td></td>
-<td>Array of objects with fid/value parameters</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_genresultstable'>API_GenResultsTable</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GenResultsTable'</span><span class="p">,</span> <span class="p">{</span>
@@ -3748,16 +3622,6 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <p><a href='https://help.quickbase.com/api-guide/gen_results_table.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GenResultsTable to embed a Quick Base table report in an HTML page.</p>
-
-<p>This call is typically used in its URL form embedded in an HTML page. When the HTML page is opened in a browser, the call runs automatically and returns results to qdbWrite() for display in the HTML page.</p>
-
-<p>You can also specify that the results should be returned as a JavaScript array, in CSV format, or as tab separated values.</p>
-
-<p>By default, API_GenResultsTable returns the same number of rows as would be returned in the UI. However, you can specify a different number of rows in your table by including num-n in the options parameter.</p>
-
-<p>You can split a result set into several tables by calling API_GenResultsTable once for each table, using the skp option after the first invocation to skip over the records already returned.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3776,37 +3640,37 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>query <i>or</i> qid <i>or</i> qname</td>
 <td>false</td>
 <td>all</td>
-<td>Specifies the query. You can use any of these three options:<br /><br />Use <code>query</code> to build your own query string.<br />Use <code>qid</code> if you want to use a saved query and want to use its query ID.<br />Use <code>qname</code> if you want to use a saved query and refer to it by its query name.</td>
+<td></td>
 </tr>
 <tr>
 <td>clist</td>
 <td>false</td>
 <td>default table columns</td>
-<td>A period-delimited list of field IDs to be returned. Quick Base will return values for these field IDs in the order in which you enter them here. To return all fields use a value of <code>a</code></td>
+<td></td>
 </tr>
 <tr>
 <td>slist</td>
 <td>false</td>
 <td>default table sort</td>
-<td>A period-delimited list of field IDs</td>
+<td></td>
 </tr>
 <tr>
 <td>options</td>
 <td>false</td>
 <td></td>
-<td>Specifies return options for the query. You can use any or all of the options, separating the options with a period.<br /><br />num-n --specifies a maximum of n records in the return<br />onlynew --returns only those records marked with new or updated flags<br />skp-n --skips the first n records returned by the query<br />sortorder-A --specifies an ascending order<br />sortorder-D --specifies a descending order<br />nosort --returns unsorted records, ignoring the sortorder option, the slist parameter, and the default sort for the table</td>
+<td></td>
 </tr>
 <tr>
 <td>jht</td>
 <td>true</td>
 <td></td>
-<td>Returns the HTML for a table as a JavaScript function named qdbWrite(). You can then embed the HTML table into a Web page by calling the JavaScript function in the area of the Web page where you want the table to display.<br /><br />Set the value of the parameter to ‘n’ if you want the new look and feel introduced on Apr-12-2003.<br /><br />Set the value of this parameter ‘1’ if you want the CSS styles that render the HTML table with the Quick Base look and feel prior to Apr-11-2003.</td>
+<td></td>
 </tr>
 <tr>
 <td>jsa</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true if you want the results returned as a JavaScript array.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_getancestorinfo'>API_GetAncestorInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetAncestorInfo'</span><span class="p">,</span> <span class="p">{</span>
@@ -3849,10 +3713,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getancestorinfo.html' target='_blank'>Quick Base Documentation</a></p>
-
-<p>This call must be invoked on the app dbid (not on a table dbid) to get ancestor information about the current application. To use this call, you must have at least read permissions on the table.</p>
-
-<p>The first generation copy of an application returns the same DBID for both oldestancestorappid and ancestorappid.  The grandchild of a template  (and subsequent generations) shows the immediate parent app as the ancestorappid and the original template as the oldestancestorappid.</p>
 
 <table><thead>
 <tr>
@@ -3923,12 +3783,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/get_app_dtm_info.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetAppDTMInfo to get  the timestamp of the last time change throughout the application. You must invoke this call on an application dbid, not on a table dbid.</p>
-
-<p>This is a fast, unobtrusive way to get the time of the last change in an application schema or in records within its tables. No ticket or app token is required for this call, nor does this call result in the application being loaded into memory in Quick Base.</p>
-
-<p>The response to this call contains a parameter indicating the next time you will be allowed to make this call again.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3992,8 +3846,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/get_db_page.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetDBInfo to get metadata information, such as the last time the table was modified. For example, you might use this function to find out if the table has changed since you last used it, or to find out if a new record has been added to the table. You can invoke this call on either an application-level dbid or a table-level dbid.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4052,8 +3904,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/get_db_info.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetDBPage to retrieve a stored page in Quick Base. Quick Base allows you to store various types of pages, ranging from user-guide pages for your application to Exact Forms, used to automate insertion of data into Word documents using a special Word template from Quick Base.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4072,7 +3922,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>pageID</td>
 <td>true</td>
 <td></td>
-<td>The ID of the page. You can also use the pagename.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_getdbvar'>API_GetDBVar</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetDBVar'</span><span class="p">,</span> <span class="p">{</span>
@@ -4118,12 +3968,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getdbvar.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetDBVar to get values assigned to variables (DBVars) set up in your Quick Base application. DBVars are variables you can create to use in your application.</p>
-
-<p>API_GetDBVar returns only one DBVar. If you want to retrieve more than one variable, you&#39;ll need to invoke this call multiple times.</p>
-
-<p>Once you&#39;ve set them up, you can assign values to them using API_SetDBVar. (Use the application-level dbid.) You’ll get an error if the DBVar you ask for does not exist.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4142,7 +3986,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>varname</td>
 <td>true</td>
 <td></td>
-<td>The name of the variable in the target application.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_getfieldproperties'>API_GetFieldProperties</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetFieldProperties'</span><span class="p">,</span> <span class="p">{</span>
@@ -4212,8 +4056,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GetFieldProperties.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetFieldProperties to view the properties of a field. Returns properties specific to the field type.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4232,7 +4074,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>fid</td>
 <td>true</td>
 <td></td>
-<td>The Field ID of the field you wish to retrieve</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_getgrouprole'>API_GetGroupRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetGroupRole'</span><span class="p">,</span> <span class="p">{</span>
@@ -4284,8 +4126,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GetGroupRole.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetGroupRole determine the roleid for a group within an application.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4304,7 +4144,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to manage.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_getnumrecords'>API_GetNumRecords</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetNumRecords'</span><span class="p">,</span> <span class="p">{</span>
@@ -4346,8 +4186,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getnumrecords.html' target='_blank'>Quick Base Documentation</a></p>
-
-<p>Use API_GetNumRecords to get the total number of records in the table. Invoke this call on a table-level dbid.</p>
 
 <table><thead>
 <tr>
@@ -4404,8 +4242,6 @@ If your application experiences a normal traffic rate that is higher than averag
 
 <p><a href='https://help.quickbase.com/api-guide/getrecordashtml.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetRecordAsHTML to get a record within an HTML fragment that can be embedded in another Web page.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4424,13 +4260,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>rid <i>or</i> key</td>
 <td>true</td>
 <td></td>
-<td>The record ID of the record to be edited. You can obtain the recordID of any record in a query.<br /><br />If you use a key field OTHER than the record id (rid), you should use the key parameter rather than rid.</td>
+<td></td>
 </tr>
 <tr>
 <td>dfid</td>
 <td>false</td>
 <td></td>
-<td>The dform id of the form used to generate the HTML. The resulting display matches the contents and layout  of the form you specify.<br /><br />You can obtain the dfid of a form by previewing or editing the form; the dfid is part of the URL in the browser’s address bar.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_getrecordinfo'>API_GetRecordInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetRecordInfo'</span><span class="p">,</span> <span class="p">{</span>
@@ -4487,8 +4323,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getrecordinfo.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>se API_GetRecordInfo to get the values and types of all the fields in a record. You invoke this call on a table-level dbid.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4507,7 +4341,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>rid <i>or</i> key</td>
 <td>true</td>
 <td></td>
-<td>The record ID of the record to be edited. You can obtain the recordID of any record in a query.<br /><br />If you use a key field OTHER than the record id (rid), you should use the key parameter rather than rid.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_getroleinfo'>API_GetRoleInfo</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetRoleInfo'</span><span class="p">,</span> <span class="p">{</span>
@@ -4559,8 +4393,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getroleinfo.html' target='_blank'>Quick Base Documentation</a></p>
-
-<p>Use API_GetRoleInfo to get all of the roles that apply to the application. You invoke this call on the application-level dbid.</p>
 
 <table><thead>
 <tr>
@@ -4663,12 +4495,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getschema.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetSchema to get information about the specified application or application table.</p>
-
-<p>When invoked on an application dbid, this call returns DBVars created for the application and all child table dbids.</p>
-
-<p>When invoked on a table dbid, the call returns DBVars and additional table-related information such as reports, field IDs (fid), key field ID (key_fid), individual record names, base type, and the current property settings for each field. In addition, this call returns the default List All and List Changes reports.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4727,14 +4553,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getuserinfo.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetUserInfo to get the username and user ID associated with an email address used for Quick Base sign in. You invoke this call on db/main. You can use this call to grant  a user access rights to your application and then invite that user to your application. This call is typically made to return the Quick Base user ID for a user whose email address you know, in preparation for subsequent calls to API_AddUserToRole (grant access rights) and API_SendInvitation, both of which require the user ID.</p>
-
-<p>The user email that you specify must be recognized in Quick Base.</p>
-
-<p>If the anonymous user passes in an email parameter, the email will be passed back in the response.</p>
-
-<p>If you don’t supply an email parameter, the ticket parameter will be used to determine the current user, which means the current user ID, name, and email are returned.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4747,7 +4565,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>email</td>
 <td>false</td>
 <td>current user</td>
-<td>Supply the email address (as registered with Quick Base) of the user whose information you want. You can also supply the user’s user name.<br /><br />If you don’t supply this parameter, the call returns the user info of the user to whom the ticket was issued (you).<br /><br />For anonymous users, the email parameter is ignored.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_getuserrole'>API_GetUserRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GetUserRole'</span><span class="p">,</span> <span class="p">{</span>
@@ -4814,12 +4632,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/getuserrole.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetUserRole to see what roles are assigned to a specific user in an application. Invoke this call on an application-level dbid.</p>
-
-<p>Note that, if you do not have sharing permissions on the application, the API call returns your own roles only. To get your roles, you must either invoke the call with no user ID or supply your own user ID.</p>
-
-<p>You  must have Basic Access with Sharing or Full Administration permissions to use this API call to get roles for users other than yourself.  Also, note that, if you want this call to return any roles assigned to a user because he or she is part of a group, you must use the inclgrps parameter (described below). If you do not specify this parameter, API_GetUserRole returns only those roles assigned to the individual user.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4838,12 +4650,12 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>userid</td>
 <td>false</td>
 <td>current user</td>
-<td>The user ID of the user whose current role you want to retrieve. You can get the userid using API_GetUserInfo.<br /><br />If you want to get your own roles, you can use your own userid or omit this parameter.<br /><br />To get the roles of another user, you must supply the user&#39;s user id. You must also have Basic Access with Sharing or Full Administration permissions on the application.</td>
+<td></td>
 </tr>
 <tr>
 <td>inclgrps</td>
 <td>false</td>
-<td>Set this parameter to true if you want the call to return roles assigned to groups to which the user belongs.<br /><br />The call will return additional information about the role&#39;s type--that is whether the role is a user role, a role assigned to a group role, or a role assigned to a domain group.</td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -4920,8 +4732,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GetUsersInGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GetUsersInGroup to get the list of users and groups that make up the members and/or managers of a group.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4934,13 +4744,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to list.</td>
+<td></td>
 </tr>
 <tr>
 <td>includeAllMgrs</td>
 <td>false</td>
 <td>false</td>
-<td>When this is set to true, both members and managers of the group are returned.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_granteddbs'>API_GrantedDBs</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GrantedDBs'</span><span class="p">,</span> <span class="p">{</span>
@@ -5001,10 +4811,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/granteddbs.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GrantedDBs to get a list of the names and dbids of all the applications and tables that you are entitled to access, across all domains. You invoke this call on https://target_domain/db/main.</p>
-
-<p>This call returns all the apps that you have access to, across all domains, not only the target domain. However, you can use the realmAppsOnly parameter to make this call return only the apps in the realm the call is being made against.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5017,31 +4823,31 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>adminOnly</td>
 <td>false</td>
 <td>false</td>
-<td>Set this paramter to true to return only tables where the user making the request has administration privileges.</td>
+<td></td>
 </tr>
 <tr>
 <td>excludeparents</td>
 <td>false</td>
 <td>false</td>
-<td>Specifies whether you want application-level dbids returned.</td>
+<td></td>
 </tr>
 <tr>
 <td>includeancestors</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true to include ancestor and oldest ancestor information.</td>
+<td></td>
 </tr>
 <tr>
 <td>withembeddedtables</td>
 <td>false</td>
 <td>true</td>
-<td>Specifies whether you want child table dbids to be returned</td>
+<td></td>
 </tr>
 <tr>
 <td>realmAppsOnly</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true to return only the apps in the realm the call is being made against.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_granteddbsforgroup'>API_GrantedDBsForGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GrantedDBsForGroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -5090,8 +4896,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GrantedDBsForGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GrantedDBsForGroup to get a list of all the applications that a group can access.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5104,7 +4908,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to manage.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_grantedgroups'>API_GrantedGroups</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_GrantedGroups'</span><span class="p">,</span> <span class="p">{</span>
@@ -5158,8 +4962,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_GrantedGroups.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_GrantedGroups to get the list of groups to which a user has been granted access. If the adminOnly flag is passed, then only return groups in which this user has administration privileges.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5172,13 +4974,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>userid</td>
 <td>true</td>
 <td></td>
-<td>The user id</td>
+<td></td>
 </tr>
 <tr>
 <td>adminonly</td>
 <td>false</td>
 <td>false</td>
-<td>Only return groups where the user has admin rights.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_importfromcsv'>API_ImportFromCSV</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ImportFromCSV'</span><span class="p">,</span> <span class="p">{</span>
@@ -5262,10 +5064,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/importfromcsv.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_ImportFromCSV to add or update several records. You invoke this call on a table-level dbid. You can add AND update in the same API_ImportFromCSV request. (For an Add, leave the Record ID empty.)</p>
-
-<p>The clist parameter is optional when adding new records to a table. When updating existing records, the clist parameter must contain the field ID for the key field (usually 3 for the Record ID#). The CSV file you&#39;re importing must also include a column that contains the value of the key field for each record that will be updated.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5284,43 +5082,43 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>records_csv</td>
 <td>true</td>
 <td></td>
-<td>An aggregate containing the actual records you are importing.</td>
+<td></td>
 </tr>
 <tr>
 <td>clist</td>
 <td>true</td>
 <td></td>
-<td>A period-delimited list of field IDs that indicates how the columns in the CSV file will map to fields in the table when the import happens. To prevent a column in the CSV file from being imported, enter a 0 in the field ID list.<br /><br />This means that the first field ID in the list maps to the first column in the CSV file, the second field ID maps to the second column in the CSV file, and so forth.</td>
+<td></td>
 </tr>
 <tr>
 <td>clist_output</td>
 <td>false</td>
 <td></td>
-<td>Specifies which fields should be returned in addition to the record ID and updated ID.</td>
+<td></td>
 </tr>
 <tr>
 <td>decimalPercent</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true so that decimal values like 0.50 will be interpreted to mean 50%.</td>
+<td></td>
 </tr>
 <tr>
 <td>skipfirst</td>
 <td>false</td>
 <td>false</td>
-<td>Set this parameter to true to prevent Quick Base from importing the first row of data in a CSV file. You must specify this parameter if the first row of your CSV file contains column names.</td>
+<td></td>
 </tr>
 <tr>
 <td>msInUTC</td>
 <td>false</td>
 <td>global instance setting</td>
-<td>Allows you to specify that Quick Base should interpret all date/time stamps passed in as milliseconds using Coordinated Universal Time (UTC) rather than using the local application time.</td>
+<td></td>
 </tr>
 <tr>
 <td>mergeFieldId</td>
 <td>false</td>
 <td></td>
-<td>With this parameter, the import uses the field specified as the key, instead of the key field for the table.<ul><li>The merge field must be a unique field, and the specified merge field must contain unique values.</li><li>Values for the table key and/or record ID field will be ignored from input to prevent data corruption.</li><li>If the specified merge field uses a formula, and a record cannot be found by its value, a new record will be added if the resulting formula value is a valid value for the field.</li><li>Record ID or other table key field can be used as the specified merge field.</li><li>The clist parameter is required if this parameter is used.</li></ul></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_provisionuser'>API_ProvisionUser</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_ProvisionUser'</span><span class="p">,</span> <span class="p">{</span>
@@ -5375,12 +5173,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/provisionuser.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_ProvisionUser to add a user who is not yet registered with Quick Base to your application. You invoke an application-level dbid for a user that is not yet registered with Quick Base, but whose email is known to you. </p>
-
-<p>After you invoke this call, you’ll need to invoke API_SendInvitation to invite the new user via email. When the user clicks on the email invitation, the user is prompted to complete the brief registration. (At this time, the user can change the first and last name you assigned.)</p>
-
-<p>If a user already is registered with Quick Base, the API will return an error. With registered users, you should use API_GetUserInfo, API_AddUserToRole, and API_SendInvitation.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5399,25 +5191,25 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>email</td>
 <td>true</td>
 <td></td>
-<td>The email address of the person to whom you are granting access.</td>
+<td></td>
 </tr>
 <tr>
 <td>roleid</td>
 <td>false</td>
 <td>none</td>
-<td>The role ID of the role you want to assign this user to. You can find this information by invoking API_GetRoleInfo.</td>
+<td></td>
 </tr>
 <tr>
 <td>fname</td>
 <td>true</td>
 <td></td>
-<td>The first name of the new Quick Base user.</td>
+<td></td>
 </tr>
 <tr>
 <td>lname</td>
 <td>true</td>
 <td></td>
-<td>The last name of the new Quick Base user.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_purgerecords'>API_PurgeRecords</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_PurgeRecords'</span><span class="p">,</span> <span class="p">{</span>
@@ -5469,14 +5261,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/purgerecords.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_PurgeRecords to delete the specified records from the specified table. All records matching the criteria in the specified query will be deleted.</p>
-
-<p>You can build your own query string using the query parameter in the call. You can also use a saved query for the table, using qid or qname. See API_DoQuery for information on saved queries or for instructions on building the query string.</p>
-
-<aside class="warning">
-  Caution: Use this call carefully. If you do not supply a query parameter (`query` or `qid` or `qname`), ALL of the table records will be deleted. If you supply an empty query parameter (`query`, or `qid` or `qname`) all of the table records will be deleted as well. If you need to delete only one record, you should use API_DeleteRecord.
-</aside>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5495,7 +5279,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>query <i>or</i> qid <i>or</i> qname</td>
 <td>false</td>
 <td>all</td>
-<td>Specifies the query. You can use any of these three options:<br /><br />Use <code>query</code> to build your own query string.<br />Use <code>qid</code> if you want to use a saved query and want to use its query ID.<br />Use <code>qname</code> if you want to use a saved query and refer to it by its query name.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_removegroupfromrole'>API_RemoveGroupFromRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveGroupFromRole'</span><span class="p">,</span> <span class="p">{</span>
@@ -5546,8 +5330,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_RemoveGroupFromRole.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_RemoveGroupFromRole to remove a group from a role in an app. You can also indicate if you want to remove a group from all roles in an application.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5566,19 +5348,19 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to manage.</td>
+<td></td>
 </tr>
 <tr>
 <td>roleid</td>
 <td>true</td>
 <td></td>
-<td>The ID of the access role being assigned to the group.</td>
+<td></td>
 </tr>
 <tr>
 <td>allRoles</td>
 <td>false</td>
 <td>false</td>
-<td>Set to true if the group is to be removed from all roles in the app.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_removesubgroup'>API_RemoveSubgroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveSubgroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -5626,8 +5408,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_RemoveSubgroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_RemoveSubgroup to remove a nested group from a group.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5646,13 +5426,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the containing group.</td>
+<td></td>
 </tr>
 <tr>
 <td>subgroupid</td>
 <td>true</td>
 <td></td>
-<td>The id of the subgroup.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_removeuserfromgroup'>API_RemoveUserFromGroup</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromGroup'</span><span class="p">,</span> <span class="p">{</span>
@@ -5706,8 +5486,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_RemoveUserFromGroup.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_RemoveUserFromGroup to remove a user from a group.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5726,25 +5504,25 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>gid</td>
 <td>true</td>
 <td></td>
-<td>The id of the group to manage.</td>
+<td></td>
 </tr>
 <tr>
 <td>uid</td>
 <td>true</td>
 <td></td>
-<td>The id of the user to be removed from the group.</td>
+<td></td>
 </tr>
 <tr>
 <td>email</td>
 <td>false</td>
 <td></td>
-<td>The email of the Quick Base user</td>
+<td></td>
 </tr>
 <tr>
 <td>screenName</td>
 <td>false</td>
 <td></td>
-<td>The screen name of the Quick Base user</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_removeuserfromrole'>API_RemoveUserFromRole</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RemoveUserFromRole'</span><span class="p">,</span> <span class="p">{</span>
@@ -5792,14 +5570,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/removeuserfromrole.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_RemoveUserFromRole to remove a user from a specified role. You invoke this call on an application-level dbid. If the user has no other role, this call eliminates the user from the application’s role list. You’ll need to get the user ID by calling API_GetUserInfo if you want to assign the user to another role in the future.</p>
-
-<p>This call can be used to remove the user entirely from any role in the application, effectively turning off access to that user. If you intend to turn off all access, you would need to call API_GetUserRole Info to see what roles the user has, then invoke API_RemoveUserFromRole on each role.</p>
-
-<p>If you expect to add that user to another role in the future, you should consider using API_ChangeUserRole, which can be used to turn off access (with a role set to None) while keeping the user on the application’s role list for future reinstatement or role change.</p>
-
-<p>If you are simply changing the user from one role to another, you should use API_ChangeUserRole.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5818,13 +5588,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>userid</td>
 <td>true</td>
 <td></td>
-<td>The ID of user you want removed from the role.</td>
+<td></td>
 </tr>
 <tr>
 <td>roleid</td>
 <td>true</td>
 <td></td>
-<td>The ID of the role from which you want the user removed.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_renameapp'>API_RenameApp</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RenameApp'</span><span class="p">,</span> <span class="p">{</span>
@@ -5869,8 +5639,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/renameapp.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_RenameApp to change an application&#39;s name. You invoke this call on an application-level dbid. You must have full administration rights on the application to use this call.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5889,7 +5657,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>newappname</td>
 <td>true</td>
 <td></td>
-<td>The name you want to assign to the application</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_runimport'>API_RunImport</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_RunImport'</span><span class="p">,</span> <span class="p">{</span>
@@ -5935,19 +5703,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/runimport.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Quick Base allows you to import data from one or more of your application tables into another application table. You can import tables from within your application, or from another application. (For complete information on this feature, see the Quick Base online help.)</p>
-
-<p>If you&#39;ll need to execute the same import multiple times, you can save a specific import and execute it any time you need to run it. To run a saved import, invoke API_RunImport on a table dbid whose ID you specify in this call. Note that you can’t use API_GetSchema to get the saved import&#39;s ID because API_GetSchema doesn’t return the saved import.</p>
-
-<p>To access the saved import ID:
-<ol>
-<li>Open the application into which you want to import data.</li>
-<li>On the app Home page, click Import/Export on the Page bar.</li>
-<li>Select the Import into a table from another table radio button.</li>
-<li>Click Import from Another Table.</li>
-<li>Click the name of the saved import you want to use. In the URL shown in the browser you will see this parameter: &amp;id=X. X is the ID you need to supply to this call.</li>
-</ol></p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5966,7 +5721,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>id</td>
 <td>true</td>
 <td></td>
-<td>The ID of the saved import that you want to execute.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_sendinvitation'>API_SendInvitation</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SendInvitation'</span><span class="p">,</span> <span class="p">{</span>
@@ -6014,8 +5769,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/sendinvitation.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_SendInvitation to send an email invitation to your application. You can send an email invitation to either an existing Quick Base user that you have granted application access to via API_AddUserToRole, or to a new Quick Base user that you have created via API_ProvisionUser.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6034,13 +5787,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>userid</td>
 <td>true</td>
 <td></td>
-<td>The ID of the Quick Base user you are inviting to your application.</td>
+<td></td>
 </tr>
 <tr>
 <td>usertext</td>
 <td>false</td>
 <td></td>
-<td>The message you want to display in your email invitation.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_setdbvar'>API_SetDBVar</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetDBVar'</span><span class="p">,</span> <span class="p">{</span>
@@ -6088,8 +5841,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/setdbvar.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_SetDBVar to create a database variable (DBVar) or set a value for it. If the DBVar already exists, this call overwrites the existing value.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6108,13 +5859,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>varname</td>
 <td>true</td>
 <td></td>
-<td>The name you want the DBVar to have.</td>
+<td></td>
 </tr>
 <tr>
 <td>value</td>
 <td>true</td>
 <td></td>
-<td>The value you want to set in the DBVar</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_setfieldproperties'>API_SetFieldProperties</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetFieldProperties'</span><span class="p">,</span> <span class="p">{</span>
@@ -6164,12 +5915,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/setfieldproperties.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_SetFieldProperties to set one or more properties of a field. You invoke this on a table-level dbid.</p>
-
-<p>Typically, you use this call after you create a new field using API_AddField, to set up its default behavior. You can also use this call at any time if you want to change properties, even if the affected field has data.</p>
-
-<p>The properties available for a field vary slightly for the different field types. To get all of the available properties for a field, and to get the field id (fid) needed, use the API_GetSchema call.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6188,13 +5933,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>fid</td>
 <td>true</td>
 <td></td>
-<td>Field ID of the field to be changed</td>
+<td></td>
 </tr>
 <tr>
 <td><i>property_name</i></td>
 <td>true</td>
 <td></td>
-<td>Name/value pairs for the properties to be set.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_setkeyfield'>API_SetKeyField</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SetKeyField'</span><span class="p">,</span> <span class="p">{</span>
@@ -6239,15 +5984,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/setkeyfield.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_SetKeyField to specify a field in the table as the key field. You invoke this call on a table dbid. You must have full administration rights on the application to use this call.</p>
-
-<p>If you don&#39;t specify a key field,  Quick Base uses the built-in Record ID field as the key field. However, if you want to use a different field as the key field for a table, the following conditions must be met:</p>
-
-<ul>
-<li>The field type you pick must support uniqueness (make sure the Unique checkbox is checked, which disallows duplicate entries).</li>
-<li>If there is data in the table, the field values must all be unique and cannot be blank.</li>
-</ul>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6266,7 +6002,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>fid</td>
 <td>true</td>
 <td></td>
-<td>The field ID of the table field to be used as the key field.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_signout'>API_SignOut</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_SignOut'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">results</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -6301,12 +6037,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/signout.html' target='_blank'>Quick Base Documentation</a></p>
-
-<p>This call is for use by API client implementations that make use of the ticket cookie rather than the <ticket> parameter.</p>
-
-<p>Invoking this call returns a null ticket cookie (with the name TICKET).  In some cases, invoking API_SignOut results in applications at the local machine (the API client) being unable to access Quick Base applications until API_Authenticate is called for a new ticket cookie.</p>
-
-<p>This call does not invalidate any tickets, nor log off the caller from any Quick Base applications, nor prevent further access of Quick Base applications. If the caller has saved a valid ticket, that caller can continue to use that ticket even after API_SignOut is called.</p>
 <h3 id='api_uploadfile'>API_UploadFile</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_UploadFile'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">dbid</span><span class="p">:</span> <span class="s1">'bguin9b8e'</span><span class="p">,</span>
   <span class="na">rid</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
@@ -6374,8 +6104,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/uploadfile.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_UploadFile to upload base64-encoded file attachments in Quick Base.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6394,13 +6122,13 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>rid</td>
 <td>true</td>
 <td></td>
-<td>The id of the record that will contain the file attachment</td>
+<td></td>
 </tr>
 <tr>
 <td>fields</td>
 <td>true</td>
 <td></td>
-<td>Specify values for file attachment fields using either the fid or name property of the field object. The filename property value should be set to the name of the file with no path specified. Set the base64-encoded text from the encoded file to the value property of the field object<br /><br />Note that you must not use MIME encoding and must not include MIME headers. Many base64 encoders or base64 encoding methods are for MIME type encoding and will not work with Quick Base.<br /><br />You must not insert any new line characters when you base64 encode the file. If your file attachments appear to upload but don’t display in Quick Base, double check for presence of these characters.</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_userroles'>API_UserRoles</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_UserRoles'</span><span class="p">,</span> <span class="p">{</span>
@@ -6463,10 +6191,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/userroles.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_UserRoles to get details about an application’s users and their roles. This call returns all users and their roles.</p>
-
-<p>Note: In order to use the API_UserRoles call, you must have either Basic Access with Sharing access or Full Administration access to the application. If you have only Basic Access with Sharing access, you cannot add a user to a role that has Full Administration permissions.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6525,8 +6249,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Activate.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_Webhooks_Activate to make a webhook active.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6545,7 +6267,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>actionIDList</td>
 <td>true</td>
 <td></td>
-<td>Comma separated webhook ID&#39;s</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_copy'>API_Webhooks_Copy</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Copy'</span><span class="p">,</span> <span class="p">{</span>
@@ -6592,8 +6314,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Copy.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_Webhooks_Copy to make a duplicate of an existing webhook.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6612,7 +6332,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>actionID</td>
 <td>true</td>
 <td></td>
-<td>Webhook ID that you wish to copy</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_create'>API_Webhooks_Create</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Create'</span><span class="p">,</span> <span class="p">{</span>
@@ -6662,8 +6382,6 @@ If your application experiences a normal traffic rate that is higher than averag
 </span></code></pre>
 <p><a href='https://help.quickbase.com/api-guide/API_Webhooks_Create.html' target='_blank'>Quick Base Documentation</a></p>
 
-<p>Use API_Webhooks_Create to set up and configure a webhook.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6682,79 +6400,79 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>label</td>
 <td>true</td>
 <td></td>
-<td>A unique name for the webhook</td>
+<td></td>
 </tr>
 <tr>
 <td>description</td>
 <td>false</td>
 <td></td>
-<td>Description of the webhoook</td>
+<td></td>
 </tr>
 <tr>
 <td>query</td>
 <td>false</td>
 <td></td>
-<td>Filter criteria to trigger the webhook</td>
+<td></td>
 </tr>
 <tr>
 <td>workflowWhen</td>
 <td>false</td>
 <td>a</td>
-<td>Condition to trigger the webhook:<ul><li>a = add</li><li>d = delete</li><li>m = modify</li></ul>These can be combined in any order, for example &quot;mda&quot; (modify, delete, add)</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookURL</td>
 <td>true</td>
 <td></td>
-<td>Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br />https://myApp.quickbase.com/db/xxxxxx</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHeader</td>
 <td>false</td>
 <td></td>
-<td>Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHeaderCount</td>
 <td>false</td>
 <td></td>
-<td>The number of webhook headers.<br /><br />For example:<br />WebhookHeaderCount=1</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHeaderKey(n)</td>
 <td>false</td>
 <td></td>
-<td>For example:<br />WebhookHeaderKey1=TOKEN</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHeaderValue(n)</td>
 <td>false</td>
 <td></td>
-<td>Example:<br />WebhookHeaderValue1=VALUE</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookMessage</td>
 <td>false</td>
 <td></td>
-<td>Payload of the webhook</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookMessageFormat</td>
 <td>false</td>
 <td>XML</td>
-<td>Format of the payload:<ul><li>XML</li><li>JSON</li><li>RAW</li></ul></td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHTTPVerb</td>
 <td>false</td>
 <td>POST</td>
-<td>A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<ul><li>POST</li><li>GET</li><li>PUT</li><li>PATCH</li><li>DELETE</li></ul></td>
+<td></td>
 </tr>
 <tr>
 <td>tfidsWhich</td>
 <td>false</td>
 <td></td>
-<td>Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add &#39;tfids&#39; request parameter.<br /><br />Set the value of this parameter to &#39;tfidsAny&#39; to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_delete'>API_Webhooks_Delete</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Delete'</span><span class="p">,</span> <span class="p">{</span>
@@ -6818,7 +6536,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>actionIDList</td>
 <td>true</td>
 <td></td>
-<td>Comma-separated IDs of the webhooks</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_deactivate'>API_Webhooks_Deactivate</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Deactivate'</span><span class="p">,</span> <span class="p">{</span>
@@ -6883,7 +6601,7 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>actionIDList</td>
 <td>true</td>
 <td></td>
-<td>Comma-separated IDs of the webhooks</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='api_webhooks_edit'>API_Webhooks_Edit</h3><pre class="highlight javascript tab-javascript--node"><code><span class="nx">quickbase</span><span class="p">.</span><span class="nx">api</span><span class="p">(</span><span class="s1">'API_Webhooks_Edit'</span><span class="p">,</span> <span class="p">{</span>
@@ -6954,85 +6672,85 @@ If your application experiences a normal traffic rate that is higher than averag
 <td>actionID</td>
 <td>true</td>
 <td></td>
-<td>The target webhook ID</td>
+<td></td>
 </tr>
 <tr>
 <td>label</td>
 <td>true</td>
 <td></td>
-<td>A unique name for the webhook</td>
+<td></td>
 </tr>
 <tr>
 <td>description</td>
 <td>false</td>
 <td></td>
-<td>Description of the webhoook</td>
+<td></td>
 </tr>
 <tr>
 <td>query</td>
 <td>false</td>
 <td></td>
-<td>Filter criteria to trigger the webhook</td>
+<td></td>
 </tr>
 <tr>
 <td>workflowWhen</td>
 <td>false</td>
 <td>a</td>
-<td>Condition to trigger the webhook:<ul><li>a = add</li><li>d = delete</li><li>m = modify</li></ul>These can be combined in any order, for example &quot;mda&quot; (modify, delete, add)</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookURL</td>
 <td>true</td>
 <td></td>
-<td>Endpoint URL for the webhook. This must begin with: https://<br /><br />Example:<br />https://myApp.quickbase.com/db/xxxxxx</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHeader</td>
 <td>false</td>
 <td></td>
-<td>Key value pair of the header.<br /><br />A name/value pair that typically describes the format of the message, for example: Content-Type: application/json. If the webhook is going to another Quick Base table, you can provide the API call name (either here or in the URL); for example: Quick Base-Action: API_AddRecord.</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHeaderCount</td>
 <td>false</td>
 <td></td>
-<td>The number of webhook headers.<br /><br />For example:<br />WebhookHeaderCount=1</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHeaderKey(n)</td>
 <td>false</td>
 <td></td>
-<td>For example:<br />WebhookHeaderKey1=TOKEN</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHeaderValue(n)</td>
 <td>false</td>
 <td></td>
-<td>Example:<br />WebhookHeaderValue1=VALUE</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookMessage</td>
 <td>false</td>
 <td></td>
-<td>Payload of the webhook</td>
+<td></td>
 </tr>
 <tr>
 <td>webhookMessageFormat</td>
 <td>false</td>
 <td>XML</td>
-<td>Format of the payload:<ul><li>XML</li><li>JSON</li><li>RAW</li></ul></td>
+<td></td>
 </tr>
 <tr>
 <td>webhookHTTPVerb</td>
 <td>false</td>
 <td>POST</td>
-<td>A string value that you want returned. It will not be handled by Quick Base but it will be returned in the response.<br /><br />Specifies the HTTP method for the webhook:<ul><li>POST</li><li>GET</li><li>PUT</li><li>PATCH</li><li>DELETE</li></ul></td>
+<td></td>
 </tr>
 <tr>
 <td>tfidsWhich</td>
 <td>false</td>
 <td></td>
-<td>Set the field IDs criteria to determine if webhook should be triggered. The webhook will fire only if at least one of the indicated fields has changed.<br /><br />Set the value of this parameter to TRUE and for every field ID that should be added to criteria add &#39;tfids&#39; request parameter.<br /><br />Set the value of this parameter to &#39;tfidsAny&#39; to clear criteria and fire webhook on any changed field.<br /><br />Example: <tfidsWhich>TRUE</tfidsWhich><tfids>6</tfids><tfids>9</tfids></td>
+<td></td>
 </tr>
 </tbody></table>
 <h1 id='qbfield'>QBField</h1>
