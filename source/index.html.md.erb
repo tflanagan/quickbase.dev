@@ -8,7 +8,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='https://www.quickbase.com/' target='_blank'>Quick Base</a> | <a href='https://help.quickbase.com/api-guide/' target='_blank'>Quick Base API</a>
-  - <br />quickbase.dev is not affiliated with,<br /> connected to, or sponsored by Quick Base<br />or QuickBase, Inc. Quick Base is a<br />registered trademark of QuickBase, Inc.
+  - <br />This site is not affiliated with,<br /> connected to, or sponsored by Quick Base<br />or QuickBase, Inc. Quick Base is a<br />registered trademark of QuickBase, Inc.
   - <br />Developed by <a href='https://github.com/tflanagan' target='_blank'>Tristian Flanagan</a> | <a href='https://github.com/tflanagan/quickbase.dev' target='_blank'>GitHub</a>
   - <a href='https://github.com/lord/slate' target='_blank'>Documentation Powered by Slate</a>
 
@@ -19,7 +19,7 @@ search: true
 
 # Introduction
 
-Welcome to quickbase.dev! This site is dedicated to providing information and help on how to navigate Quick Base's API.
+This site is dedicated to fellow Quick Base enthusiasts and developers, providing information and help on how to navigate Quick Base's API.
 
 The featured libraries are all designed to be flexible, portable, easy, and fun to use. We have examples in PHP and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -29,7 +29,7 @@ Additionally, all the featured libraries are available for use under their respe
 
 We are continually trying to improve the information available! Please feel free to submit an issue or a pull request to help us improve!
 
-quickbase.dev is not affiliated with, connected to, or sponsored by Quick Base or QuickBase, Inc. Quick Base is a registered trademark of QuickBase, Inc.
+This site is not affiliated with, connected to, or sponsored by Quick Base or QuickBase, Inc. Quick Base is a registered trademark of QuickBase, Inc.
 
 ## Support
 
@@ -339,11 +339,11 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbid | true | | 
-add_to_forms | false | false | 
-label | true | | 
-mode | Lookup/Formula only | | 
-type | true | | 
+dbid | true | |
+add_to_forms | false | false |
+label | true | |
+mode | Lookup/Formula only | |
+type | true | |
 
 Possible `type` values:
 
@@ -509,12 +509,12 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-fields | true | | 
-disprec | false | false | 
-fform | false | false | 
-ignoreError | false | false | 
-msInUTC | false | global instance setting | 
-msAsDurationDefault | false | false | 
+fields | true | |
+disprec | false | false |
+fform | false | false |
+ignoreError | false | false |
+msInUTC | false | global instance setting |
+msAsDurationDefault | false | false |
 
 ### API_AddReplaceDBPage
 
@@ -625,8 +625,8 @@ Parameter | Required | Default | Description
 dbid | true | | Application DBID
 pagename | true | |
 pageid | true, if updating | |
-pagetype | true | | 
-pagebody | true | | 
+pagetype | true | |
+pagebody | true | |
 
 ### API_AddSubGroup
 
@@ -683,8 +683,8 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-gid | true | | 
-subgroupid | true | | 
+gid | true | |
+subgroupid | true | |
 
 ### API_AddUserToGroup
 
@@ -744,11 +744,11 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-gid | true | | 
-uid | true | | 
-email | false | | 
-screenName | false | | 
-allowAdminAccess | false | false | 
+gid | true | |
+uid | true | |
+email | false | |
+screenName | false | |
+allowAdminAccess | false | false |
 
 ### API_AddUserToRole
 
@@ -809,8 +809,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-userid | true | | 
-roleid | true | | 
+userid | true | |
+roleid | true | |
 
 ### API_Authenticate
 
@@ -872,9 +872,9 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-username | true | | 
-password | true | | 
-hours | false | 12 | 
+username | true | |
+password | true | |
+hours | false | 12 |
 
 ### API_ChangeGroupInfo
 
@@ -940,10 +940,10 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-gid | true | | 
-name | false | | 
-description | false | | 
-accountId | false | | 
+gid | true | |
+name | false | |
+description | false | |
+accountId | false | |
 
 ### API_ChangeManager
 
@@ -1001,7 +1001,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-newmgr | true | | 
+newmgr | true | |
 
 ### API_ChangeRecordOwner
 
@@ -1062,8 +1062,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-rid <i>or</i> key | true | | 
-newowner | true | | 
+rid <i>or</i> key | true | |
+newowner | true | |
 
 ### API_ChangeUserRole
 
@@ -1127,9 +1127,9 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-userid | true | | 
-roleid | true | | 
-newroleid | false | 9 | 
+userid | true | |
+roleid | true | |
+newroleid | false | 9 |
 
 ### API_CloneDatabase
 
@@ -1200,11 +1200,11 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-newdbname | true | | 
-newdbdesc | false | | 
-keepData | false | false | 
-excludefiles | false | true | 
-usersandroles | false | false | 
+newdbname | true | |
+newdbdesc | false | |
+keepData | false | false |
+excludefiles | false | true |
+usersandroles | false | false |
 
 ### API_CopyGroup
 
@@ -1273,10 +1273,10 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-gid | true | | 
-name | true | | 
-description | false | | 
-gacct | false | account for the source group | 
+gid | true | |
+name | true | |
+description | false | |
+gacct | false | account for the source group |
 
 ### API_CopyMasterDetail
 
@@ -1348,11 +1348,11 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-destrid | true | | 
-sourcerid | true | | 
-copyfid | true | | 
-recurse | false | true | 
-relfids | false | all | 
+destrid | true | |
+sourcerid | true | |
+copyfid | true | |
+recurse | false | true |
+relfids | false | all |
 
 ### API_CreateDatabase
 
@@ -1415,9 +1415,9 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbname | true | | 
-dbdesc | true | | 
-createapptoken | false | false | 
+dbname | true | |
+dbdesc | true | |
+createapptoken | false | false |
 
 ### API_CreateGroup
 
@@ -1483,9 +1483,9 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-name | true | | 
-description | true | | 
-accountID | false | | 
+name | true | |
+description | true | |
+accountID | false | |
 
 ### API_CreateTable
 
@@ -1547,8 +1547,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-tname | false | Records | 
-pnoun | false | Records | 
+tname | false | Records |
+pnoun | false | Records |
 
 ### API_DeleteDatabase
 
@@ -1714,7 +1714,7 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-gid | true | | 
+gid | true | |
 
 ### API_DeleteRecord
 
@@ -1773,7 +1773,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-rid <i>or</i> key | true | | 
+rid <i>or</i> key | true | |
 
 ### API_DoQuery
 
@@ -1926,13 +1926,13 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-query <i>or</i> qid <i>or</i> qname | false | all | 
-clist | false | default table columns | 
-slist | false | default table sort | 
-options | false | | 
-fmt | false | global instance setting | 
-returnpercentage | false | global instance setting | 
-includeRids | false | global instance setting | 
+query <i>or</i> qid <i>or</i> qname | false | all |
+clist | false | default table columns |
+slist | false | default table sort |
+options | false | |
+fmt | false | global instance setting |
+returnpercentage | false | global instance setting |
+includeRids | false | global instance setting |
 
 ### API_DoQueryCount
 
@@ -1991,7 +1991,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-query <i>or</i> qid <i>or</i> qname | false | all | 
+query <i>or</i> qid <i>or</i> qname | false | all |
 
 ### API_EditRecord
 
@@ -2079,13 +2079,13 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-rid <i>or</i> key | true | | 
-update_id | false | | 
-fields | true | | 
-disprec | false | false | 
-fform | false | false | 
-ignoreError | false | false | 
-msInUTC | false | false | 
+rid <i>or</i> key | true | |
+update_id | false | |
+fields | true | |
+disprec | false | false |
+fform | false | false |
+ignoreError | false | false |
+msInUTC | false | false |
 
 
 ### API_FieldAddChoices
@@ -2150,8 +2150,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-fid | true | | 
-choice | true | | 
+fid | true | |
+choice | true | |
 
 ### API_FieldRemoveChoices
 
@@ -2215,8 +2215,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-fid | true | | 
-choice | true | | 
+fid | true | |
+choice | true | |
 
 ### API_FindDBByName
 
@@ -2274,8 +2274,8 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-dbname | true | | 
-ParentsOnly | false | false | 
+dbname | true | |
+ParentsOnly | false | false |
 
 ### API_GenAddRecordForm
 
@@ -2331,7 +2331,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-fields | true | | 
+fields | true | |
 
 ### API_GenResultsTable
 
@@ -2402,12 +2402,12 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-query <i>or</i> qid <i>or</i> qname | false | all | 
-clist | false | default table columns | 
-slist | false | default table sort | 
-options | false | | 
-jht | true | | 
-jsa | false | false | 
+query <i>or</i> qid <i>or</i> qname | false | all |
+clist | false | default table columns |
+slist | false | default table sort |
+options | false | |
+jht | true | |
+jsa | false | false |
 
 ### API_GetAncestorInfo
 
@@ -2713,7 +2713,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-varname | true | | 
+varname | true | |
 
 ### API_GetFieldProperties
 
@@ -2969,8 +2969,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-rid <i>or</i> key | true | | 
-dfid | false | | 
+rid <i>or</i> key | true | |
+dfid | false | |
 
 ### API_GetRecordInfo
 
@@ -3040,7 +3040,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-rid <i>or</i> key | true | | 
+rid <i>or</i> key | true | |
 
 ### API_GetRoleInfo
 
@@ -3264,7 +3264,7 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-email | false | current user | 
+email | false | current user |
 
 ### API_GetUserRole
 
@@ -3344,8 +3344,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-userid | false | current user | 
-inclgrps | false | 
+userid | false | current user |
+inclgrps | false |
 
 ### API_GetUsersInGroup
 
@@ -3433,8 +3433,8 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-gid | true | | 
-includeAllMgrs | false | false | 
+gid | true | |
+includeAllMgrs | false | false |
 
 ### API_GrantedDBs
 
@@ -3507,11 +3507,11 @@ try {
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-adminOnly | false | false | 
-excludeparents | false | false | 
-includeancestors | false | false | 
-withembeddedtables | false | true | 
-realmAppsOnly | false | false | 
+adminOnly | false | false |
+excludeparents | false | false |
+includeancestors | false | false |
+withembeddedtables | false | true |
+realmAppsOnly | false | false |
 
 ### API_GrantedDBsForGroup
 
@@ -3639,7 +3639,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 userid | true | |
-adminonly | false | false | 
+adminonly | false | false |
 
 ### API_ImportFromCSV
 
@@ -3736,13 +3736,13 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-records_csv | true | | 
-clist | true | | 
-clist_output | false | | 
-decimalPercent | false | false | 
-skipfirst | false | false | 
-msInUTC | false | global instance setting | 
-mergeFieldId | false | | 
+records_csv | true | |
+clist | true | |
+clist_output | false | |
+decimalPercent | false | false |
+skipfirst | false | false |
+msInUTC | false | global instance setting |
+mergeFieldId | false | |
 
 ### API_ProvisionUser
 
@@ -3783,7 +3783,7 @@ try {
     'email' => 'sanskor@sbcglobal.com',
     'roleid' => 11,
     'fname' => 'Margi',
-    'lname' => 'Rita' 
+    'lname' => 'Rita'
   ));
 
   // Handle results
@@ -3942,9 +3942,9 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-gid | true | | 
-roleid | true | | 
-allRoles | false | false | 
+gid | true | |
+roleid | true | |
+allRoles | false | false |
 
 ### API_RemoveSubgroup
 
@@ -4005,7 +4005,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-gid | true | | 
+gid | true | |
 subgroupid | true | |
 
 ### API_RemoveUserFromGroup
@@ -4073,10 +4073,10 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-gid | true | | 
-uid | true | | 
-email | false | | 
-screenName | false | | 
+gid | true | |
+uid | true | |
+email | false | |
+screenName | false | |
 
 ### API_RemoveUserFromRole
 
@@ -4137,8 +4137,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-userid | true | | 
-roleid | true | | 
+userid | true | |
+roleid | true | |
 
 ### API_RenameApp
 
@@ -4255,7 +4255,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-id | true | | 
+id | true | |
 
 ### API_SendInvitation
 
@@ -4316,8 +4316,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-userid | true | | 
-usertext | false | | 
+userid | true | |
+usertext | false | |
 
 ### API_SetDBVar
 
@@ -4378,8 +4378,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Application DBID
-varname | true | | 
-value | true | | 
+varname | true | |
+value | true | |
 
 ### API_SetFieldProperties
 
@@ -4442,7 +4442,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-fid | true | | 
+fid | true | |
 <i>property_name</i> | true | |
 
 ### API_SetKeyField
@@ -4628,8 +4628,8 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-rid | true | | 
-fields | true | | 
+rid | true | |
+fields | true | |
 
 ### API_UserRoles
 
@@ -4886,19 +4886,19 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-label | true | | 
-description | false | | 
-query | false | | 
-workflowWhen | false | a | 
-webhookURL | true | | 
-webhookHeader | false | | 
-webhookHeaderCount | false | | 
-webhookHeaderKey(n) | false | | 
-webhookHeaderValue(n) | false | | 
-webhookMessage | false | | 
-webhookMessageFormat | false | XML | 
-webhookHTTPVerb | false | POST | 
-tfidsWhich | false | | 
+label | true | |
+description | false | |
+query | false | |
+workflowWhen | false | a |
+webhookURL | true | |
+webhookHeader | false | |
+webhookHeaderCount | false | |
+webhookHeaderKey(n) | false | |
+webhookHeaderValue(n) | false | |
+webhookMessage | false | |
+webhookMessageFormat | false | XML |
+webhookHTTPVerb | false | POST |
+tfidsWhich | false | |
 
 ### API_Webhooks_Delete
 
@@ -4957,7 +4957,7 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-actionIDList | true | | 
+actionIDList | true | |
 
 ### API_Webhooks_Deactivate
 
@@ -5083,20 +5083,20 @@ try {
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
 dbid | true | | Table DBID
-actionID | true | | 
-label | true | | 
-description | false | | 
-query | false | | 
+actionID | true | |
+label | true | |
+description | false | |
+query | false | |
 workflowWhen | false | a |
-webhookURL | true | | 
-webhookHeader | false | | 
-webhookHeaderCount | false | | 
-webhookHeaderKey(n) | false | | 
-webhookHeaderValue(n) | false | | 
-webhookMessage | false | | 
-webhookMessageFormat | false | XML | 
-webhookHTTPVerb | false | POST | 
-tfidsWhich | false | | 
+webhookURL | true | |
+webhookHeader | false | |
+webhookHeaderCount | false | |
+webhookHeaderKey(n) | false | |
+webhookHeaderValue(n) | false | |
+webhookMessage | false | |
+webhookMessageFormat | false | XML |
+webhookHTTPVerb | false | POST |
+tfidsWhich | false | |
 
 # QBField
 
